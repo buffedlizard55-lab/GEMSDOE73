@@ -85,11 +85,12 @@ def test_promoted_h73m_submission_and_nan_companion():
 
 
 def test_run_card_and_protocol_gates():
-    rc_path = ROOT / "evidence" / "run_card.json"
-    reg_path = ROOT / "registry" / "run_card.json"
-    assert rc_path.is_file() and reg_path.is_file()
+    rc_path = ROOT / "evidence" / "run_card_h73m.json"
+    reg_path = ROOT / "registry" / "run_card_h73m.json"
+    dl_path = ROOT / "docs" / "downloads" / "run_card_h73m.json"
+    assert rc_path.is_file() and reg_path.is_file() and dl_path.is_file()
     rc = json.loads(rc_path.read_text())
-    assert rc == json.loads(reg_path.read_text())
+    assert rc == json.loads(reg_path.read_text()) == json.loads(dl_path.read_text())
 
     assert rc["verdict"] == "promote"
     assert rc["download_ok"] is True
@@ -122,3 +123,24 @@ def test_run_card_and_protocol_gates():
 
     tif_zeros = ROOT / rc["submission"]["file"]
     assert _sha256(tif_zeros) == rc["raster_sha256"]
+
+
+def test_h73m_orthogonal_against_all_parallel_lanes_in_repo():
+    from scipy.ndimage import distance_transform_edt
+
+    my_tif = ROOT / "docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif"
+    my_arr = rasterio.open(my_tif).read(1) > 0.5
+    my_dist = distance_transform_edt(~my_arr)
+
+    for p in sorted((ROOT / "docs/downloads").glob("*.tif")):
+        if "h73m" in p.name:
+            continue
+        other = rasterio.open(p).read(1) > 0.5
+        other_dist = distance_transform_edt(~other)
+        fwd = float((other_dist[my_arr] <= 3.0).mean())
+        rev = float((my_dist[other] <= 3.0).mean())
+        mut = min(fwd, rev)
+        assert fwd <= 0.70 and rev <= 0.70 and mut <= 0.70, (
+            f"3px overlap gate failed vs {p.name}: fwd={fwd:.4f}, rev={rev:.4f}, mut={mut:.4f}"
+        )
+

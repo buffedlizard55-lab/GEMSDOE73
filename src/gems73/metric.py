@@ -10,7 +10,11 @@ Formulation:
   FP_w = sum_{x:p(x)>0} p(x) * [1 - max_{g} k(d(x,g))]
   FN_w = |G| - TP_w
   DTI(α=0.2, β=0.8) = TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w)
-                 = TP_w / (0.2*(TP_w+FP_w) + 0.8*|G|)  [since FP = S-M]
+                 = T / (0.2*(T + S - M) + 0.8*|G|)
+  with T=TP_w (sum over truth), S=sum p, M=sum_x p(x)*max_g k(d) (sum over
+  dots). T and M are NOT interchangeable (see vendor/gems57/metric.py);
+  an earlier revision collapsed them — corrected session-2, code unaffected
+  (dti_exact/dti_binary compute TP/FP/FN directly).
 
 Worked example TP=3.00 FP=1.89 FN=2.00 → 0.60 reproduced in tests.
 """

@@ -1,165 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Irregularities Log (IR-73-01..12) — GEMSDOE73 DOE GEMS Prize</title>
-  <link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="top-row">
-      <a class="brand" href="index.html">GEMSDOE73 · DOE GEMS 3D Subsurface Fault Detection</a>
-      <span class="status-pill">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT (H73-M M3 · HOLDOUT-DTI 0.1224 vs 0.0939)</span>
-    </div>
-    <nav class="site-nav">
-      <a href="index.html">Home &amp; Download</a>
-      <a href="executive-summary.html">Executive Summary</a>
-      <a href="h73-1-piedmont.html">H73-M &amp; H73-1 Lanes</a>
-      <a href="hypotheses.html">5 Hypotheses</a>
-      <a href="research.html">H33 PhD Forensics</a>
-      <a href="method.html">Methodology</a>
-      <a href="leaderboard.html">Leaderboard &amp; Calibration</a>
-      <a href="sources.html">Trusted Sources</a>
-      <a href="verification.html">3-Pass Verification</a>
-      <a href="irregularities.html" class="active">Irregularities (12)</a>
-    </nav>
-  </header>
-  <main class="container">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Irregularities — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><div class="wrap">
+<h1>Irregularities</h1>
+<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html" class="active">Irregularities</a></nav>
+</div></header>
+<main class="wrap">
 
-    <section class="verdict-promote">
-      <div style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">
-        DrivenData Submission Decision Banner · PARALLEL-RUN PROTOCOL All Gates Passed
-      </div>
-      <h1 style="margin:0.25rem 0 0.45rem;color:#065f46;">
-        ✅ VERDICT: PROMOTE — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA
-      </h1>
-      <p style="margin:0.25rem 0 0.75rem;font-size:0.97rem;">
-        <strong>Primary Recommended GeoTIFF:</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code>
-        (<code>142,737</code> bytes · <code>3292 × 3730</code> · <code>EPSG:32611</code> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0</code> NaNs · <code>37,654</code> binary <code>1.0</code> off-catalogue dots · <code>0</code> dots on visible catalogue · SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code>).
-        Protected against DrivenData’s <code>"Predicted values must be in range [0, 1]"</code> portal error.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download>
-          ⬇ Download Promoted .TIF (zeros-outside · 142.7 KB)
-        </a>
-        <a class="btn btn-secondary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>
-          ⬇ Download Single-Member .ZIP (125.0 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>
-          ⬇ Download Companion -nan.tif (NaN-outside · 205.7 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/run_card.json" download>
-          ⬇ Download JSON Run Card
-        </a>
-        <a class="btn btn-outline" href="executive-summary.html">
-          Open Executive Summary Subpage →
-        </a>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Gate / Metric</th>
-            <th>Evidence Class</th>
-            <th>Promoted Candidate (<code>H73-M M3</code>)</th>
-            <th>Primary Control (<code>h33_analogue_foldfair</code> / <code>H33</code>)</th>
-            <th>Paired Difference &amp; 95% CI</th>
-            <th>Gate Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Primary Gating Holdout (Instrument A)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px, 4 folds)</td>
-            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>)</td>
-            <td><code>0.0939</code> (95% CI <code>[0.0813, 0.1076]</code>)</td>
-            <td><strong><code>+0.0285</code></strong> (<code>+30.4%</code>), 95% CI <code>[+0.0154, +0.0419]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Gain vs Prior Repo Baseline (<code>H73-1 E1</code>)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px)</td>
-            <td><strong><code>0.1224</code></strong></td>
-            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>)</td>
-            <td><strong><code>+0.0676</code></strong> (<code>+123.5%</code>), 95% CI <code>[+0.0512, +0.0848]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Piedmont Off-Catalogue Proxy (Instrument C<sub>pied</sub>)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (9,949 piedmont SGMC px)</td>
-            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>)</td>
-            <td><code>0.0937</code> (<code>G70 P9</code>: <code>0.1112</code>, <code>P8</code>: <code>0.0842</code>)</td>
-            <td><strong><code>+0.0499</code></strong> (<code>+53.2%</code>), 95% CI <code>[+0.0319, +0.0656]</code></td>
-            <td><strong>✅ #1 Across All Repos</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Full Off-Catalogue SGMC Proxy (Instrument B&prime;)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (59,937 SGMC px, d &ge; 300 m)</td>
-            <td><strong><code>0.1212</code></strong> (95% CI <code>[0.1051, 0.1361]</code>)</td>
-            <td><code>0.0938</code></td>
-            <td><strong><code>+0.0274</code></strong> (<code>+29.2%</code>), 95% CI <code>[+0.0135, +0.0408]</code></td>
-            <td><strong>✅ PASS</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Single-Feature Leakage Canaries (85 features)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI CANARY</span> (gate symmetric AUC &le; 0.90)</td>
-            <td>Max symmetric AUC = <strong><code>0.7950</code></strong></td>
-            <td>Gate threshold &le; <code>0.9000</code></td>
-            <td><code>85 / 85</code> features pass on both catalogue &amp; withheld truth</td>
-            <td><strong>✅ PASS (85/85)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Registry Uniqueness Audit (161 unique rasters)</strong></td>
-            <td><span class="tag tag-proxy">REGISTRY-AUDIT</span> (Spearman &le; 0.90, 3 px overlap &le; 0.70)</td>
-            <td>Surface |&rho;| = <code>0.3587</code> · Dots |&rho;| = <code>0.1329</code></td>
-            <td>Worst mutual &amp; sparse (&le;150k) 3 px overlap = <strong><code>0.6677</code></strong> (vs <code>G70 P9</code>)</td>
-            <td>Vs <code>GEMSDOE32 H33</code>: <code>0.4186</code> · Vs <code>G70 P8-OOF38k</code>: <code>0.3882</code> · Vs <code>H73-1</code>: <code>0.2679</code></td>
-            <td><strong>✅ PASS (&le; 0.70)</strong></td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="font-size:0.86rem;margin-top:0.55rem;">
-        <strong>Copy-Paste DrivenData Submission Name (57/140 chars):</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code><br>
-        <strong>Copy-Paste DrivenData Submission Note (130/140 chars):</strong>
-        <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code>
-      </div>
-    </section>
-    
-    <div class="card">
-      <h2>Complete Irregularities Registry (<code>IR-73-01</code> through <code>IR-73-12</code>)</h2>
-      <p>Synchronized with <code>docs/irregularities.md</code>:</p>
-      <table>
-        <thead>
-          <tr>
-            <th style="width:28%;">Irregularity ID &amp; Summary</th>
-            <th>Forensic Finding &amp; Resolution</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong><code> IR-73-01 (Literal one-way uniqueness rule saturates against 206,895-dot lattice):</code></strong></td><td>- *Finding:* Forward 3 px overlap (`my_dots_within_3px_of_theirs`) exceeds `0.70` against `calib_r13lattice_00904.tif` (`206,895` dots, SHA-256 `b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2`), a dense calibration lattice whose 3 px halo covers `~100%` of the valid GeoDAWN footprint (`my_dots_within_3px_of_theirs = 1.000`, `mutual_overlap = 0.1832`, `Spearman = +0.0004`). Every possible candidate fails a literal one-way forward check against a footprint-covering lattice.<br>- *Resolution:* `evidence/uniqueness_h73m.json` reports both the literal all-raster maximum and the operative sparse-model gates: mutual overlap across all 161 unique rasters (`max = 0.6677 &lt;= 0.70`), forward 3 px overlap against all sparse rasters `&lt;= 60,000` dots and `&lt;= 150,000` dots (`max = 0.6677 &lt;= 0.70`, against `gems70-p5-multiphysics-submodular-37654-20261020.tif`), and continuous-surface / binary-dot Spearman rank correlation (`max |rho| = 0.3587 &lt;= 0.90` and `0.1329 &lt;= 0.90`).</td></tr>
-<tr><td><strong><code> IR-73-02 (Champion live score attribution vs published repo snapshot):</code></strong></td><td>- *Finding:* The competition brief attributes `0.2778` (`ORGANIZER-CONFIRMED`) to `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (`GEMSDOE32`), while the static `GEMSDOE32` commit predated the live leaderboard submission receipt.<br>- *Resolution:* Verified byte-for-byte that `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`37,654` dots, SHA-256 `a1665e2d5111cb9d1de2f0be4a99d5dc11f8953147da1be5b12bd64a9a7d719f`) is the exact `d_catalogue &gt; 2.0 px` pruned child of `GEMSDOE25` `D2.8` (`44,090` dots, `0.2600` `ORGANIZER-CONFIRMED`), which in turn is a thinned subset of `19GEMSDOE` `H19-5` (`121,131` dots, `0.1922` `ORGANIZER-CONFIRMED`).</td></tr>
-<tr><td><strong><code> IR-73-03 (Dynamic leaderboard snapshots across prompt paragraphs):</code></strong></td><td>- *Finding:* Earlier prompt paragraphs reference historical top leaderboard snapshots (`0.3195` / `0.3262`), while the current task header reports Leaderboard #1 at `0.4413` (`ORGANIZER-CONFIRMED`, [DrivenData Competition 306 Leaderboard](https://www.drivendata.org/competitions/306/competition-gem-3d-faults/leaderboard/)).<br>- *Resolution:* Both historical (`0.3195` / `0.3262`) and current (`0.4413`) organizer-confirmed leaderboard milestones are documented with timestamps in `evidence/leaderboard_snapshot.json` and `docs/leaderboard.html`.</td></tr>
-<tr><td><strong><code> IR-73-04 (`sample_submission.tif` prose vs actual bytes):</code></strong></td><td>- *Finding:* Official competition prose describes `sample_submission.tif` as a &quot;total fault-absence&quot; example, but the actual file (`SHA-256: 01b3ee3f5d0bf5fd7fbcefbdabbe2fef6dc51ebfd20b7ac6fb0dec23fa7dc5ab`) contains `60,988` pixels equal to `1.0` inside the `5,167,373`-pixel valid footprint — the exact visible USGS/INGENIOUS training fault catalogue (`IR-57-01`).<br>- *Resolution:* `sample_submission.tif` is used strictly to define the valid survey footprint (`np.isfinite(s)`) and visible catalogue mask (`s == 1.0`). Zero positive predictions are ever emitted on visible catalogue pixels (`d_cat &lt;= 2.0 px` is masked).</td></tr>
-<tr><td><strong><code> IR-73-05 (Sandbox network egress &amp; SHA-256 mirror verification):</code></strong></td><td>- *Finding:* The sandbox environment permits outbound HTTPS only to `github.com`, `codeload.github.com`, `api.github.com`, `registry.npmjs.org`, `pypi.org`, and `files.pythonhosted.org`, blocking direct downloads from DrivenData S3 or USGS ScienceBase.<br>- *Resolution:* `scripts/download_competition_data.sh` and `scripts/restore_data.py` restore all 28 competition, external USGS/GDR, and historical scored files from commit-pinned GitHub objects and verify every file against its expected byte count and SHA-256 digest in `registry/data_manifest.json` (`28 / 28` verified in `data/restore_receipt.json`).</td></tr>
-<tr><td><strong><code> IR-73-06 (Static unmasked catalogue DTI is anti-correlated with live scores):</code></strong></td><td>- *Finding:* Evaluating an off-catalogue (`B2`-pruned) submission against the static unmasked `60,988`-pixel catalogue yields near-zero DTI (`0.0037` for `H33-2-B2`, `0.0088` for `H73-M M3`) and ranks historical live scores at Spearman $\rho = -0.49$ (`evidence/instrument_calibration.json`) because the evaluation server masks known catalogue faults.<br>- *Resolution:* All model selection uses the fold-fair `gems57-pooled-hide-v2` evaluator (`vendor/gems57/evaluate_holdout.py`, 11,321 withheld positive pixels across 4 spatial folds with visible catalogue masked per fold), where each candidate is evaluated with fold-fair pruning (`d_vis &gt; 2.0 px`) alongside report-only off-catalogue proxies `Instrument C_pied` (`9,949` piedmont SGMC pixels) and `Instrument B&#x27;` (`59,937` SGMC pixels).</td></tr>
-<tr><td><strong><code> IR-73-07 (Expanded registry uniqueness scan from 77 to 161 unique rasters):</code></strong></td><td>- *Finding:* Prior `H73-1` uniqueness check scanned only 77 unique rasters across 5 sibling repos.<br>- *Resolution:* Expanded `scripts/audit_h73m_registry.py` to scan 217 `.tif` files across the 62-raster `60GEMSDOE` archive, 8 sibling repositories (`GEMSDOE32`, `GEMSDOE28`, `GEMSDOE70`, `19GEMSDOE`, `GEMSDOE25`, `GEMSDOE36`, `GEMSDOE63`, `GEMSDOE48`), `.cache/gems_data/scored`, and all prior `GEMSDOE73` lanes (`161` unique SHA-256 rasters).</td></tr>
-<tr><td><strong><code> IR-73-08 (Identical SGMC proxy values for Hedge-v2 and Ens12 in calibration table):</code></strong></td><td>- *Finding:* In `evidence/instrument_calibration.json`, `Hedge-v2` and `Ens12` share identical off-catalogue SGMC proxy DTIs despite differing near-catalogue dot counts because they share the same off-catalogue support beyond `3 px` of the visible catalogue.<br>- *Resolution:* Documented as an expected property of `d_cat &gt;= 3.0 px` off-catalogue evaluation.</td></tr>
-<tr><td><strong><code> IR-73-09 (Broken unit test exports in `src/gems73/metric.py` and `src/gems73/submission.py` on `main`):</code></strong></td><td>- *Finding:* On `main` (`94a9bda`), `tests/test_metric.py` failed with `ImportError: cannot import name &#x27;dti_fast&#x27; from &#x27;src.gems73.metric&#x27;` and `tests/test_writer.py` failed with `ImportError: cannot import name &#x27;write_submission&#x27; from &#x27;src.gems73.submission&#x27;`.<br>- *Resolution:* Restored `dti_fast` in `src/gems73/metric.py` and `WIDTH, HEIGHT, CRS, TRANSFORM, write_submission` in `src/gems73/submission.py`. All 15 pytest unit and integration tests now pass (`.venv/bin/pytest -q` -&gt; `15 passed`).</td></tr>
-<tr><td><strong><code> IR-73-10 (Hardcoded fake fallback numbers in `src/gems73/holdout.py` and stub data scripts on `main`):</code></strong></td><td>- *Finding:* On `main`, `scripts/download_competition_data.sh` and `scripts/prepare_data.py` were 3-line `echo` stubs, and `src/gems73/holdout.py` returned a hardcoded constant `mean_dti = 0.1112, ci95 = [0.0937, 0.1280]` whenever `data/` was absent (copied verbatim from `GEMSDOE70`&#x27;s `p9_piedmont_submod` `C_pied` score `0.111231 [0.093696, 0.128044]`).<br>- *Resolution:* Replaced `scripts/download_competition_data.sh` and `scripts/prepare_data.py` with real SHA-256-verified restoration and 82-feature memmap builders, and rewrote `src/gems73/holdout.py` to delegate to `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`) whencompetition data are present.</td></tr>
-<tr><td><strong><code> IR-73-11 (Forensic audit of retired PR #1 and PR #2 synthetic rasters):</code></strong></td><td>- *Finding:* Evaluating the earlier PR #1 raster (`gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif`, SHA-256 `2bbb79d4...`) on real GeoDAWN data revealed that **21,474 of its 37,654 dots (57.0%) lie outside the valid survey footprint** (`sample_submission.tif` is `NaN`), **237 dots lie directly on mapped catalogue pixels**, and its true `gems57-pooled-hide-v2` `HOLDOUT-DTI` is `0.0271` (below random `0.0487`). Similarly, PR #2 (`gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif`, SHA-256 `46859dc6...`) was generated by a synthetic random Bresenham-line script (`seed=73`) without reading GeoDAWN rasters (`HOLDOUT-DTI = 0.0015`). Furthermore, `docs/executive-summary.html` on `main` still linked to the synthetic PR #2 raster with a fabricated score (`0.2984`).<br>- *Resolution:* Retired PR #1 and PR #2 as synthetic artifacts in `evidence/run_card.json` and rebuilt all 10 `docs/*.html` pages from `evidence/run_card.json` so every page presents the verified `H73-M M3` promoted submission (`gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif`, `HOLDOUT-DTI = 0.1224`) alongside the preserved `H73-1` negative baseline (`0.0548`) and explicit `DO NOT SUBMIT` warnings on retired artifacts.</td></tr>
-<tr><td><strong><code> IR-73-12 (GDAL `RasterBlockError` when writing tiled GeoTIFF from strip-oriented `sample_submission.tif` profile):</code></strong></td><td>- *Finding:* `sample_submission.tif` has strip layout (`blockxsize=3292, blockysize=1`). In `src/gems73/grid.py` and `src/gems73/submission.py`, copying `src.profile` and setting `tiled=True` without overriding `blockxsize=256, blockysize=256` caused GDAL to raise `RasterBlockError: The height and width of TIFF dataset blocks must be multiples of 16`.<br>- *Resolution:* Updated `src/gems73/grid.py` and `src/gems73/submission.py` to explicitly set `blockxsize=256, blockysize=256` and unlink any stale target before opening in `&quot;w&quot;` mode.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-  </main>
-  <footer class="site-footer">
-    <strong>GEMSDOE73</strong> · Branch <code>arena/6de55999-gemsdoe73</code> · Promoted Deliverable:
-    <code>docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code> (SHA-256 <code>ac1c720d466a1213…</code>) ·
-    Evaluated with shared <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels, 1,000-draw paired 20 km spatial-cluster bootstrap).
-    Every score is labeled <code>HOLDOUT-DTI</code>, <code>PROXY-DTI (report-only)</code>, or <code>ORGANIZER-CONFIRMED</code>.
-  </footer>
-</body>
-</html>
+<h2>Flagged for review</h2>
+<table><tr><th>ID</th><th>Description</th><th>Severity</th></tr>
+<tr><td>IR-73-DATA-01</td><td>No DrivenData auth in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from the data page. Template and labels restored from GEMSDOE24 mirror (sha256-pinned) but training_features not restored — training pipeline blocked until manual <code>bash scripts/download_competition_data.sh</code> on unrestricted host.</td><td>blocking for training; not blocking for submission writer (template restored)</td></tr>
+<tr><td>IR-73-SENTINEL-01</td><td>The same portal error “Predicted values must be in range [0, 1]” is triggered by two distinct mechanisms: (1) float32 sentinel −3.4e38 inside footprint, (2) NaN nodata outside footprint if validator is strict whole-array. Both are fixed here by zeros variant (nodata=None, all finite [0,1]). Documented on home page.</td><td>fixed, verified by re-read</td></tr>
+<tr><td>IR-73-LEAKAGE-01</td><td>Any feature with holdout AUC &gt;0.90 is flagged as leakage until proven otherwise. This build’s synthetic generator has no catalogue-derived features, so it passes vacuously. Full stack leakage tests pending data placement.</td><td>watching</td></tr>
+<tr><td>IR-73-PROMOTION-01</td><td>Weekly submission cap: slot promotion is a separate selector step. This build is verdict=negative (deliverable, not promotion). It does not consume a weekly slot.</td><td>info</td></tr>
+<tr><td>IR-73-REGISTRY-01</td><td>Lane-uniqueness check: rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster — checked on surface before placement and on final dots. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs dotted ridge) → pass.</td><td>pass</td></tr>
+<tr><td>IR-73-METRIC-01</td><td>Earlier sibling form of the marginal bar <code>αs/(1−αs)</code> was wrong (IR-32-BAR-01, corrected 2026-10-04). Correct form is <code>α·s</code>. At 0.27 the wrong form rejects a legitimate (2,2)-diagonal emission (k=0.05719). This repo uses the corrected <code>α·s</code>.</td><td>fixed</td></tr>
+<tr><td>IR-73-09→14</td><td><b>Session-2 (2026-10-21):</b> test breakage fixed (13 passed, incl. a real writer tiling bug); site PRIMARY promotion of a synthetic file retracted (IR-73-10); hard-coded synthetic holdout numbers removed from code, stale promote verdict voided (IR-73-11); H73-6↔H73-1 relatedness disclosed, mutual 0.596 &lt; 0.70 (IR-73-12); leaderboard #3 moved same-day 0.3811→0.3894 (IR-73-13); src metric docstring T/M identity corrected (IR-73-14). Full text: <a href="irregularities.md">irregularities.md</a>. Data blocker IR-73-DATA-01 is <b>resolved</b>: 23 files restored + SHA-256-verified via GitHub mirrors, no login used.</td><td>review</td></tr><tr><td>IR-73-15</td><td><b>Literal forward-overlap saturation (H73-7):</b> candidate exceeds the literal one-way &gt;70% forward rule only against dense/union registry rasters (0.71–0.99) while passing operative mutual/Spearman gates (mutual ≤0.504; vs champion 0.217; vs parallel main lanes forward ≤0.408). Full table in <code>evidence/run_card_h73-7.json</code> + <code>evidence/uniqueness_h73-7_vs_main_lanes.json</code>.</td><td>flagged for selector</td></tr>
+<tr><td>IR-73-16</td><td><b>Branch-time forensic error (corrected):</b> champion prune printed as 1,152/~38,800 on the H73-7 branch's site; measured 6,436/44,090 (main already correct).</td><td>fixed</td></tr>
+<tr><td>IR-73-17</td><td><b>Instrument-A tie:</b> crossdrain (PR #7) 0.1360 [0.1175, 0.1560] vs H73-7 0.1369 [0.1158, 0.1577] on the identical draw — indistinguishable; H73-7 listed as Orthogonal Slot #3, selector picks per slot.</td><td>info</td></tr>
+</table>
+
+<h2>How to report</h2>
+<p>Open an issue at <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/issues">github.com/buffedlizard55-lab/GEMSDOE73/issues</a>.</p>
+
+</main>
+<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+</body></html>

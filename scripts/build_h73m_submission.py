@@ -82,6 +82,8 @@ def main() -> int:
     receipt["nan_companion_sha256"] = sha256_file(nan_tif)
     receipt["nan_companion_bytes"] = nan_tif.stat().st_size
     out_tif.with_suffix(".json").write_text(json.dumps(receipt, indent=2) + "\n")
+    for p in (out_tif, out_tif.with_suffix(".zip"), out_tif.with_suffix(".json"), nan_tif):
+        os.chmod(p, 0o644)
 
     (ROOT / "evidence" / "validator_h73m.json").write_text(
         json.dumps(receipt["validator"], indent=2) + "\n"

@@ -1,241 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>3-Pass Verification, Canaries &amp; Uniqueness — GEMSDOE73 DOE GEMS Prize</title>
-  <link rel="stylesheet" href="assets/site.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification, 94 Leakage Canaries &amp; 973-Raster Uniqueness — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="top-row">
-      <a class="brand" href="index.html">GEMSDOE73 · DOE GEMS 3D Subsurface Fault Detection</a>
-      <span class="status-pill">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT (H73-M M3 · HOLDOUT-DTI 0.1224 vs 0.0939)</span>
-    </div>
-    <nav class="site-nav">
-      <a href="index.html">Home &amp; Download</a>
-      <a href="executive-summary.html">Executive Summary</a>
-      <a href="h73-1-piedmont.html">H73-M &amp; H73-1 Lanes</a>
-      <a href="hypotheses.html">5 Hypotheses</a>
-      <a href="research.html">H33 PhD Forensics</a>
-      <a href="method.html">Methodology</a>
-      <a href="leaderboard.html">Leaderboard &amp; Calibration</a>
-      <a href="sources.html">Trusted Sources</a>
-      <a href="verification.html" class="active">3-Pass Verification</a>
-      <a href="irregularities.html">Irregularities (12)</a>
-    </nav>
-  </header>
-  <main class="container">
+<header class="topbar">
+  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">15/15 VALIDATOR · 94/94 CANARIES · 973/973 UNIQUE</span></div>
+  <nav>
+    <a href="index.html">Overview &amp; Download</a>
+    <a href="executive-summary.html">Executive Summary (How to Submit)</a>
+    <a href="method.html">PhD Forensic Analysis &amp; Method</a>
+    <a href="hypotheses.html">5 Ranked Hypotheses</a>
+    <a class="active" href="verification.html">Verification &amp; Uniqueness</a>
+    <a href="sources.html">Official Sources &amp; Irregularities</a>
+  </nav>
+</header>
 
-    <section class="verdict-promote">
-      <div style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">
-        DrivenData Submission Decision Banner · PARALLEL-RUN PROTOCOL All Gates Passed
-      </div>
-      <h1 style="margin:0.25rem 0 0.45rem;color:#065f46;">
-        ✅ VERDICT: PROMOTE — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA
-      </h1>
-      <p style="margin:0.25rem 0 0.75rem;font-size:0.97rem;">
-        <strong>Primary Recommended GeoTIFF:</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code>
-        (<code>142,737</code> bytes · <code>3292 × 3730</code> · <code>EPSG:32611</code> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0</code> NaNs · <code>37,654</code> binary <code>1.0</code> off-catalogue dots · <code>0</code> dots on visible catalogue · SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code>).
-        Protected against DrivenData’s <code>"Predicted values must be in range [0, 1]"</code> portal error.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download>
-          ⬇ Download Promoted .TIF (zeros-outside · 142.7 KB)
-        </a>
-        <a class="btn btn-secondary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>
-          ⬇ Download Single-Member .ZIP (125.0 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>
-          ⬇ Download Companion -nan.tif (NaN-outside · 205.7 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/run_card.json" download>
-          ⬇ Download JSON Run Card
-        </a>
-        <a class="btn btn-outline" href="executive-summary.html">
-          Open Executive Summary Subpage →
-        </a>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Gate / Metric</th>
-            <th>Evidence Class</th>
-            <th>Promoted Candidate (<code>H73-M M3</code>)</th>
-            <th>Primary Control (<code>h33_analogue_foldfair</code> / <code>H33</code>)</th>
-            <th>Paired Difference &amp; 95% CI</th>
-            <th>Gate Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Primary Gating Holdout (Instrument A)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px, 4 folds)</td>
-            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>)</td>
-            <td><code>0.0939</code> (95% CI <code>[0.0813, 0.1076]</code>)</td>
-            <td><strong><code>+0.0285</code></strong> (<code>+30.4%</code>), 95% CI <code>[+0.0154, +0.0419]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Gain vs Prior Repo Baseline (<code>H73-1 E1</code>)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px)</td>
-            <td><strong><code>0.1224</code></strong></td>
-            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>)</td>
-            <td><strong><code>+0.0676</code></strong> (<code>+123.5%</code>), 95% CI <code>[+0.0512, +0.0848]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Piedmont Off-Catalogue Proxy (Instrument C<sub>pied</sub>)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (9,949 piedmont SGMC px)</td>
-            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>)</td>
-            <td><code>0.0937</code> (<code>G70 P9</code>: <code>0.1112</code>, <code>P8</code>: <code>0.0842</code>)</td>
-            <td><strong><code>+0.0499</code></strong> (<code>+53.2%</code>), 95% CI <code>[+0.0319, +0.0656]</code></td>
-            <td><strong>✅ #1 Across All Repos</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Full Off-Catalogue SGMC Proxy (Instrument B&prime;)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (59,937 SGMC px, d &ge; 300 m)</td>
-            <td><strong><code>0.1212</code></strong> (95% CI <code>[0.1051, 0.1361]</code>)</td>
-            <td><code>0.0938</code></td>
-            <td><strong><code>+0.0274</code></strong> (<code>+29.2%</code>), 95% CI <code>[+0.0135, +0.0408]</code></td>
-            <td><strong>✅ PASS</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Single-Feature Leakage Canaries (85 features)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI CANARY</span> (gate symmetric AUC &le; 0.90)</td>
-            <td>Max symmetric AUC = <strong><code>0.7950</code></strong></td>
-            <td>Gate threshold &le; <code>0.9000</code></td>
-            <td><code>85 / 85</code> features pass on both catalogue &amp; withheld truth</td>
-            <td><strong>✅ PASS (85/85)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Registry Uniqueness Audit (161 unique rasters)</strong></td>
-            <td><span class="tag tag-proxy">REGISTRY-AUDIT</span> (Spearman &le; 0.90, 3 px overlap &le; 0.70)</td>
-            <td>Surface |&rho;| = <code>0.3587</code> · Dots |&rho;| = <code>0.1329</code></td>
-            <td>Worst mutual &amp; sparse (&le;150k) 3 px overlap = <strong><code>0.6677</code></strong> (vs <code>G70 P9</code>)</td>
-            <td>Vs <code>GEMSDOE32 H33</code>: <code>0.4186</code> · Vs <code>G70 P8-OOF38k</code>: <code>0.3882</code> · Vs <code>H73-1</code>: <code>0.2679</code></td>
-            <td><strong>✅ PASS (&le; 0.70)</strong></td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="font-size:0.86rem;margin-top:0.55rem;">
-        <strong>Copy-Paste DrivenData Submission Name (57/140 chars):</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code><br>
-        <strong>Copy-Paste DrivenData Submission Note (130/140 chars):</strong>
-        <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code>
-      </div>
-    </section>
-    
-    <div class="card">
-      <h2>Three-Pass Verification Log (Passes 1, 2, and 3)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Verification Pass</th>
-            <th>Scope &amp; Checks Executed</th>
-            <th>Issues Caught &amp; Fixed</th>
-            <th>Outcome</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Pass 1 — Implementation &amp; Execution</strong></td>
-            <td>Restored &amp; SHA-256 verified all 28 files in <code>registry/data_manifest.json</code>; built 82-feature memmap + 3 fold-safe mechanical channels; trained 3 LOQO experts across 4 quadrants; ran <code>M1</code>, <code>M2</code>, <code>M3</code>; evaluated on <code>Instrument A</code>, <code>C<sub>pied</sub></code>, and <code>B&prime;</code>.</td>
-            <td>Replaced stub <code>scripts/download_competition_data.sh</code> and <code>scripts/prepare_data.py</code>; optimized memmap column gather in <code>scripts/run_h73m_experiments.py</code>; verified bit-exact equivalence with <code>vendor/gems57/evaluate_holdout.py</code>.</td>
-            <td><strong>✅ PASS</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Pass 2 — Edge-Case, Uniqueness &amp; Bug Audit</strong></td>
-            <td>Audited <code>M3</code> against all 161 unique rasters in the registry, ran all 15 GeoTIFF validator checks, and ran <code>.venv/bin/pytest -q</code> across all test modules.</td>
-            <td>Caught initial <code>d_min=1.9 px</code> overlap (<code>0.8273</code> vs <code>G70 P9</code>) and fixed via radius-matched <code>d_min=3.0 px</code> + <code>850k</code> candidate pool (boosting <code>HOLDOUT-DTI</code> from <code>0.1150</code> to <code>0.1224</code> while dropping worst overlap to <code>0.6677 &le; 0.70</code>); fixed <code>IR-73-09</code>, <code>IR-73-10</code>, <code>IR-73-11</code>, and <code>IR-73-12</code> (GDAL tiled block size).</td>
-            <td><strong>✅ PASS (15/15 pytest tests pass)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Pass 3 — Prompt &amp; Protocol Compliance Audit</strong></td>
-            <td>Verified verbatim prompt preservation in <code>README.md</code>, evidence-class labeling on every number, <code>&le; 140</code>-char submission name &amp; note, <code>[0, 1]</code> finite range guard, and zero drift between <code>evidence/run_card.json</code> and all 10 <code>docs/*.html</code> pages.</td>
-            <td>Rebuilt all 10 HTML pages directly from <code>evidence/run_card.json</code> and verified every internal link and download artifact.</td>
-            <td><strong>✅ PASS</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h2>Gate 1 — 161-Raster Registry Uniqueness Audit (Top 15 Nearest Sparse Rasters &le; 150k Dots)</h2>
-      <p>Scanned <code>217</code> GeoTIFF files (<code>161</code> unique SHA-256 digests). Worst Stage A surface Spearman <code>|&rho;| = 0.3587 &le; 0.90</code>; worst Stage B dot Spearman <code>|&rho;| = 0.1329 &le; 0.90</code>; worst mutual &amp; sparse forward 3 px overlap = <code>0.6677 &le; 0.70</code>:</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Registry Raster</th>
-            <th>Their Dots</th>
-            <th>Full-Footprint Spearman &rho;</th>
-            <th>Forward 3 px Overlap (Ours &rarr; Theirs)</th>
-            <th>Reverse 3 px Overlap (Theirs &rarr; Ours)</th>
-            <th>Mutual 3 px Overlap</th>
-            <th>Gate (&le; 0.70)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>gems70-p5-multiphysics-submodular-37654-20261020.tif</code></td><td><code>37,654</code></td><td><code>+0.1329</code></td><td><strong><code>0.6677</code></strong></td><td><code>0.8945</code></td><td><strong><code>0.6677</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif</code></td><td><code>54,000</code></td><td><code>+0.0343</code></td><td><strong><code>0.6507</code></strong></td><td><code>0.5323</code></td><td><strong><code>0.5323</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif</code></td><td><code>54,864</code></td><td><code>+0.0291</code></td><td><strong><code>0.6005</code></strong></td><td><code>0.4499</code></td><td><strong><code>0.4499</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif</code></td><td><code>54,864</code></td><td><code>+0.0291</code></td><td><strong><code>0.6005</code></strong></td><td><code>0.4499</code></td><td><strong><code>0.4499</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>calib_h28ridge_01839.tif</code></td><td><code>69,281</code></td><td><code>+0.0130</code></td><td><strong><code>0.5548</code></strong></td><td><code>0.3763</code></td><td><strong><code>0.3763</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-allfinite.tif</code></td><td><code>38,545</code></td><td><code>+0.0395</code></td><td><strong><code>0.5519</code></strong></td><td><code>0.5360</code></td><td><strong><code>0.5360</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-nan.tif</code></td><td><code>38,545</code></td><td><code>+0.0395</code></td><td><strong><code>0.5519</code></strong></td><td><code>0.5360</code></td><td><strong><code>0.5360</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>calib_h161_01855.tif</code></td><td><code>123,939</code></td><td><code>+0.0562</code></td><td><strong><code>0.5371</code></strong></td><td><code>0.5677</code></td><td><strong><code>0.5371</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-nan-outside.tif</code></td><td><code>58,031</code></td><td><code>+0.0246</code></td><td><strong><code>0.5263</code></strong></td><td><code>0.4242</code></td><td><strong><code>0.4242</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07.tif</code></td><td><code>58,031</code></td><td><code>+0.0246</code></td><td><strong><code>0.5263</code></strong></td><td><code>0.4242</code></td><td><strong><code>0.4242</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>19GEMSDOE__h19-4-multiline-corroborated.tif</code></td><td><code>123,779</code></td><td><code>+0.0543</code></td><td><strong><code>0.5198</code></strong></td><td><code>0.5633</code></td><td><strong><code>0.5198</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>calib_h194_01894.tif</code></td><td><code>123,779</code></td><td><code>+0.0543</code></td><td><strong><code>0.5198</code></strong></td><td><code>0.5633</code></td><td><strong><code>0.5198</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>19GEMSDOE__h19-5-powerlaw-budget-multiline.tif</code></td><td><code>121,131</code></td><td><code>+0.0533</code></td><td><strong><code>0.5031</code></strong></td><td><code>0.5641</code></td><td><strong><code>0.5031</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>calib_h195_01922.tif</code></td><td><code>121,131</code></td><td><code>+0.0533</code></td><td><strong><code>0.5031</code></strong></td><td><code>0.5641</code></td><td><strong><code>0.5031</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-<tr><td><code>gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif</code></td><td><code>59,075</code></td><td><code>+0.0324</code></td><td><strong><code>0.5008</code></strong></td><td><code>0.5607</code></td><td><strong><code>0.5008</code></strong></td><td>✅ PASS (&le; 0.70)</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h2>Gate 4 — 85-Feature Single-Channel Leakage Canary Audit (Top 18 Highest Symmetric AUCs)</h2>
-      <p>All <code>85 / 85</code> channels pass the <code>symmetric_auc &le; 0.90</code> gate (max observed = <code>0.7950</code>; full table in <a href="downloads/run_card.json"><code>evidence/canaries_h73m.json</code></a>):</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Feature Name</th>
-            <th>AUC on Visible Catalogue</th>
-            <th>AUC on Withheld Holdout</th>
-            <th>Symmetric AUC <code>max(AUC, 1-AUC)</code></th>
-            <th>Gate (&le; 0.90)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>fold_safe_wing_bridge</code></td><td><code>0.3145</code></td><td><code>0.7950</code></td><td><strong><code>0.7950</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>fold_safe_relay_annulus</code></td><td><code>0.2982</code></td><td><code>0.7939</code></td><td><strong><code>0.7939</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>fold_safe_tip_lobe</code></td><td><code>0.3886</code></td><td><code>0.7915</code></td><td><strong><code>0.7915</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_upface_max</code></td><td><code>0.5980</code></td><td><code>0.6133</code></td><td><strong><code>0.6133</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_downface_max</code></td><td><code>0.5891</code></td><td><code>0.6049</code></td><td><strong><code>0.6049</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_cross_max</code></td><td><code>0.5843</code></td><td><code>0.6045</code></td><td><strong><code>0.6045</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_lappos_max</code></td><td><code>0.5878</code></td><td><code>0.6017</code></td><td><strong><code>0.6017</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_crest_toe_dipole</code></td><td><code>0.5862</code></td><td><code>0.6004</code></td><td><strong><code>0.6004</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>cross_contour_scarp_index</code></td><td><code>0.5935</code></td><td><code>0.5988</code></td><td><strong><code>0.5988</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_lapneg_max</code></td><td><code>0.5829</code></td><td><code>0.5965</code></td><td><strong><code>0.5965</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>det_elev_lrm</code></td><td><code>0.4062</code></td><td><code>0.4180</code></td><td><strong><code>0.5938</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>topo10_slope_std</code></td><td><code>0.5845</code></td><td><code>0.5929</code></td><td><strong><code>0.5929</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_step_max</code></td><td><code>0.5771</code></td><td><code>0.5926</code></td><td><strong><code>0.5926</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_relief</code></td><td><code>0.5786</code></td><td><code>0.5906</code></td><td><strong><code>0.5906</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>lidar_ex_max</code></td><td><code>0.5747</code></td><td><code>0.5900</code></td><td><strong><code>0.5900</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>topo10_curv_prof_absmax</code></td><td><code>0.5779</code></td><td><code>0.5900</code></td><td><strong><code>0.5900</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>zmean_lrm_400m</code></td><td><code>0.4104</code></td><td><code>0.4174</code></td><td><strong><code>0.5896</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-<tr><td><code>scarp_chain_occ_16az</code></td><td><code>0.5679</code></td><td><code>0.5864</code></td><td><strong><code>0.5864</code></strong></td><td>✅ PASS (&le; 0.90)</td></tr>
-        </tbody>
-      </table>
-    </div>
-    
-  </main>
-  <footer class="site-footer">
-    <strong>GEMSDOE73</strong> · Branch <code>arena/6de55999-gemsdoe73</code> · Promoted Deliverable:
-    <code>docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code> (SHA-256 <code>ac1c720d466a1213…</code>) ·
-    Evaluated with shared <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels, 1,000-draw paired 20 km spatial-cluster bootstrap).
-    Every score is labeled <code>HOLDOUT-DTI</code>, <code>PROXY-DTI (report-only)</code>, or <code>ORGANIZER-CONFIRMED</code>.
-  </footer>
+<section class="hero">
+  <div class="wrap">
+    <span class="pill pill-hero">LINE-BY-LINE AUDITABLE MACHINE RECEIPTS</span>
+    <h1>Format Validation, 94/94 Leakage Canaries &amp; 973-Raster Parallel-Run Uniqueness</h1>
+    <p>Every check below is backed by downloadable JSON receipts produced directly from disk bytes and verified automatically by <code>pytest tests -q</code>.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <section class="card">
+    <h2>1. Shared Validator Receipt (<code>15 / 15</code> Checks PASS)</h2>
+    <p>Generated atomically by <code>vendor/gems57/submission_writer.py</code> (<a href="downloads/gems73-crossdrain-unet-submod-37654-20261021.json">open full JSON receipt</a>):</p>
+    <pre><code>File:                     gems73-crossdrain-unet-submod-37654-20261021.tif (145,522 bytes)
+SHA-256:                  9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262
+ZIP File:                 gems73-crossdrain-unet-submod-37654-20261021.zip (112,504 bytes)
+ZIP SHA-256:              9c22678d5019e57cdab41eef2de8a57bcf86a47041472aabde6d5978a2453a94
+CRS / Dimensions:         EPSG:32611 · 3730 rows × 3292 cols · 100.0 m pixel resolution
+Geotransform:             [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]
+Dtype / Bands / Nodata:   float32 · 1 band · nodata = None
+Finite / NaN / Inf:       12,279,160 finite · 0 NaN · 0 Inf (fixes portal [0, 1] rejection)
+Value Range:              min = 0.000000 · max = 1.000000 · exact binary {0.0, 1.0}
+Emitted Positive Pixels:  37,654 inside footprint · 0 outside footprint · 0 on mapped catalogue</code></pre>
+  </section>
+
+  <section class="card">
+    <h2>2. Parallel-Run Uniqueness Audit across All 973 Verified Registry Rasters (73 Repositories)</h2>
+    <p>Full machine receipt: <a href="evidence/uniqueness_973_rasters.json"><code>evidence/uniqueness_973_rasters.json</code></a></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Protocol Gate</th>
+          <th>Protocol Limit</th>
+          <th>Measured Worst Case Across All 973 Unique Rasters</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Pre-placement Continuous Surface Rank Correlation (<code>|Spearman ρ|</code>)</td>
+          <td><code>≤ 0.9000</code></td>
+          <td><code>0.426511</code> (vs <code>5GEMSDOE context_detector_prob_topo_rad.tif</code>)</td>
+          <td><strong>PASS</strong></td>
+        </tr>
+        <tr class="highlight">
+          <td>Final Binary Dots 3-px Mutual Overlap (<code>min(fwd, rev)</code>)</td>
+          <td><code>≤ 0.7000</code></td>
+          <td><code>0.580245</code> (vs <code>GEMSDOE31 union-b-p060</code>; <code>0.4569</code> vs <code>H33-2-B2</code>)</td>
+          <td><strong>PASS</strong></td>
+        </tr>
+        <tr class="highlight">
+          <td>Exact Byte &amp; Decoded Array Uniqueness</td>
+          <td><code>0 collisions</code></td>
+          <td><code>0 / 973</code> collisions</td>
+          <td><strong>PASS</strong></td>
+        </tr>
+        <tr>
+          <td>Transparent One-Way Forward Halo Disclosure on Ultra-Dense Archive Grids</td>
+          <td>Disclosed per upstream <code>uniqueness.py</code> fix</td>
+          <td><code>1.0000</code> vs <code>13GEMSDOE</code> 206,895-dot synthetic 5×5 lattice (<code>rev = 0.1555</code>); <code>0.7575</code> vs <code>12GEMSDOE</code> 103,347-dot raw 10 m scarp map (<code>rev = 0.3919</code>)</td>
+          <td><strong>DISCLOSED</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>3. All Machine-Readable Evidence Receipts</h2>
+    <ul>
+      <li><a href="evidence/data_receipt.json"><code>evidence/data_receipt.json</code></a> — SHA-256 verification of <code>training_features.tif</code>, <code>existing_faults.tif</code>, <code>sample_submission.tif</code>, 11 external layers &amp; 13 10 m DEM channels.</li>
+      <li><a href="evidence/leakage_canaries.json"><code>evidence/leakage_canaries.json</code></a> — All <code>94 / 94</code> single-feature ROC-AUC leakage canaries tested before model training (<code>max symmetric AUC = 0.7704 ≤ 0.90</code>).</li>
+      <li><a href="evidence/instrument_A_holdout.json"><code>evidence/instrument_A_holdout.json</code></a> — Shared <code>gems57-pooled-hide-v2</code> pooled holdout results &amp; per-fold breakdown (<code>N = 11,321</code>).</li>
+      <li><a href="evidence/instrument_A_quad.json"><code>evidence/instrument_A_quad.json</code></a> — Blind 4-quadrant out-of-fold results across all <code>58,950</code> valid catalogue positives.</li>
+      <li><a href="evidence/instrument_C_piedmont.json"><code>evidence/instrument_C_piedmont.json</code></a> — 100% zero-SGMC blind Quaternary piedmont fault evaluation (<code>0.0996</code>).</li>
+      <li><a href="evidence/instrument_B_prime.json"><code>evidence/instrument_B_prime.json</code></a> — 100% zero-SGMC full off-catalogue SGMC <code>d ≥ 3 px</code> evaluation.</li>
+      <li><a href="evidence/feature_gain_top20.json"><code>evidence/feature_gain_top20.json</code></a> — Top 20 out-of-fold LightGBM split-gain physical features.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <a href="hypotheses.html">← 5 Hypotheses</a> · <a href="sources.html">Official Sources &amp; Irregularities →</a>
+  </div>
+</footer>
 </body>
 </html>

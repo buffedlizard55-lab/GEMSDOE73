@@ -238,15 +238,20 @@ def main() -> int:
                 "sha256": h73_1_card["raster_sha256"],
                 "run_card_file": "evidence/run_card_h73-1.json",
             },
-            "PR1_synthetic_hydro_corridor_retired": {
-                "verdict": "retired_synthetic (IR-73-01, IR-73-10, IR-73-11: 21,474 of 37,654 dots outside footprint, 237 on catalogue, real HOLDOUT-DTI = 0.0271; prior 0.1112 was copied from GEMSDOE70)",
-                "file": "docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
-                "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
+            "H73-CD_crossdrain_unet": {
+                "verdict": "promote",
+                "file": "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021.tif",
+                "run_card_file": "evidence/run_card.json",
             },
-            "PR2_synthetic_stepover_retired": {
-                "verdict": "retired_synthetic (IR-73-01: random Bresenham lines seed=73, real HOLDOUT-DTI = 0.0015)",
-                "file": "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
-                "sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
+            "H73-7_hardfault_pu": {
+                "verdict": "promote",
+                "file": "docs/downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif",
+                "run_card_file": "evidence/run_card_h73-7.json",
+            },
+            "H73_piedmont_corrob": {
+                "verdict": "promote",
+                "file": "docs/downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif",
+                "run_card_file": "evidence/h73/run_card.json",
             },
         },
         "raster_sha256": sub_meta["sha256"],
@@ -312,10 +317,8 @@ def main() -> int:
     )
 
     for p in (
-        EV / "run_card.json",
         EV / "run_card_h73m.json",
-        ROOT / "registry" / "run_card.json",
-        DL / "run_card.json",
+        ROOT / "registry" / "run_card_h73m.json",
         DL / "run_card_h73m.json",
     ):
         p.parent.mkdir(parents=True, exist_ok=True)

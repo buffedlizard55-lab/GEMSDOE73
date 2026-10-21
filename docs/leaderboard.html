@@ -1,239 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Leaderboard &amp; Holdout Calibration — GEMSDOE73 DOE GEMS Prize</title>
-  <link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="top-row">
-      <a class="brand" href="index.html">GEMSDOE73 · DOE GEMS 3D Subsurface Fault Detection</a>
-      <span class="status-pill">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT (H73-M M3 · HOLDOUT-DTI 0.1224 vs 0.0939)</span>
-    </div>
-    <nav class="site-nav">
-      <a href="index.html">Home &amp; Download</a>
-      <a href="executive-summary.html">Executive Summary</a>
-      <a href="h73-1-piedmont.html">H73-M &amp; H73-1 Lanes</a>
-      <a href="hypotheses.html">5 Hypotheses</a>
-      <a href="research.html">H33 PhD Forensics</a>
-      <a href="method.html">Methodology</a>
-      <a href="leaderboard.html" class="active">Leaderboard &amp; Calibration</a>
-      <a href="sources.html">Trusted Sources</a>
-      <a href="verification.html">3-Pass Verification</a>
-      <a href="irregularities.html">Irregularities (12)</a>
-    </nav>
-  </header>
-  <main class="container">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><div class="wrap">
+<h1>Leaderboard</h1>
+<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html" class="active">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
+</div></header>
+<main class="wrap">
 
-    <section class="verdict-promote">
-      <div style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">
-        DrivenData Submission Decision Banner · PARALLEL-RUN PROTOCOL All Gates Passed
-      </div>
-      <h1 style="margin:0.25rem 0 0.45rem;color:#065f46;">
-        ✅ VERDICT: PROMOTE — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA
-      </h1>
-      <p style="margin:0.25rem 0 0.75rem;font-size:0.97rem;">
-        <strong>Primary Recommended GeoTIFF:</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code>
-        (<code>142,737</code> bytes · <code>3292 × 3730</code> · <code>EPSG:32611</code> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0</code> NaNs · <code>37,654</code> binary <code>1.0</code> off-catalogue dots · <code>0</code> dots on visible catalogue · SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code>).
-        Protected against DrivenData’s <code>"Predicted values must be in range [0, 1]"</code> portal error.
-      </p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download>
-          ⬇ Download Promoted .TIF (zeros-outside · 142.7 KB)
-        </a>
-        <a class="btn btn-secondary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>
-          ⬇ Download Single-Member .ZIP (125.0 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>
-          ⬇ Download Companion -nan.tif (NaN-outside · 205.7 KB)
-        </a>
-        <a class="btn btn-outline" href="downloads/run_card.json" download>
-          ⬇ Download JSON Run Card
-        </a>
-        <a class="btn btn-outline" href="executive-summary.html">
-          Open Executive Summary Subpage →
-        </a>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Gate / Metric</th>
-            <th>Evidence Class</th>
-            <th>Promoted Candidate (<code>H73-M M3</code>)</th>
-            <th>Primary Control (<code>h33_analogue_foldfair</code> / <code>H33</code>)</th>
-            <th>Paired Difference &amp; 95% CI</th>
-            <th>Gate Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Primary Gating Holdout (Instrument A)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px, 4 folds)</td>
-            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>)</td>
-            <td><code>0.0939</code> (95% CI <code>[0.0813, 0.1076]</code>)</td>
-            <td><strong><code>+0.0285</code></strong> (<code>+30.4%</code>), 95% CI <code>[+0.0154, +0.0419]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Gain vs Prior Repo Baseline (<code>H73-1 E1</code>)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px)</td>
-            <td><strong><code>0.1224</code></strong></td>
-            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>)</td>
-            <td><strong><code>+0.0676</code></strong> (<code>+123.5%</code>), 95% CI <code>[+0.0512, +0.0848]</code></td>
-            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Piedmont Off-Catalogue Proxy (Instrument C<sub>pied</sub>)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (9,949 piedmont SGMC px)</td>
-            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>)</td>
-            <td><code>0.0937</code> (<code>G70 P9</code>: <code>0.1112</code>, <code>P8</code>: <code>0.0842</code>)</td>
-            <td><strong><code>+0.0499</code></strong> (<code>+53.2%</code>), 95% CI <code>[+0.0319, +0.0656]</code></td>
-            <td><strong>✅ #1 Across All Repos</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Full Off-Catalogue SGMC Proxy (Instrument B&prime;)</strong></td>
-            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (59,937 SGMC px, d &ge; 300 m)</td>
-            <td><strong><code>0.1212</code></strong> (95% CI <code>[0.1051, 0.1361]</code>)</td>
-            <td><code>0.0938</code></td>
-            <td><strong><code>+0.0274</code></strong> (<code>+29.2%</code>), 95% CI <code>[+0.0135, +0.0408]</code></td>
-            <td><strong>✅ PASS</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Single-Feature Leakage Canaries (85 features)</strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI CANARY</span> (gate symmetric AUC &le; 0.90)</td>
-            <td>Max symmetric AUC = <strong><code>0.7950</code></strong></td>
-            <td>Gate threshold &le; <code>0.9000</code></td>
-            <td><code>85 / 85</code> features pass on both catalogue &amp; withheld truth</td>
-            <td><strong>✅ PASS (85/85)</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Registry Uniqueness Audit (161 unique rasters)</strong></td>
-            <td><span class="tag tag-proxy">REGISTRY-AUDIT</span> (Spearman &le; 0.90, 3 px overlap &le; 0.70)</td>
-            <td>Surface |&rho;| = <code>0.3587</code> · Dots |&rho;| = <code>0.1329</code></td>
-            <td>Worst mutual &amp; sparse (&le;150k) 3 px overlap = <strong><code>0.6677</code></strong> (vs <code>G70 P9</code>)</td>
-            <td>Vs <code>GEMSDOE32 H33</code>: <code>0.4186</code> · Vs <code>G70 P8-OOF38k</code>: <code>0.3882</code> · Vs <code>H73-1</code>: <code>0.2679</code></td>
-            <td><strong>✅ PASS (&le; 0.70)</strong></td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="font-size:0.86rem;margin-top:0.55rem;">
-        <strong>Copy-Paste DrivenData Submission Name (57/140 chars):</strong>
-        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code><br>
-        <strong>Copy-Paste DrivenData Submission Note (130/140 chars):</strong>
-        <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code>
-      </div>
-    </section>
-    
-    <div class="card">
-      <h2>Organizer-Confirmed Live Leaderboard Benchmarks vs Multi-Instrument Holdout Calibration</h2>
-      <p>Per the <code>PARALLEL-RUN PROTOCOL</code>, every number below is explicitly labeled as <span class="tag tag-org">ORGANIZER-CONFIRMED</span>, <span class="tag tag-holdout">HOLDOUT-DTI</span> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels), or <span class="tag tag-proxy">PROXY-DTI (report-only)</span>. No live score projection is ever reported.</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Submission / Model</th>
-            <th>Repository</th>
-            <th>Dots Emitted</th>
-            <th>Live Score (<span class="tag tag-org">ORGANIZER-CONFIRMED</span>)</th>
-            <th>Primary <code>HOLDOUT-DTI</code> (Instrument A, 11,321 px)</th>
-            <th>Piedmont Proxy <code>PROXY-DTI</code> (Instrument C<sub>pied</sub>, 9,949 px)</th>
-            <th>SGMC Proxy <code>PROXY-DTI</code> (Instrument B&prime;, 59,937 px)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>DrivenData Leaderboard #1 (External Competitor)</strong></td>
-            <td>DrivenData #306</td>
-            <td>—</td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <strong><code>0.4413</code></strong></td>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><strong><code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code> (<code>H73-M M3</code>)</strong></td>
-            <td><strong><code>GEMSDOE73</code> (Promoted)</strong></td>
-            <td><code>37,654</code></td>
-            <td><em>Ready for weekly slot upload</em></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <strong><code>0.1224</code></strong> <code>[0.1072, 0.1390]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <strong><code>0.1435</code></strong> <code>[0.1237, 0.1601]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <strong><code>0.1212</code></strong> <code>[0.1051, 0.1361]</code></td>
-          </tr>
-          <tr>
-            <td><code>gems70-p5-multiphysics-submodular-37654-20261020</code> (<code>P9</code>)</td>
-            <td><code>GEMSDOE70</code></td>
-            <td><code>37,654</code></td>
-            <td><em>Unscored</em></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>0.1100</code> <code>[0.0920, 0.1282]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1112</code> <code>[0.0942, 0.1277]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1191</code> <code>[0.1023, 0.1355]</code></td>
-          </tr>
-          <tr>
-            <td><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (<code>H33-2-B2</code>)</td>
-            <td><code>GEMSDOE32</code></td>
-            <td><code>37,654</code></td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <strong><code>0.2778</code></strong></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>0.0939</code> <code>[0.0813, 0.1076]</code> (fold-fair)</td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.0937</code> <code>[0.0782, 0.1087]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.0938</code> <code>[0.0799, 0.1071]</code></td>
-          </tr>
-          <tr>
-            <td><code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan</code> (<code>D2.8</code>)</td>
-            <td><code>GEMSDOE25</code></td>
-            <td><code>44,090</code></td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2600</code></td>
-            <td>—</td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1021</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1030</code></td>
-          </tr>
-          <tr>
-            <td><code>gems70-p5-dual-submod300-oof38k-20261020</code> (<code>P8-OOF38k</code>)</td>
-            <td><code>GEMSDOE70</code></td>
-            <td><code>37,654</code></td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2478</code></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>0.1113</code> <code>[0.0939, 0.1292]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.0842</code> <code>[0.0686, 0.0987]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1311</code> <code>[0.1128, 0.1489]</code></td>
-          </tr>
-          <tr>
-            <td><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-702c785c77c4-nan</code> (<code>D1.5</code>)</td>
-            <td><code>GEMSDOE24</code></td>
-            <td><code>60,069</code></td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2339</code></td>
-            <td>—</td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1072</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1087</code></td>
-          </tr>
-          <tr>
-            <td><code>gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan</code></td>
-            <td><code>19GEMSDOE</code></td>
-            <td><code>121,131</code></td>
-            <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.1922</code></td>
-            <td>—</td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1045</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1079</code></td>
-          </tr>
-          <tr>
-            <td><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021</code> (<code>H73-1 E1</code>)</td>
-            <td><code>GEMSDOE73</code> (Negative Baseline)</td>
-            <td><code>37,654</code></td>
-            <td><em>Do Not Submit</em></td>
-            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>0.0548</code> <code>[0.0417, 0.0688]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.0789</code> <code>[0.0650, 0.0934]</code></td>
-            <td><span class="tag tag-proxy">PROXY-DTI</span> <code>0.1389</code> <code>[0.1218, 0.1558]</code></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-  </main>
-  <footer class="site-footer">
-    <strong>GEMSDOE73</strong> · Branch <code>arena/6de55999-gemsdoe73</code> · Promoted Deliverable:
-    <code>docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code> (SHA-256 <code>ac1c720d466a1213…</code>) ·
-    Evaluated with shared <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels, 1,000-draw paired 20 km spatial-cluster bootstrap).
-    Every score is labeled <code>HOLDOUT-DTI</code>, <code>PROXY-DTI (report-only)</code>, or <code>ORGANIZER-CONFIRMED</code>.
-  </footer>
-</body>
-</html>
+<h2>Public leaderboard (manual read 2026-10-21)</h2>
+<p class="mut">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/</a> — manual read, not API scraped.</p>
+<table><tr><th>Rank</th><th>Participant</th><th>Best public DTI</th><th>Submissions</th></tr>
+<tr><td>1</td><td>xiaofanhu</td><td>0.4413</td><td>26</td></tr>
+<tr><td>2</td><td>cfld__</td><td>0.3904</td><td>14</td></tr>
+<tr><td>3</td><td>Batik Shirt Brothers</td><td>0.3894</td><td>45</td></tr>
+<tr><td>4</td><td>BrandenKMurray</td><td>0.3713</td><td>27</td></tr>
+<tr><td>5</td><td>No Fault of Our Own</td><td>0.3539</td><td>37</td></tr>
+<tr><td>6</td><td>JerryDataWorks</td><td>0.3418</td><td>22</td></tr>
+<tr><td>7</td><td>alexoktaba</td><td>0.3416</td><td>34</td></tr>
+<tr><td>8</td><td>joeyfezster</td><td>0.3375</td><td>34</td></tr>
+<tr><td>9</td><td>yifanxu</td><td>0.3330</td><td>8</td></tr>
+<tr><td>10</td><td>newway</td><td>0.3328</td><td>12</td></tr>
+</table>
+<p class="mut">Snapshot stored in <code>registry/leaderboard_snapshot_2026-10-21.json</code>. Previous bests at GEMSDOE32 time: DARD 0.3195 (2026-10-02) → nchuzhoy 0.3262 (2026-10-04) → now 0.4413 — a +35% jump indicating a new detector family.</p>
+
+<h2>Group’s own best (owner claims, not organiser-confirmed — labelled claim)</h2>
+<table><tr><th>File</th><th>Owner claim</th><th>Repo</th></tr>
+<tr><td>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td><td>0.2778</td><td>GEMSDOE32</td></tr>
+<tr><td>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td><td>0.2710</td><td>GEMSDOE28</td></tr>
+<tr><td>h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan</td><td>0.2649</td><td>GEMSDOE28</td></tr>
+<tr><td>h33d-analog-tip-stepover-r30-20261004-cb490425926e</td><td>0.2632</td><td>GEMSDOE33</td></tr>
+<tr><td>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td><td>0.2600</td><td>GEMSDOE30</td></tr>
+</table>
+<p class="mut">Gap group best → current leader: +0.1635 (+58.9%). At matched 44k-dot mass the leader’s mean credit per dot is ~45% higher — evidence of a better detector, not just better emission.</p>
+
+<h2>This build</h2>
+<table><tr><th>File</th><th>Emitted px</th><th>On-catalogue px</th><th>Status</th></tr>
+<tr><td>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</td><td>30,762</td><td>0</td><td>UNSCORED — synthetic generator, never holdout-run; <b>DO NOT SUBMIT</b> (superseded 2026-10-21)</td></tr>
+<tr><td>gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif</td><td>37,654</td><td>0</td><td>UNSCORED by organiser — HOLDOUT-DTI 0.1369 [0.1158, 0.1577] vs fold-fair control 0.0939 (gems57-pooled-hide-v2, 11,321 withheld px); verdict PROMOTE to selector, 0 slots spent by this repo</td></tr>
+</table>
+<p>Correlation vs registry: &lt;0.30, overlap &lt;35% within 3 px — unique lane per PARALLEL-RUN PROTOCOL §1.</p>
+
+<p class="mut">Updated 2026-10-21 (later same-day read; #3 moved 0.3811→0.3894 — IR-73-13). Snapshot: <code>evidence/leaderboard_snapshot.json</code>.</p></main>
+<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+</body></html>

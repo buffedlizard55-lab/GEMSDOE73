@@ -1,51 +1,94 @@
-# Irregularities Flagged & Resolved in `GEMSDOE73` (`IR-73-01` .. `IR-73-12`)
+# Irregularities flagged for review (GEMSDOE73)
 
-Every data, metric, code, or protocol irregularity encountered across the repository and sibling references is documented here with exact file paths, SHA-256 hashes, and resolution status.
-
-- **IR-73-01 (Literal one-way uniqueness rule saturates against 206,895-dot lattice):**
-  - *Finding:* Forward 3 px overlap (`my_dots_within_3px_of_theirs`) exceeds `0.70` against `calib_r13lattice_00904.tif` (`206,895` dots, SHA-256 `b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2`), a dense calibration lattice whose 3 px halo covers `~100%` of the valid GeoDAWN footprint (`my_dots_within_3px_of_theirs = 1.000`, `mutual_overlap = 0.1832`, `Spearman = +0.0004`). Every possible candidate fails a literal one-way forward check against a footprint-covering lattice.
-  - *Resolution:* `evidence/uniqueness_h73m.json` reports both the literal all-raster maximum and the operative sparse-model gates: mutual overlap across all 161 unique rasters (`max = 0.6677 <= 0.70`), forward 3 px overlap against all sparse rasters `<= 60,000` dots and `<= 150,000` dots (`max = 0.6677 <= 0.70`, against `gems70-p5-multiphysics-submodular-37654-20261020.tif`), and continuous-surface / binary-dot Spearman rank correlation (`max |rho| = 0.3587 <= 0.90` and `0.1329 <= 0.90`).
-
-- **IR-73-02 (Champion live score attribution vs published repo snapshot):**
-  - *Finding:* The competition brief attributes `0.2778` (`ORGANIZER-CONFIRMED`) to `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (`GEMSDOE32`), while the static `GEMSDOE32` commit predated the live leaderboard submission receipt.
-  - *Resolution:* Verified byte-for-byte that `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`37,654` dots, SHA-256 `a1665e2d5111cb9d1de2f0be4a99d5dc11f8953147da1be5b12bd64a9a7d719f`) is the exact `d_catalogue > 2.0 px` pruned child of `GEMSDOE25` `D2.8` (`44,090` dots, `0.2600` `ORGANIZER-CONFIRMED`), which in turn is a thinned subset of `19GEMSDOE` `H19-5` (`121,131` dots, `0.1922` `ORGANIZER-CONFIRMED`).
-
-- **IR-73-03 (Dynamic leaderboard snapshots across prompt paragraphs):**
-  - *Finding:* Earlier prompt paragraphs reference historical top leaderboard snapshots (`0.3195` / `0.3262`), while the current task header reports Leaderboard #1 at `0.4413` (`ORGANIZER-CONFIRMED`, [DrivenData Competition 306 Leaderboard](https://www.drivendata.org/competitions/306/competition-gem-3d-faults/leaderboard/)).
-  - *Resolution:* Both historical (`0.3195` / `0.3262`) and current (`0.4413`) organizer-confirmed leaderboard milestones are documented with timestamps in `evidence/leaderboard_snapshot.json` and `docs/leaderboard.html`.
-
-- **IR-73-04 (`sample_submission.tif` prose vs actual bytes):**
-  - *Finding:* Official competition prose describes `sample_submission.tif` as a "total fault-absence" example, but the actual file (`SHA-256: 01b3ee3f5d0bf5fd7fbcefbdabbe2fef6dc51ebfd20b7ac6fb0dec23fa7dc5ab`) contains `60,988` pixels equal to `1.0` inside the `5,167,373`-pixel valid footprint — the exact visible USGS/INGENIOUS training fault catalogue (`IR-57-01`).
-  - *Resolution:* `sample_submission.tif` is used strictly to define the valid survey footprint (`np.isfinite(s)`) and visible catalogue mask (`s == 1.0`). Zero positive predictions are ever emitted on visible catalogue pixels (`d_cat <= 2.0 px` is masked).
-
-- **IR-73-05 (Sandbox network egress & SHA-256 mirror verification):**
-  - *Finding:* The sandbox environment permits outbound HTTPS only to `github.com`, `codeload.github.com`, `api.github.com`, `registry.npmjs.org`, `pypi.org`, and `files.pythonhosted.org`, blocking direct downloads from DrivenData S3 or USGS ScienceBase.
-  - *Resolution:* `scripts/download_competition_data.sh` and `scripts/restore_data.py` restore all 28 competition, external USGS/GDR, and historical scored files from commit-pinned GitHub objects and verify every file against its expected byte count and SHA-256 digest in `registry/data_manifest.json` (`28 / 28` verified in `data/restore_receipt.json`).
-
-- **IR-73-06 (Static unmasked catalogue DTI is anti-correlated with live scores):**
-  - *Finding:* Evaluating an off-catalogue (`B2`-pruned) submission against the static unmasked `60,988`-pixel catalogue yields near-zero DTI (`0.0037` for `H33-2-B2`, `0.0088` for `H73-M M3`) and ranks historical live scores at Spearman $\rho = -0.49$ (`evidence/instrument_calibration.json`) because the evaluation server masks known catalogue faults.
-  - *Resolution:* All model selection uses the fold-fair `gems57-pooled-hide-v2` evaluator (`vendor/gems57/evaluate_holdout.py`, 11,321 withheld positive pixels across 4 spatial folds with visible catalogue masked per fold), where each candidate is evaluated with fold-fair pruning (`d_vis > 2.0 px`) alongside report-only off-catalogue proxies `Instrument C_pied` (`9,949` piedmont SGMC pixels) and `Instrument B'` (`59,937` SGMC pixels).
-
-- **IR-73-07 (Expanded registry uniqueness scan from 77 to 161 unique rasters):**
-  - *Finding:* Prior `H73-1` uniqueness check scanned only 77 unique rasters across 5 sibling repos.
-  - *Resolution:* Expanded `scripts/audit_h73m_registry.py` to scan 217 `.tif` files across the 62-raster `60GEMSDOE` archive, 8 sibling repositories (`GEMSDOE32`, `GEMSDOE28`, `GEMSDOE70`, `19GEMSDOE`, `GEMSDOE25`, `GEMSDOE36`, `GEMSDOE63`, `GEMSDOE48`), `.cache/gems_data/scored`, and all prior `GEMSDOE73` lanes (`161` unique SHA-256 rasters).
-
-- **IR-73-08 (Identical SGMC proxy values for Hedge-v2 and Ens12 in calibration table):**
-  - *Finding:* In `evidence/instrument_calibration.json`, `Hedge-v2` and `Ens12` share identical off-catalogue SGMC proxy DTIs despite differing near-catalogue dot counts because they share the same off-catalogue support beyond `3 px` of the visible catalogue.
-  - *Resolution:* Documented as an expected property of `d_cat >= 3.0 px` off-catalogue evaluation.
-
-- **IR-73-09 (Broken unit test exports in `src/gems73/metric.py` and `src/gems73/submission.py` on `main`):**
-  - *Finding:* On `main` (`94a9bda`), `tests/test_metric.py` failed with `ImportError: cannot import name 'dti_fast' from 'src.gems73.metric'` and `tests/test_writer.py` failed with `ImportError: cannot import name 'write_submission' from 'src.gems73.submission'`.
-  - *Resolution:* Restored `dti_fast` in `src/gems73/metric.py` and `WIDTH, HEIGHT, CRS, TRANSFORM, write_submission` in `src/gems73/submission.py`. All 15 pytest unit and integration tests now pass (`.venv/bin/pytest -q` -> `15 passed`).
-
-- **IR-73-10 (Hardcoded fake fallback numbers in `src/gems73/holdout.py` and stub data scripts on `main`):**
-  - *Finding:* On `main`, `scripts/download_competition_data.sh` and `scripts/prepare_data.py` were 3-line `echo` stubs, and `src/gems73/holdout.py` returned a hardcoded constant `mean_dti = 0.1112, ci95 = [0.0937, 0.1280]` whenever `data/` was absent (copied verbatim from `GEMSDOE70`'s `p9_piedmont_submod` `C_pied` score `0.111231 [0.093696, 0.128044]`).
-  - *Resolution:* Replaced `scripts/download_competition_data.sh` and `scripts/prepare_data.py` with real SHA-256-verified restoration and 82-feature memmap builders, and rewrote `src/gems73/holdout.py` to delegate to `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`) whencompetition data are present.
-
-- **IR-73-11 (Forensic audit of retired PR #1 and PR #2 synthetic rasters):**
-  - *Finding:* Evaluating the earlier PR #1 raster (`gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif`, SHA-256 `2bbb79d4...`) on real GeoDAWN data revealed that **21,474 of its 37,654 dots (57.0%) lie outside the valid survey footprint** (`sample_submission.tif` is `NaN`), **237 dots lie directly on mapped catalogue pixels**, and its true `gems57-pooled-hide-v2` `HOLDOUT-DTI` is `0.0271` (below random `0.0487`). Similarly, PR #2 (`gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif`, SHA-256 `46859dc6...`) was generated by a synthetic random Bresenham-line script (`seed=73`) without reading GeoDAWN rasters (`HOLDOUT-DTI = 0.0015`). Furthermore, `docs/executive-summary.html` on `main` still linked to the synthetic PR #2 raster with a fabricated score (`0.2984`).
-  - *Resolution:* Retired PR #1 and PR #2 as synthetic artifacts in `evidence/run_card.json` and rebuilt all 10 `docs/*.html` pages from `evidence/run_card.json` so every page presents the verified `H73-M M3` promoted submission (`gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif`, `HOLDOUT-DTI = 0.1224`) alongside the preserved `H73-1` negative baseline (`0.0548`) and explicit `DO NOT SUBMIT` warnings on retired artifacts.
-
-- **IR-73-12 (GDAL `RasterBlockError` when writing tiled GeoTIFF from strip-oriented `sample_submission.tif` profile):**
-  - *Finding:* `sample_submission.tif` has strip layout (`blockxsize=3292, blockysize=1`). In `src/gems73/grid.py` and `src/gems73/submission.py`, copying `src.profile` and setting `tiled=True` without overriding `blockxsize=256, blockysize=256` caused GDAL to raise `RasterBlockError: The height and width of TIFF dataset blocks must be multiples of 16`.
-  - *Resolution:* Updated `src/gems73/grid.py` and `src/gems73/submission.py` to explicitly set `blockxsize=256, blockysize=256` and unlink any stale target before opening in `"w"` mode.
+- **IR-73-01 (literal uniqueness rule saturates):** forward 3 px overlap exceeds 0.70 only
+  against the 206,895-dot r13 lattice (0.994; mutual 0.139), whose halo covers ~100% of the
+  footprint — every possible candidate fails the literal one-way rule against it. Operative
+  gates reported: mutual overlap (max 0.390), forward vs sparse (<=150k dots) rasters (max 0.480).
+- **IR-73-02 (champion score attribution):** the brief assigns 0.2778 to
+  `h33-h33-2-b2-...-zeros`, but the GEMSDOE32 site itself states no organiser score exists for
+  its artifacts (at publish time). No receipt/hash crosswalk is in any repo inspected.
+  Treated as OWNER-REPORT throughout.
+- **IR-73-03 (leaderboard snapshots conflict in brief):** 0.4413 vs 0.3195/0.3262 are dated
+  snapshots of the same dynamic page. This session read #1 = 0.4413 officially
+  (`evidence/leaderboard_snapshot.json`, 2026-10-21).
+- **IR-73-04 (sample submission wording vs bytes):** the official page calls the sample a
+  total-fault-absence raster; the hash-pinned bytes contain 60,988 pixels equal to 1, exactly
+  the catalogue pixels (MEASURED-HERE). Used only as the grid/footprint template.
+- **IR-73-05 (data provenance):** competition files are login-walled on DrivenData and this
+  sandbox cannot reach Dropbox/USGS directly. Files were restored from owner GitHub mirrors
+  pinned by SHA-256 (`registry/data_manifest.json`, receipt `data/restore_receipt.json`).
+  Hashes prove mirror consistency, NOT organiser authentication.
+- **IR-73-06 (instrument anti-correlation):** static DTI vs the full catalogue ranks
+  OWNER-REPORT live scores at Spearman -0.49 (n=13, MEASURED-HERE); the live champion scores
+  0.0067 on it, below random (0.0504). Any non-fold-fair catalogue holdout is anti-evidence
+  for B2-style candidates.
+- **IR-73-07 (registry scan incomplete):** uniqueness was checked against 77 unique rasters
+  accessible in this session (5 sibling clones + scored mirrors), not all ~72 sibling repos
+  or any private registry. Vendor summary `complete_accessible_scan=false` is recorded.
+- **IR-73-08 (identical proxy values):** in `evidence/instrument_calibration.json`, the
+  Hedge-v2 and Ens12 rasters give byte-identical SGMC proxy DTIs despite different total dot
+  counts, suggesting a shared off-catalogue mask; cause not investigated (diagnostic only).
+- **IR-73-09 (pre-existing main test breakage, found at merge):** on `origin/main` (195015e)
+  `pytest tests` already fails collection: `tests/test_metric.py` imports `dti_fast` and
+  `tests/test_writer.py` imports `write_submission/WIDTH/HEIGHT` from `src.gems73`, which the
+  PR#1+#2 merged library no longer exports. Verified identical failure in a clean worktree of
+  origin/main before this lane's merge; not caused by H73-1 (its tests pass: 5 passed with
+  `tests/test_metric_and_submission.py tests/test_holdout.py`). Fix belongs to the main-lane
+  library consolidation, flagged here rather than rewritten inside this lane.
+- **IR-73-09 RESOLVED (session-2, 2026-10-21):** `tests/test_metric.py` rewritten against the
+  real src API (duplicate definitions + phantom `dti_fast` removed), `tests/test_writer.py`
+  rewritten against `write_submission_geotiff`, which exposed a real writer fragility
+  (`tiled=True` without block sizes) fixed in `src/gems73/submission.py` + `grid.py`
+  (`blockxsize/blockysize=256`). Full suite: 13 passed.
+- **IR-73-10 (site promoted a synthetic file as PRIMARY — corrected):** until 2026-10-21 the
+  home/executive pages labelled the H73-A blind-stepover file "PRIMARY / Tier 1" and invited
+  submission, while `registry/run_card.json` already recorded verdict *negative* and "holdout
+  not yet run". The file is a random-geometry synthetic generator
+  (`scripts/generate_submission.py`, now header-deprecated). Site rebuilt with separate
+  download/submit gates for every file; no file is currently submit-recommended.
+- **IR-73-11 (hard-coded holdout numbers — removed):** `src/gems73/holdout.py` returned
+  fabricated "synthetic-demo" HOLDOUT-DTI values (mean 0.1112) whenever `data/` was absent,
+  and `evidence/run_card.json` cited them with verdict *promote* for the hydrothermal-corridor
+  file. The stub is replaced by a fail-loud delegate to the shared vendor evaluator; both
+  stale run cards carry additive `_superseded_2026-10-21` markers (original fields preserved).
+  No trustworthy score exists for the hydrothermal file; do not submit it.
+- **IR-73-12 (session-2 lane relatedness):** H73-6 X1 shares the session-1 `scarp_n` +
+  `pied_soft` base by design; vs H73-1 E1 dots: forward 0.596, reverse 0.693, mutual 0.596
+  (all < 0.70 gate, reverse within 0.007 of it), surface ρ 0.120. Unique per protocol, but
+  the two lanes are cousins, not strangers — disclosed wherever uniqueness is reported.
+  Registry scope this session: 16 accessible rasters (vs 77 in session-1); IR-73-07 stands.
+- **IR-73-13 (leaderboard moved between same-day reads):** #3 read 0.3811 (43 submissions)
+  earlier on 2026-10-21 and 0.3894 (45 submissions) later the same day. Latest read is in
+  `evidence/leaderboard_snapshot.json`; treat all leaderboard figures as dated snapshots.
+- **IR-73-14 (src metric docstring identity):** `src/gems73/metric.py` claimed
+  `DTI = T/(0.2(T+FP)+0.8|G|)`, collapsing the distinct sums T (over truth) and M (over
+  dots). Code computed TP/FP/FN directly and was unaffected; docstring corrected to the
+  vendor form `T/(0.2(T+S-M)+0.8|G|)`. Shared-tool fix reported here per protocol rule 2.
+- **IR-73-15 (literal forward-overlap gate vs H73-7, extension of IR-73-01):** the H73-7
+  candidate exceeds the brief's literal one-way 0.70 forward-overlap rule against four
+  dense/union registry rasters (r13 lattice 206,895 dots: 0.994; gems10 h25-ctx-ridge
+  174,232 dots: 0.808; gems10 h28-dotted 69,281 dots: 0.756; gems28 h37-1 union-pool
+  38,545 dots: 0.723; gems27 h28-1 59,075 dots: 0.710) while passing the shared tool's
+  operative gates (mutual ≤0.504 worst; dots ρ ≤0.0573; surface ρ ≤0.2089; vs champion
+  mutual 0.217; vs every comparable-mass lane merged to main in parallel, forward ≤0.408
+  and mutual ≤0.326 — `evidence/uniqueness_h73-7_vs_main_lanes.json`). Union/ridge rasters
+  are designed to cover the ridge network, so any geologically-placed field is largely
+  within 3 px of their dots. Printed in `evidence/run_card_h73-7.json` for the selector
+  rather than resolved silently. (This lane's branch numbered this IR-73-12 before the
+  parallel merge; renumbered at merge to avoid colliding with session-2's IR-73-12.)
+  One registry file errored in the H73-7 audit: `GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif`
+  (grid mismatch — by its own name not a submission).
+- **IR-73-16 (branch-time site forensic error, already corrected on main):** the pre-merge
+  site said the H33 champion deleted "1,152 dots (from ~38,800 → 37,654)" from an
+  "H27-4 0.2708 base", and the README quick-start named a non-existent file. Measured
+  (twice): 6,436 dots deleted from D2.8's 44,090 (D2.8 ⊂ H19-5, 121,131). Main's
+  forensic section already carries the correct 6,436; recorded here so the H73-7 lane's
+  earlier branch-time correction (its IR-73-11) has a main-numbered home.
+- **IR-73-17 (two PROMOTE candidates tie on Instrument A):** main's crossdrain lane
+  (PR #7) reports HOLDOUT-DTI Instrument A 0.136023 [0.117451, 0.155962] and H73-7
+  reports 0.136888 [0.115779, 0.157736] on the identical evaluator/draw (11,321 withheld
+  px). The point estimates differ by 0.0009 — indistinguishable. Site/README present
+  H73-7 as Orthogonal Slot #3, not as a replacement primary; any "#1" language on the
+  site pre-dates this merge and should be read as of its lane's merge date. Both lanes
+  share the catalogue-supervised transfer caveat; distinguishing them needs a live slot
+  each or a less catalogue-biased instrument, neither of which this repo can simulate.

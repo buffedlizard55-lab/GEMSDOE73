@@ -1,0 +1,130 @@
+{
+ "repo": "GEMSDOE73",
+ "lane": "H73-6",
+ "session": "session-2 2026-10-21",
+ "hypothesis": "Unmapped piedmont fault scarps are recoverable as orientation-thinned (structure-tensor NMS) polarity-step centrelines corroborated within 200 m by a non-topographic edge (U/K radiometric gradient or isostatic-gravity slope ridge), in deep-basement gentle-slope low-relief terrain.",
+ "mechanism": "X1 = soft-NMS ridge of scarp_n (off-ridge x0.25) * (0.35+0.65*witness) * (0.45+0.55*pied_soft); greedy dotted emission 37,654 dots, 2.5 px spacing, >200 m from catalogue. Ablations X2 (no witness), X3 (no NMS). No catalogue/SGMC training, no scored-raster input. Preregistered in registry/preregistration_x.json before holdout.",
+ "named_non_fault_mimic": "Linear infrastructure / land-use edges (roads, canals, field boundaries): narrow straight centrelines without a basement gravity step; secondary mimic Lahontan shoreline benches.",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "X1_dti": 0.059156738764604505,
+  "X1_ci95": [
+   0.04897056725883168,
+   0.07002363595020193
+  ],
+  "X2_dti": 0.057784101241819895,
+  "X3_dti": 0.058479144865009935,
+  "h33_analogue_foldfair_dti": 0.09386085313581098,
+  "h33_analogue_foldfair_ci95": [
+   0.08125297623437337,
+   0.10760036586090667
+  ],
+  "random_control_dti": 0.04837354917359226,
+  "X1_paired_delta_vs_control": -0.034704114371206476,
+  "X1_paired_delta_vs_control_ci95": [
+   -0.052194527218846494,
+   -0.01924383997343582
+  ],
+  "X1_paired_delta_vs_random": 0.010783189591012245,
+  "X1_paired_delta_vs_random_ci95": [
+   5.597006989857269e-05,
+   0.022219666532220367
+  ],
+  "session1_E1_same_instrument": 0.05475550923291318,
+  "preregistered_gate_passed": false
+ },
+ "secondary_proxy_report_only": {
+  "evidence_class": "PROXY-DTI (SGMC off-catalogue piedmont subset; report only, never used for selection)",
+  "truth_pixels": 11885,
+  "X1": 0.08831209829318167,
+  "X2": 0.09563650773656517,
+  "X3": 0.09195436491812345,
+  "h33_champion": 0.09800255757988548
+ },
+ "leakage_canaries": {
+  "all_pass": true,
+  "max_symmetric_auc": 0.6105073767776699,
+  "channels": 20
+ },
+ "correlation_overlap_vs_registry": {
+  "scope": "REGISTRY-MEASUREMENT (accessible scan only; complete_accessible_scan=false)",
+  "registry_checked": 16,
+  "surface_spearman_max_sample200k": 0.1204024977779809,
+  "dots_spearman_max_sample200k": 0.2495102870949503,
+  "dots_mutual_overlap_max": 0.5959526212354597,
+  "dots_mutual_worst": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif",
+  "dots_forward_overlap_max": 0.9944494608806501,
+  "dots_forward_worst": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "forward_literal_note": "Forward 0.994 only vs 206,895-dot r13 lattice (halo covers ~100% footprint; mutual 0.165) - IR-73-01. Vs session-1 H73-1 E1: forward 0.596 / reverse 0.693 / mutual 0.596 (shared scarp+piedmont base, disclosed; below 0.70 gate).",
+  "vs_h33_champion": {
+   "submission": "h33_champion_gemsdoe32.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "their_dots": 37654,
+   "their_positive": 37654,
+   "surface_spearman_sample200k": 0.04207085001832795,
+   "dots_spearman_sample200k": 0.008224519612890844,
+   "forward_my_dots_within3px": 0.1985977585382695,
+   "reverse_their_dots_within3px": 0.22611143570404207,
+   "mutual_min": 0.1985977585382695
+  },
+  "unique_substantive": true
+ },
+ "raster_sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+ "raster_bytes": 146965,
+ "validator": {
+  "all_checks_passed": true,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "min": 0.0,
+  "max": 1.0,
+  "n_nan": 0,
+  "emitted": 37654,
+  "crs_shape_transform_match_sample": true,
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  }
+ },
+ "submission_file": "docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+ "submission_zip": "docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.zip",
+ "submission_name": "gems73-h73-6-traceloc-x1-37654dots-20261021",
+ "submission_note": "G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE",
+ "submission_note_chars": 92,
+ "download_ok": true,
+ "submit_recommended": false,
+ "verdict": "negative",
+ "weekly_slots_spent": 0,
+ "experiments_used": 3
+}

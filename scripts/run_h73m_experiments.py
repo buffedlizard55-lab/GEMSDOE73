@@ -40,7 +40,7 @@ sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems57 import evaluate_holdout, grid as grid_mod, holdout, metric  # noqa: E402
 from gems73.emit import greedy_dots, peak_nms_emit, submodular_dti_emit  # noqa: E402
-from gems73.features import (  # noqa: E402
+from gems73.features_h73m import (  # noqa: E402
     build_feature_memmap,
     compute_fold_safe_transtensional_mechanics,
 )
