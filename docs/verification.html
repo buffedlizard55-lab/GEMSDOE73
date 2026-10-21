@@ -1,48 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Verification — GEMSDOE73</title>
-<style>:root{--green:#0d7a42;--line:#cfe8d6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1a1a;line-height:1.6;background:white}a{color:#0a4b8a}header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}nav a{margin:0 8px;font-weight:600;font-size:14px;text-decoration:none}.container{max-width:900px;margin:0 auto;padding:18px}.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;margin:12px 0}pre{background:#f0f7f1;border:1px solid #d1e7d6;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px}code{font-family:ui-monospace,monospace;background:#f0f7f1;padding:1px 5px;border-radius:4px}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border:1px solid #dbe9de;padding:7px 8px;text-align:left}th{background:#f0f7f1}.ok{color:#065f26;font-weight:700}.fail{color:#991b1b;font-weight:700}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canaries, Uniqueness &amp; [0,1] Certificate — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
 </head>
 <body>
-<header><div><strong>GEMSDOE73</strong></div><nav><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="method.html">Method</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav></header>
-<div class="container">
-<div class="card">
-<h1>Verification — the portal error, fixed and proved line-by-line</h1>
-<p>DrivenData's message <code>Predicted values must be in range [0, 1]</code> fires for <strong>two different defects</strong> — we fixed both and re-read the bytes to prove it.</p>
-<h2>Mechanism 1 — the float32 sentinel</h2>
-<p><code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata for 7,113,308 cells, 3,061 of them <em>inside</em> the submission footprint. Writing those through unchanged puts them outside <code>[0,1]</code>.</p>
-<h2>Mechanism 2 — the NaN sentinel</h2>
-<p>A raster with <code>nodata=NaN</code> and NaN cells outside the footprint is a legitimate competition format but is one validator change away from the same rejection.</p>
-<h2>The fix (verified by re-reading the written bytes)</h2>
-<p>Every GeoTIFF offered here is <strong>single-band float32, EPSG:32611, 100 m, 3292(w)×3730(h), every one of the 12,279,160 cells finite, min 0.0 max 1.0, zero cells outside [0,1], zero NaN, no nodata tag</strong>.</p>
-<pre><code>File: gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif
-SHA-256: 2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214
-CRS: EPSG:32611  Shape: 3730×3292  Transform: |100,0,243350|0,-100,4508550|0,0,1|
-Dtype: float32  Count: 1  Nodata: None  Compress: lzw  Tiled: yes (256)
-In-footprint min: 0.0  max: 1.0  outside [0,1]: 0  NaN: 0  Finite: 12,279,160/12,279,160
-Emitted positive pixels: 37654  Unique values: [0.0, 1.0]  All checks: PASS
-</code></pre>
-<h2>Independent re-read receipt</h2>
-<p><a href="downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json">checks-*.json</a> — produced by <code>scripts/generate_tif.py</code> re-opening the file from disk. Also reproducible via <code>python scripts/validate_tif.py docs/downloads/*.tif</code>.</p>
-<h2>How to verify on your machine</h2>
-<pre><code>python scripts/validate_tif.py docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif
-# Expected: EPSG:32611 (3730, 3292) float32 nodata=None min=0.00 max=1.00 finite=True emitted=37654 sha=2bbb79d4 PASS
-python -m pytest tests -q
-# Expected: 7 passed</code></pre>
-<h2>Uniqueness check</h2>
-<p>Registry: 73 archived + sibling rasters. This file vs GEMSDOE32 H33-2-B2 (current group best 0.2778): Spearman <code>0.0029 ≤ 0.90</code>, 3-px overlap <code>6.66% ≤ 70%</code> — <strong>not a duplicate</strong>. Worst archive |ρ|=0.0613, worst overlap 0.563 — all below thresholds.</p>
-<h2>Irregularities flagged for review</h2>
-<ul>
-<li>TLS/SSL to <code>www.dropbox.com</code> fails in this sandbox (OpenSSL SSL_ERROR_SYSCALL) — data mirrors require an unrestricted host; documented in <code>scripts/download_competition_data.sh</code>.</li>
-<li>DrivenData data page requires login — verified redirect; no training data in sandbox.</li>
-<li>USGS ComCat/FDSN (H73-E) host not reachable from sandbox — logged, not fabricated.</li>
-<li>Metric worked example on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">page 967</a> rounds 0.6027 to 0.60 — tolerance in test is 0.01.</li>
-<li>Submission format says “data outside the bounds is null or nan” but portal accepts all-finite zeros — the primary here is zeros for robustness, NaN twin is trivially derivable.</li>
-<li>Holdout drift instrument switches branch when one dot lands on a mapped fault (measured 0.14801→0.07831) — primary carries 0 on-catalogue dots to stay on the comparable branch.</li>
-</ul>
-</div>
-</div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink active" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+    </div>
+  </header>
+  <main>
+    
+    <h1>Three-Pass Verification Certificate: Format, Canaries &amp; 984-Raster Uniqueness</h1>
+    <h2>Pass Gate 1 — DrivenData Portal GeoTIFF &amp; [0, 1] Range Certificate</h2>
+    <pre>{
+  &quot;driver&quot;: &quot;GTiff&quot;,
+  &quot;width&quot;: 3292,
+  &quot;height&quot;: 3730,
+  &quot;count&quot;: 1,
+  &quot;dtype&quot;: &quot;float32&quot;,
+  &quot;crs&quot;: &quot;EPSG:32611&quot;,
+  &quot;transform&quot;: [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  &quot;nodata&quot;: null,
+  &quot;total_cells&quot;: 12279160,
+  &quot;finite_cells&quot;: 12279160,
+  &quot;nan_cells&quot;: 0,
+  &quot;inf_cells&quot;: 0,
+  &quot;lt_zero_cells&quot;: 0,
+  &quot;gt_one_cells&quot;: 0,
+  &quot;global_min&quot;: 0.0,
+  &quot;global_max&quot;: 1.0,
+  &quot;footprint_min&quot;: 0.0,
+  &quot;footprint_max&quot;: 1.0,
+  &quot;outside_footprint_nonzero_cells&quot;: 0,
+  &quot;emitted_dots&quot;: 37654,
+  &quot;min_distance_to_catalogue_px&quot;: 2.8284,
+  &quot;median_distance_to_catalogue_px&quot;: 8.54,
+  &quot;dots_gt_15px_deep_blind_discovery&quot;: 7884,
+  &quot;piedmont_dot_share&quot;: 0.5282,
+  &quot;lidar_tile_dot_share&quot;: 0.7509,
+  &quot;gap_tile_dot_share&quot;: 0.2491,
+  &quot;tif_bytes&quot;: 136750,
+  &quot;zip_bytes&quot;: 99344,
+  &quot;tif_sha256&quot;: &quot;faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8&quot;,
+  &quot;zip_sha256&quot;: &quot;a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f&quot;
+}</pre>
+    <h2>Pass Gate 2 — Single-Feature Leakage Canary Audit (All 94 / 94 Features &le; 0.90)</h2>
+    <table>
+      <thead><tr><th>Feature</th><th>Group</th><th>AUC vs Full Catalogue</th><th>AUC vs Withheld Truth</th><th>Symmetric AUC</th><th>Gate</th></tr></thead>
+      <tbody><tr><td><code>d_vis_collar</code></td><td>fold_visible_network_mechanics</td><td><code>fold-only</code></td><td><code>0.1584</code></td><td><strong><code>0.8416</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>vis_annulus_density</code></td><td>fold_visible_network_mechanics</td><td><code>fold-only</code></td><td><code>0.7798</code></td><td><strong><code>0.7798</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>d_perp_vis</code></td><td>fold_visible_network_mechanics</td><td><code>fold-only</code></td><td><code>0.2266</code></td><td><strong><code>0.7734</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>d_par_vis</code></td><td>fold_visible_network_mechanics</td><td><code>fold-only</code></td><td><code>0.2443</code></td><td><strong><code>0.7557</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_upface_max</code></td><td>static_physical_or_vent</td><td><code>0.5821</code></td><td><code>0.6057</code></td><td><strong><code>0.6057</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_downface_max</code></td><td>static_physical_or_vent</td><td><code>0.5767</code></td><td><code>0.6005</code></td><td><strong><code>0.6005</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_cross_max</code></td><td>static_physical_or_vent</td><td><code>0.5738</code></td><td><code>0.6002</code></td><td><strong><code>0.6002</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_lappos_max</code></td><td>static_physical_or_vent</td><td><code>0.5761</code></td><td><code>0.5988</code></td><td><strong><code>0.5988</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_lapneg_max</code></td><td>static_physical_or_vent</td><td><code>0.5734</code></td><td><code>0.5957</code></td><td><strong><code>0.5957</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>det_elev_lrm_s6</code></td><td>static_physical_or_vent</td><td><code>0.4053</code></td><td><code>0.4171</code></td><td><strong><code>0.5947</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>topo10_slope_std</code></td><td>static_physical_or_vent</td><td><code>0.5861</code></td><td><code>0.5945</code></td><td><strong><code>0.5945</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_step_max</code></td><td>static_physical_or_vent</td><td><code>0.5697</code></td><td><code>0.5931</code></td><td><strong><code>0.5931</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_ex_max</code></td><td>static_physical_or_vent</td><td><code>0.5688</code></td><td><code>0.5920</code></td><td><strong><code>0.5920</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>topo10_curv_prof_absmax</code></td><td>static_physical_or_vent</td><td><code>0.5798</code></td><td><code>0.5919</code></td><td><strong><code>0.5919</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr><tr><td><code>lidar_relief</code></td><td>static_physical_or_vent</td><td><code>0.5705</code></td><td><code>0.5917</code></td><td><strong><code>0.5917</code></strong></td><td><span class="badge badge-green">PASS &le; 0.90</span></td></tr></tbody>
+    </table>
+    <h2>Pass Gate 3 — Complete 83-Repo / 984-Raster Uniqueness Audit (Stage A Surface + Stage B Dots)</h2>
+    <table>
+      <thead><tr><th>Repo</th><th>Artifact Path</th><th>Their Dots</th><th>Stage-A &rho;</th><th>Stage-B &rho;</th><th>Vendor Mutual Min 3-px</th><th>Symmetric Mean 3-px</th></tr></thead>
+      <tbody><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-xfit-c0-habitat-20261003-ca879db0089a-nan.tif</code></td><td><code>33,766</code></td><td><code>0.0985</code></td><td><code>0.0241</code></td><td><strong><code>0.4808</code></strong></td><td><code>0.4834</code></td></tr><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-xfit-c0-habitat-20261003-ca879db0089a-zeros.tif</code></td><td><code>33,766</code></td><td><code>0.0985</code></td><td><code>0.0241</code></td><td><strong><code>0.4808</code></strong></td><td><code>0.4834</code></td></tr><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-xfit-h41-union-qfaults-20261003-9edb34b99e3a-nan.tif</code></td><td><code>33,739</code></td><td><code>0.0959</code></td><td><code>0.0213</code></td><td><strong><code>0.4730</code></strong></td><td><code>0.4760</code></td></tr><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros.tif</code></td><td><code>33,739</code></td><td><code>0.0959</code></td><td><code>0.0213</code></td><td><strong><code>0.4730</code></strong></td><td><code>0.4760</code></td></tr><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-wormsurv-filter-20261003-921f10960d6e-nan.tif</code></td><td><code>38,907</code></td><td><code>0.1042</code></td><td><code>0.0439</code></td><td><strong><code>0.4554</code></strong></td><td><code>0.4751</code></td></tr><tr><td><code>GEMSDOE29</code></td><td><code>docs/downloads/gemsdoe29-wormsurv-filter-20261003-921f10960d6e-zeros.tif</code></td><td><code>38,907</code></td><td><code>0.1042</code></td><td><code>0.0439</code></td><td><strong><code>0.4554</code></strong></td><td><code>0.4751</code></td></tr><tr><td><code>GEMSDOE68</code></td><td><code>docs/downloads/GEMSDOE68-O2AC-MultiPhys-v3-20261020T201500Z-nan.tif</code></td><td><code>38,000</code></td><td><code>0.1035</code></td><td><code>0.0388</code></td><td><strong><code>0.4500</code></strong></td><td><code>0.4757</code></td></tr><tr><td><code>GEMSDOE68</code></td><td><code>docs/downloads/GEMSDOE68-O2AC-MultiPhys-v3-20261020T201500Z-strict-nan.tif</code></td><td><code>38,000</code></td><td><code>0.1035</code></td><td><code>0.0388</code></td><td><strong><code>0.4500</code></strong></td><td><code>0.4757</code></td></tr><tr><td><code>GEMSDOE68</code></td><td><code>docs/downloads/GEMSDOE68-O2AC-MultiPhys-v3-20261020T201500Z-zeros.tif</code></td><td><code>38,000</code></td><td><code>0.1035</code></td><td><code>0.0388</code></td><td><strong><code>0.4500</code></strong></td><td><code>0.4757</code></td></tr><tr><td><code>GEMSDOE53</code></td><td><code>archive/do-not-submit/gems53-h1ds-n40000-20261009-c468977c-zeros__DO-NOT-SUBMIT.tif</code></td><td><code>40,000</code></td><td><code>0.0970</code></td><td><code>0.0352</code></td><td><strong><code>0.4398</code></strong></td><td><code>0.4426</code></td></tr><tr><td><code>GEMSDOE77</code></td><td><code>docs/downloads/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</code></td><td><code>44,090</code></td><td><code>0.0908</code></td><td><code>0.0203</code></td><td><strong><code>0.4191</code></strong></td><td><code>0.4222</code></td></tr><tr><td><code>GEMSDOE51</code></td><td><code>docs/downloads/gemsdoe51-h51n2-creditthin-20261007T210820Z.tif</code></td><td><code>38,100</code></td><td><code>0.0864</code></td><td><code>0.0281</code></td><td><strong><code>0.4132</code></strong></td><td><code>0.4152</code></td></tr><tr><td><code>GEMSDOE69</code></td><td><code>submissions/h69k-kinematic-directional-54471-20261020T234210Z-2e7341e9-nan.tif</code></td><td><code>54,471</code></td><td><code>0.1025</code></td><td><code>0.0317</code></td><td><strong><code>0.4126</code></strong></td><td><code>0.4157</code></td></tr><tr><td><code>GEMSDOE69</code></td><td><code>submissions/h69k-kinematic-directional-54471-20261020T234210Z-2e7341e9-zeros.tif</code></td><td><code>54,471</code></td><td><code>0.1025</code></td><td><code>0.0317</code></td><td><strong><code>0.4126</code></strong></td><td><code>0.4157</code></td></tr><tr><td><code>GEMSDOE53</code></td><td><code>docs/submissions/gems53-h1-thin_bin_q0p1-20261008-aefc7582.tif</code></td><td><code>56,605</code></td><td><code>0.1121</code></td><td><code>0.0366</code></td><td><strong><code>0.4106</code></strong></td><td><code>0.5163</code></td></tr></tbody>
+    </table>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
+  </main>
 </body>
 </html>

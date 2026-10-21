@@ -1,14 +1,285 @@
 {
-  "hypothesis": "H73-A blind-stepover linkage via magnetic second-vertical-derivative + isostatic gravity slope; Andersonian 60/30° conjugate fabric, power-law L^-1.8, 15% tip stepovers (1-3 px offset), 30° wing cracks, B=2 catalogue prune",
-  "mechanism": "Second-vertical-derivative magnetic edge (tilt/total-curvature) + gravity-slope concordance defines basement offset; en echelon tip stepover (relay ramp) creates dilatational jog — geothermal permeability chimney where lidar shows flat playa. Synthetic generator mimics this geometry and prunes catalogue-proximal mass (always FP in Round-1).",
-  "non_fault_process_that_could_mimic": "Lahontan paleo-shorelines + basin-fill lithologic contacts produce identical magnetic-gravity steps without faulting; mitigated by requiring segmented stepover geometry (relay ramp + wing cracks), not just edge strength.",
-  "holdout_DTI": "HOLDOUT-DTI not yet run on full feature stack — this build uses synthetic generator only; template-only evaluation cannot reward hidden faults. Leakage canary AUC not computed (pending data placement). Evaluator v73; withheld positives = n/a; 95% CI = n/a. Verdict is negative (deliverable).",
-  "correlation_vs_registry": "rank-correlation <0.30, overlap <35% within 3 px vs any registry raster (dotted-ridge H19-5 lane) — passes PARALLEL-RUN PROTOCOL duplicate threshold (0.90 / 70%)",
-  "raster_sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
-  "validator": "PASSED: single-band float32 EPSG:32611 100m 3292x3730 transform [100,0,243350,0,-100,4508550] all 12,279,160 cells finite in [0,1] range_ok true nodata None CRS/shape/transform match template (sample_submission.tif sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc)",
-  "submission_name": "GEMSDOE73-H73A-STEPOVER",
-  "note": "GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED",
-  "verdict": "negative",
-  "note_chars": 127,
-  "note_limit": 200
+  "schema": "parallel-run-protocol-v1",
+  "repo": "buffedlizard55-lab/GEMSDOE73",
+  "generated_utc": "2026-10-21T05:31:17Z",
+  "lane": "H73-MVH: Metric-Direct Kernel-Target Structural-Geothermal Vent & Damage-Bridge Discovery",
+  "hypothesis": "Hidden expert-mapped geothermal faults in the NW Great Basin occupy a dual structural-hydrothermal niche missed by both pure scarp thresholders and unweighted 1-px classifiers: (1) low-prominence Quaternary piedmont & gap-tile scarps normalized relative to local background relief across combined 1m LiDAR + 10m seamless DEM + 100m GeoDAWN surfaces, (2) blind conduits traced along strike by colinear paleo-geothermal sinters/travertines/tufas, 2m probes & geothermometers, and (3) two-tip elliptical relay bridges & hanging-wall step-outs across alluvial gaps \u2014 learned directly against the official continuous R=300 m triangular kernel target K_3(x)=max(0,1-d/3) alongside a collar-clean centerline classifier, and emitted via Two-Head Exact R=300 m Submodular DTI Allocation.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches, curvilinear tufa strandlines, fluvial terrace risers, and volcanic flow margins \u2014 suppressed via 16-azimuth Radon straight-chain occupancy, potential-field tilt/worm witnesses, hanging-wall basement polarity, and out-of-fold multi-physics GBDT trees.",
+  "primary_score": {
+    "kind": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "n_withheld_positive_pixels": 11321,
+    "selected_experiment": "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300",
+    "pooled_dti": 0.1599,
+    "ci95": [
+      0.1417,
+      0.1788
+    ],
+    "h33_analogue_control_dti": 0.0939,
+    "h33_analogue_control_ci95": [
+      0.0813,
+      0.1076
+    ],
+    "paired_delta_vs_h33_control": 0.0661,
+    "paired_delta_ci95": [
+      0.0497,
+      0.0813
+    ],
+    "relative_lift_vs_h33_control_pct": 70.41,
+    "prior_gemsdoe73_pr3_e1_dti": 0.0548,
+    "prior_gemsdoe73_pr2_synthetic_dti": 0.0015,
+    "prior_gemsdoe73_pr1_synthetic_dti": 0.0271,
+    "random_control_dti": 0.0484,
+    "all_3_experiments": {
+      "M1_Static_Vent_DualTarget_NMS": {
+        "pooled_dti": 0.0765,
+        "ci95": [
+          0.0681,
+          0.0853
+        ]
+      },
+      "M2_NestedHide_Bridge_Vent_NMS": {
+        "pooled_dti": 0.0877,
+        "ci95": [
+          0.0806,
+          0.0955
+        ]
+      },
+      "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300": {
+        "pooled_dti": 0.1599,
+        "ci95": [
+          0.1417,
+          0.1788
+        ]
+      }
+    },
+    "causal_ablation_paired_deltas": {
+      "M2_minus_M1_nested_bridge_mechanics": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.011175588720697766,
+        "ci95": [
+          0.005008870767223975,
+          0.017415334445608523
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "M3_minus_M2_two_head_submodular_300m": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.07223422858619688,
+        "ci95": [
+          0.05706896940847523,
+          0.08882455237249826
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "M3_minus_M1_combined_gain": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.08340981730689465,
+        "ci95": [
+          0.0678679093610734,
+          0.09970186308609817
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "stratified_holdout": {
+      "winner_lidar_tiles_holdout_dti": 0.1622,
+      "h33_ctrl_lidar_tiles_holdout_dti": 0.0977,
+      "winner_non_lidar_gap_tiles_holdout_dti": 0.151,
+      "h33_ctrl_non_lidar_gap_tiles_holdout_dti": 0.0653,
+      "winner_alluvial_piedmont_holdout_dti": 0.1591,
+      "h33_ctrl_alluvial_piedmont_holdout_dti": 0.0761,
+      "winner_bedrock_rangefront_holdout_dti": 0.1447,
+      "h33_ctrl_bedrock_rangefront_holdout_dti": 0.083
+    }
+  },
+  "secondary_diagnostic_proxy_not_used_for_selection": {
+    "evidence_class": "PROXY-DTI (external USGS SGMC off-catalogue faults; strictly diagnostic, never used for selection)",
+    "mvh_all_offcatalogue_sgmc_dti": 0.0676,
+    "h33_all_offcatalogue_sgmc_dti": 0.0954,
+    "mvh_piedmont_offcatalogue_sgmc_dti": 0.0854,
+    "h33_piedmont_offcatalogue_sgmc_dti": 0.098
+  },
+  "live_score": null,
+  "live_score_note": "NOT YET SUBMITTED \u2014 zero weekly portal slots spent autonomously in sandbox.",
+  "leakage_canary": {
+    "n_features_checked": 94,
+    "threshold_symmetric_auc": 0.9,
+    "max_symmetric_auc_observed": 0.8416,
+    "passed": true
+  },
+  "uniqueness": {
+    "complete_accessible_scan": true,
+    "repos_scanned": 83,
+    "unique_rasters_audited": 984,
+    "vendor_gems57_uniqueness_verdict": "promote-to-selector-only",
+    "vendor_gems57_duplicate_count": 0,
+    "max_abs_spearman_stage_a_surface": 0.7381,
+    "max_abs_spearman_stage_b_dots": 0.1036,
+    "max_vendor_mutual_min_3px_overlap_all_984": 0.4808,
+    "max_symmetric_mean_3px_overlap_all_984": 0.6035,
+    "max_oneway_3px_overlap_matched_budget_le_65k": 0.622,
+    "vs_GEMSDOE32_H33_02778": {
+      "first_repo": "58GEMSDOE",
+      "first_path": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256_16": "c55bafc470054e82",
+      "n_other_dots": 37654,
+      "is_dense_or_lattice_gt_65k": false,
+      "spearman_stage_a_surface": 0.048,
+      "spearman_stage_b_dots": 0.0195,
+      "mutual_min_3px_overlap": 0.2932,
+      "mutual_mean_3px_overlap": 0.3255,
+      "forward_cand_in_other_3px": 0.3578,
+      "reverse_other_in_cand_3px": 0.2932,
+      "jaccard_dot_sets": 0.01254
+    },
+    "vs_GEMSDOE70_P8_02478": {
+      "first_repo": "GEMSDOE70",
+      "first_path": "docs/downloads/gems70-discordance-corridor-v1-20261020-7f3a9c2e.tif",
+      "sha256_16": "d8ac9f2c4842bbc6",
+      "n_other_dots": 24872,
+      "is_dense_or_lattice_gt_65k": false,
+      "spearman_stage_a_surface": 0.0016,
+      "spearman_stage_b_dots": 0.0022,
+      "mutual_min_3px_overlap": 0.0549,
+      "mutual_mean_3px_overlap": 0.1105,
+      "forward_cand_in_other_3px": 0.0549,
+      "reverse_other_in_cand_3px": 0.1662,
+      "jaccard_dot_sets": 0.00385
+    },
+    "passed": true
+  },
+  "artifact": {
+    "submission_filename": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+    "zip_filename": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip",
+    "download_url_tif": "downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+    "download_url_zip": "downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip",
+    "raster_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+    "zip_sha256": "a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f",
+    "emitted_dots": 37654,
+    "validator": {
+      "driver": "GTiff",
+      "width": 3292,
+      "height": 3730,
+      "count": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "total_cells": 12279160,
+      "finite_cells": 12279160,
+      "nan_cells": 0,
+      "inf_cells": 0,
+      "lt_zero_cells": 0,
+      "gt_one_cells": 0,
+      "global_min": 0.0,
+      "global_max": 1.0,
+      "footprint_min": 0.0,
+      "footprint_max": 1.0,
+      "outside_footprint_nonzero_cells": 0,
+      "emitted_dots": 37654,
+      "min_distance_to_catalogue_px": 2.8284,
+      "median_distance_to_catalogue_px": 8.54,
+      "dots_gt_15px_deep_blind_discovery": 7884,
+      "piedmont_dot_share": 0.5282,
+      "lidar_tile_dot_share": 0.7509,
+      "gap_tile_dot_share": 0.2491,
+      "tif_bytes": 136750,
+      "zip_bytes": 99344,
+      "tif_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+      "zip_sha256": "a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f"
+    },
+    "top_features_by_gain": [
+      {
+        "rank": 1,
+        "feature": "d_vis_collar",
+        "gain_share_pct": 21.389
+      },
+      {
+        "rank": 2,
+        "feature": "hw_elev_delta",
+        "gain_share_pct": 5.319
+      },
+      {
+        "rank": 3,
+        "feature": "comp_loglen_vis",
+        "gain_share_pct": 4.491
+      },
+      {
+        "rank": 4,
+        "feature": "vis_annulus_density",
+        "gain_share_pct": 3.619
+      },
+      {
+        "rank": 5,
+        "feature": "volcanic_vent_logdist",
+        "gain_share_pct": 3.42
+      },
+      {
+        "rank": 6,
+        "feature": "ieq_n100a15",
+        "gain_share_pct": 2.587
+      },
+      {
+        "rank": 7,
+        "feature": "det_elev",
+        "gain_share_pct": 2.454
+      },
+      {
+        "rank": 8,
+        "feature": "deq_n100a15",
+        "gain_share_pct": 2.399
+      },
+      {
+        "rank": 9,
+        "feature": "geod_dilaterate",
+        "gain_share_pct": 2.366
+      },
+      {
+        "rank": 10,
+        "feature": "cond_surf",
+        "gain_share_pct": 2.351
+      },
+      {
+        "rank": 11,
+        "feature": "iso_grav_anom",
+        "gain_share_pct": 2.245
+      },
+      {
+        "rank": 12,
+        "feature": "geod_shearrate",
+        "gain_share_pct": 2.176
+      },
+      {
+        "rank": 13,
+        "feature": "geod_2ndinv",
+        "gain_share_pct": 2.166
+      },
+      {
+        "rank": 14,
+        "feature": "topo10_dem_mean",
+        "gain_share_pct": 2.066
+      },
+      {
+        "rank": 15,
+        "feature": "det_elev_lrm_s6",
+        "gain_share_pct": 2.063
+      }
+    ]
+  },
+  "submission_note_lte_140_chars": "H73-MVH: 4-fold OOF dual-target vent+bridge GBDT + 300m submod; holdout 0.160 vs 0.094 ctrl",
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "verdict": "promote",
+  "elapsed_seconds": 202.9
 }

@@ -1,0 +1,503 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "M1_Static_Vent_DualTarget_NMS": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07653501549768182,
+      "ci95": [
+        0.06806198817881975,
+        0.08527336311357399
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 1281.6295786154305,
+      "fpw": 37162.685512288925,
+      "fnw": 10039.370421384567
+    },
+    "M2_NestedHide_Bridge_Vent_NMS": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.08771060421837959,
+      "ci95": [
+        0.08059088229473675,
+        0.09551974116836512
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 1470.6901162665893,
+      "fpw": 37082.95582018728,
+      "fnw": 9850.309883733411
+    },
+    "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.15994483280457647,
+      "ci95": [
+        0.14167874435906214,
+        0.178820437489932
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 2696.00274394926,
+      "fpw": 36299.142029776754,
+      "fnw": 8624.997256050736
+    },
+    "h33_analogue_foldfair": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.09386085313581098,
+      "ci95": [
+        0.08125297623437337,
+        0.10760036586090667
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 1524.8663882253954,
+      "fpw": 34421.29172780014,
+      "fnw": 9796.133611774603
+    },
+    "H73_1_E1_piedmont": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.05475550923291318,
+      "ci95": [
+        0.041664880873624195,
+        0.06884302624356965
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 878.7285421587646,
+      "fpw": 34078.37910793378,
+      "fnw": 10442.27145784123
+    },
+    "H73A_synthetic_stepover": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.001465820975785964,
+      "ci95": [
+        0.0009944177959341411,
+        0.002042667025419495
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 21.95784848340208,
+      "fpw": 29593.53140063318,
+      "fnw": 11299.042151516598
+    },
+    "Hydro_synthetic_corridor": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.027086845908100263,
+      "ci95": [
+        0.016413866027187453,
+        0.037451831383437405
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 327.77419608335254,
+      "fpw": 14892.537969943385,
+      "fnw": 10993.225803916645
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.04837354917359226,
+      "ci95": [
+        0.04278261337023402,
+        0.05351377368307851
+      ],
+      "withheld_positive_pixels": 11321,
+      "tpw": 786.0917303001081,
+      "fpw": 35182.13637055275,
+      "fnw": 10534.908269699887
+    }
+  },
+  "best_comparable_control": "h33_analogue_foldfair",
+  "paired_differences": {
+    "M1_Static_Vent_DualTarget_NMS": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.08340981730689465,
+      "ci95": [
+        0.0678679093610734,
+        0.09970186308609817
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "M2_NestedHide_Bridge_Vent_NMS": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.07223422858619688,
+      "ci95": [
+        0.05706896940847523,
+        0.08882455237249826
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "h33_analogue_foldfair": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.06608397966876549,
+      "ci95": [
+        0.04970529887251054,
+        0.08134517530755506
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "H73_1_E1_piedmont": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.10518932357166329,
+      "ci95": [
+        0.08154652652737616,
+        0.1277817050468055
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "H73A_synthetic_stepover": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.1584790118287905,
+      "ci95": [
+        0.14005688442680955,
+        0.17738959078527095
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "Hydro_synthetic_corridor": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.1328579868964762,
+      "ci95": [
+        0.11309693930268876,
+        0.15191124335009834
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.1115712836309842,
+      "ci95": [
+        0.09239245937060155,
+        0.13217607190986946
+      ],
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 1000,
+    "seed": 73073,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "per_fold": {
+    "M1_Static_Vent_DualTarget_NMS": [
+      {
+        "fold": "NW",
+        "dti": 0.05297,
+        "n_truth": 1923,
+        "n_emitted": 8004
+      },
+      {
+        "fold": "NE",
+        "dti": 0.09188,
+        "n_truth": 2367,
+        "n_emitted": 9204
+      },
+      {
+        "fold": "SW",
+        "dti": 0.07216,
+        "n_truth": 3781,
+        "n_emitted": 11858
+      },
+      {
+        "fold": "SE",
+        "dti": 0.08576,
+        "n_truth": 3250,
+        "n_emitted": 8588
+      }
+    ],
+    "M2_NestedHide_Bridge_Vent_NMS": [
+      {
+        "fold": "NW",
+        "dti": 0.06901,
+        "n_truth": 1923,
+        "n_emitted": 9281
+      },
+      {
+        "fold": "NE",
+        "dti": 0.0895,
+        "n_truth": 2367,
+        "n_emitted": 7934
+      },
+      {
+        "fold": "SW",
+        "dti": 0.09232,
+        "n_truth": 3781,
+        "n_emitted": 12722
+      },
+      {
+        "fold": "SE",
+        "dti": 0.09528,
+        "n_truth": 3250,
+        "n_emitted": 7717
+      }
+    ],
+    "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300": [
+      {
+        "fold": "NW",
+        "dti": 0.15404,
+        "n_truth": 1923,
+        "n_emitted": 9520
+      },
+      {
+        "fold": "NE",
+        "dti": 0.18299,
+        "n_truth": 2367,
+        "n_emitted": 3486
+      },
+      {
+        "fold": "SW",
+        "dti": 0.14881,
+        "n_truth": 3781,
+        "n_emitted": 18923
+      },
+      {
+        "fold": "SE",
+        "dti": 0.16958,
+        "n_truth": 3250,
+        "n_emitted": 5725
+      }
+    ],
+    "h33_analogue_foldfair": [
+      {
+        "fold": "NW",
+        "dti": 0.08698,
+        "n_truth": 1923,
+        "n_emitted": 8888
+      },
+      {
+        "fold": "NE",
+        "dti": 0.11285,
+        "n_truth": 2367,
+        "n_emitted": 10203
+      },
+      {
+        "fold": "SW",
+        "dti": 0.08307,
+        "n_truth": 3781,
+        "n_emitted": 10596
+      },
+      {
+        "fold": "SE",
+        "dti": 0.09477,
+        "n_truth": 3250,
+        "n_emitted": 5388
+      }
+    ],
+    "H73_1_E1_piedmont": [
+      {
+        "fold": "NW",
+        "dti": 0.05546,
+        "n_truth": 1923,
+        "n_emitted": 6282
+      },
+      {
+        "fold": "NE",
+        "dti": 0.01226,
+        "n_truth": 2367,
+        "n_emitted": 7057
+      },
+      {
+        "fold": "SW",
+        "dti": 0.06254,
+        "n_truth": 3781,
+        "n_emitted": 11185
+      },
+      {
+        "fold": "SE",
+        "dti": 0.0758,
+        "n_truth": 3250,
+        "n_emitted": 9951
+      }
+    ],
+    "H73A_synthetic_stepover": [
+      {
+        "fold": "NW",
+        "dti": 0.00018,
+        "n_truth": 1923,
+        "n_emitted": 2797
+      },
+      {
+        "fold": "NE",
+        "dti": 0.00128,
+        "n_truth": 2367,
+        "n_emitted": 2671
+      },
+      {
+        "fold": "SW",
+        "dti": 0.00205,
+        "n_truth": 3781,
+        "n_emitted": 13703
+      },
+      {
+        "fold": "SE",
+        "dti": 0.00142,
+        "n_truth": 3250,
+        "n_emitted": 10442
+      }
+    ],
+    "Hydro_synthetic_corridor": [
+      {
+        "fold": "NW",
+        "dti": 0.01129,
+        "n_truth": 1923,
+        "n_emitted": 1988
+      },
+      {
+        "fold": "NE",
+        "dti": 0.01139,
+        "n_truth": 2367,
+        "n_emitted": 2025
+      },
+      {
+        "fold": "SW",
+        "dti": 0.02205,
+        "n_truth": 3781,
+        "n_emitted": 5125
+      },
+      {
+        "fold": "SE",
+        "dti": 0.05003,
+        "n_truth": 3250,
+        "n_emitted": 5911
+      }
+    ],
+    "random_control": [
+      {
+        "fold": "NW",
+        "dti": 0.04428,
+        "n_truth": 1923,
+        "n_emitted": 8135
+      },
+      {
+        "fold": "NE",
+        "dti": 0.04346,
+        "n_truth": 2367,
+        "n_emitted": 9992
+      },
+      {
+        "fold": "SW",
+        "dti": 0.05618,
+        "n_truth": 3781,
+        "n_emitted": 9563
+      },
+      {
+        "fold": "SE",
+        "dti": 0.04681,
+        "n_truth": 3250,
+        "n_emitted": 7798
+      }
+    ]
+  },
+  "fold_receipts": [
+    {
+      "fold": "NW",
+      "seed": 20,
+      "held_components": 96,
+      "withheld_positive_pixels": 1923,
+      "eligible_components": 598,
+      "boundary_buffer_px": 12,
+      "feature_buffer_px": 3,
+      "nearest_visible_to_truth_px": 3.1622776601683795,
+      "split_version": "buffered-whole-components-loqo-v2",
+      "evaluation_region_label_blind": true
+    },
+    {
+      "fold": "NE",
+      "seed": 20,
+      "held_components": 145,
+      "withheld_positive_pixels": 2367,
+      "eligible_components": 628,
+      "boundary_buffer_px": 12,
+      "feature_buffer_px": 3,
+      "nearest_visible_to_truth_px": 3.1622776601683795,
+      "split_version": "buffered-whole-components-loqo-v2",
+      "evaluation_region_label_blind": true
+    },
+    {
+      "fold": "SW",
+      "seed": 20,
+      "held_components": 223,
+      "withheld_positive_pixels": 3781,
+      "eligible_components": 983,
+      "boundary_buffer_px": 12,
+      "feature_buffer_px": 3,
+      "nearest_visible_to_truth_px": 3.1622776601683795,
+      "split_version": "buffered-whole-components-loqo-v2",
+      "evaluation_region_label_blind": true
+    },
+    {
+      "fold": "SE",
+      "seed": 20,
+      "held_components": 142,
+      "withheld_positive_pixels": 3250,
+      "eligible_components": 648,
+      "boundary_buffer_px": 12,
+      "feature_buffer_px": 3,
+      "nearest_visible_to_truth_px": 3.1622776601683795,
+      "split_version": "buffered-whole-components-loqo-v2",
+      "evaluation_region_label_blind": true
+    }
+  ],
+  "causal_ablation_paired_deltas": {
+    "M2_minus_M1_nested_bridge_mechanics": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.011175588720697766,
+      "ci95": [
+        0.005008870767223975,
+        0.017415334445608523
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "M3_minus_M2_two_head_submodular_300m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.07223422858619688,
+      "ci95": [
+        0.05706896940847523,
+        0.08882455237249826
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "M3_minus_M1_combined_gain": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.08340981730689465,
+      "ci95": [
+        0.0678679093610734,
+        0.09970186308609817
+      ],
+      "withheld_positive_pixels": 11321
+    }
+  },
+  "stratified_holdout": {
+    "winner_lidar_tiles_holdout_dti": 0.1622,
+    "h33_ctrl_lidar_tiles_holdout_dti": 0.0977,
+    "winner_non_lidar_gap_tiles_holdout_dti": 0.151,
+    "h33_ctrl_non_lidar_gap_tiles_holdout_dti": 0.0653,
+    "winner_alluvial_piedmont_holdout_dti": 0.1591,
+    "h33_ctrl_alluvial_piedmont_holdout_dti": 0.0761,
+    "winner_bedrock_rangefront_holdout_dti": 0.1447,
+    "h33_ctrl_bedrock_rangefront_holdout_dti": 0.083
+  }
+}

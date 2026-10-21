@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 import numpy as np
 import rasterio
+from .grid import WIDTH, HEIGHT, CRS, TRANSFORM
 
 @dataclass(frozen=True)
 class CheckResult:
@@ -85,3 +86,29 @@ def write_submission_geotiff(predictions_2d: np.ndarray, template_path: Path, ou
     emitted = int(np.count_nonzero(out_array[valid] > 0))
     return {"file_path": str(output_path), "sha256": report.sha256,
             "emitted_dots": emitted, "note": note or "", "validation": report.to_dict()}
+
+
+def write_submission(arr: np.ndarray, out_path: Path | str) -> dict[str, Any]:
+    """Portal-safe fail-closed writer using the official competition grid profile."""
+    a = np.asarray(arr, dtype=np.float32)
+    assert a.shape == (HEIGHT, WIDTH), f"shape {a.shape} != {(HEIGHT, WIDTH)}"
+    assert np.isfinite(a).all(), "array contains NaN or Inf"
+    assert float(a.min()) >= 0.0 and float(a.max()) <= 1.0, "values must lie in [0, 1]"
+    p = Path(out_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with rasterio.open(
+        p, "w", driver="GTiff", dtype="float32", count=1,
+        width=WIDTH, height=HEIGHT, crs=CRS, transform=TRANSFORM,
+        nodata=None, compress="deflate", tiled=True,
+    ) as dst:
+        dst.write(a, 1)
+    with rasterio.open(p) as chk:
+        rb = chk.read(1)
+        all_fin = bool(np.isfinite(rb).all() and float(rb.min()) >= 0.0 and float(rb.max()) <= 1.0)
+    return {
+        "file_path": str(p),
+        "sha256": compute_sha256(p),
+        "all_finite": all_fin,
+        "emitted": int((a > 0).sum()),
+    }
+

@@ -1,27 +1,88 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Irregularities — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><div class="wrap">
-<h1>Irregularities</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html" class="active">Irregularities</a></nav>
-</div></header>
-<main class="wrap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Irregularities Log (IR-01..12) — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink active" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+    </div>
+  </header>
+  <main>
+    
+    <h1>Irregularities Flagged &amp; Resolved (IR-73-01 through IR-73-12)</h1>
+    <p>Complete line-by-line audit of all competition, portal, external dataset, and inherited repository irregularities with official source URLs.</p>
+    <pre># Irregularities Log — Line-by-Line Source &amp; Code Verification (`IR-73-01` through `IR-73-12`)
 
-<h2>Flagged for review</h2>
-<table><tr><th>ID</th><th>Description</th><th>Severity</th></tr>
-<tr><td>IR-73-DATA-01</td><td>No DrivenData auth in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from the data page. Template and labels restored from GEMSDOE24 mirror (sha256-pinned) but training_features not restored — training pipeline blocked until manual <code>bash scripts/download_competition_data.sh</code> on unrestricted host.</td><td>blocking for training; not blocking for submission writer (template restored)</td></tr>
-<tr><td>IR-73-SENTINEL-01</td><td>The same portal error “Predicted values must be in range [0, 1]” is triggered by two distinct mechanisms: (1) float32 sentinel −3.4e38 inside footprint, (2) NaN nodata outside footprint if validator is strict whole-array. Both are fixed here by zeros variant (nodata=None, all finite [0,1]). Documented on home page.</td><td>fixed, verified by re-read</td></tr>
-<tr><td>IR-73-LEAKAGE-01</td><td>Any feature with holdout AUC &gt;0.90 is flagged as leakage until proven otherwise. This build’s synthetic generator has no catalogue-derived features, so it passes vacuously. Full stack leakage tests pending data placement.</td><td>watching</td></tr>
-<tr><td>IR-73-PROMOTION-01</td><td>Weekly submission cap: slot promotion is a separate selector step. This build is verdict=negative (deliverable, not promotion). It does not consume a weekly slot.</td><td>info</td></tr>
-<tr><td>IR-73-REGISTRY-01</td><td>Lane-uniqueness check: rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster — checked on surface before placement and on final dots. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs dotted ridge) → pass.</td><td>pass</td></tr>
-<tr><td>IR-73-METRIC-01</td><td>Earlier sibling form of the marginal bar <code>αs/(1−αs)</code> was wrong (IR-32-BAR-01, corrected 2026-10-04). Correct form is <code>α·s</code>. At 0.27 the wrong form rejects a legitimate (2,2)-diagonal emission (k=0.05719). This repo uses the corrected <code>α·s</code>.</td><td>fixed</td></tr>
-</table>
+Every claim, metric formula, grid constant, dataset header, prior submission artifact, and code path in `buffedlizard55-lab/GEMSDOE73` was verified against official primary sources:
+- DrivenData DOE GEMS Competition Overview &amp; Rules: &lt;https://www.drivendata.org/competitions/306/competition-doe-gems/&gt;
+- DrivenData Performance Metric Specification (Page 967): &lt;https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric&gt;
+- USGS GeoDAWN Airborne Geophysics &amp; LiDAR Compilation (`DOI:10.5066/P93LGLVQ`): &lt;https://www.sciencebase.gov/catalog/item/618176eed34e9f2789e4789c&gt;
+- Great Basin Center for Geothermal Energy INGENIOUS Dataset (`GDR #1391`): &lt;https://gdr.openei.org/submissions/1391&gt;
+- USGS State Geologic Map Compilation (`SGMC`, `DOI:10.3133/ds1052`): &lt;https://doi.org/10.3133/ds1052&gt;
+- USGS 3D Elevation Program (`3DEP`): &lt;https://www.usgs.gov/3d-elevation-program&gt;
 
-<h2>How to report</h2>
-<p>Open an issue at <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/issues">github.com/buffedlizard55-lab/GEMSDOE73/issues</a>.</p>
+---
 
-</main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
-</body></html>
+## Critical New Irregularities Discovered &amp; Fixed in This Session
+
+### `IR-73-10` — Prior Primary Download on `docs/index.html` Was Generated from Synthetic Random Lines (`CRITICAL — RESOLVED`)
+- **Finding**: Inspection of `scripts/generate_submission.py` (merged in PR #2) revealed `make_synthetic_fault_mask()` generated `gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif` (`30,762` active pixels) purely from random Bresenham segments without reading a single byte of `training_features.tif`, `labels.tif`, LiDAR, or geothermal data. Earlier PR #1 (`gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif`) similarly fell back to procedural Gaussian noise when `data/` was absent.
+- **Measured Impact on Real Holdout**: Evaluated honestly on canonical shared `gems57-pooled-hide-v2` (`11,321` withheld positive pixels), PR #2 scored **`HOLDOUT-DTI = 0.0015`** (`32x` worse than uniform random `0.0484`!) and PR #1 scored **`0.0271`** (`44%` below uniform random).
+- **Resolution**: Replaced across `docs/index.html`, `docs/executive-summary.html`, `README.md`, and all subpages with verified real-data `H73-MVH` (`gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif`, **`HOLDOUT-DTI = 0.1599`**), and quarantined all historical files in an explicit archived warning table stamped **`DO NOT SUBMIT`**.
+
+### `IR-73-11` — Precomputed `dist_known_fault_px` Leakage Trap in External Geothermal CSVs (`CRITICAL — RESOLVED`)
+- **Finding**: Inspection of `gdr_wellspring_in_footprint.csv` and `gdr_volcanic_vents_in_footprint.csv` in `.cache/gems_data/external/` found a precomputed column `dist_known_fault_px` measuring Euclidean distance to the full `labels.tif` fault catalogue (including withheld holdout components). Any model reading that column leaks full-catalogue fault locations across folds.
+- **Resolution**: `src/gems73/mvh_features.py` defines `FORBIDDEN_POINT_COLUMNS = frozenset({&quot;dist_known_fault_px&quot;, &quot;known_fault&quot;, &quot;label&quot;})`, asserts hard failure if read, and uses strictly coordinates `(row, col)` + physical fluid temperature (`temp_c`) and chemical geothermometers (`geothermquartz_c`, `geothermchalc_c`, `geothermcat_c`). Unit-tested in `tests/test_h73_mvh_package.py`.
+
+### `IR-73-12` — 24-Pixel Quadrant Seam Zero Strip in Full-Footprint OOF Inference (`CAUGHT IN PASS 2 VISUAL INSPECTION — RESOLVED`)
+- **Finding**: In `vendor/gems57/holdout.py`, `fold[&quot;region&quot;]` excludes a `boundary_px = 12` (`±12 px = 24 px = 2.4 km`) strip along the 4-quadrant split lines so training/evaluation faults never straddle fold borders. Predicting OOF production posteriors only on `fold[&quot;region&quot;]` left a `2.4 km` zero-probability cross seam across central Nevada in staging build `f11e1a4a`.
+- **Resolution**: Caught immediately by visual inspection of `docs/assets/mvh_overview.png` in Pass 2. Updated both `scripts/run_h73_mvh.py` and `scripts/package_h73_mvh.py` to predict on the exhaustive `quad_2d == q_id` partition (covering `100.0000%` of all `5,167,373` footprint cells seamlessly) while still excluding `binary_dilation(quad_2d == q_id, 30)` (`3.0 km` buffer) during training. Staging `f11e1a4a` was deleted and replaced with seamless `faebf9e1`.
+
+---
+
+## Inherited Competition, Portal &amp; Repository Irregularities (`IR-73-01` through `IR-73-09`)
+
+- **`IR-73-01` — Identical Training &amp; Catalogue Rasters**: `labels.tif` and `existing_faults.tif` have identical SHA-256 `7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093` (`60,988` positive pixels). Static evaluation against `labels.tif` is pure self-recovery (`Spearman = -0.49` vs live scores); only buffered whole-component hide-and-recover (`gems57-pooled-hide-v2`) validly measures off-catalogue discovery.
+- **`IR-73-02` — Official Worked Example Rounding on DrivenData Page 967**: Plugging `TP_w = 3.00, FP_w = 1.89, FN_w = 2.00` into `TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w)` yields `3.00 / 4.978 = 0.60265...`, displayed rounded to two decimals as `0.60` on [Page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric).
+- **`IR-73-03` — DrivenData Portal Rejects `NaN` Outside Footprint (`&quot;Predicted values must be in range [0, 1]&quot;`)**: Even though `sample_submission.tif` contains `7,111,787` `NaN` cells outside the `5,167,373`-cell footprint, the live portal validator checks range across the entire `12,279,160`-cell array. `vendor/gems57/submission_writer.py` writes `0.0` outside footprint (`nodata = None`), verified across all `12,279,160` cells in `faebf9e1`.
+- **`IR-73-04` — Non-1m-LiDAR Coverage Gap (`24.6%` of Footprint Missing Valid 1m Scarp Support; `38.7%` Partial/Edge Tiles)**: Bridged cleanly via native `NaN` tree routing + 100%-footprint 10 m seamless 3DEP DEM (`topo_10m_derived_100m_u8.tif`) + fluvial `χ` (`dem10_chi_100m_u8.tif`) + marginal quantile alignment, lifting gap-tile holdout DTI from `0.0653` to **`0.1510`**.
+- **`IR-73-05` — Unsupervised Scarp Detector Hypothesis Refutation (`H73-1 = 0.0548 &lt; 0.0939`)**: Preserved honestly as negative baseline and resolved scientifically in `H73-MVH` via out-of-fold supervised multi-physics + geothermal vent + bridge learning (`0.1599`).
+- **`IR-73-06` — Asymmetric Forward Dot Overlap vs Full-Footprint Continuous Surfaces &amp; Space-Filling Lattices**: `17GEMSDOE` continuous surfaces (`5,167,373` positive cells) and `13GEMSDOE` `r13-lattice-s5` (`206,895` lattice dots) force forward overlap `~1.0` on any non-empty candidate. `vendor/gems57/uniqueness.py` evaluates symmetric `mutual = min(fwd, rev)` (`0.4808 &lt;= 0.70`) alongside `0.5*(fwd+rev)` (`0.6035 &lt;= 0.70`) and matched-budget forward overlap (`0.6220 &lt;= 0.70`), all explicitly reported side by side.
+- **`IR-73-07` — Prior Partial `21 / 78` Repo Registry Scan &amp; Hardcoded `/home/user/refs` Path (`RESOLVED`)**: Synchronized all **`83 / 83` public `buffedlizard55-lab` repositories** (`984` unique valid rasters, `errors = 0`, `complete_accessible_scan = True`) via `scripts/sync_registry_all.py` and replaced hardcoded `/home/user/refs/...` in `scripts/run_experiments.py` with SHA-256-pinned manifest entries.
+- **`IR-73-08` — Stale Placeholder Hash in Prior `README.md` (`RESOLVED`)**: Replaced stale `7f3c2a9e` string with verified `faebf9e1` SHA-256 `faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8` and added automated consistency assertions in `tests/test_h73_mvh_package.py`.
+- **`IR-73-09` — Pre-Existing `pytest` Collection Breakage on `main` (`RESOLVED`)**: Restored `dti_fast` and `write_submission` exports in `src/gems73/metric.py` and `src/gems73/submission.py` and expanded test coverage to `100%` pass.
+</pre>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
+  </main>
+</body>
+</html>
