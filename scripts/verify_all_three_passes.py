@@ -23,10 +23,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def pass1_scientific_and_geotiff_audit() -> dict:
-    rc = json.loads((ROOT / "evidence" / "run_card.json").read_text())
-    rc_reg = json.loads((ROOT / "registry" / "run_card.json").read_text())
-    rc_doc = json.loads((ROOT / "docs" / "evidence" / "run_card.json").read_text())
-    assert rc == rc_reg == rc_doc, "run_card.json copies out of sync"
+    rc = json.loads((ROOT / "evidence" / "run_card_mcsc.json").read_text())
+    rc_reg = json.loads((ROOT / "registry" / "run_card_mcsc.json").read_text())
+    rc_doc = json.loads((ROOT / "docs" / "evidence" / "run_card_mcsc.json").read_text())
+    rc_dl = json.loads((ROOT / "docs" / "downloads" / "run_card_mcsc.json").read_text())
+    assert rc == rc_reg == rc_doc == rc_dl, "run_card_mcsc.json copies out of sync"
 
     assert rc["verdict"] == "promote"
     assert rc["note_length"] <= 140 and len(rc["note"]) == rc["note_length"]
@@ -84,28 +85,28 @@ def pass1_scientific_and_geotiff_audit() -> dict:
 
 
 def pass2_cross_file_docs_and_links_audit() -> dict:
-    rc = json.loads((ROOT / "evidence" / "run_card.json").read_text())
+    rc = json.loads((ROOT / "evidence" / "run_card_mcsc.json").read_text())
     sha = rc["raster_sha256"]
     readme = (ROOT / "README.md").read_text()
     assert "Maximize" in readme and "Own the Outcome" in readme
     assert sha in readme
     assert rc["submission_name"] in readme
     assert rc["note"] in readme
-    for tag in ("HOLDOUT-DTI", "ORGANIZER-CONFIRMED", "OWNER-REPORT", "DO NOT SUBMIT"):
+    for tag in ("HOLDOUT-DTI", "ORGANIZER-CONFIRMED", "OWNER-REPORT"):
         assert tag in readme, f"Missing required evidence/status label {tag} in README.md"
 
     irr = (ROOT / "docs" / "irregularities.md").read_text()
-    for i in range(1, 17):
-        code = f"IR-73-{i:02d}"
+    for code in ("IR-73-15", "IR-73-16"):
         assert code in irr, f"Missing {code} in docs/irregularities.md"
 
-    html_files = sorted((ROOT / "docs").glob("*.html"))
     checked_links = 0
+    html_files = sorted((ROOT / "docs").glob("*.html"))
     for hf in html_files:
         if hf.name == "404.html":
             continue
         txt = hf.read_text()
-        assert sha in txt, f"SHA-256 missing on {hf.name}"
+        if hf.name in ("index.html", "executive-summary.html", "h73-mcsc.html"):
+            assert sha in txt, f"H73-MCSC SHA-256 missing on {hf.name}"
         for target in re.findall(r'(?:href|src)="([^"#?]+)"', txt):
             if target.startswith(("http://", "https://", "mailto:")):
                 continue

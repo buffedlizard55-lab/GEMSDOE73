@@ -40,7 +40,7 @@ def test_non_multiple_of_16_tiled_geotiff_regression_ir73_15(tmp_path: Path):
         count=1,
         dtype="float32",
         crs="EPSG:32611",
-        transform=rasterio.transform.from_origin(243350.0, 4508550.0, 100.0, 100.0),
+        transform=rasterio.transform.Affine.translation(243350.0, 4508550.0) @ rasterio.transform.Affine.scale(100.0, -100.0),
         tiled=False,
     ) as dst:
         dst.write(arr, 1)
@@ -110,7 +110,10 @@ def test_symmetric_canary_detector():
 
 
 def test_promoted_deliverable_and_run_card_integrity():
-    rc = json.loads((ROOT / "evidence" / "run_card.json").read_text())
+    rc = json.loads((ROOT / "evidence" / "run_card_mcsc.json").read_text())
+    assert rc == json.loads((ROOT / "registry" / "run_card_mcsc.json").read_text())
+    assert rc == json.loads((ROOT / "docs" / "evidence" / "run_card_mcsc.json").read_text())
+    assert rc == json.loads((ROOT / "docs" / "downloads" / "run_card_mcsc.json").read_text())
     assert rc["verdict"] == "promote"
     assert rc["leakage_canary"]["all_pass"] is True
     assert rc["leakage_canary"]["max_symmetric_auc_stage1"] <= 0.90
