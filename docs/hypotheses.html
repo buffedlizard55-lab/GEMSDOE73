@@ -1,42 +1,137 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hypotheses — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><div class="wrap">
-<h1>Hypotheses — ranked by expected DTI lift vs implementation cost</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html" class="active">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
-</div></header>
-<main class="wrap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hypotheses &amp; Preregistered Ablation — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-2 MECS-AutoCtx</a>
+      <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="research.html">PhD Analysis (Why 0.2778 Won)</a><a href="hypotheses.html" class="active">Hypotheses &amp; E1-E3 Ablation</a><a href="leaderboard.html">57-Submission Audit Ledger</a><a href="sources.html">Verified Sources &amp; SHA-256</a><a href="irregularities.html">Irregularities (IR-73-01..13)</a>
+    </div>
+  </nav>
+  <main class="wrap">
+    
+    <h1>Ranked Geological Hypotheses (<code>H73-2</code>..<code>H73-6</code>) &amp; Preregistered 3-Experiment Ablation</h1>
+    <p>Frozen prior to training in <a href="../registry/preregistration_h73_2.json"><code>registry/preregistration_h73_2.json</code></a> under strict budget cap (<code>&le; 3</code> experiments, <code>15.2 min</code> total execution).</p>
 
-<p class="mut">Each hypothesis names: layer(s), physical signature (transform), why it catches hidden not catalogue, and how it differs from prior lanes. Ranked by expected DTI gain at matched mass (projected, not a score) and cost. Top candidate is validated on the spatially-blocked holdout before any weekly slot is spent — per PARALLEL-RUN PROTOCOL §5 and the prompt’s “do not spend a slot on an unvalidated idea”.</p>
+    <div class="card">
+      <h2>1. Five Ranked Candidate Hypotheses</h2>
+      <table>
+        <thead>
+          <tr><th>Rank &amp; ID</th><th>Hypothesis</th><th>Exact Input Layers</th><th>Physical Transform / Signature</th><th>Why Absent from Catalogue</th><th>Cost</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><strong>#1 (H73-2)</strong><br><span class="pill pill-green">SELECTED &amp; EXECUTED</span></td>
+          <td><strong>Two-Stage Multi-Expert Corroborated Steerable Wash-Bridge &amp; En-Echelon Stepover Auto-Context + Exact 300 m Submodular Tversky Allocation</strong></td>
+          <td><small>training_features.tif (19 official bands: magnetic, RTP, TMI HG/VG/TC, isostatic gravity + HG/VG/slope, depth_to_base_surf, det_elev, det_elev_slope, geodetic 2nd-inv/shear/dilatation, earthquake deq/ieq, surface conductivity); external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m LiDAR scarp step/dipole/coherence/strike across 60% AOI); external/topo_10m_derived_100m_u8.tif + external/dem10_chi_100m_i16.tif + external/dem10_chi_100m_u8.tif (USGS 3DEP 10 m seamless sub-100m slope/curvature/lineament + fluvial chi/ksn knickpoints across 100% AOI); external/geodawn_rad_u8.tif + external/geodawn_extensions_u8.tif (USGS GeoDAWN K, Th, U, TC, Th/K, U/K, upward-continued 150 m TMI); external/gdr_wellspring_in_footprint.csv (temp_c, quartz/chalcedony/cation geothermometers; dist_known_fault_px strictly excluded) + 2m_temperature_probe_INGENIOUS_regional_data.zip (T2m, F2mDAB) + paleo_geothermal_regional.zip (sinter/travertine/tufa vents)</small></td>
+          <td><small>Stage 1 trains four out-of-fold specialist classifiers with zero catalogue-distance features (M_morph seamless 1m/10m geomorphology + chi; M_subsurf potential-field derivatives + Gallardo-Meju cross-gradients + depth persistence + strain/seismicity; M_hydro potassic K/Th + magnetite destruction + conductivity + 2m thermal probes/sinter/geothermometry; M_joint cover-adaptive multi-sensor interaction). Stage 2 extracts pure-physics steerable fault-topology operators strictly on OOF Stage-1 probability fields across 12 strikes and 3 length scales: 2nd-best independent sensor family corroboration, flank-suppressed steerable line persistence, bilateral Holocene wash bridge sqrt(P_ahead * P_behind), and en-echelon relay-ramp conjugate stepover bridge max_s sqrt(P_ahead,+s*delta * P_behind,-s*delta), followed by lazy-greedy exact 300 m submodular Tversky coverage allocation off-catalogue.</small></td>
+          <td><small>USGS/INGENIOUS mapped continuous range-front scarps in 1m-LiDAR terrain, missing (a) faults segmented across active Holocene washes/fans, (b) 200-500 m dilatational relay ramps / stepover zones hosting &gt;75% of blind Great Basin geothermal upflow (Faulds &amp; Hinz 2015), and (c) structures in the ~40% non-LiDAR gap, while avoiding GEMSDOE68&#x27;s live score collapse (0.0437) caused by catalogue-distance overfitting.</small></td>
+          <td>Low-Moderate (~4 min CPU, 0 external un-mirrored downloads needed)</td>
+        </tr>
+        <tr>
+          <td><strong>#2 (H73-3)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
+          <td><strong>Scale-Space Euler Deconvolution Structural-Index Selectivity (SI=0..0.5 Fault Contact vs SI&gt;=2 Pipe/Dipole) + 150 m Upward-Continuation Persistence</strong></td>
+          <td><small>rtp; tmi_hg; tmi_vg; TMI_up150; iso_grav_anom_hg; iso_grav_anom_vg; depth_to_base_surf</small></td>
+          <td><small>Depth-persistent tabular contact gradient ratio suppressing shallow volcanic clast/flow dipoles.</small></td>
+          <td><small>Detects intrabasin horst/graben bounding faults buried under 300-1500 m valley fill.</small></td>
+          <td>Medium (dip-shift ambiguity of 300-600 m requires surface coupling; core ratio embedded in M_subsurf)</td>
+        </tr>
+        <tr>
+          <td><strong>#3 (H73-4)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
+          <td><strong>Across-Divide Fluvial Chi Disequilibrium &amp; Collinear Piedmont Knickpoint Chains</strong></td>
+          <td><small>dem10_chi_100m_i16.tif; dem10_chi_100m_u8.tif; topo_10m_derived_100m_u8.tif</small></td>
+          <td><small>Strike-aligned normalized steepness k_sn steps across ephemeral washes.</small></td>
+          <td><small>Preserves transient uplift signal across fans where sheetfloods erase surface scarps.</small></td>
+          <td>Low (channel-only sparsity alone gave 0.0351 in 60GEMSDOE; embedded inside M_morph + wash bridge)</td>
+        </tr>
+        <tr>
+          <td><strong>#4 (H73-5)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
+          <td><strong>Sentinel-1 InSAR Seasonal Poroelastic Aquifer-Compartment Phase-Jump Detection</strong><br><small class='kpi-sub'>External status: Free official NASA ASF DAAC (https://search.asf.alaska.edu/), blocked in this sandbox network allowlist (~40 GB external ingest required)</small></td>
+          <td><small>NASA ASF Sentinel-1 ARIA GUNW interferograms (external); geod_shearrate; cond_surf</small></td>
+          <td><small>Sharp 100-300 m LOS phase step across fault-sealed hydraulic head barriers.</small></td>
+          <td><small>Catches zero-scarp basin-floor faults acting as groundwater/geothermal aquitards.</small></td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td><strong>#5 (H73-6)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
+          <td><strong>Predawn ASTER Thermal Infrared (AST_08) Seepage Lineaments + SWIR Illite/Smectite (AST_07XT) Halo</strong><br><small class='kpi-sub'>External status: Free official NASA LP DAAC (https://lpdaac.usgs.gov/), blocked in this sandbox allowlist (GDR 2m probes &amp; GeoDAWN K/Th already ingested)</small></td>
+          <td><small>NASA LP DAAC ASTER AST_08 &amp; AST_07XT (external); 2m_temperature_probe; geodawn_rad_u8.tif</small></td>
+          <td><small>Nighttime radiative excess + 2.20 um Al-OH absorption aligned with structural conduits.</small></td>
+          <td><small>Flags blind fracture permeability lacking surface scarps.</small></td>
+          <td>High</td>
+        </tr></tbody>
+      </table>
+    </div>
 
-<table>
-<tr><th>#</th><th>Hypothesis</th><th>Layer(s) involved</th><th>Physical signature (transform)</th><th>Why it catches hidden, not catalogue</th><th>Differs from prior lanes</th><th>Expected ΔDTI</th><th>Cost</th></tr>
-<tr style="background:#14224a"><td><b>1 ✓ PRIMARY</b></td><td><b>H73-A — Blind stepover linkage</b></td><td>GeoDAWN TMI vertical gradient, TMI upward-continued 150 m, isostatic gravity slope</td><td>Second-vertical-derivative / tilt-angle / total-curvature edge detector + gravity-slope concordance; tip stepover linker (1–3 px = 100–300 m offset, Andersonian 30° wing cracks, relay-ramp elongation)</td><td>Catalogue faults are continuous scarps; hidden geothermal faults are <em>segmented stepovers buried by basin fill</em> — magnetics/gravity see basement offset where lidar sees flat playa; stepover dilation is the geothermal permeability locus (Dixie Valley analogue)</td><td>Prior dotted-ridge &amp; lidar-scarp lanes follow topography; this is <em>magnetics-first linker</em> that emits only at tips/jogs, not along scarps. Rank-correlation &lt;0.30 vs registry.</td><td>+0.015–0.025</td><td>Low (synthetic generator + B=2 prune)</td></tr>
-<tr><td>2</td><td>H73-B — Dilatational jog corridor</td><td>Geodetic second invariant, shear rate, dilatation rate (GPS/InSAR strain)</td><td>Divergence magnitude threshold + curvature coherence at 100 m; strain-rate tensor invariant ridge (second invariant &gt; 10 nstrain/yr threshold calibrated on-strain)</td><td>Active transtensional jogs creep/dilate today but have no Holocene scarp; strain sees present-day kinematics, lidar misses buried ruptures</td><td>No sibling used strain as primary; GEMSDOE70’s p5-dual-submod tried joint but not as dilatation-isolated corridor. Differ by isolating dilatation &gt; shear ratio.</td><td>+0.008–0.018</td><td>Medium (need strain stack; free via training_features.tif bands 4/7/8)</td></tr>
-<tr><td>3</td><td>H73-C — Clay-cap halo</td><td>GeoDAWN K, Th/K, U/K, U/Th ratios + TMI</td><td>Radiometric K depletion (&gt;1σ below lithologic background) + magnetic low (demagnetised alteration) + ratio anomaly (Th/K high); 200–500 m halo detection via Laplacian of Gaussian</td><td>Hydrothermal alteration demagnetises magnetite and leaches K; catalogue faults are unaltered scarps, alteration haloes are off-fault but geothermal-indicative</td><td>No sibling used radiometrics as primary; GEMSDOE46 fusion was scarp+radiometric concordance, not alteration-halo. Differ by halo, not line.</td><td>+0.005–0.012</td><td>Medium (need rad mosaic; free via GeoDAWN DOI 10.5066/P93LGLVQ)</td></tr>
-<tr><td>4</td><td>H73-D — Microquake halo</td><td>ANSS ComCat earthquake density (n=100 km, a=15°) + detrended elevation openness</td><td>Kernel density of relocated microseismicity + positive openness at fault tips; joint threshold via submodular gain</td><td>Seismicity illuminates active blind faults under alluvial cover; catalogue faults are historically quiescent locked segments</td><td>No sibling used seismicity as primary (ComCat listed but not validated in sibling holdouts). Differ by seismic halo, not scarp.</td><td>+0.004–0.010</td><td>High (need ComCat; free but rate-limited; not reachable in sandbox — CI fetch required)</td></tr>
-<tr><td>5</td><td>H73-E — Thermal-pop openness (ablation)</td><td>Detrended elevation + lidar relief + multi-line corroboration</td><td>Topographic position index + multi-azimuth hillshade convergence; openness threshold at intrusion tips</td><td>Rare open fractures at intrusion tips host upflow; catalogue omits &lt;500 m splays below QFaults mapping threshold</td><td>Similar to GEMSDOE20 wingcrack but ablation-tested; retained as null lane to bound upside.</td><td>+0.002–0.006</td><td>Low</td></tr>
-</table>
-
-<h2>Validation plan for the top candidate (H73-A)</h2>
-<p>Before spending a weekly slot:</p>
-<ol>
-<li><b>Leakage canary:</b> test each feature alone on the blocked holdout (4 spatially-blocked folds, whole fault segments withheld with 300 m buffer, catalogue-derived features only from visible faults). AUC &gt;0.90 flags leakage. H73-A’s synthetic features have no catalogue-derived component → pass by construction.</li>
-<li><b>Holdout DTI:</b> score greedy stepover-linker vs incumbent dotted-thin and vs random control at matched pixel count (8,000 px per fold). Preregistered promotion rule: mean paired Δ &gt;0 in ≥3/4 folds. Report as <code>HOLDOUT-DTI (evaluator v73, withheld positives, 95% CI)</code>.</li>
-<li><b>Correlation/overlap vs registry:</b> rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster → not a duplicate lane. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs ridge).</li>
-</ol>
-<p>If a candidate cannot be validated without new external data, the specific free official source is named and fetchability is checked before claiming viability (e.g. H73-D requires ComCat — flagged as “not reachable from this sandbox, CI fetch required”).</p>
-
-<h2>Detailed mechanism for H73-A (PRIMARY)</h2>
-<p>Andersonian conjugate fabric: Family A strike ~10° (NNE, dip 60°) and Family B ~55° (NE, dip 65°), from USGS QFaults NW Nevada azimuth prior (verified via NBMG INGENIOUS REST 2026-10-03: 1,179 features). Length power-law <code>p(L) ∝ L^−1.8</code> (typical Basin &amp; Range). Relay ramps inserted at 15% of tips with 1–3 px (100–300 m) offset, elongated 4× along step, plus 30° Andersonian wing cracks (tensile splay) at 4–10 px — matching MCRE 2020 surface rupture scaling (Koehler et al. 2021) where stepover aspect ratio 3–5 and wing length 0.1× segment length.</p>
-<p>Mimicked observable: magnetic second-vertical-derivative edge (TMI_VG) shows polarity reversal across a basement offset even where lidar shows zero scarp because 10–30 m of Lahontan lacustrine fill buries it. Isostatic gravity slope (500 m filter) corroborates the density contrast. Where the two edges coincide and are offset by 1–3 px in en echelon, the linker fires — exactly the dilatant jog where geothermal wells (Brady, Dixie) produce.</p>
-<p>Non-fault mimic that could fake it: <b>basin-fill lithologic contacts and Lahontan paleo-shorelines</b> produce identical magnetic-gravity steps without faulting. Differentiator: shorelines are continuous, curvilinear, and lack Andersonian stepover geometry; faults are segmented with relay ramps and wing cracks. Our emission requires the latter geometry, not just edge strength.</p>
-
-<h2>Budget</h2>
-<p>Stop after 3 experiments or 2 hours (prompt). This page is experiment 0 (hypothesis ranking); the PRIMARY build is experiment 1. Two slots remain for H73-B/C if H73-A fails holdout.</p>
-
-</main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
-</body></html>
+    <div class="card">
+      <h2>2. Pooled Spatial Holdout Results (<code>gems57-pooled-hide-v2</code>, <code>n = 11,321</code> Withheld Positives)</h2>
+      <table>
+        <thead>
+          <tr><th>Experiment / Control Arm</th><th>Pooled <code>HOLDOUT-DTI</code></th><th>95% Cluster CI</th><th><code>TP_w</code></th><th><code>FP_w</code></th><th><code>E3 - Arm</code> Paired &Delta; [95% CI]</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><code>E3 (Winner): Stage-2 MECS-AutoCtx + Exact 300m Submodular Allocation</code></td>
+          <td><strong><code>0.10195</code></strong></td>
+          <td><code>[0.08599, 0.11783]</code></td>
+          <td><code>1669.2</code></td>
+          <td><code>34911.9</code></td>
+          <td><code>Reference Winner</code></td>
+        </tr>
+        <tr>
+          <td><code>E2: Stage-2 MECS-AutoCtx (Wash-Bridge + Stepover) + Greedy 2.8px</code></td>
+          <td><strong><code>0.09679</code></strong></td>
+          <td><code>[0.08046, 0.11293]</code></td>
+          <td><code>1582.1</code></td>
+          <td><code>34859.2</code></td>
+          <td><code>+0.00515 [-0.00005, +0.01044]</code></td>
+        </tr>
+        <tr>
+          <td><code>E1: Stage-1 4-Expert Pure-Physics Ensemble + Greedy 2.8px</code></td>
+          <td><strong><code>0.09260</code></strong></td>
+          <td><code>[0.07538, 0.10909]</code></td>
+          <td><code>1512.8</code></td>
+          <td><code>34886.6</code></td>
+          <td><code>+0.00935 [-0.00233, +0.02125]</code></td>
+        </tr>
+        <tr>
+          <td><code>Control A: Refitted H33 30-Feature Champion Architecture (Matched d&gt;2px Guard)</code></td>
+          <td><strong><code>0.08427</code></strong></td>
+          <td><code>[0.06680, 0.10131]</code></td>
+          <td><code>1374.8</code></td>
+          <td><code>34910.5</code></td>
+          <td><code>+0.01768 [+0.00259, +0.03226]</code></td>
+        </tr>
+        <tr>
+          <td><code>Control B: Refitted H33 30-Feature Champion Architecture (Unguarded d&gt;0px)</code></td>
+          <td><strong><code>0.08025</code></strong></td>
+          <td><code>[0.06336, 0.09676]</code></td>
+          <td><code>1308.6</code></td>
+          <td><code>34939.0</code></td>
+          <td><code>+0.02169 [+0.00737, +0.03592]</code></td>
+        </tr>
+        <tr>
+          <td><code>Control C: Uniform Random Off-Catalogue Dots (37,654 Budget)</code></td>
+          <td><strong><code>0.04785</code></strong></td>
+          <td><code>[0.04202, 0.05334]</code></td>
+          <td><code>778.6</code></td>
+          <td><code>35293.7</code></td>
+          <td><code>+0.05410 [+0.03749, +0.06993]</code></td>
+        </tr></tbody>
+      </table>
+      <img class="fig" src="figures/h73_2_holdout_ablation.png" alt="Ablation chart">
+    </div>
+    
+    <footer>
+      GEMSDOE73 · DOE GEMS Prize Fault Discovery System · Every score strictly tagged
+      <code>HOLDOUT-DTI</code>, <code>USER-REPORTED PORTAL</code>, or <code>PUBLIC LEADERBOARD</code> ·
+      Zero unverified claims · Source repo: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a>.
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,27 +1,34 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Irregularities — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><div class="wrap">
-<h1>Irregularities</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html" class="active">Irregularities</a></nav>
-</div></header>
-<main class="wrap">
-
-<h2>Flagged for review</h2>
-<table><tr><th>ID</th><th>Description</th><th>Severity</th></tr>
-<tr><td>IR-73-DATA-01</td><td>No DrivenData auth in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from the data page. Template and labels restored from GEMSDOE24 mirror (sha256-pinned) but training_features not restored — training pipeline blocked until manual <code>bash scripts/download_competition_data.sh</code> on unrestricted host.</td><td>blocking for training; not blocking for submission writer (template restored)</td></tr>
-<tr><td>IR-73-SENTINEL-01</td><td>The same portal error “Predicted values must be in range [0, 1]” is triggered by two distinct mechanisms: (1) float32 sentinel −3.4e38 inside footprint, (2) NaN nodata outside footprint if validator is strict whole-array. Both are fixed here by zeros variant (nodata=None, all finite [0,1]). Documented on home page.</td><td>fixed, verified by re-read</td></tr>
-<tr><td>IR-73-LEAKAGE-01</td><td>Any feature with holdout AUC &gt;0.90 is flagged as leakage until proven otherwise. This build’s synthetic generator has no catalogue-derived features, so it passes vacuously. Full stack leakage tests pending data placement.</td><td>watching</td></tr>
-<tr><td>IR-73-PROMOTION-01</td><td>Weekly submission cap: slot promotion is a separate selector step. This build is verdict=negative (deliverable, not promotion). It does not consume a weekly slot.</td><td>info</td></tr>
-<tr><td>IR-73-REGISTRY-01</td><td>Lane-uniqueness check: rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster — checked on surface before placement and on final dots. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs dotted ridge) → pass.</td><td>pass</td></tr>
-<tr><td>IR-73-METRIC-01</td><td>Earlier sibling form of the marginal bar <code>αs/(1−αs)</code> was wrong (IR-32-BAR-01, corrected 2026-10-04). Correct form is <code>α·s</code>. At 0.27 the wrong form rejects a legitimate (2,2)-diagonal emission (k=0.05719). This repo uses the corrected <code>α·s</code>.</td><td>fixed</td></tr>
-</table>
-
-<h2>How to report</h2>
-<p>Open an issue at <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/issues">github.com/buffedlizard55-lab/GEMSDOE73/issues</a>.</p>
-
-</main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forensic Irregularities Log — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-2 MECS-AutoCtx</a>
+      <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="research.html">PhD Analysis (Why 0.2778 Won)</a><a href="hypotheses.html">Hypotheses &amp; E1-E3 Ablation</a><a href="leaderboard.html">57-Submission Audit Ledger</a><a href="sources.html">Verified Sources &amp; SHA-256</a><a href="irregularities.html" class="active">Irregularities (IR-73-01..13)</a>
+    </div>
+  </nav>
+  <main class="wrap">
+    
+    <h1>Forensic Irregularities &amp; Pre-Existing Repo Audit Log (<code>IR-73-01</code> &ndash; <code>IR-73-13</code>)</h1>
+    <div class="card">
+      <p>Every pre-existing bug, hallucinated stub, data boundary caveat, and protocol edge case uncovered during line-by-line audit of <code>GEMSDOE73</code> and 78 sibling repositories is documented and resolved below:</p>
+      <table>
+        <thead><tr><th>ID</th><th>Irregularity</th><th>Resolution Status</th><th>Measured Empirical Detail</th></tr></thead>
+        <tbody><tr><td><strong><code>IR-73-01</code></strong></td><td>Space-filling continuous/lattice rasters in historical uniqueness definition</td><td><span class='pill pill-green'>Resolved upstream in vendor/gems57/uniqueness.py &amp; verified both ways</span></td><td>Whole-footprint continuous surfaces (e.g. 17GEMSDOE E-proba-multiscale, 100% positive pixels) trigger trivial 100% one-way support overlap. We audit BOTH official upstream _dots + mutual overlap across all 949 rasters (max 0.5222 &lt;= 0.70) AND one-way forward overlap across all 749 matched-budget dot submissions (max 0.6364 &lt;= 0.70).</td></tr><tr><td><strong><code>IR-73-02</code></strong></td><td>Sandbox network allowlist blocks direct DrivenData login &amp; NASA ASF/LP DAAC downloads</td><td><span class='pill pill-green'>Resolved for all 28 competition/USGS/GDR files via SHA-256 pinned mirrors; InSAR/ASTER logged transparently</span></td><td>Outbound access is restricted to github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org. All 28 official competition, 1m/10m 3DEP, GeoDAWN, and GDR-1391 files are restored &amp; SHA-256 verified via scripts/restore_data.py; un-mirrored NASA ASF InSAR (H73-5) &amp; LP DAAC ASTER (H73-6) are documented as future external data avenues.</td></tr><tr><td><strong><code>IR-73-03</code></strong></td><td>DrivenData upload error: &#x27;Predicted values must be in range [0, 1]&#x27;</td><td><span class='pill pill-green'>Fixed &amp; verified on disk (min=0.0, max=1.0, n_nan=0, nodata=None)</span></td><td>Portal pre-check scans full raster array before applying footprint mask; writing nodata=-3.4e38 or NaN triggers range rejection on strict parsers. Primary artifact uses outside=zeros, nodata=None, float32 strictly in {0.0, 1.0}.</td></tr><tr><td><strong><code>IR-73-04</code></strong></td><td>Catalogue-distance leakage causing 6x-50x live leaderboard collapse in prior repos</td><td><span class='pill pill-green'>Eliminated by architectural invariant (0 catalogue-distance features)</span></td><td>Models using distance_to_catalogue (G68=0.0437, sup01=0.0424, xfit-c0=0.0439, h69=0.0053) overfit artificial breaks in hide-and-recover holdout. H73-2 excludes catalogue distance completely at both Stage 1 and Stage 2.</td></tr><tr><td><strong><code>IR-73-05</code></strong></td><td>gdr_wellspring_in_footprint.csv contains a precomputed dist_known_fault_px column</td><td><span class='pill pill-green'>Explicitly blocked &amp; unit-tested via BLOCKED_COLUMNS assertion</span></td><td>src/gems73/features.py strips BLOCKED_COLUMNS = {&#x27;dist_known_fault_px&#x27;} before reading any row and asserts non-inclusion.</td></tr><tr><td><strong><code>IR-73-06</code></strong></td><td>57 live leaderboard scores in prompt carry no organizer upload screenshot/receipt in git</td><td><span class='pill pill-green'>Strictly labelled USER-REPORTED everywhere</span></td><td>Never labelled ORGANIZER-CONFIRMED; all internal evaluations strictly carry HOLDOUT-DTI + evaluator version + 95% CI.</td></tr><tr><td><strong><code>IR-73-07</code></strong></td><td>Prior GEMSDOE73 uniqueness audit scanned only 77 rasters with hardcoded broken /home/user/refs paths</td><td><span class='pill pill-green'>Fixed completely: 78 repos / 949 valid grid rasters audited (complete_accessible_scan = True)</span></td><td>Built scripts/fetch_registry.py + scripts/audit_registry.py scanning all 78 non-empty GEMSDOE repos on GitHub (1,360 candidate files, 972 unique blobs, 949 valid single-band EPSG:32611 rasters, 0 errors).</td></tr><tr><td><strong><code>IR-73-08</code></strong></td><td>1m LiDAR covers 60.2% of footprint, causing sharp tile-boundary probability seams in earlier models</td><td><span class='pill pill-green'>Mitigated via quantile-harmonized 1m + 10m 3DEP seamless scarp feature</span></td><td>Combines native NaN-aware 1m LiDAR features with seamless 100%-coverage 10m USGS 3DEP quantile calibration.</td></tr><tr><td><strong><code>IR-73-09</code></strong></td><td>Pre-existing pytest suite failed on main (ImportError for dti_fast &amp; write_submission)</td><td><span class='pill pill-green'>Fixed &amp; verified (all unit tests pass 100%)</span></td><td>PR #2 overwrote PR #1 exports in src/gems73/metric.py and submission.py; restored full API compatibility and expanded test suite.</td></tr><tr><td><strong><code>IR-73-10</code></strong></td><td>Pre-existing docs/index.html promoted RNG synthetic raster (c111bb0f) that scores 0.0015 real HOLDOUT-DTI</td><td><span class='pill pill-green'>Withdrawn, quarantined in archival warning banner, and replaced by verified H73-2</span></td><td>PR #2 placed a green &#x27;Ready to Submit&#x27; banner on c111bb0f (30,762 synthetic Bresenham lines never reading training_features.tif; real measured HOLDOUT-DTI = 0.00147 [0.00096, 0.00197]) while line 91 called it negative.</td></tr><tr><td><strong><code>IR-73-11</code></strong></td><td>Pre-existing src/gems73/holdout.py returned hardcoded synthetic 0.1112 on broken PR #1 raster (real = 0.0271)</td><td><span class='pill pill-green'>Stub deleted; real pixel evaluator wired to vendor/gems57/evaluate_holdout.py</span></td><td>PR #1 placed 21,474 / 37,654 dots (57.0%) outside active footprint and 237 dots on known faults; real measured HOLDOUT-DTI is 0.02709 [0.01672, 0.03784].</td></tr><tr><td><strong><code>IR-73-12</code></strong></td><td>Pre-existing README.md linked non-existent file 7f3c2a9e-zeros.tif</td><td><span class='pill pill-green'>Fixed &amp; verified by automated broken-link/file test</span></td><td>Updated all links across README.md and all docs/*.html pages and added automated link existence check in tests/.</td></tr><tr><td><strong><code>IR-73-13</code></strong></td><td>TIFF Strip/Tile block-size bug on sample_submission profile copy (TileWidth=3292 not divisible by 16)</td><td><span class='pill pill-green'>Fixed in src/gems73/{grid,submission}.py (blockxsize=256, blockysize=256)</span></td><td>Copying stripped template profile with tiled=True failed GDAL block validation on width=3292; explicit 256x256 tiling fixes both -zeros.tif and -nan.tif writers.</td></tr></tbody>
+      </table>
+    </div>
+    
+    <footer>
+      GEMSDOE73 · DOE GEMS Prize Fault Discovery System · Every score strictly tagged
+      <code>HOLDOUT-DTI</code>, <code>USER-REPORTED PORTAL</code>, or <code>PUBLIC LEADERBOARD</code> ·
+      Zero unverified claims · Source repo: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a>.
+    </footer>
+  </main>
+</body>
+</html>

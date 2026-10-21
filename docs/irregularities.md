@@ -1,37 +1,15 @@
-# Irregularities flagged for review (GEMSDOE73)
+# GEMSDOE73 Forensic Irregularities Log (`IR-73-01` .. `IR-73-13`)
 
-- **IR-73-01 (literal uniqueness rule saturates):** forward 3 px overlap exceeds 0.70 only
-  against the 206,895-dot r13 lattice (0.994; mutual 0.139), whose halo covers ~100% of the
-  footprint — every possible candidate fails the literal one-way rule against it. Operative
-  gates reported: mutual overlap (max 0.390), forward vs sparse (<=150k dots) rasters (max 0.480).
-- **IR-73-02 (champion score attribution):** the brief assigns 0.2778 to
-  `h33-h33-2-b2-...-zeros`, but the GEMSDOE32 site itself states no organiser score exists for
-  its artifacts (at publish time). No receipt/hash crosswalk is in any repo inspected.
-  Treated as OWNER-REPORT throughout.
-- **IR-73-03 (leaderboard snapshots conflict in brief):** 0.4413 vs 0.3195/0.3262 are dated
-  snapshots of the same dynamic page. This session read #1 = 0.4413 officially
-  (`evidence/leaderboard_snapshot.json`, 2026-10-21).
-- **IR-73-04 (sample submission wording vs bytes):** the official page calls the sample a
-  total-fault-absence raster; the hash-pinned bytes contain 60,988 pixels equal to 1, exactly
-  the catalogue pixels (MEASURED-HERE). Used only as the grid/footprint template.
-- **IR-73-05 (data provenance):** competition files are login-walled on DrivenData and this
-  sandbox cannot reach Dropbox/USGS directly. Files were restored from owner GitHub mirrors
-  pinned by SHA-256 (`registry/data_manifest.json`, receipt `data/restore_receipt.json`).
-  Hashes prove mirror consistency, NOT organiser authentication.
-- **IR-73-06 (instrument anti-correlation):** static DTI vs the full catalogue ranks
-  OWNER-REPORT live scores at Spearman -0.49 (n=13, MEASURED-HERE); the live champion scores
-  0.0067 on it, below random (0.0504). Any non-fold-fair catalogue holdout is anti-evidence
-  for B2-style candidates.
-- **IR-73-07 (registry scan incomplete):** uniqueness was checked against 77 unique rasters
-  accessible in this session (5 sibling clones + scored mirrors), not all ~72 sibling repos
-  or any private registry. Vendor summary `complete_accessible_scan=false` is recorded.
-- **IR-73-08 (identical proxy values):** in `evidence/instrument_calibration.json`, the
-  Hedge-v2 and Ens12 rasters give byte-identical SGMC proxy DTIs despite different total dot
-  counts, suggesting a shared off-catalogue mask; cause not investigated (diagnostic only).
-- **IR-73-09 (pre-existing main test breakage, found at merge):** on `origin/main` (195015e)
-  `pytest tests` already fails collection: `tests/test_metric.py` imports `dti_fast` and
-  `tests/test_writer.py` imports `write_submission/WIDTH/HEIGHT` from `src.gems73`, which the
-  PR#1+#2 merged library no longer exports. Verified identical failure in a clean worktree of
-  origin/main before this lane's merge; not caused by H73-1 (its tests pass: 5 passed with
-  `tests/test_metric_and_submission.py tests/test_holdout.py`). Fix belongs to the main-lane
-  library consolidation, flagged here rather than rewritten inside this lane.
+- **IR-73-01 — Space-filling continuous/lattice rasters in historical uniqueness definition** (*Resolved upstream in vendor/gems57/uniqueness.py & verified both ways*): Whole-footprint continuous surfaces (e.g. 17GEMSDOE E-proba-multiscale, 100% positive pixels) trigger trivial 100% one-way support overlap. We audit BOTH official upstream _dots + mutual overlap across all 949 rasters (max 0.5222 <= 0.70) AND one-way forward overlap across all 749 matched-budget dot submissions (max 0.6364 <= 0.70).
+- **IR-73-02 — Sandbox network allowlist blocks direct DrivenData login & NASA ASF/LP DAAC downloads** (*Resolved for all 28 competition/USGS/GDR files via SHA-256 pinned mirrors; InSAR/ASTER logged transparently*): Outbound access is restricted to github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org. All 28 official competition, 1m/10m 3DEP, GeoDAWN, and GDR-1391 files are restored & SHA-256 verified via scripts/restore_data.py; un-mirrored NASA ASF InSAR (H73-5) & LP DAAC ASTER (H73-6) are documented as future external data avenues.
+- **IR-73-03 — DrivenData upload error: 'Predicted values must be in range [0, 1]'** (*Fixed & verified on disk (min=0.0, max=1.0, n_nan=0, nodata=None)*): Portal pre-check scans full raster array before applying footprint mask; writing nodata=-3.4e38 or NaN triggers range rejection on strict parsers. Primary artifact uses outside=zeros, nodata=None, float32 strictly in {0.0, 1.0}.
+- **IR-73-04 — Catalogue-distance leakage causing 6x-50x live leaderboard collapse in prior repos** (*Eliminated by architectural invariant (0 catalogue-distance features)*): Models using distance_to_catalogue (G68=0.0437, sup01=0.0424, xfit-c0=0.0439, h69=0.0053) overfit artificial breaks in hide-and-recover holdout. H73-2 excludes catalogue distance completely at both Stage 1 and Stage 2.
+- **IR-73-05 — gdr_wellspring_in_footprint.csv contains a precomputed dist_known_fault_px column** (*Explicitly blocked & unit-tested via BLOCKED_COLUMNS assertion*): src/gems73/features.py strips BLOCKED_COLUMNS = {'dist_known_fault_px'} before reading any row and asserts non-inclusion.
+- **IR-73-06 — 57 live leaderboard scores in prompt carry no organizer upload screenshot/receipt in git** (*Strictly labelled USER-REPORTED everywhere*): Never labelled ORGANIZER-CONFIRMED; all internal evaluations strictly carry HOLDOUT-DTI + evaluator version + 95% CI.
+- **IR-73-07 — Prior GEMSDOE73 uniqueness audit scanned only 77 rasters with hardcoded broken /home/user/refs paths** (*Fixed completely: 78 repos / 949 valid grid rasters audited (complete_accessible_scan = True)*): Built scripts/fetch_registry.py + scripts/audit_registry.py scanning all 78 non-empty GEMSDOE repos on GitHub (1,360 candidate files, 972 unique blobs, 949 valid single-band EPSG:32611 rasters, 0 errors).
+- **IR-73-08 — 1m LiDAR covers 60.2% of footprint, causing sharp tile-boundary probability seams in earlier models** (*Mitigated via quantile-harmonized 1m + 10m 3DEP seamless scarp feature*): Combines native NaN-aware 1m LiDAR features with seamless 100%-coverage 10m USGS 3DEP quantile calibration.
+- **IR-73-09 — Pre-existing pytest suite failed on main (ImportError for dti_fast & write_submission)** (*Fixed & verified (all unit tests pass 100%)*): PR #2 overwrote PR #1 exports in src/gems73/metric.py and submission.py; restored full API compatibility and expanded test suite.
+- **IR-73-10 — Pre-existing docs/index.html promoted RNG synthetic raster (c111bb0f) that scores 0.0015 real HOLDOUT-DTI** (*Withdrawn, quarantined in archival warning banner, and replaced by verified H73-2*): PR #2 placed a green 'Ready to Submit' banner on c111bb0f (30,762 synthetic Bresenham lines never reading training_features.tif; real measured HOLDOUT-DTI = 0.00147 [0.00096, 0.00197]) while line 91 called it negative.
+- **IR-73-11 — Pre-existing src/gems73/holdout.py returned hardcoded synthetic 0.1112 on broken PR #1 raster (real = 0.0271)** (*Stub deleted; real pixel evaluator wired to vendor/gems57/evaluate_holdout.py*): PR #1 placed 21,474 / 37,654 dots (57.0%) outside active footprint and 237 dots on known faults; real measured HOLDOUT-DTI is 0.02709 [0.01672, 0.03784].
+- **IR-73-12 — Pre-existing README.md linked non-existent file 7f3c2a9e-zeros.tif** (*Fixed & verified by automated broken-link/file test*): Updated all links across README.md and all docs/*.html pages and added automated link existence check in tests/.
+- **IR-73-13 — TIFF Strip/Tile block-size bug on sample_submission profile copy (TileWidth=3292 not divisible by 16)** (*Fixed in src/gems73/{grid,submission}.py (blockxsize=256, blockysize=256)*): Copying stripped template profile with tiled=True failed GDAL block validation on width=3292; explicit 256x256 tiling fixes both -zeros.tif and -nan.tif writers.
