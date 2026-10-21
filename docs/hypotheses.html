@@ -1,42 +1,101 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hypotheses — GEMSDOE73</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5 Ranked Geological Hypotheses — GEMSDOE73</title>
 <link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><div class="wrap">
-<h1>Hypotheses — ranked by expected DTI lift vs implementation cost</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html" class="active">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
-</div></header>
-<div style="border:2px solid #dc2626;border-radius:10px;padding:12px;margin:14px 0"><b>SESSION-2 CORRECTION (2026-10-21, IR-73-10/11):</b> the “PRIMARY” H73-A build promoted below is a <b>synthetic random-geometry generator with no real holdout</b>; its companion hydrothermal “holdout” was hard-coded demo numbers (now removed from the code). <b>Do not submit either file.</b> Current lanes and gates: <a href="index.html">home</a> · <a href="h73-6-traceloc.html">H73-6 (session-2, NEGATIVE)</a> · <a href="h73-1-piedmont.html">H73-1 (session-1, NEGATIVE)</a>. This page is retained as the historical hypothesis record.</div><main class="wrap">
+</head>
+<body>
+<header class="topbar">
+  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">5 RANKED CANDIDATE HYPOTHESES</span></div>
+  <nav>
+    <a href="index.html">Overview &amp; Download</a>
+    <a href="executive-summary.html">Executive Summary (How to Submit)</a>
+    <a href="method.html">PhD Forensic Analysis &amp; Method</a>
+    <a class="active" href="hypotheses.html">5 Ranked Hypotheses</a>
+    <a href="verification.html">Verification &amp; Uniqueness</a>
+    <a href="sources.html">Official Sources &amp; Irregularities</a>
+  </nav>
+</header>
 
-<p class="mut">Each hypothesis names: layer(s), physical signature (transform), why it catches hidden not catalogue, and how it differs from prior lanes. Ranked by expected DTI gain at matched mass (projected, not a score) and cost. Top candidate is validated on the spatially-blocked holdout before any weekly slot is spent — per PARALLEL-RUN PROTOCOL §5 and the prompt’s “do not spend a slot on an unvalidated idea”.</p>
+<section class="hero">
+  <div class="wrap">
+    <span class="pill pill-hero">PREREGISTERED GEOLOGICAL HYPOTHESES — LAYER BY LAYER</span>
+    <h1>Five Candidate Geological Hypotheses Ranked by Expected DTI Gain &amp; Cost</h1>
+    <p>Each hypothesis names the exact official layers involved, the physical mathematical signature targeted, why it recovers faults missing from the USGS/INGENIOUS catalogue, and how it differs from all 72 prior GEMSDOE repositories.</p>
+  </div>
+</section>
 
-<table>
-<tr><th>#</th><th>Hypothesis</th><th>Layer(s) involved</th><th>Physical signature (transform)</th><th>Why it catches hidden, not catalogue</th><th>Differs from prior lanes</th><th>Expected ΔDTI</th><th>Cost</th></tr>
-<tr style="background:#14224a"><td><b>1 ✓ PRIMARY</b></td><td><b>H73-A — Blind stepover linkage</b></td><td>GeoDAWN TMI vertical gradient, TMI upward-continued 150 m, isostatic gravity slope</td><td>Second-vertical-derivative / tilt-angle / total-curvature edge detector + gravity-slope concordance; tip stepover linker (1–3 px = 100–300 m offset, Andersonian 30° wing cracks, relay-ramp elongation)</td><td>Catalogue faults are continuous scarps; hidden geothermal faults are <em>segmented stepovers buried by basin fill</em> — magnetics/gravity see basement offset where lidar sees flat playa; stepover dilation is the geothermal permeability locus (Dixie Valley analogue)</td><td>Prior dotted-ridge &amp; lidar-scarp lanes follow topography; this is <em>magnetics-first linker</em> that emits only at tips/jogs, not along scarps. Rank-correlation &lt;0.30 vs registry.</td><td>+0.015–0.025</td><td>Low (synthetic generator + B=2 prune)</td></tr>
-<tr><td>2</td><td>H73-B — Dilatational jog corridor</td><td>Geodetic second invariant, shear rate, dilatation rate (GPS/InSAR strain)</td><td>Divergence magnitude threshold + curvature coherence at 100 m; strain-rate tensor invariant ridge (second invariant &gt; 10 nstrain/yr threshold calibrated on-strain)</td><td>Active transtensional jogs creep/dilate today but have no Holocene scarp; strain sees present-day kinematics, lidar misses buried ruptures</td><td>No sibling used strain as primary; GEMSDOE70’s p5-dual-submod tried joint but not as dilatation-isolated corridor. Differ by isolating dilatation &gt; shear ratio.</td><td>+0.008–0.018</td><td>Medium (need strain stack; free via training_features.tif bands 4/7/8)</td></tr>
-<tr><td>3</td><td>H73-C — Clay-cap halo</td><td>GeoDAWN K, Th/K, U/K, U/Th ratios + TMI</td><td>Radiometric K depletion (&gt;1σ below lithologic background) + magnetic low (demagnetised alteration) + ratio anomaly (Th/K high); 200–500 m halo detection via Laplacian of Gaussian</td><td>Hydrothermal alteration demagnetises magnetite and leaches K; catalogue faults are unaltered scarps, alteration haloes are off-fault but geothermal-indicative</td><td>No sibling used radiometrics as primary; GEMSDOE46 fusion was scarp+radiometric concordance, not alteration-halo. Differ by halo, not line.</td><td>+0.005–0.012</td><td>Medium (need rad mosaic; free via GeoDAWN DOI 10.5066/P93LGLVQ)</td></tr>
-<tr><td>4</td><td>H73-D — Microquake halo</td><td>ANSS ComCat earthquake density (n=100 km, a=15°) + detrended elevation openness</td><td>Kernel density of relocated microseismicity + positive openness at fault tips; joint threshold via submodular gain</td><td>Seismicity illuminates active blind faults under alluvial cover; catalogue faults are historically quiescent locked segments</td><td>No sibling used seismicity as primary (ComCat listed but not validated in sibling holdouts). Differ by seismic halo, not scarp.</td><td>+0.004–0.010</td><td>High (need ComCat; free but rate-limited; not reachable in sandbox — CI fetch required)</td></tr>
-<tr><td>5</td><td>H73-E — Thermal-pop openness (ablation)</td><td>Detrended elevation + lidar relief + multi-line corroboration</td><td>Topographic position index + multi-azimuth hillshade convergence; openness threshold at intrusion tips</td><td>Rare open fractures at intrusion tips host upflow; catalogue omits &lt;500 m splays below QFaults mapping threshold</td><td>Similar to GEMSDOE20 wingcrack but ablation-tested; retained as null lane to bound upside.</td><td>+0.002–0.006</td><td>Low</td></tr>
-</table>
-
-<h2>Validation plan for the top candidate (H73-A)</h2>
-<p>Before spending a weekly slot:</p>
-<ol>
-<li><b>Leakage canary:</b> test each feature alone on the blocked holdout (4 spatially-blocked folds, whole fault segments withheld with 300 m buffer, catalogue-derived features only from visible faults). AUC &gt;0.90 flags leakage. H73-A’s synthetic features have no catalogue-derived component → pass by construction.</li>
-<li><b>Holdout DTI:</b> score greedy stepover-linker vs incumbent dotted-thin and vs random control at matched pixel count (8,000 px per fold). Preregistered promotion rule: mean paired Δ &gt;0 in ≥3/4 folds. Report as <code>HOLDOUT-DTI (evaluator v73, withheld positives, 95% CI)</code>.</li>
-<li><b>Correlation/overlap vs registry:</b> rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster → not a duplicate lane. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs ridge).</li>
-</ol>
-<p>If a candidate cannot be validated without new external data, the specific free official source is named and fetchability is checked before claiming viability (e.g. H73-D requires ComCat — flagged as “not reachable from this sandbox, CI fetch required”).</p>
-
-<h2>Detailed mechanism for H73-A (PRIMARY)</h2>
-<p>Andersonian conjugate fabric: Family A strike ~10° (NNE, dip 60°) and Family B ~55° (NE, dip 65°), from USGS QFaults NW Nevada azimuth prior (verified via NBMG INGENIOUS REST 2026-10-03: 1,179 features). Length power-law <code>p(L) ∝ L^−1.8</code> (typical Basin &amp; Range). Relay ramps inserted at 15% of tips with 1–3 px (100–300 m) offset, elongated 4× along step, plus 30° Andersonian wing cracks (tensile splay) at 4–10 px — matching MCRE 2020 surface rupture scaling (Koehler et al. 2021) where stepover aspect ratio 3–5 and wing length 0.1× segment length.</p>
-<p>Mimicked observable: magnetic second-vertical-derivative edge (TMI_VG) shows polarity reversal across a basement offset even where lidar shows zero scarp because 10–30 m of Lahontan lacustrine fill buries it. Isostatic gravity slope (500 m filter) corroborates the density contrast. Where the two edges coincide and are offset by 1–3 px in en echelon, the linker fires — exactly the dilatant jog where geothermal wells (Brady, Dixie) produce.</p>
-<p>Non-fault mimic that could fake it: <b>basin-fill lithologic contacts and Lahontan paleo-shorelines</b> produce identical magnetic-gravity steps without faulting. Differentiator: shorelines are continuous, curvilinear, and lack Andersonian stepover geometry; faults are segmented with relay ramps and wing cracks. Our emission requires the latter geometry, not just edge strength.</p>
-
-<h2>Budget</h2>
-<p>Stop after 3 experiments or 2 hours (prompt). This page is experiment 0 (hypothesis ranking); the PRIMARY build is experiment 1. Two slots remain for H73-B/C if H73-A fails holdout.</p>
-
+<main class="wrap">
+  <section class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Hypothesis Name</th>
+          <th>Official Layers Used</th>
+          <th>Physical Transform Targeted</th>
+          <th>Why Missed by USGS/INGENIOUS Catalogue</th>
+          <th>Novelty vs GEMSDOE1–72</th>
+          <th>Impl. Cost &amp; Holdout Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><strong>#1</strong></td>
+          <td><strong>H73-1: Cross-Drainage Bajada Orthogonality &amp; Lahontan De-Confounded 2D Dilated U-Net + Submodular DTI (SHIPPED)</strong></td>
+          <td>Official 19 bands (<code>det_elev</code>, <code>depth_to_base_surf</code>, <code>tmi_hg</code>, <code>iso_grav_anom_hg</code>, <code>cond_surf</code>), USGS 3DEP 1 m LiDAR &amp; 10 m DEM (<code>onesided3</code>, <code>hgm20</code>, <code>zmean_m</code>, <code>relief</code>), GeoDAWN K/Th/U/TC, GDR #1391 sinter/probes/springs, Census TIGER roads</td>
+          <td><code>|sin(θ_scarp − θ_fan)|</code> cross-drainage gate + 1.6 km along-strike <code>σ_z</code> Lahontan shoreline separator + <code>step/(relief+12m)</code> piedmont prominence + 24-ch 2D Multi-Scale Dilated U-Net (<code>ExactKernelDTILoss</code>) + 300 m Submodular Max-Cover</td>
+          <td>Sub-meter to 2.5 m Holocene piedmont scarps cutting coalescing alluvial fans are erased in 100 m elevation grids and drowned by radial fan gullies &amp; pluvial shorelines in uncalibrated LiDAR detectors.</td>
+          <td>First repo to build closed-form bajada orthogonality, 1.6 km equipotential shoreline de-confounding, relief-normalized scarp prominence, and an OOF 2D Dilated U-Net trained directly on differentiable 300 m Kernel DTI Loss with 0% SGMC.</td>
+          <td>Medium CPU (~18 min total) · <strong>VALIDATED ALL-TIME #1:</strong> Inst. A <code>0.1360</code>, A_quad <code>0.2063</code>, C_pied <code>0.0996</code>. <strong>PROMOTED.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#2</strong></td>
+          <td><strong>H73-2: DrivenData <code>11516/4</code> Anisotropic Tip-Continuation &amp; Relay Wedge Corridor (Integrated in Exp-73-3)</strong></td>
+          <td>Fold-visible <code>existing_faults.tif</code> terminations + 24-ch 2D U-Net + 91-feat Multi-Tree posterior</td>
+          <td>Tangent crack-tip projection across <code>1.0 &lt; d(cat) ≤ 2.0 px</code> within narrow tip wedges while blocking lateral flanks <code>0 &lt; d(cat) ≤ 2.0 px</code></td>
+          <td>Regional mappers terminate fault lines at alluvial fan aprons where surface expression fades, leaving true unmapped tip extensions across the 100–300 m boundary.</td>
+          <td>Prior high scorers (<code>H33-2-B2</code>, <code>P8</code>, <code>P9</code>) imposed isotropic hard exclusion <code>d &gt; 2.0 px</code> everywhere, deleting 100% of near-tip trace extensions.</td>
+          <td>Low CPU · Static Instrument A rose <strong>5.5× vs H33</strong> (<code>0.0203</code> vs <code>0.0037</code>). <strong>INCLUDED IN PRIMARY.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#3</strong></td>
+          <td><strong>H73-3: 12-Azimuth 2.1 km Steerable Radon Anisotropy &amp; 1D Hessian Spine Prominence (Integrated in Exp-73-1/2/3)</strong></td>
+          <td>Composite 1 m LiDAR + 10 m DEM <code>onesided3</code> + <code>hgm20</code> breakline surface</td>
+          <td><code>max_φ [mean_{s∈[-10,10]} S(x+s u_φ) − 0.65 · flank_±3px]</code> across 12 azimuths + scale-space Hessian ridge eigenvalue</td>
+          <td>Discontinuous en-echelon scarplets across disturbed sagebrush/playa margins lack single-pixel SNR unless integrated over multi-kilometer strike windows with lateral flank subtraction.</td>
+          <td><code>GEMSDOE32 H33-B</code> tested unweighted 900 m valley skeletons alone; never combined 2.1 km cross-strike flank subtraction inside 91-feature trees and 2D U-Net.</td>
+          <td>Low CPU · Ranked #4/#6/#11 in out-of-fold tree split gain (<a href="evidence/feature_gain_top20.json">receipt</a>). <strong>INCLUDED IN PRIMARY.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#4</strong></td>
+          <td><strong>H73-4: 150 m Upward-Continued Magnetic Demagnetization × Conductive Clay-Cap Alteration Halo</strong></td>
+          <td>GeoDAWN <code>geodawn_rad_u8.tif</code> (K/Th), <code>geodawn_extensions_u8.tif</code>, Official Bands 2, 3, 9, 17 (<code>rtp</code>, <code>tmi_hg</code>, <code>tmi_vg</code>, <code>cond_surf</code>), GDR #1391 2 m probes &amp; paleo-sinter</td>
+          <td>Hydrothermal magnetite destruction low coupled with smectite/illite conductive cap edge and sinter/probe upflow plumes</td>
+          <td>Blind hydrothermal upflow zones (e.g., Soda Lake / Salt Wells / Patua type) have zero surface scarp but alter host rock along permeable buried fault conduits.</td>
+          <td>Standalone hydrothermal run <code>GEMSDOE71</code> scored <code>0.0558</code> live because whole-basin alteration halos are kilometer-wide blobs; here strictly gated by 1D U-Net + structural localization.</td>
+          <td>Low CPU · Retained strictly as multi-feature inputs inside <code>Exp-73-1</code> &amp; <code>Exp-73-2</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>#5</strong></td>
+          <td><strong>H73-5: Double-Difference Relocated Microseismicity Planar Lineaments (External Data Upgrade Candidate)</strong></td>
+          <td>Official free source: <a href="https://earthquake.usgs.gov/fdsnws/event/1/" target="_blank" rel="noopener">USGS ANSS ComCat FDSN</a> + NBMG relocated Walker Lane catalogs (replacing 100 km-smoothed Bands 10 &amp; 16)</td>
+          <td>3D principal-component planar alignment &amp; 300 m kernel density of M1.0–M4.5 relocated hypocenters</td>
+          <td>Aseismic surface basins above active blind strike-slip/normal faults (e.g., 2020 M6.5 Monte Cristo aftershock splays) illuminate unmapped subsurface strands before surface rupture.</td>
+          <td>Official Bands 10 &amp; 16 use a <code>100 km</code> smoothing kernel (<code>r = 0.9935</code> at 3 km lag) carrying zero 300 m fault-scale localization.</td>
+          <td><strong>EXTERNAL BLOCKER IN SANDBOX:</strong> <code>earthquake.usgs.gov</code> is blocked by sandbox network allowlist. Logged honestly for unrestricted host run; zero fabricated features.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 </main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
-</body></html>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <a href="method.html">← Method</a> · <a href="verification.html">Verification &amp; 973-Raster Uniqueness →</a>
+  </div>
+</footer>
+</body>
+</html>

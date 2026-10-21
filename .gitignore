@@ -26,3 +26,5 @@ registry/rasters/*.tif
 !submissions/*.tif
 !submissions/*.zip
 !submissions/*.json
+data/*.csv
+data/*.part-*

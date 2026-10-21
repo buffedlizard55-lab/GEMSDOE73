@@ -1,33 +1,44 @@
-"""Frozen dotted emission (registry/preregistration.json).
+"""GEMSDOE73 — Emission & Submodular DTI Allocation Module.
 
-Score-ordered greedy selection with a 2.5 px minimum spacing.  Rationale
-(official metric, alpha=0.2, R=3 px): a dot spacing of ~2.5 px leaves any
-point of a covered trace within ~1.25 px of a dot (kernel credit >= ~0.58)
-while paying the 0.2-per-dot false-positive tax only once per ~6 px of
-trace instead of once per pixel.
+Exports both:
+  - ``calibrate_1d_trace_posterior``, ``peak_nms_emit``, ``submodular_dti_emit`` (GEMSDOE73
+    Cross-Drainage 2D Dilated U-Net + Multi-Tree exact 300 m submodular lane)
+  - ``greedy_dots`` (compatibility emitter for earlier GEMSDOE73 ablation tests)
 """
 from __future__ import annotations
 
+import heapq
+import sys
+from pathlib import Path
+
 import numpy as np
+from scipy.ndimage import gaussian_filter, maximum_filter
 
-# offsets with Euclidean distance < 2.5 px (the blocking disk, incl. centre)
-_DISK = [(dy, dx) for dy in range(-2, 3) for dx in range(-2, 3)
-         if (dy * dy + dx * dx) ** 0.5 < 2.5]
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT / "vendor") not in sys.path:
+    sys.path.insert(0, str(ROOT / "vendor"))
+
+from gems57 import metric  # noqa: E402
+
+_DISK = [(dy, dx) for dy in range(-2, 3) for dx in range(-2, 3) if (dy * dy + dx * dx) ** 0.5 < 2.5]
 
 
-def greedy_dots(surface: np.ndarray, allowed: np.ndarray, budget: int = 37654,
-                pool: int = 600_000) -> np.ndarray:
-    """Binary dot mask: top-`pool` allowed pixels by surface (ties by flat
-    index), greedily accepted if no accepted dot within <2.5 px."""
+def greedy_dots(
+    surface: np.ndarray,
+    allowed: np.ndarray,
+    budget: int = 37654,
+    pool: int = 600_000,
+) -> np.ndarray:
+    """Binary dot mask: top-``pool`` allowed pixels greedily accepted at >=2.5 px spacing."""
     surf = np.asarray(surface, np.float32)
     idx = np.flatnonzero(allowed)
     if idx.size == 0:
         return np.zeros(surface.shape, bool)
     vals = surf.ravel()[idx]
     if idx.size > pool:
-        part = np.argpartition(vals, idx.size - pool)[idx.size - pool:]
+        part = np.argpartition(vals, idx.size - pool)[idx.size - pool :]
         idx, vals = idx[part], vals[part]
-    order = np.lexsort((idx, -vals))  # surface desc, flat index asc
+    order = np.lexsort((idx, -vals))
     idx = idx[order]
     h, w = surface.shape
     ys = (idx // w).astype(np.int64)
@@ -47,3 +58,132 @@ def greedy_dots(surface: np.ndarray, allowed: np.ndarray, budget: int = 37654,
             if 0 <= yy < h and 0 <= xx < w:
                 blocked[yy, xx] = True
     return dots
+
+
+def peak_nms_emit(
+    surface: np.ndarray,
+    allowed_mask: np.ndarray,
+    n_dots: int = 37654,
+) -> np.ndarray:
+    """Select exact ``n_dots`` binary 1.0 pixels via 7x7 peak NMS (fallback 5x5 -> 3x3 -> 1x1)."""
+    s = np.where(allowed_mask & np.isfinite(surface), surface.astype(np.float64), -1.0)
+    yy, xx = np.indices(surface.shape, dtype=np.float64)
+    s_tie = s + 1e-12 * (yy * 0.00031 + xx * 0.00017)
+
+    out = np.zeros(surface.shape, dtype=np.float32)
+    remaining = int(n_dots)
+    avail = allowed_mask & (surface > 0)
+
+    for win in (7, 5, 3, 1):
+        if remaining <= 0:
+            break
+        cur = np.where(avail, s_tie, -2.0)
+        is_peak = avail & (cur == maximum_filter(cur, size=win, mode="constant", cval=-3.0)) if win > 1 else avail
+        cand_idx = np.flatnonzero(is_peak)
+        if cand_idx.size == 0:
+            continue
+        scores = s_tie.ravel()[cand_idx]
+        if cand_idx.size > remaining:
+            top = np.argpartition(scores, -remaining)[-remaining:]
+            top = top[np.argsort(-scores[top])]
+            chosen = cand_idx[top]
+        else:
+            chosen = cand_idx[np.argsort(-scores)]
+        out.ravel()[chosen] = 1.0
+        avail.ravel()[chosen] = False
+        remaining -= int(chosen.size)
+
+    assert int((out > 0.5).sum()) == int(n_dots)
+    return out
+
+
+def submodular_dti_emit(
+    prob: np.ndarray,
+    allowed_mask: np.ndarray,
+    n_dots: int = 37654,
+    fp_penalty_weight: float = 0.0,
+    candidate_pool: int = 420000,
+) -> np.ndarray:
+    """Exact lazy-greedy Minoux submodular maximizer of expected 300 m kernel coverage."""
+    H, W = prob.shape
+    pad = 3
+    q_pad = np.zeros((H + 2 * pad, W + 2 * pad), dtype=np.float64)
+    q_pad[pad : pad + H, pad : pad + W] = np.clip(np.where(np.isfinite(prob), prob, 0.0), 0.0, 1.0)
+    cov_pad = np.zeros_like(q_pad)
+
+    dy = metric.OFF_DY.tolist()
+    dx = metric.OFF_DX.tolist()
+    kw = metric.OFF_K.tolist()
+    n_off = len(kw)
+
+    init_tp = np.zeros((H, W), dtype=np.float64)
+    q_self = np.zeros((H, W), dtype=np.float64)
+    for oy, ox, k_val in zip(dy, dx, kw):
+        sub = q_pad[pad + oy : pad + oy + H, pad + ox : pad + ox + W]
+        init_tp += k_val * sub
+        np.maximum(q_self, k_val * sub, out=q_self)
+
+    pen_arr = fp_penalty_weight * (1.0 - q_self)
+    u0 = init_tp - pen_arr
+
+    valid_idx = np.flatnonzero(allowed_mask & (init_tp > 0))
+    if valid_idx.size > candidate_pool:
+        u_sub = u0.ravel()[valid_idx]
+        keep = np.argpartition(u_sub, -candidate_pool)[-candidate_pool:]
+        valid_idx = valid_idx[keep]
+
+    ys = (valid_idx // W + pad).tolist()
+    xs = (valid_idx % W + pad).tolist()
+    pens = pen_arr.ravel()[valid_idx].tolist()
+    u_vals = u0.ravel()[valid_idx].tolist()
+
+    heap: list[tuple[float, int]] = [(-u_vals[i], i) for i in range(len(u_vals))]
+    heapq.heapify(heap)
+
+    out = np.zeros((H, W), dtype=np.float32)
+    selected = 0
+
+    while selected < n_dots and heap:
+        neg_upper, i = heapq.heappop(heap)
+        cy = ys[i]
+        cx = xs[i]
+        gain = 0.0
+        for m in range(n_off):
+            ny = cy + dy[m]
+            nx = cx + dx[m]
+            k_m = kw[m]
+            cur_c = cov_pad[ny, nx]
+            if k_m > cur_c:
+                gain += q_pad[ny, nx] * (k_m - cur_c)
+        exact_u = gain - pens[i]
+
+        if not heap or (-exact_u <= heap[0][0] + 1e-15):
+            out[cy - pad, cx - pad] = 1.0
+            for m in range(n_off):
+                ny = cy + dy[m]
+                nx = cx + dx[m]
+                k_m = kw[m]
+                if k_m > cov_pad[ny, nx]:
+                    cov_pad[ny, nx] = k_m
+            selected += 1
+        else:
+            heapq.heappush(heap, (-exact_u, i))
+
+    assert selected == int(n_dots), f"Selected {selected} < {n_dots}"
+    return out
+
+
+def calibrate_1d_trace_posterior(
+    prob_2d: np.ndarray,
+    fp: np.ndarray,
+    gamma: float = 1.15,
+) -> np.ndarray:
+    """Sharpen broad 2D slope blobs into true 1D fault-trace posterior density."""
+    p = np.where(fp & np.isfinite(prob_2d), np.clip(prob_2d, 0.0, 1.0), 0.0).astype(np.float32)
+    bg4 = gaussian_filter(p, sigma=4.0, mode="constant", cval=0.0)
+    spine_ratio = np.clip((p - 0.52 * bg4) / (0.48 * p + 1e-4), 0.0, 1.0)
+    trace_post = (np.power(p, gamma) * (0.42 + 0.58 * spine_ratio)).astype(np.float32)
+    return np.where(fp, np.clip(trace_post, 0.0, 1.0), 0.0).astype(np.float32)
+
+
+__all__ = ["calibrate_1d_trace_posterior", "greedy_dots", "peak_nms_emit", "submodular_dti_emit"]
