@@ -2,52 +2,64 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Executive Summary — How to Submit — GEMSDOE73</title>
 <link rel="stylesheet" href="assets/site.css">
+<style>.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-weight:700;color:#fff}
+.yes{background:#16a34a}.no{background:#dc2626}.sel{background:#d97706}
+.badbox{border:2px solid #dc2626;border-radius:10px;padding:14px;margin:16px 0}
+.goodbox{border:2px solid #16a34a;border-radius:10px;padding:14px;margin:16px 0}
+img.fig{max-width:100%;border-radius:8px}</style>
 </head><body>
 <header class="top"><div class="wrap">
-<h1>GEMSDOE73 — Executive Summary</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html" class="active">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
+<h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="executive-summary.html" class="active">Make a submission</a>
+<a href="h73-7-hardfault.html">H73-7 lane</a>
+<a href="h73-1-piedmont.html">H73-1 lane</a>
+<a href="research.html">Research</a>
+<a href="hypotheses.html">Hypotheses</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="sources.html">Sources</a>
+<a href="irregularities.html">Irregularities</a>
+</nav>
 </div></header>
+<div class="values"><div class="wrap"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment. <b>Own the Outcome</b> — every claim carries an evidence class; defects are measured, published, replaced.</div></div>
 <main class="wrap">
 
+<h2>Executive summary — exactly how to make a submission</h2>
+
+<table>
+<tr><th>Gate 1 — OK to download?</th><td><span class="pill yes">YES</span> Format-valid on re-read bytes (single-band float32, EPSG:32611, 3730×3292, all 12,279,160 cells finite in [0,1], 0 NaN, <code>nodata=None</code> — the portal error “Predicted values must be in range [0, 1]” cannot trigger), registry-unique under the operative gates. Safe to download.</td></tr>
+<tr><th>Gate 2 — Recommended to submit?</th><td><span class="pill sel">SELECTOR DECISION — passed its preregistered gate</span> <b>Verdict: PROMOTE (to selector).</b> This is the first lane in this repo to beat the fold-fair champion analogue on the shared holdout instrument (HOLDOUT-DTI 0.1369 vs 0.0939; details below). This repo spends <b>no</b> weekly slot: a human selector must still check the weekly cap on the DrivenData submission page and weigh the transfer caveat before submitting. If you are the selector and accept the caveats, this is the file to submit — see the <a href="executive-summary.html">executive summary</a>.</td></tr>
+</table>
 <div class="dl">
-<h2>⬇ ONE-CLICK SUBMISSION FILE</h2>
-<p><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">Download gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</a>
-<a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip</a></p>
-<p><b>Unique submission name:</b> <code>GEMSDOE73-H73A-STEPOVER</code><br>
-<b>Note for the form (127 chars):</b><br><code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code></p>
-<p class="mut">single band · float32 · EPSG:32611 · 100 m · 3292×3730 · 30,762 dots · all cells finite in [0,1] · 0 NaN · no nodata tag · sha256 <code>46859dc652c396…</code> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">receipt</a></p>
+<h2>⬇ The file (selector-approved use only)</h2>
+
+<p><a class="btn" href="downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif">⬇ Download gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif</a>
+<a class="btn alt" href="downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.zip">.zip (same single GeoTIFF inside)</a></p>
+<p><b>Unique submission name:</b> <code>gems73-h73-7-hardfault-pu-e1-37654dots-20261021</code><br>
+<b>Note to paste into the form's <em>Note (optional)</em> field (105/140 chars):</b><br>
+<code>G73 H73-7 E1 hard-fault PU-HGB 37654 dots; HOLDOUT-DTI 0.1369 vs ctrl 0.0939 - beat ctrl, selector review</code></p>
+<p class="mut">37,654 dots · 0 within 2 px of the USGS/INGENIOUS catalogue · sha256 <code>a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67</code> · <a href="downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.json">validator receipt (independent re-read)</a> · <a href="downloads/run_card_h73-7.json">run card</a></p>
 </div>
-
-<h2>How to submit to DrivenData (30 seconds)</h2>
+<h2>Steps on DrivenData (≈30 seconds)</h2>
 <ol>
-<li>Download the <b>zeros</b> GeoTIFF above (or the <code>.zip</code> containing the same GeoTIFF — the portal accepts both).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> (requires login) → <b>New submission</b> → <b>File to submit: Choose File</b> → select the downloaded <code>.tif</code> or <code>.zip</code>.</li>
-<li>In <b>Note (optional)</b> paste: <code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code> (helps you tell submissions apart; &lt;200 chars).</li>
-<li>Click <b>Create</b>. The portal validates CRS/shape/transform match and that every predicted value is in <code>[0,1]</code>. This file passes both: <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">see receipt</a>.</li>
-<li>You will receive a DTI score on the public test set; it appears on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>. Only that organiser receipt counts as <code>ORGANIZER-CONFIRMED</code>; do not report projections as scores.</li>
+<li><b>Selector checks first:</b> confirm a weekly slot is available on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">submission page</a> (the cap shown there governs; this repo cannot see your account's remaining slots), and read the three caveats on the <a href="index.html">home page</a>.</li>
+<li>Download <code>gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif</code> above (or the <code>.zip</code> — the portal accepts a single GeoTIFF or a .zip containing one).</li>
+<li>On the submission page → <b>New submission</b> → <b>File to submit: Choose File</b> → select the downloaded file.</li>
+<li>In <b>Note (optional)</b> paste exactly:<br><code>G73 H73-7 E1 hard-fault PU-HGB 37654 dots; HOLDOUT-DTI 0.1369 vs ctrl 0.0939 - beat ctrl, selector review</code></li>
+<li>Click <b>Create</b>. The portal checks CRS/shape/geotransform match against the submission format and that predicted values are in [0, 1]. This file passes by construction and by re-read verification: single-band float32, EPSG:32611, 3730×3292, transform [100, 0, 243350, 0, −100, 4508550], <b>all 12,279,160 cells finite, min 0.0, max 1.0, 0 NaN, no nodata tag</b> (<a href="downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.json">receipt</a>).</li>
+<li>Record the organizer score from the submission page when it appears. Only that receipt is <b>ORGANIZER-CONFIRMED</b>; add it to <code>registry/score_ledger.csv</code> with the file's sha256 (<code>a0e4b3f31cb8…</code>). Until then this file's only numbers are HOLDOUT-DTI.</li>
 </ol>
-
-<h2>Which file to use if you see "Predicted values must be in range [0, 1]"</h2>
-<p>Use the <b>-zeros.tif</b> file (or the .zip of it). It has <code>nodata=None</code> and <code>0.0</code> outside the footprint, so every one of the <code>12,279,160</code> cells is finite and in <code>[0,1]</code>. The <code>-nan.tif</code> twin is byte-identical inside the footprint but carries <code>NaN</code> outside (competition spec format); it is offered for completeness but the zeros variant is the belt-and-braces portal-safe choice that fixes the two sentinel mechanisms that trigger the error (see <a href="index.html">home page</a>).</p>
-
-<h2>Is it OK to download and submit this file?</h2>
-<p><b>Yes — it is explicitly intended for download and submission.</b> It is a unique, newly-generated TIF (sha256 <code>46859dc652c396…</code>) that has not been submitted before, is not a copy of any GEMSDOE*-site raster, and passes the format validator (single-band float32, EPSG:32611, 100 m, 3292×3730, transform <code>[100,0,243350,0,-100,4508550]</code>). The file is not scored until you submit it; the “UNSCORED” note reflects that. Submitting it is the only way to obtain an organiser-confirmed DTI.</p>
-
-<h2>What happens after you submit</h2>
+<h2>About the error “Predicted values must be in range [0, 1]”</h2>
+<p>That error fires when any cell (or the nodata sentinel, e.g. <code>-3.4028234663852886e+38</code> from the feature stack) lies outside [0, 1]. This file contains no sentinel and no NaN anywhere: outside-footprint cells are literal <code>0.0</code> and <code>nodata</code> is unset, verified by re-opening the written bytes. If you ever regenerate a candidate, use the zeros policy (<code>vendor/gems57/grid.write_submission(..., mode="zeros")</code> / the fail-closed <code>submission_writer</code>) and re-validate the bytes you actually upload.</p>
+<h2>What this file is — and is not</h2>
 <ul>
-<li>Initial Prize Round: scored against the fixed private hidden fault set (expert-labelled before the competition). Top 5 × $10k.</li>
-<li>Expert review: panel cross-references submitted faults to identify new verified faults.</li>
-<li>Final Prize Round: rescored against the expanded label set (initial + verified new). Top 5 → $100k/$70k/$40k/$25k/$15k. Your prediction can directly contribute new geological knowledge.</li>
+<li><b>Is:</b> a unique, newly generated GeoTIFF (never submitted; sha256 above) from lane H73-7, which beat the fold-fair champion-analogue control on the shared holdout instrument by +0.0430 HOLDOUT-DTI (CI in run card).</li>
+<li><b>Is not:</b> a proven live improvement over 0.2778, and not a claim on the 0.4413 leaderboard top. No organizer score exists for it. Submitting it is an experiment whose result — positive or negative — is the deliverable.</li>
+<li><b>Do not submit instead:</b> the blind-stepover or hydro-corridor files also present in <code>docs/downloads/</code> (synthetic, unmeasured — see archive box on the home page), nor the NEGATIVE H73-1 piedmont file.</li>
 </ul>
-<p class="mut">Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">https://docs.nlr.gov/docs/fy26osti/96647.pdf</a> (also mirrored <a href="https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0">Dropbox</a>).</p>
-
-<h2>Verify the file yourself (optional)</h2>
-<pre><code>python scripts/validate_submission.py docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif --template data/sample_submission.tif --strict-finite
-# should print PASSED: dimensions, band_count, crs, transform, dtype, in_footprint_range, portal_safe_whole_array</code></pre>
-
-<h2>Core Values reminder</h2>
-<p><b>Maximize P(Win)</b> — every weekly slot is an experiment, not a lottery ticket. <b>Own the Outcome</b> — every claim carries evidence; defects are published, not quietly dropped.</p>
+<p class="mut">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">overview</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description &amp; metric</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · rules PDF <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a>.</p>
 
 </main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+<footer><div class="wrap">Scores are labelled <b>HOLDOUT-DTI</b> (local hide-and-recover) or <b>OWNER-REPORT / ORGANIZER-CONFIRMED</b> (external). A projection is never written as a score. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a> · <a href="downloads/run_card_h73-7.json">H73-7 run card (JSON)</a></div></footer>
 </body></html>

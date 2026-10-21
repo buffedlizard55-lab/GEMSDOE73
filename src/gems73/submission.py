@@ -68,6 +68,7 @@ def write_submission_geotiff(predictions_2d: np.ndarray, template_path: Path, ou
     with rasterio.open(template_path) as tpl:
         profile = tpl.profile.copy()
         profile.update(dtype=rasterio.float32, count=1, compress="deflate", tiled=True,
+                       blockxsize=256, blockysize=256,
                        nodata=None if outside_mode == "zeros" else float("nan"))
         tpl_data = tpl.read(1)
         valid = np.isfinite(tpl_data)

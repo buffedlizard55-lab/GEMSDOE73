@@ -10,11 +10,21 @@
 
 ## Quick Start — Download the Submission
 
-**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) and click “Download the submission GeoTIFF”.** The executive summary at the top of the site explains exactly how to submit to DrivenData.
+**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) — the banner at the top names the current candidate and both gates (download / submit).**
 
-- Primary file: `docs/downloads/gems73-h73a-blind-stepover-20261020T230000Z-7f3c2a9e-zeros.tif` — all-finite, `0.0–1.0`, no nodata tag, `EPSG:32611`, `3292×3730`.
-- Also available as `.zip` (single GeoTIFF inside) and as `-nan.tif` twin (identical values inside footprint, `NaN` outside).
-- Each file ships a `checks-*.json` receipt produced by re-reading the written bytes.
+- Current candidate (lane **H73-7**, verdict **PROMOTE to selector** — passed its preregistered holdout gate):
+  `docs/downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif`
+  (sha256 `a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67`, 37,654 dots, all-finite `[0,1]`, `nodata=None`, `EPSG:32611`, `3730×3292`; also as `.zip`, with a validator receipt `.json` from re-reading the bytes).
+  **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 11,321 withheld px): **0.1369 [0.1158, 0.1577]** vs fold-fair
+  H33-analogue control 0.0939 [0.0813, 0.1076], paired Δ +0.0430 [0.0230, 0.0627]. This is a *local holdout*
+  number, **not** a leaderboard score — no organizer score exists for this file. Promotion to a real weekly
+  slot is a separate selector step (check the cap on the DrivenData submission page); this repo spends 0 slots.
+  Exact submission steps + the paste-in note: `docs/executive-summary.html`.
+- **DO NOT SUBMIT** the older `gems73-h73a-blind-stepover-…` or `gems73-hydro-permeability-corridor-…` files in
+  `docs/downloads/`: synthetic-generator artifacts never scored on the real instrument. The hydro lane's
+  "HOLDOUT-DTI 0.1112 / promote" came from a hard-coded demo function in `src/gems73/holdout.py` — voided
+  (IR-73-10, `evidence/run_card_hydro_addendum_2026-10-21.json`); the tool now refuses to invent numbers.
+- **DO NOT SUBMIT** the H73-1 piedmont file either (measured, verdict NEGATIVE; see bottom of this README).
 
 ## What This Repo Does
 
@@ -25,7 +35,7 @@
 
 ## Limitations & What We Need
 
-- **No DrivenData auth in this sandbox** — `training_features.tif`, `labels.tif`, `sample_submission.tif`, `1m_DEM_links.csv` cannot be auto-downloaded from `https://www.drivendata.org/competitions/306/competition-doe-gems/data/` (login wall → `302` to login). Run `bash scripts/download_competition_data.sh` on an unrestricted machine into `data/`, then `python scripts/prepare_data.py` to build the feature stack. After that `make train && make validate` works (GPU for training, CPU for metric/validation).
+- **No DrivenData auth in this sandbox** — the competition files cannot be fetched from DrivenData directly (login wall). Working path used by lanes H73-1/H73-7: `.venv/bin/python scripts/restore_data.py --group all` restores all 23 files (incl. the 400 MB 19-band feature stack) from owner GitHub mirrors, SHA-256-verified against `registry/data_manifest.json` (mirror consistency, **not** organizer authentication — IR-73-05). `1m_DEM_links.csv` itself is not mirrored; its derived 100 m LiDAR stack is.
 - **No hallucinated scores** — every number is labelled `HOLDOUT-DTI` (evaluator version, withheld positives, 95 % CI) or `ORGANIZER-CONFIRMED` (submission-page receipt). Projections are never written as scores.
 - **External data must be free & licensed for sharing** — only USGS 3DEP, USGS GeoDAWN (DOI 10.5066/P93LGLVQ), USGS SGMC, GDR 1391 (CC BY 4.0), NBMG INGENIOUS REST, ComCat are permitted; each is listed in `docs/sources.html` with fetch status.
 
@@ -70,8 +80,14 @@ The group's previous best across 78 sibling repos peaked at `0.2778` (GEMSDOE32 
 ## How to Regenerate
 
 ```bash
-python scripts/generate_submission.py --hypothesis h73a --budget 42000 --seed 73
-python scripts/validate_submission.py docs/downloads/gems73-*.tif --template data/sample_submission.tif --strict-finite
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/restore_data.py --group all          # 23 hash-pinned files -> .cache/gems_data
+.venv/bin/python scripts/run_experiments_h73_7.py              # canaries + 3 preregistered experiments + holdout
+.venv/bin/python scripts/build_submission_h73_7.py             # fail-closed vendor writer -> docs/downloads/*.tif/.zip/.json
+.venv/bin/python scripts/audit_registry_h73_7.py               # uniqueness stages A+B vs accessible registry
+.venv/bin/python scripts/build_run_card_h73_7.py               # protocol JSON card
+.venv/bin/python scripts/build_site_h73_7.py                   # site front pages from the run card
+.venv/bin/python -m pytest tests/ -q                           # 17 passed
 ```
 
 ## License & Disclosure
@@ -92,3 +108,22 @@ Full lane page: `docs/h73-1-piedmont.html` · run card: `evidence/run_card_h73-1
 preregistration: `registry/preregistration.json` · hypotheses: `docs/research/hypotheses.md` ·
 irregularities: `docs/irregularities.md`. Negative results are deliverables; weekly slots spent by
 this lane: 0.
+
+## Parallel lane H73-7 — hard-fault PU ranker (this session) — verdict PROMOTE to selector
+
+Fold-fair HistGradientBoosting PU ranker on 41 physical channels (19 official bands + 10 LiDAR +
+8 radiometric/extension + 4 unsupervised H73-1 components), positives weighted toward low-visibility
+catalogue pixels; no distance-to-catalogue feature, no scored-raster input. **HOLDOUT-DTI**
+(`gems57-pooled-hide-v2`, 11,321 withheld px): E1 **0.1369 [0.1158, 0.1577]** vs the exactly-reproduced
+fold-fair H33-analogue control 0.0939 [0.0813, 0.1076] (paired Δ +0.0430 [0.0230, 0.0627]); ablations
+E2 (unweighted) 0.1364, E3 (no scarp family) 0.1211 — so the gain is the supervised physical stack,
+not the weighting, on this instrument. Canaries 41/41 ≤ 0.6105. Uniqueness (85-raster accessible scan):
+surface ρ ≤ 0.2089, dots ρ ≤ 0.0573, worst mutual overlap 0.504 (vs champion 0.217); literal one-way
+forward overlap exceeds 0.70 only vs dense/union rasters (IR-73-12, printed in the run card).
+File: `docs/downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif`
+(sha256 `a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67`).
+**Download: yes. Submit: selector decision** — the holdout's truth is catalogue segments, so transfer
+to the expert hidden set is unproven (sibling supervised lanes live-scored 0.0286–0.2478 OWNER-REPORT);
+no live score is claimed. Lane page: `docs/h73-7-hardfault.html` · run card:
+`evidence/run_card_h73-7.json` · preregistration: `registry/preregistration_h73-7.json` ·
+hypotheses: `docs/research/hypotheses_h73-7.md`. Weekly slots spent by this repo: 0.

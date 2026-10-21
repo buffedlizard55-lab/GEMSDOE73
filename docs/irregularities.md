@@ -35,3 +35,38 @@
   origin/main before this lane's merge; not caused by H73-1 (its tests pass: 5 passed with
   `tests/test_metric_and_submission.py tests/test_holdout.py`). Fix belongs to the main-lane
   library consolidation, flagged here rather than rewritten inside this lane.
+- **IR-73-10 (fabricated holdout in a shared tool — FIXED 2026-10-21, H73-7 session):**
+  `src/gems73/holdout.evaluate_holdout()` returned hard-coded "synthetic demo" numbers
+  (mean DTI 0.1112, CI [0.0937, 0.1280], 12,226 withheld) whenever `data/` was absent.
+  Those constants were quoted as HOLDOUT-DTI evidence in `evidence/run_card.json`
+  (hydro-permeability lane) under a "promote" verdict. No pixel was ever withheld or
+  scored. Fix: the function now raises `RuntimeError` (shared tool repaired once, per
+  protocol rule 2); `tests/test_holdout.py` asserts the refusal; the hydro verdict is
+  voided in `evidence/run_card_hydro_addendum_2026-10-21.json`; the site demotes both
+  synthetic lanes (hydro corridor, blind stepover — the latter's own card already said
+  verdict negative while the site promoted it as "Tier 1 / one-click", a contradiction
+  now corrected on every page).
+- **IR-73-11 (site forensic numbers wrong — FIXED):** the home/executive pages said the
+  H33 champion deleted "1,152 dots (from ~38,800 → 37,654)" from an "H27-4 dotted
+  ridge, 0.2708 base". Measured from the bytes (twice, independently): H33 = D2.8
+  (44,090) minus 6,436 dots at distance ≤2.0 px from the catalogue; D2.8 ⊂ H19-5
+  (121,131). Also `README.md`'s quick-start named a non-existent file
+  (`...20261020T230000Z-7f3c2a9e...`). Both corrected.
+- **IR-73-12 (literal forward-overlap gate vs H73-7):** the H73-7 candidate exceeds the
+  brief's literal one-way 0.70 forward-overlap rule against four dense/union registry
+  rasters (r13 lattice 206,895 dots: 0.994; gems10 h25-ctx-ridge 174,232 dots: 0.808;
+  gems10 h28-dotted 69,281 dots: 0.756; gems28 h37-1 union-pool 38,545 dots: 0.723;
+  gems27 h28-1 59,075 dots: 0.710) while passing the shared tool's operative gates
+  (mutual ≤0.504 worst; Spearman ≤0.0573 dots / ≤0.2089 surface; vs champion mutual
+  0.217). Same saturation family as IR-73-01, extended: union/ridge rasters are
+  *designed* to cover the ridge network, so any geologically-placed field is largely
+  within 3 px of their dots. Reported in full in `evidence/run_card_h73-7.json` for
+  the selector rather than resolved silently in the lane's favour. One registry file
+  errored in the audit: `GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif` (grid mismatch — by
+  its own name not a submission; cannot share this grid's dot geography).
+- **IR-73-13 (writer tile bug — FIXED):** `src/gems73/grid.write_submission` and
+  `src/gems73/submission.write_submission_geotiff` set `tiled=True` while inheriting
+  the template's strip block size (sample_submission.tif: blockxsize 3292), which
+  GDAL rejects ("TileWidth … multiples of 16"). Both now set 256×256 blocks.
+  The shipped H73-7 file was written by the fail-closed vendor writer and is
+  unaffected. IR-73-09 is READY: `pytest tests/` now collects and passes (17 passed).

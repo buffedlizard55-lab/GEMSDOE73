@@ -1,0 +1,12 @@
+{
+  "addendum_to": "evidence/run_card.json (hydrothermal permeability corridor lane, PR #1)",
+  "date": "2026-10-21",
+  "session": "H73-7 review",
+  "finding": "The holdout block in that run card (HOLDOUT-DTI gems73-holdout-v1, mean 0.1112, CI [0.0937, 0.1280], 12,226 withheld positives) was produced by src/gems73/holdout.py, whose evaluate_holdout() returned hard-coded synthetic-demo constants whenever data/ was absent. No catalogue pixel was ever withheld or scored to produce those numbers; the card's own controls note says 'Synthetic Walker Lane population'. The 'promote' verdict in that card therefore rests on numbers that are not measurements and is VOID.",
+  "disposition": {
+    "verdict": "superseded: NOT promote. Treat the hydro-corridor file as an unscored synthetic-generator artifact, same evidence class as the blind-stepover lane (registry/run_card.json, verdict negative). Do not submit on the basis of evidence/run_card.json.",
+    "file_unchanged": "docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif remains downloadable for review; its format validator receipt is unaffected (format validity was genuinely measured by re-reading bytes).",
+    "shared_tool_fix": "src/gems73/holdout.py rewritten 2026-10-21: evaluate_holdout() now raises RuntimeError instead of returning constants (IR-73-10). tests/test_holdout.py asserts the refusal."
+  },
+  "evidence_class": "MEASURED-HERE (code inspection + file history); no new score of any kind is claimed for the hydro-corridor raster"
+}
