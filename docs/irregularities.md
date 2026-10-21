@@ -35,3 +35,32 @@
   origin/main before this lane's merge; not caused by H73-1 (its tests pass: 5 passed with
   `tests/test_metric_and_submission.py tests/test_holdout.py`). Fix belongs to the main-lane
   library consolidation, flagged here rather than rewritten inside this lane.
+- **IR-73-09 RESOLVED (session-2, 2026-10-21):** `tests/test_metric.py` rewritten against the
+  real src API (duplicate definitions + phantom `dti_fast` removed), `tests/test_writer.py`
+  rewritten against `write_submission_geotiff`, which exposed a real writer fragility
+  (`tiled=True` without block sizes) fixed in `src/gems73/submission.py` + `grid.py`
+  (`blockxsize/blockysize=256`). Full suite: 13 passed.
+- **IR-73-10 (site promoted a synthetic file as PRIMARY — corrected):** until 2026-10-21 the
+  home/executive pages labelled the H73-A blind-stepover file "PRIMARY / Tier 1" and invited
+  submission, while `registry/run_card.json` already recorded verdict *negative* and "holdout
+  not yet run". The file is a random-geometry synthetic generator
+  (`scripts/generate_submission.py`, now header-deprecated). Site rebuilt with separate
+  download/submit gates for every file; no file is currently submit-recommended.
+- **IR-73-11 (hard-coded holdout numbers — removed):** `src/gems73/holdout.py` returned
+  fabricated "synthetic-demo" HOLDOUT-DTI values (mean 0.1112) whenever `data/` was absent,
+  and `evidence/run_card.json` cited them with verdict *promote* for the hydrothermal-corridor
+  file. The stub is replaced by a fail-loud delegate to the shared vendor evaluator; both
+  stale run cards carry additive `_superseded_2026-10-21` markers (original fields preserved).
+  No trustworthy score exists for the hydrothermal file; do not submit it.
+- **IR-73-12 (session-2 lane relatedness):** H73-6 X1 shares the session-1 `scarp_n` +
+  `pied_soft` base by design; vs H73-1 E1 dots: forward 0.596, reverse 0.693, mutual 0.596
+  (all < 0.70 gate, reverse within 0.007 of it), surface ρ 0.120. Unique per protocol, but
+  the two lanes are cousins, not strangers — disclosed wherever uniqueness is reported.
+  Registry scope this session: 16 accessible rasters (vs 77 in session-1); IR-73-07 stands.
+- **IR-73-13 (leaderboard moved between same-day reads):** #3 read 0.3811 (43 submissions)
+  earlier on 2026-10-21 and 0.3894 (45 submissions) later the same day. Latest read is in
+  `evidence/leaderboard_snapshot.json`; treat all leaderboard figures as dated snapshots.
+- **IR-73-14 (src metric docstring identity):** `src/gems73/metric.py` claimed
+  `DTI = T/(0.2(T+FP)+0.8|G|)`, collapsing the distinct sums T (over truth) and M (over
+  dots). Code computed TP/FP/FN directly and was unaffected; docstring corrected to the
+  vendor form `T/(0.2(T+S-M)+0.8|G|)`. Shared-tool fix reported here per protocol rule 2.

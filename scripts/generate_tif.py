@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""DEPRECATED (IR-73-10/11, 2026-10-21): synthetic random-geometry generator.
+Its output has NO real holdout validation and must NOT be submitted.
+Retained for provenance only. Current lanes: scripts/run_experiments_x.py (H73-6)
+and scripts/run_experiments.py (H73-1), packaged via vendor submission_writer.
+"""
 """Generate a competition-legal GeoTIFF — synthesis mode (no data/) or data mode (with data/).
 
 Synthesis mode (this sandbox) builds the Hydrothermal Permeability Corridor from

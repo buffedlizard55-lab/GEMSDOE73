@@ -1,14 +1,16 @@
 {
-  "hypothesis": "H73-A blind-stepover linkage via magnetic second-vertical-derivative + isostatic gravity slope; Andersonian 60/30° conjugate fabric, power-law L^-1.8, 15% tip stepovers (1-3 px offset), 30° wing cracks, B=2 catalogue prune",
-  "mechanism": "Second-vertical-derivative magnetic edge (tilt/total-curvature) + gravity-slope concordance defines basement offset; en echelon tip stepover (relay ramp) creates dilatational jog — geothermal permeability chimney where lidar shows flat playa. Synthetic generator mimics this geometry and prunes catalogue-proximal mass (always FP in Round-1).",
-  "non_fault_process_that_could_mimic": "Lahontan paleo-shorelines + basin-fill lithologic contacts produce identical magnetic-gravity steps without faulting; mitigated by requiring segmented stepover geometry (relay ramp + wing cracks), not just edge strength.",
-  "holdout_DTI": "HOLDOUT-DTI not yet run on full feature stack — this build uses synthetic generator only; template-only evaluation cannot reward hidden faults. Leakage canary AUC not computed (pending data placement). Evaluator v73; withheld positives = n/a; 95% CI = n/a. Verdict is negative (deliverable).",
-  "correlation_vs_registry": "rank-correlation <0.30, overlap <35% within 3 px vs any registry raster (dotted-ridge H19-5 lane) — passes PARALLEL-RUN PROTOCOL duplicate threshold (0.90 / 70%)",
-  "raster_sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
-  "validator": "PASSED: single-band float32 EPSG:32611 100m 3292x3730 transform [100,0,243350,0,-100,4508550] all 12,279,160 cells finite in [0,1] range_ok true nodata None CRS/shape/transform match template (sample_submission.tif sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc)",
-  "submission_name": "GEMSDOE73-H73A-STEPOVER",
-  "note": "GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED",
-  "verdict": "negative",
-  "note_chars": 127,
-  "note_limit": 200
+ "hypothesis": "H73-A blind-stepover linkage via magnetic second-vertical-derivative + isostatic gravity slope; Andersonian 60/30\u00b0 conjugate fabric, power-law L^-1.8, 15% tip stepovers (1-3 px offset), 30\u00b0 wing cracks, B=2 catalogue prune",
+ "mechanism": "Second-vertical-derivative magnetic edge (tilt/total-curvature) + gravity-slope concordance defines basement offset; en echelon tip stepover (relay ramp) creates dilatational jog \u2014 geothermal permeability chimney where lidar shows flat playa. Synthetic generator mimics this geometry and prunes catalogue-proximal mass (always FP in Round-1).",
+ "non_fault_process_that_could_mimic": "Lahontan paleo-shorelines + basin-fill lithologic contacts produce identical magnetic-gravity steps without faulting; mitigated by requiring segmented stepover geometry (relay ramp + wing cracks), not just edge strength.",
+ "holdout_DTI": "HOLDOUT-DTI not yet run on full feature stack \u2014 this build uses synthetic generator only; template-only evaluation cannot reward hidden faults. Leakage canary AUC not computed (pending data placement). Evaluator v73; withheld positives = n/a; 95% CI = n/a. Verdict is negative (deliverable).",
+ "correlation_vs_registry": "rank-correlation <0.30, overlap <35% within 3 px vs any registry raster (dotted-ridge H19-5 lane) \u2014 passes PARALLEL-RUN PROTOCOL duplicate threshold (0.90 / 70%)",
+ "raster_sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
+ "validator": "PASSED: single-band float32 EPSG:32611 100m 3292x3730 transform [100,0,243350,0,-100,4508550] all 12,279,160 cells finite in [0,1] range_ok true nodata None CRS/shape/transform match template (sample_submission.tif sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc)",
+ "submission_name": "GEMSDOE73-H73A-STEPOVER",
+ "note": "GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED",
+ "verdict": "negative",
+ "note_chars": 127,
+ "note_limit": 200,
+ "_superseded_2026-10-21": "Synthetic-generator lane with no real holdout (IR-73-10). Verdict already 'negative'; site PRIMARY label retracted 2026-10-21. Do not submit.",
+ "_submit_recommended": false
 }

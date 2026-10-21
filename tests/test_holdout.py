@@ -1,8 +1,13 @@
-"""Holdout smoke — synthetic demo path runs without data/."""
-from src.gems73.holdout import evaluate_holdout, EVALUATOR_VERSION
+"""Holdout delegate: shared evaluator version, no fabricated numbers (IR-73-11)."""
+import pytest
 
-def test_holdout_synthetic():
-    res = evaluate_holdout("docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif", data_dir="no-such-dir-xyz")
-    assert res["evaluator_version"]==EVALUATOR_VERSION
-    assert res["mean_dti"]>0 and res["mean_dti"]<1
-    assert len(res["ci95"])==2
+from src.gems73.holdout import EVALUATOR_VERSION, evaluate_holdout
+
+
+def test_evaluator_is_shared_vendor_version():
+    assert EVALUATOR_VERSION == "gems57-pooled-hide-v2"
+
+
+def test_no_synthetic_fallback_numbers():
+    with pytest.raises(NotImplementedError, match="fold-fair"):
+        evaluate_holdout("anything.tif", data_dir="no-such-dir-xyz")

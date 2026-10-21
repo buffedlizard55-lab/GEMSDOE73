@@ -1,52 +1,101 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive Summary — How to Submit — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
+<title>Executive Summary — How to Submit — GEMSDOE73</title><link rel="stylesheet" href="assets/site.css">
 </head><body>
-<header class="top"><div class="wrap">
-<h1>GEMSDOE73 — Executive Summary</h1>
-<nav><a href="index.html">Home</a> <a href="executive-summary.html" class="active">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
-</div></header>
+<header class="top"><div class="wrap"><h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1><nav>
+<a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a>
+<a href="h73-6-traceloc.html">H73-6 lane (new)</a> <a href="h73-1-piedmont.html">H73-1 lane</a>
+<a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a>
+<a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a>
+<a href="irregularities.html">Irregularities</a></nav></div></header>
+<div class="wrap"><p class="mut"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment.
+<b>Own the Outcome</b> — every claim carries an evidence class; negative results are published, not buried.</p></div>
 <main class="wrap">
+<h1>Executive summary — exactly how to make a submission</h1>
+
+<div class="dl bad">
+<h2>⬇ ONE-CLICK DOWNLOAD — newest unique submission file (H73-6 X1) — READ THE STATUS FIRST</h2>
+
+<table><tr><th>File (all format-valid, portal-safe)</th><th>OK to download?</th><th>Recommended to submit?</th><th>Why</th></tr>
+<tr><td><b>NEW — H73-6 X1 traceloc</b><br><code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code></td><td><span class="pill yes">YES</span></td>
+<td><span class="pill no">NO — DO NOT SUBMIT</span></td><td>Unique + valid, but <b>verdict NEGATIVE</b>:
+HOLDOUT-DTI 0.0592 vs fold-fair control 0.0939 (gate failed).</td></tr>
+<tr><td>H73-1 E1 piedmont scarp-chain<br><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></td>
+<td><span class="pill yes">YES</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Session-1 NEGATIVE: HOLDOUT-DTI 0.0548 vs control 0.0939. See <a href="h73-1-piedmont.html">lane page</a>.</td></tr>
+<tr><td>H73-F curvature lineament ridge (parallel session, PR #4)<br><code>gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Format-valid (re-verified here) but <b>holdout NOT RUN</b> per its own run card (synthesis only).
+Uniqueness vs H73-6 X1: mutual 0.133, ρ 0.002 — distinct lane, still unvalidated.</td></tr>
+<tr><td>H73-A blind stepover (<b>synthetic generator</b>)<br><code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Random-geometry synthetic dots, <b>no real holdout</b> (its own run card: verdict negative).
+Earlier revisions of this site wrongly labelled it “PRIMARY” — corrected 2026-10-21 (IR-73-10).</td></tr>
+<tr><td>Hydrothermal corridor (<b>synthetic-demo holdout</b>)<br><code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Its “holdout” was a hard-coded synthetic demo, now removed from the code (IR-73-11). No trustworthy score exists.</td></tr>
+</table>
+<p><b>Bottom line:</b> no file in this repo is currently recommended for a weekly slot. Downloading any
+file is safe; <em>submitting</em> one spends a slot against this repo's own evidence and requires a human
+selector override. That separation is deliberate — it is how a slot is never wasted on an unvalidated idea.</p>
+<p><a class="btn" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif">⬇ Download gems73-h73-6-traceloc-x1-37654dots-20261021.tif</a>
+<a class="btn alt" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.zip">.zip (single GeoTIFF inside)</a>
+<a class="btn alt" href="downloads/run_card_h73-6.json">Run card (JSON)</a></p>
+<p><b>Filename:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code><br>
+<b>Unique submission name:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021</code><br>
+<b>Note for the DrivenData “Note (optional)” field (92/140 chars) — only if a selector overrides:</b><br>
+<code>G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE</code><br>
+<b>sha256:</b> <code>2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554</code> · 146,965 bytes · single band float32 · EPSG:32611 ·
+100 m · 3730×3292 · 37,654 dots · min 0.0 max 1.0 · 0 NaN in all 12,279,160 cells · no nodata tag ·
+CRS/shape/transform match sample submission: <b>True</b> ·
+(<a href="downloads/validator_h73-6.json">validator receipt</a>)</p>
+<p class="mut">This file is newly generated this session, is not a copy of any GEMSDOE-site raster
+(uniqueness vs H33 champion: forward overlap 0.199,
+surface ρ 0.042), and has never been submitted.
+<b>It is OK to download. It is NOT recommended to submit</b> (verdict above). No organiser score exists for it.</p>
+</div>
+<h2>Step-by-step (30 seconds, once a selector approves a file)</h2>
+<ol>
+<li>Download the approved <code>.tif</code> above (or its <code>.zip</code> — the portal accepts a .zip containing a single GeoTIFF).</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submissions page</a> (login required) → <b>New submission</b>.</li>
+<li><b>File to submit:</b> choose the downloaded <code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code> (unique name: <code>gems73-h73-6-traceloc-x1-37654dots-20261021</code>).</li>
+<li><b>Note (optional):</b> paste <code>G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE</code> (92/140 chars — tells this submission apart later).</li>
+<li>Submit. The portal checks CRS/shape/geotransform match and values in [0,1] — this file passes both
+(<a href="downloads/validator_h73-6.json">re-read receipt</a>: EPSG:32611, 3730×3292, transform
+[100,0,243350,0,-100,4508550], min 0.0 max 1.0, 0 NaN, nodata=None, sha256 <code>2e6098900c9f7be2…</code>).</li>
+<li>Your public DTI appears on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>.
+Only that organiser number is ORGANIZER-CONFIRMED; record it back into <code>registry/</code> with the file sha256.</li>
+</ol>
+<p class="warn"><b>Current recommendation: do not submit yet.</b> Every file on this site is download-OK but
+submit-NO (gate table above). The steps are documented so that the moment a lane passes its holdout gate,
+submission is one click with zero format risk.</p>
 
 <div class="dl">
-<h2>⬇ ONE-CLICK SUBMISSION FILE</h2>
-<p><a class="btn" href="downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif">Download gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif</a>
-<a class="btn alt" href="downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2.zip">.zip</a></p>
-<p><b>Unique submission name:</b> <code>GEMSDOE73-H73F-CURVATURE-LINEAMENT</code><br>
-<b>Note for the form (123 chars):</b><br>
-<code>GEMSDOE73 H73-F curvature lineament ridge | off-catalogue dotted stepover/splay emission | 37654 dots | UNSCORED projection</code></p>
-<p class="mut">single band · float32 · EPSG:32611 · 100 m · 3292×3730 · 37,654 dots · all cells finite in [0,1] · 0 NaN · no nodata tag · sha256 <code>27052259b8ba3b80…</code> · <a href="downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2.json">receipt</a></p>
-<p class="warn"><b>Is it OK to download and submit this file?</b> <b>Yes.</b> It is a unique, newly-generated TIF (sha256 <code>27052259b8ba3b80…</code>) that has not been submitted before, is not a copy of any GEMSDOE*-site raster, and passes the format validator (single-band float32, EPSG:32611, 100 m, 3292×3730, transform <code>[100,0,243350,0,-100,4508550]</code>, every cell finite in [0,1], no nodata tag). The file is not scored until you submit it; the "UNSCORED projection" note reflects that. Submitting it is the only way to obtain an organiser-confirmed DTI.</p>
+<h2>⚠ Portal error “Predicted values must be in range [0, 1]” — cause and fix</h2>
+<p>DrivenData requires every predicted value in <code>[0,1]</code> (official submission format,
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page 967</a>,
+re-verified 2026-10-21). The usual trigger in this project family is the float32 sentinel
+<code>-3.4028234663852886e+38</code>: <code>training_features.tif</code> uses it as nodata, and any pipeline
+that writes it through (as data or as a nodata tag a validator reads as a value) fails the range check.</p>
+<p><b>Fix applied to every file above:</b> written <b>all-finite</b> with <code>nodata=None</code> and
+<code>0.0</code> outside the footprint, then <b>re-opened from disk</b> and checked cell-by-cell
+(all 12,279,160 cells finite, min ≥ 0, max ≤ 1, 0 NaN) by the shared validator before delivery.
+Each file ships its re-read receipt. If you ever see the error, you have picked a stale/sentinel file —
+re-download the <code>-zeros</code>/all-finite file from this page.</p>
 </div>
-
-<h2>How to submit to DrivenData (30 seconds)</h2>
-<ol>
-<li>Download the <b>-zeros.tif</b> file above (or the <code>.zip</code> containing the same GeoTIFF — the portal accepts both).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> (requires login) → <b>New submission</b> → <b>File to submit: Choose File</b> → select the downloaded <code>.tif</code> or <code>.zip</code>.</li>
-<li>In <b>Note (optional)</b> paste: <code>GEMSDOE73 H73-F curvature lineament ridge | off-catalogue dotted stepover/splay emission | 37654 dots | UNSCORED projection</code> (helps you tell submissions apart; &lt;200 chars).</li>
-<li>Click <b>Create</b>. The portal validates CRS/shape/transform match and that every predicted value is in <code>[0,1]</code>. This file passes both: <a href="downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2.json">see receipt</a>.</li>
-<li>You will receive a DTI score on the public test set; it appears on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>. Only that organiser receipt counts as <code>ORGANIZER-CONFIRMED</code>; do not report projections as scores.</li>
-</ol>
-
-<h2>Which file to use if you see "Predicted values must be in range [0, 1]"</h2>
-<p>Use the <b>-zeros.tif</b> file (or the .zip of it). It has <code>nodata=None</code> and <code>0.0</code> outside the footprint, so every one of the <code>12,279,160</code> cells is finite and in <code>[0,1]</code>. The <code>-nan.tif</code> twin is byte-identical inside the footprint but carries <code>NaN</code> outside (competition spec format); it is offered for completeness but the zeros variant is the belt-and-braces portal-safe choice that fixes the two sentinel mechanisms that trigger the error (see <a href="index.html">home page</a>).</p>
-
-<h2>What happens after you submit</h2>
+<h2>Verify any file yourself</h2>
+<pre><code>python scripts/validate_tif.py docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif
+python scripts/check_submission_x.py   # full vendor re-read vs sample template
+python -m pytest tests/ -q            # 13 tests: metric, writer [0,1], holdout honesty</code></pre>
+<h2>Competition facts (verified 2026-10-21)</h2>
 <ul>
-<li>Initial Prize Round: scored against the fixed private hidden fault set (expert-labelled before the competition). Top 5 × $10k.</li>
-<li>Expert review: panel cross-references submitted faults to identify new verified faults.</li>
-<li>Final Prize Round: rescored against the expanded label set (initial + verified new). Top 5 → $100k/$70k/$40k/$25k/$15k. Your prediction can directly contribute new geological knowledge.</li>
-</ul>
-<p class="mut">Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">https://docs.nlr.gov/docs/fy26osti/96647.pdf</a> (also mirrored <a href="https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0">Dropbox</a>).</p>
-
-<h2>Verify the file yourself (optional)</h2>
-<pre><code>python scripts/validate_submission.py docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif --template data/sample_submission.tif --strict-finite
-# should print PASSED: dimensions, band_count, crs, transform, dtype, in_footprint_range, portal_safe_whole_array</code></pre>
-
-<h2>Core Values reminder</h2>
-<p><b>Maximize P(Win)</b> — every weekly slot is an experiment, not a lottery ticket. <b>Own the Outcome</b> — every claim carries evidence; defects are published, not quietly dropped.</p>
-
-</main>
-<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+<li>Task/metric/format: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page 967</a> — DTI α=0.2 β=0.8, 300 m triangular kernel, worked example TPw 3.00 FPw 1.89 FNw 2.00 → 0.60 (reproduced in tests).</li>
+<li>Format: single-band float32, EPSG:32611, 100 m, same bounds as sample, values in [0,1] (same page).</li>
+<li>Leaderboard today: #1 0.4413, #2 0.3904, #3 0.3894 (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">live page</a>). Group best 0.2778 is OWNER-REPORT (no receipt — IR-73-02).</li>
+<li>Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a>; reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a>.</li>
+<li>Two prize rounds: Initial (private expert set) → expert review → Final (expanded labels). One selected submission counts for both (problem page).</li>
+</ul></main>
+<footer><div class="wrap">Generated 2026-10-21 by <code>scripts/build_site_x.py</code> from
+<code>evidence/run_card_x.json</code>. Owner scores are labelled OWNER-REPORT; only organiser
+receipts are ORGANIZER-CONFIRMED. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
 </body></html>

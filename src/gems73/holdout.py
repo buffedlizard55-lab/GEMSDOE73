@@ -1,40 +1,34 @@
-"""Spatially-blocked holdout evaluator — hide-and-recover.
+"""Holdout access — thin delegate to the shared vendor evaluator.
 
-Protocol (preregistered GEMSDOE32-PREREG-1, reused unchanged here):
- - Withhold whole fault segments with a 30px buffer (quadrant blocks NW/NE/SW/SE)
- - Derive every catalogue-based feature only from the visible faults
- - Mask visible faults pixel-exactly, score pooled DTI (alpha 0.2 beta 0.8 300m triangular kernel)
- - Report mean DTI across 4 folds plus 95% CI via bootstrap (1000 resamples of withheld pixels)
-
-EVALUATOR_VERSION = "gems73-holdout-v1" (identical algebra to gems32; no private fork).
-
-Leakage canary: test each feature alone on the holdout before trusting any result.
-AUC > 0.90 -> leakage until proven otherwise (none of the 72 features exceed 0.77 here).
-
-This module is fully runnable without competition data (synthetic demo path).
-With data/ present, it switches to real evaluation.
+Session-2 fix (IR-73-11): the previous revision returned hard-coded
+"synthetic-demo" numbers (mean DTI 0.1112) whenever ``data/`` was absent.
+Hard-coded scores are indistinguishable from measurements downstream and
+were cited as HOLDOUT-DTI in ``evidence/run_card.json``. They are removed.
+There is exactly one evaluator in this repo — the shared
+``vendor/gems57/evaluate_holdout.py`` (``gems57-pooled-hide-v2``) — per
+parallel-run protocol rule 2 ("never keep a private fork"). The runnable
+entry points are ``scripts/run_experiments.py`` (session-1 H73-1) and
+``scripts/run_experiments_x.py`` (session-2 H73-6), which restore hash-pinned
+data into ``.cache/gems_data`` and call the vendor code directly.
 """
 from __future__ import annotations
-EVALUATOR_VERSION = "gems73-holdout-v1"
+
+EVALUATOR_VERSION = "gems57-pooled-hide-v2"
 ALPHA, BETA, R_PX = 0.2, 0.8, 3.0
 
-def evaluate_holdout(prediction_path: str, data_dir: str = "data") -> dict:
-    """Run the 4-fold blocked holdout. Returns pooled DTI + CI + per-fold."""
-    import pathlib
-    if not pathlib.Path(data_dir).exists() or not any(pathlib.Path(data_dir).iterdir()):
-        # synthetic path — return measured demo numbers from this repo's own synthesis
-        # These are the results of the hydrothermal-corridor emission rule vs random/ridge controls
-        # on a synthetic fault population with the same |G| ~12226 as the live inversion.
-        return {
-            "evaluator_version": EVALUATOR_VERSION,
-            "mode": "synthetic-demo (no data/ — synthesis of Walker Lane fault population)",
-            "withheld_positives": 12226,
-            "folds": 4,
-            "mean_dti": 0.1112,
-            "ci95": [0.0937, 0.1280],
-            "per_fold": {"NW": 0.108, "NE": 0.115, "SW": 0.103, "SE": 0.119},
-            "note": "Synthetic population |G|=12226 (live-inversion value), sig=1.85px; candidate is hydrothermal corridor; beaten on this instrument only in synthetic demo — real holdout requires data/."
-        }
-    # real path would load data/labels.tif, build blocks, score with src/gems73/metric.py
-    # (code present but not exercised in sandbox without data)
-    raise NotImplementedError("Real holdout needs data/ — run scripts/prepare_data.py first")
+
+def evaluate_holdout(prediction_path: str, data_dir: str = ".cache/gems_data") -> dict:
+    """Delegate to the vendor evaluator; fail loudly if unavailable.
+
+    Returns the vendor pooled summary for a single candidate against the
+    fold-fair controls only when the full experiment scripts are used; this
+    helper intentionally does not fabricate a number for a lone file,
+    because the preregistered instrument requires fold-fair re-emission
+    (a static B2-pruned file scores ~0 against catalogue truth by design).
+    """
+    raise NotImplementedError(
+        "Use scripts/run_experiments_x.py (H73-6) or scripts/run_experiments.py "
+        "(H73-1): the preregistered instrument is fold-fair hide-and-recover "
+        f"({EVALUATOR_VERSION}) and cannot score a lone static file. "
+        "No synthetic fallback numbers are provided (IR-73-11)."
+    )
