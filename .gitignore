@@ -1,12 +1,28 @@
-data/
-*.tif
-*.zip
+# Python & test caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Large raw rasters & external data (restored & SHA-256 verified by scripts/download_competition_data.sh & scripts/prepare_data.py)
+data/*.tif
+data/*.npy
+data/*.mmap
+data/external/
+data/dem10/
+registry/rasters/*.tif
+
+# Keep small official bridge templates & JSON manifests tracked
+!data/bridge/
+!data/bridge/*.tif
+!data/*.json
 !docs/downloads/*.tif
 !docs/downloads/*.zip
-__pycache__/
-*.pyc
-.pytest_cache/
-.venv/
-node_modules/
-.DS_Store
-.cache/
+!docs/downloads/*.json
+!submissions/*.tif
+!submissions/*.zip
+!submissions/*.json
