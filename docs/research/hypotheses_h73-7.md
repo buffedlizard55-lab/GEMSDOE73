@@ -11,7 +11,7 @@ Evidence classes: **ORGANIZER-CONFIRMED** = organizer page/receipt read directly
   stepover generator; never holdout-run; verdict negative by its own card.
 - **Hydrothermal permeability corridor** (`evidence/run_card.json`): synthetic
   dilatation×alteration×thermal product; its "HOLDOUT-DTI 0.1112" came from a
-  hard-coded demo function — verdict voided (IR-73-10,
+  hard-coded demo function — verdict voided (IR-73-11,
   `evidence/run_card_hydro_addendum_2026-10-21.json`).
 - **H73-1 piedmont micro-scarp chain** (`evidence/run_card_h73-1.json`): the only
   previously *measured* lane. Fully unsupervised LiDAR scarp polarity × 1.3 km
@@ -32,7 +32,7 @@ sha256 `c55bafc470…`, MEASURED-HERE; identical to `evidence/forensic.json`):
    zero exceptions. H33-2-B2 = D2.8 with **every dot ≤2.0 px from the catalogue
    deleted — 6,436 dots** (minimum retained distance 2.236 px; 0 dots on catalogue
    pixels in all three). The site previously said "1,152 dots from ~38,800" — wrong;
-   corrected (IR-73-11).
+   corrected (IR-73-16).
 2. **The metric rewards credit density, not mass.** DTI = T / (0.2·(T+F) + 0.8·|G|)
    (α=0.2, β=0.8, 300 m triangular kernel; official problem page). A non-redundant
    extra dot helps only if its kernel credit k > 0.2·DTI ≈ 0.056 at DTI 0.2778.

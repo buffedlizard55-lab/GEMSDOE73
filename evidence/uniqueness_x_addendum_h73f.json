@@ -1,0 +1,13 @@
+{
+ "evidence_class": "REGISTRY-MEASUREMENT addendum (H73-F merged via PR#4 after session-2 scan)",
+ "vs": "gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif (sha256 27052259...)",
+ "my_dots": 37654,
+ "their_dots": 37654,
+ "dots_spearman_sample200k": 0.0016501676196173632,
+ "forward_my_dots_within3px": 0.13331916927816434,
+ "reverse_their_dots_within3px": 0.1622138418229139,
+ "mutual_min": 0.13331916927816434,
+ "unique_vs_h73f": true,
+ "h73f_validator": "PASS (scripts/validate_tif.py, this session): EPSG:32611 float32 all-finite [0,1] 37654 dots",
+ "h73f_holdout": "NOT RUN per its own run card (synthesis only) -> download YES / submit NO under repo gate policy"
+}

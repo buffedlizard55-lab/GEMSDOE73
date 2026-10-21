@@ -140,7 +140,7 @@ card = {
                                  "plus Spearman <= 0.90; both pass with margin (worst mutual "
                                  "0.504 vs a 59,075-dot union-family raster; vs the champion "
                                  "mutual 0.217; vs the most similar supervised sibling "
-                                 "GEMSDOE70 P5 mutual 0.337). Logged as IR-73-12 for the "
+                                 "GEMSDOE70 P5 mutual 0.337). Logged as IR-73-15 for the "
                                  "selector; not hidden."),
         "error_rows": b_stage["errors"],
         "unique_substantive_operative_gates": bool(uni["gates"]["all_pass"]),
@@ -180,7 +180,7 @@ card = {
         "mutual overlap max 0.504, vs champion 0.217); validator passes on re-read bytes. "
         "PROMOTE means promote-to-selector: this repo spends no weekly slot. The selector "
         "must weigh the transfer caveat (catalogue-supervised fields have historically "
-        "transferred weakly to the expert hidden set) and IR-73-12 before spending a slot."
+        "transferred weakly to the expert hidden set) and IR-73-15 before spending a slot."
         if verdict == "promote" else "One or more preregistered gates failed; see preregistered_gates."),
     "weekly_slots_spent": 0,
     "organizer_score": None,

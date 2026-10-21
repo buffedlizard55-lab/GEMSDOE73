@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Rebuild the GEMSDOE73 site front pages from evidence/run_card_h73-7.json.
 
-Writes docs/index.html, docs/executive-summary.html, docs/h73-7-hardfault.html.
-Every number is read from the run card / holdout evidence so the site cannot
-drift from the measurements. Previous lanes are demoted to an explicit
-DO-NOT-SUBMIT archive section (their files stay downloadable for review).
+Originally wrote docs/index.html + docs/executive-summary.html + the lane page
+on this lane's branch. After the parallel-lane merge onto main, the home and
+executive pages are maintained there (with an H73-7 co-candidate section
+inserted at merge time), so this builder now regenerates ONLY
+docs/h73-7-hardfault.html. The index/exec bodies below are retained as the
+branch-time record; do not re-enable those writes without re-merging.
 """
 from __future__ import annotations
 
@@ -109,7 +111,7 @@ CAVEATS = f"""
 <ol>
 <li><b>Transfer is unproven.</b> {html.escape(h['transfer_caveat'])}</li>
 <li><b>The named mechanism was not the active ingredient on this instrument.</b> {html.escape(h['mechanism_reading'])}</li>
-<li><b>Literal one-way overlap (IR-73-12).</b> Under the brief's literal forward rule (&gt;70% of my dots within 3 px of one registry raster), this file “fails” against four dense/union rasters (forward 0.71–0.99, worst the 206,895-dot lattice whose halo covers any dot field — IR-73-01). Under the shared tool's operative gates it passes clearly: surface Spearman max {u['stage_A_surface_spearman_max_sample200k']:.4f}, dots Spearman max {u['stage_B_dots_spearman_max_full']:.4f}, worst <em>mutual</em> overlap {u['dots_mutual_overlap_max']:.4f} (vs the H33 champion: mutual {u['vs_h33_champion'][0]['mutual']:.4f}, forward {u['vs_h33_champion'][0]['forward']:.4f}). Full table in the run card — the selector decides with eyes open.</li>
+<li><b>Literal one-way overlap (IR-73-15).</b> Under the brief's literal forward rule (&gt;70% of my dots within 3 px of one registry raster), this file “fails” against four dense/union rasters (forward 0.71–0.99, worst the 206,895-dot lattice whose halo covers any dot field — IR-73-01). Under the shared tool's operative gates it passes clearly: surface Spearman max {u['stage_A_surface_spearman_max_sample200k']:.4f}, dots Spearman max {u['stage_B_dots_spearman_max_full']:.4f}, worst <em>mutual</em> overlap {u['dots_mutual_overlap_max']:.4f} (vs the H33 champion: mutual {u['vs_h33_champion'][0]['mutual']:.4f}, forward {u['vs_h33_champion'][0]['forward']:.4f}). Full table in the run card — the selector decides with eyes open.</li>
 </ol></div>"""
 
 ARCHIVE = """
@@ -119,7 +121,7 @@ ARCHIVE = """
 <span class="pill no">DO NOT SUBMIT</span> <b>hydrothermal permeability corridor</b> (<code>gems73-hydro-permeability-corridor-…-zeros.tif</code>, 37,654 dots):
 both are <em>synthetic-generator</em> artifacts that were never scored on the real holdout instrument.
 An earlier version of this site promoted them as “one-click submission” files — that was wrong and is corrected here.
-The hydro lane's card quoted “HOLDOUT-DTI 0.1112” from a hard-coded demo function; that verdict is void (IR-73-10,
+The hydro lane's card quoted “HOLDOUT-DTI 0.1112” from a hard-coded demo function; that verdict is void (IR-73-11,
 <code>evidence/run_card_hydro_addendum_2026-10-21.json</code>), and the shared tool that produced it now refuses to invent numbers.
 Both files remain in <code>docs/downloads/</code> for audit; submitting either would spend a slot against this repo's own evidence.</p>
 <p><span class="pill no">DO NOT SUBMIT</span> <b>H73-1 piedmont micro-scarp chain</b> — properly measured, verdict NEGATIVE
@@ -131,7 +133,7 @@ WHY_H33 = """
 <p><i>Score class: 0.2778 is <b>OWNER-REPORT</b> (project ledger; no organizer receipt in any inspected repo — IR-73-02).
 Everything below about the file's construction is <b>MEASURED-HERE</b> from its bytes (sha256 <code>c55bafc470…</code>), re-verified this session.</i></p>
 <ol>
-<li><b>Exact lineage:</b> H33-2-B2 (37,654 dots) ⊂ D2.8 (44,090) ⊂ H19-5 (121,131), zero exceptions. H33-2-B2 is D2.8 with <b>every dot within 2.0 px of the catalogue deleted — 6,436 dots</b> (minimum retained distance 2.236 px). <i>(This site previously printed “1,152 dots from ~38,800” — wrong, corrected; IR-73-11.)</i></li>
+<li><b>Exact lineage:</b> H33-2-B2 (37,654 dots) ⊂ D2.8 (44,090) ⊂ H19-5 (121,131), zero exceptions. H33-2-B2 is D2.8 with <b>every dot within 2.0 px of the catalogue deleted — 6,436 dots</b> (minimum retained distance 2.236 px). <i>(This site previously printed “1,152 dots from ~38,800” — wrong, corrected; IR-73-16.)</i></li>
 <li><b>Dotting raises credit density:</b> DTI = T / (0.2·(T+F) + 0.8·|G|). A non-redundant dot helps only if its kernel credit k &gt; 0.2·DTI ≈ 0.056 at DTI 0.2778. Thinning 121,131 px to ~2.5–2.8 px-spaced dots keeps trace coverage (k ≥ ~0.58 on a covered trace) while paying the 0.2 FP tax once per ~6 px of trace: OWNER-REPORT ladder 0.1922 → 0.2477/0.2600.</li>
 <li><b>The B=2 prune is free:</b> hidden truth excludes the catalogue, so dots ≤200 m from known traces mostly cover masked, zero-credit traces at full FP cost. Deleting 6,436 of them cost no hidden recall: 0.2600 → 0.2778 family step.</li>
 <li><b>The field matched the hidden set's likely construction:</b> H19-5 is ~90% scarp/openness-weighted — the same LiDAR-scarp population expert re-mapping adds. Corollary (MEASURED-HERE): the champion scores DTI 0.0067 against the full catalogue, below random — any non-fold-fair catalogue holdout ranks it last (IR-73-06).</li>
@@ -226,7 +228,5 @@ lane_body = f"""
 <p>Preregistration (frozen before the run): <code>registry/preregistration_h73-7.json</code> · ranked hypotheses: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/blob/main/docs/research/hypotheses_h73-7.md">docs/research/hypotheses_h73-7.md</a> · validator receipt: <a href="downloads/{NAME}.json">{NAME}.json</a></p>
 """
 
-(DOCS / "index.html").write_text(page("GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize", index_body, "index.html"))
-(DOCS / "executive-summary.html").write_text(page("Executive Summary — How to Submit — GEMSDOE73", exec_body, "executive-summary.html"))
 (DOCS / "h73-7-hardfault.html").write_text(page("H73-7 hard-fault PU lane — GEMSDOE73", lane_body, "h73-7-hardfault.html"))
-print("wrote docs/index.html, docs/executive-summary.html, docs/h73-7-hardfault.html")
+print("wrote docs/h73-7-hardfault.html (index/executive maintained on main post-merge)")

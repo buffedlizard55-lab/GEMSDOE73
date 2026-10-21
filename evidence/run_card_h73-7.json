@@ -127,7 +127,7 @@
         "their_dots": 59075
       }
     ],
-    "literal_forward_note": "Under the brief's literal one-way rule (>70% of my dots within 3 px of one registry raster), this candidate fails against the dense/union rasters listed above - the documented IR-73-01 saturation artifact (the 206,895-dot r13 lattice's halo covers ~99% of ANY dot field). The operative shared-tool gate (vendor gems57 uniqueness, 2026-10-20 fix; PR#3 precedent) is mutual overlap <= 0.70 plus Spearman <= 0.90; both pass with margin (worst mutual 0.504 vs a 59,075-dot union-family raster; vs the champion mutual 0.217; vs the most similar supervised sibling GEMSDOE70 P5 mutual 0.337). Logged as IR-73-12 for the selector; not hidden.",
+    "literal_forward_note": "Under the brief's literal one-way rule (>70% of my dots within 3 px of one registry raster), this candidate fails against the dense/union rasters listed above - the documented IR-73-01 saturation artifact (the 206,895-dot r13 lattice's halo covers ~99% of ANY dot field). The operative shared-tool gate (vendor gems57 uniqueness, 2026-10-20 fix; PR#3 precedent) is mutual overlap <= 0.70 plus Spearman <= 0.90; both pass with margin (worst mutual 0.504 vs a 59,075-dot union-family raster; vs the champion mutual 0.217; vs the most similar supervised sibling GEMSDOE70 P5 mutual 0.337). Logged as IR-73-15 for the selector; not hidden.",
     "error_rows": [
       {
         "repo": "GEMSDOE36",
@@ -181,7 +181,7 @@
     "d_validator_all_checks_passed": true
   },
   "verdict": "promote",
-  "verdict_reason": "All four preregistered gates pass: E1 beats the exactly-reproduced fold-fair H33-analogue control on pooled HOLDOUT-DTI by +0.0430 [0.0230, 0.0627] (gems57-pooled-hide-v2, 11,321 withheld px); 41/41 leakage canaries <= 0.6105; operative uniqueness gates pass (surface rho max 0.2089, dots rho max 0.0573, mutual overlap max 0.504, vs champion 0.217); validator passes on re-read bytes. PROMOTE means promote-to-selector: this repo spends no weekly slot. The selector must weigh the transfer caveat (catalogue-supervised fields have historically transferred weakly to the expert hidden set) and IR-73-12 before spending a slot.",
+  "verdict_reason": "All four preregistered gates pass: E1 beats the exactly-reproduced fold-fair H33-analogue control on pooled HOLDOUT-DTI by +0.0430 [0.0230, 0.0627] (gems57-pooled-hide-v2, 11,321 withheld px); 41/41 leakage canaries <= 0.6105; operative uniqueness gates pass (surface rho max 0.2089, dots rho max 0.0573, mutual overlap max 0.504, vs champion 0.217); validator passes on re-read bytes. PROMOTE means promote-to-selector: this repo spends no weekly slot. The selector must weigh the transfer caveat (catalogue-supervised fields have historically transferred weakly to the expert hidden set) and IR-73-15 before spending a slot.",
   "weekly_slots_spent": 0,
   "organizer_score": null,
   "experiments_run": 3,

@@ -1,66 +1,64 @@
-"""Writer tests against the current src.gems73.grid API.
+"""Writer tests against the merged src.gems73.submission API.
 
-Repaired 2026-10-21 (IR-73-09): previously imported
-``write_submission/WIDTH/HEIGHT/CRS/TRANSFORM`` from ``src.gems73.submission``,
-which the merged library does not export (they live in ``src.gems73.grid``
-and the writer there takes a template path), so pytest failed at collection
-on main. Rewritten once against the real API.
+History: IR-73-09 — the original file imported `write_submission/WIDTH/...`
+from `src.gems73.submission`, which never existed there, so pytest failed at
+collection. The H73-7 session first rewrote it against `src.gems73.grid`;
+the parallel-lane merge then reduced `grid.py` to constants, so this final
+form tests the surviving writer/validator pair in
+`src.gems73.submission` (`write_submission_geotiff` /
+`validate_submission_geotiff`), including the strip-template tile fix
+(blockxsize/blockysize=256; the real sample template is strip-organized).
 """
 import pathlib
 import tempfile
 
 import numpy as np
-import pytest
 import rasterio
+from rasterio.transform import Affine
 
-from src.gems73.grid import CRS, HEIGHT, TRANSFORM, WIDTH, write_submission
+from src.gems73.submission import validate_submission_geotiff, write_submission_geotiff
+
+H, W = 3730, 3292
+TRANSFORM = Affine(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)
 
 
-def _make_template(path: pathlib.Path) -> pathlib.Path:
-    profile = dict(driver="GTiff", dtype="float32", count=1, crs=CRS,
-                   transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=np.nan)
+def _make_strip_template(path: pathlib.Path) -> pathlib.Path:
+    """Strip-organized template like the real sample_submission.tif."""
+    profile = dict(driver="GTiff", dtype="float32", count=1, crs="EPSG:32611",
+                   transform=TRANSFORM, width=W, height=H, nodata=np.nan, tiled=False)
     with rasterio.open(path, "w", **profile) as dst:
-        dst.write(np.zeros((HEIGHT, WIDTH), np.float32), 1)
+        dst.write(np.zeros((H, W), np.float32), 1)
     return path
 
 
-def test_write_zeros_variant_is_portal_safe():
-    arr = np.zeros((HEIGHT, WIDTH), dtype=np.float32)
+def test_write_zeros_variant_is_portal_safe_from_strip_template():
+    arr = np.zeros((H, W), dtype=np.float32)
     arr[100, 100] = 1.0
     arr[200, 200] = 0.5
     with tempfile.TemporaryDirectory() as td:
-        tpl = _make_template(pathlib.Path(td) / "template.tif")
-        out = write_submission(arr, tpl, pathlib.Path(td) / "out.tif", outside="zeros")
+        tpl = _make_strip_template(pathlib.Path(td) / "template.tif")
+        out = pathlib.Path(td) / "out.tif"
+        info = write_submission_geotiff(arr, tpl, out, outside_mode="zeros")
+        assert info["emitted_dots"] == 2
+        report = validate_submission_geotiff(out, tpl, strict_whole_array_finite=True)
+        assert report.passed, report.to_dict()
         with rasterio.open(out) as src:
             assert src.nodata is None
             assert src.crs.to_epsg() == 32611
-            assert (src.height, src.width) == (HEIGHT, WIDTH)
             a = src.read(1)
-        assert np.isfinite(a).all()  # every cell finite -> cannot trip the [0,1] portal check
-        assert float(a.min()) >= 0.0 and float(a.max()) <= 1.0
-        assert int((a > 0).sum()) == 2
-
-
-def test_write_zeros_variant_zeroes_outside_footprint():
-    arr = np.ones((HEIGHT, WIDTH), dtype=np.float32)
-    footprint = np.zeros((HEIGHT, WIDTH), bool)
-    footprint[10:20, 10:20] = True
-    with tempfile.TemporaryDirectory() as td:
-        tpl = _make_template(pathlib.Path(td) / "template.tif")
-        out = write_submission(arr, tpl, pathlib.Path(td) / "out.tif",
-                               footprint=footprint, outside="zeros")
-        with rasterio.open(out) as src:
-            a = src.read(1)
-        assert int((a > 0).sum()) == 100
         assert np.isfinite(a).all()
+        assert float(a.min()) >= 0.0 and float(a.max()) <= 1.0
 
 
-def test_rejects_out_of_range_inside_footprint():
-    arr = np.zeros((HEIGHT, WIDTH), dtype=np.float32)
-    arr[0, 0] = 1.5
-    footprint = np.ones((HEIGHT, WIDTH), bool)
+def test_validator_rejects_out_of_range():
+    arr = np.zeros((H, W), dtype=np.float32)
     with tempfile.TemporaryDirectory() as td:
-        tpl = _make_template(pathlib.Path(td) / "template.tif")
-        with pytest.raises(AssertionError):
-            write_submission(arr, tpl, pathlib.Path(td) / "bad.tif",
-                             footprint=footprint, outside="zeros")
+        tpl = _make_strip_template(pathlib.Path(td) / "template.tif")
+        bad = pathlib.Path(td) / "bad.tif"
+        profile = dict(driver="GTiff", dtype="float32", count=1, crs="EPSG:32611",
+                       transform=TRANSFORM, width=W, height=H)
+        arr[0, 0] = 1.5
+        with rasterio.open(bad, "w", **profile) as dst:
+            dst.write(arr, 1)
+        report = validate_submission_geotiff(bad, tpl, strict_whole_array_finite=True)
+        assert not report.passed

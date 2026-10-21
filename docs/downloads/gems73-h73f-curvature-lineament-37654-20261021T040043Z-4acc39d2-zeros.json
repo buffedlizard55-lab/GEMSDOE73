@@ -1,7 +1,7 @@
 {
-  "file": "gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
-  "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
-  "sha256_short": "2bbb79d4",
+  "file": "gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+  "sha256": "27052259b8ba3b80d25cb2a6937998840f8682d639ecf37132dcf5b9dbea4187",
+  "sha256_short": "27052259",
   "crs": "EPSG:32611",
   "shape": [
     3730,
@@ -36,6 +36,6 @@
     1.0
   ],
   "all_checks_passed": true,
-  "compress": "lzw",
+  "compress": "deflate",
   "tiled": true
 }
