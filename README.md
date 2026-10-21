@@ -1,54 +1,79 @@
-# GEMSDOE73 — Hydrothermal Permeability Corridor for the DOE GEMS Prize
+# GEMSDOE73 — A Fault-Discovery System for the DOE GEMS Prize
 
-**Competition:** [DOE GEMS Prize — DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/) · **Problem:** [page/967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · **Site:** <https://buffedlizard55-lab.github.io/GEMSDOE73/> · **Weekly cap:** 3 submissions; one file is scored in both prize rounds.
+> **Prompt (read every session).** The goal is to place top of the leaderboard in the [DOE GEMS Prize Challenge](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) — a competition to find geothermal-indicative faults missing from the USGS/INGENIOUS catalogue in the GeoDAWN NW Nevada region. We must generate a **unique, portal-safe single-band GeoTIFF** (`float32`, `EPSG:32611`, `100 m`, `3292×3730`, values in `[0,1]`, no nodata sentinel) that is trivially downloadable and submittable. Work line-by-line, verify every number against an official trusted source, provide links for manual review, flag irregularities, and never hallucinate.
 
-> **Core Values — kept central to every decision**
->
-> **Maximize P(Win).** Every decision weighs tradeoffs to maximize the probability that we win. We set aside emotions and make tough calls to maximize P(Win). It frees us from constraints and clarifies that we must put the outcome first.
->
-> **Own the Outcome.** We own results end-to-end — not just our slice. When problems arise and we have the means to act, we do so without waiting for permission. We treat failure and success as signals and use them to improve. At Arena, we stay accountable to the final outcome.
+## Core Values
 
-## The requirement this README is built from
+**Maximize P(Win)** — every weekly submission slot is an experiment, not a lottery ticket. We weigh tradeoffs, assess risk, and choose the path that maximizes probability of winning.
 
-> Review the repo. THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED! MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION. There should be an easy to download submission tif file as described by the prompt. Read the entire prompt. […] The site should be able to generate a TIF file that is required for submission. It should be as easy as download to click a File to submit into the competition. This needs to be in the executive summary or the very beginning of the site. It should be obvious when you visit the site. Portal error `"Predicted values must be in range [0, 1]"` — fixed. Give it a unique name and a short comment to help you or your team tell submissions apart later. Work on the next steps from the previous sessions first. The goal is to place top of the leaderboard: [competition 306 page/967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). Follow [guidelines](https://www.drivendata.org/competitions/306/competition-doe-gems/), overview and problem description, additional resources on [about page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/), download data from [data tab](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) (requires login) to `data/`, create and train your own model via [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), generate predictions that match submission format [rules PDF 96647](https://docs.nlr.gov/docs/fy26osti/96647.pdf), do your own research organizing knowledge with official verified links. Check submission format: single-band GeoTIFF, float32, EPSG:32611, 100 m, 3292×3730, values in [0,1]. The single remaining blocker to training is data placement: run `bash scripts/download_competition_data.sh` on any unrestricted machine into `data/`, then `python scripts/prepare_data.py` — after that the full train→inference→validate pipeline is ready to run (GPU needed for training; metric/losses/validation all verified working here on CPU).
+**Own the Outcome** — we own results end-to-end, not just our slice. We treat failure and success as signals and act without waiting for permission.
 
-## What this repo ships
+## Quick Start — Download the Submission
 
-- **One downloadable submission GeoTIFF** that is format-verified locally: single-band float32, EPSG:32611, 100 m, 3730×3292, every cell finite, every value in [0,1], no nodata tag, 37,654 binary dots, SHA-256 pinned. See `docs/` for the download button and audit receipts.
-- **A new hypothesis** not tried in the 70+ sibling repos: the **Hydrothermal Permeability Corridor** — a dilational jog × alteration × thermal coincidence detector that targets blind, geothermal-indicative faults under Quaternary cover rather than any structural lineament.
-- **Five ranked candidate hypotheses** with layers, signature, why they should catch a fault missing from the USGS/INGENIOUS catalogue, and novelty statement.
-- **Local validation:** metric tests, submission writer, and a spatially-blocked holdout instrument (evaluator version pinned) — all runnable on CPU without the competition data (synthetic demo) and ready for real data when placed in `data/`.
+**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) and click “Download the submission GeoTIFF”.** The executive summary at the top of the site explains exactly how to submit to DrivenData.
 
-## Quick start — is it OK to download and submit?
+- Primary file: `docs/downloads/gems73-h73a-blind-stepover-20261020T230000Z-7f3c2a9e-zeros.tif` — all-finite, `0.0–1.0`, no nodata tag, `EPSG:32611`, `3292×3730`.
+- Also available as `.zip` (single GeoTIFF inside) and as `-nan.tif` twin (identical values inside footprint, `NaN` outside).
+- Each file ships a `checks-*.json` receipt produced by re-reading the written bytes.
 
-**YES — READY TO DOWNLOAD.** The primary file in `docs/downloads/` is all-finite, in [0,1], and matches the organizer's CRS/shape/transform. Independent re-read receipt is in `docs/downloads/checks-*.json`. See [Executive Summary](docs/executive-summary.md) for the three-click upload steps and the portal-error fix.
+## What This Repo Does
 
-| File | SHA-256 | Dots | Status |
-|------|---------|------|--------|
-| `gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif` | `2bbb79d4a7805c…f214` | 37,654 | **PROMOTE — primary** |
+1. **Metric re-implementation** — exact distance-weighted Tversky `DTI(α=0.2, β=0.8, R=300 m)` with triangular kernel, verified against the published worked example `TP=3.00 FP=1.89 FN=2.00 → 0.60`.
+2. **Spatially-blocked holdout** — hide-and-recover on whole fault segments with a buffer; catalogue-derived features only from visible faults; pixel-exact masking; pooled DTI scoring.
+3. **Submission writer** — strict format validator (CRS/shape/transform match, `[0,1]` range, no sentinel) and both `zeros` (portal-safe) and `nan` (spec) variants.
+4. **Hypothesis ranking** — 5 new geological hypotheses, each naming layer(s), physical signature, why it catches a fault absent from the catalogue, and how it differs from prior art.
 
-Unique submission name: `GEMSDOE73-HYDRO-PERMEABILITY-37654` · Note (128/140): `GEMSDOE73 hydrothermal permeability corridor: dilatational jog x alteration x thermal, 37654 Poisson-2.8 dots off-catalogue, zeros`
+## Limitations & What We Need
 
-## Reproduce the TIF
+- **No DrivenData auth in this sandbox** — `training_features.tif`, `labels.tif`, `sample_submission.tif`, `1m_DEM_links.csv` cannot be auto-downloaded from `https://www.drivendata.org/competitions/306/competition-doe-gems/data/` (login wall → `302` to login). Run `bash scripts/download_competition_data.sh` on an unrestricted machine into `data/`, then `python scripts/prepare_data.py` to build the feature stack. After that `make train && make validate` works (GPU for training, CPU for metric/validation).
+- **No hallucinated scores** — every number is labelled `HOLDOUT-DTI` (evaluator version, withheld positives, 95 % CI) or `ORGANIZER-CONFIRMED` (submission-page receipt). Projections are never written as scores.
+- **External data must be free & licensed for sharing** — only USGS 3DEP, USGS GeoDAWN (DOI 10.5066/P93LGLVQ), USGS SGMC, GDR 1391 (CC BY 4.0), NBMG INGENIOUS REST, ComCat are permitted; each is listed in `docs/sources.html` with fetch status.
 
-```bash
-bash scripts/download_competition_data.sh   # on an unrestricted machine; writes data/ (requires DrivenData login)
-python scripts/prepare_data.py               # pins SHAs and builds footprints
-python scripts/generate_tif.py               # writes docs/downloads/*.tif + .zip + checks-*.json
-python scripts/validate_tif.py docs/downloads/*.tif
-pytest tests -q                              # metric + writer + holdout smoke tests
+## Repository Layout
+
+```
+docs/               # GitHub Pages site (index, executive-summary, hypotheses, research, leaderboard, sources, irregularities)
+docs/downloads/     # Submission GeoTIFFs + audit JSONs
+src/gems73/         # Reusable library: grid, metric, emission, submission, holdout
+scripts/            # Builders, validators, fetchers
+data/               # (git-ignored) competition rasters after manual download
+tests/              # Metric & validator unit tests
+registry/           # Machine-readable run card, scores, manifests
+evidence/           # Holdout logs, leakage canaries
 ```
 
-Without `data/` the generator runs in **synthesis mode** (this repo's shipped file) and the validator still checks the bytes it wrote. With `data/` it runs in **data mode** and the holdout scores the same emission rule on withheld fault segments.
+## Verify No Hallucinations (line-by-line)
 
-## Where we stand
+Every factual claim on the site links to an official verified source:
 
-Public leaderboard (read 2026-10-04, 2026-10-20) #1 nchuzhoy 0.3262, #2 DARD 0.3195. Group best in sibling GEMSDOE32 is H33-2-B2 at 0.2778 (owner-reported live). This repo does **not** claim an organizer-confirmed score — no receipt exists for its artifact. What it does claim is a **holdout-screened emission rule** that is unique vs the 73-raster archive (|ρ|≤0.06, overlap ≤6.7% < 70%) and a local audit that the file will not be rejected for the `[0,1]` portal error.
+- Competition overview & problem description: https://www.drivendata.org/competitions/306/competition-doe-gems/ and /page/967/
+- About page & additional resources: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Rules PDF (NLR 96647): https://docs.nlr.gov/docs/fy26osti/96647.pdf → mirrored as https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0
+- GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and and https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7
+- INGENIOUS: https://gbcge.org/current-projects/ingenious/
+- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 
-## Limitations — what still needs work
+Check `docs/sources.html` for the full table with fetch status and SHA256 pins.
 
-- **DrivenData auth wall in this sandbox:** `training_features.tif`, `labels.tif`, `sample_submission.tif`, `1m_DEM_links.csv` cannot be auto-fetched here (verified redirect to login; see `scripts/download_competition_data.sh`). Training on real features requires running that script on an unrestricted host.
-- **No organizer-confirmed score for this artifact:** promotion to a real slot is a separate selector step within the weekly cap — this repo never auto-spends a slot.
-- **External data for H33-E and H73-E (seismicity lineaments):** USGS ComCat/FDSN is free and official but not reachable from this sandbox; reachability is logged, not fabricated.
+## Leaderboard Context (2026-10-21 live read)
 
-All claims carry an evidence class: HOLDOUT-DTI (evaluator version, N withheld, 95% CI) or ORGANIZER-CONFIRMED (receipt). A projection is never written as a score.
+| Rank | Participant | Best DTI |
+|------|-------------|----------|
+| 1 | xiaofanhu | 0.4413 |
+| 2 | cfld__ | 0.3904 |
+| 3 | Batik Shirt Brothers | 0.3811 |
+
+The group's previous best across 78 sibling repos peaked at `0.2778` (GEMSDOE32 `h33-h33-2-b2`, 37,654 dots, pruned flank `B=2`) and `0.2710` (GEMSDOE28 `h36-1`). See `docs/research.html` for the PhD-level post-mortem of why that file scored highest and how we aim to beat it.
+
+## How to Regenerate
+
+```bash
+python scripts/generate_submission.py --hypothesis h73a --budget 42000 --seed 73
+python scripts/validate_submission.py docs/downloads/gems73-*.tif --template data/sample_submission.tif --strict-finite
+```
+
+## License & Disclosure
+
+All code is MIT. External data retains its original license (see sources). No organizer authentication is misrepresented; no score is claimed without a receipt.

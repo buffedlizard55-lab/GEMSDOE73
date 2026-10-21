@@ -1,3 +1,11 @@
+data/
+*.tif
+*.zip
+!docs/downloads/*.tif
+!docs/downloads/*.zip
 __pycache__/
 *.pyc
 .pytest_cache/
+.venv/
+node_modules/
+.DS_Store

@@ -1,80 +1,99 @@
-"""Competition metric — distance-weighted Tversky index (DTI).
+"""Official Distance-Weighted Tversky Index (DTI) for the DOE GEMS Prize.
 
-Official definition: problem page 967, verified 2026-10-21 (two independent fetches
-agree; worked example TPw=3.00 FPw=1.89 FNw=2.00 -> 0.60 reproduced in tests).
+Verified from official competition problem description
+https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric
+and organizer forum clarification Thread 11516.
 
-  k(d) = max(1 - d/300m, 0)  with 300m = 3px at 100m res
-  TPw = sum_g max_{x: d(x,g)<=R} p(x) k(d(x,g))
-  FPw = sum_{x: p(x)>0} p(x) [1 - max_g k(d(x,g))]
-  FNw = sum_g [1 - max_{x: d(x,g)<=R} p(x) k(d(x,g))]
-  DTI = TPw / (TPw + 0.2 FPw + 0.8 FNw + eps)
+Formulation:
+  Triangular kernel k(d) = max(1 - d/R, 0), R = 300 m = 3 px at 100 m
+  TP_w = sum_{g in G} max_{x:d(x,g) <=R} p(x) * k(d)
+  FP_w = sum_{x:p(x)>0} p(x) * [1 - max_{g} k(d(x,g))]
+  FN_w = |G| - TP_w
+  DTI(α=0.2, β=0.8) = TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w)
+                 = TP_w / (0.2*(TP_w+FP_w) + 0.8*|G|)  [since FP = S-M]
 
-Equivalently: DTI = T / (0.2*(T+S-M) + 0.8*|G|) with T=TPw S=sum(p) M=sum(p*maxk)
-Credit bar: add mass at weight k iff k > 0.2*DTI.
-At group 0.2600 bar=0.0520; at leader 0.3262 bar=0.0652 (measured per DTI algebra).
+Worked example TP=3.00 FP=1.89 FN=2.00 → 0.60 reproduced in tests.
 """
 from __future__ import annotations
 import numpy as np
 from scipy.ndimage import distance_transform_edt
 
-R_PX = 3.0  # 300m at 100m
-ALPHA, BETA = 0.2, 0.8
+ALPHA = 0.2
+BETA = 0.8
+RADIUS_PX = 3.0
+EPS = 1e-12
 
-def kernel(d: np.ndarray) -> np.ndarray:
-    return np.maximum(1.0 - d / R_PX, 0.0)
 
-def dti_bruteforce(pred: np.ndarray, truth: np.ndarray, eps: float = 1e-9) -> float:
-    """Brute-force reference (O(N^2) on positive pixels) — for tests only."""
-    # truth and pred are binary {0,1} on same grid, outside footprint masked externally
-    # Use distance_transform_edt for fast nearest-truth distance
-    # This is the *fast* equivalent but kept as reference name for compatibility
-    return dti_fast(pred, truth, eps=eps)
+def kernel(d, radius: float = RADIUS_PX):
+    return np.maximum(1.0 - np.asarray(d, dtype=np.float64) / radius, 0.0)
 
-def dti_fast(pred: np.ndarray, truth: np.ndarray, eps: float = 1e-9) -> float:
-    """Fast DTI via distance transforms (exact, tolerates +-1px rasterisation per spec)."""
-    # Compute kernel-weighted contributions
-    # For each truth pixel: max p(x)*k(d(x,g)) within R
-    # For each pred pixel: max k(d(x,g)) to nearest truth
-    # Both reduce to distance transforms with linear kernel.
 
-    # Binary masks
-    g = truth.astype(bool)
-    p = pred.astype(np.float32)
+def _offsets(radius: float = RADIUS_PX):
+    r = int(np.ceil(radius))
+    out = []
+    for dy in range(-r, r + 1):
+        for dx in range(-r, r + 1):
+            k = float(kernel(np.hypot(dy, dx), radius))
+            if k > 0:
+                out.append((dy, dx, k))
+    return out
 
-    if not g.any():
-        return 0.0 if p.sum() > 0 else 1.0  # degenerate no-truth case
+_OFFS = _offsets()
 
-    # distance to nearest truth for every pixel (for FPw and for truth weighting)
-    # distance_transform_edt returns distance to nearest 0, so invert
-    inv_g = ~g
-    dist_to_truth = distance_transform_edt(inv_g)  # 0 on truth
-    k_to_truth = kernel(dist_to_truth)
 
-    # distance to nearest pred>0 for every truth pixel (for TPw/FNw)
-    # Need max_{x} p(x)*k(d(x,g)) — for binary p this is maxk among pred pixels
-    # So for TPw we need maxk from pred positions to each truth
-    has_pred = p > 0
-    if not has_pred.any():
-        TPw = 0.0
-        FPw = 0.0
-        FNw = float(g.sum())
-        return TPw / (TPw + ALPHA*FPw + BETA*FNw + eps)
+def dti_exact(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA):
+    pred = np.asarray(pred, float)
+    truth = np.asarray(truth, bool)
+    valid = np.ones(pred.shape, bool) if valid is None else np.asarray(valid, bool)
+    known = np.zeros(pred.shape, bool) if known is None else np.asarray(known, bool)
+    active = valid & ~known
+    if pred.shape != truth.shape or valid.shape != pred.shape:
+        raise ValueError("shape mismatch")
+    inside = pred[active]
+    if not np.isfinite(inside).all() or (inside < 0).any() or (inside > 1).any():
+        raise ValueError("predictions inside scored domain must be finite in [0,1]")
+    p = np.where(active & np.isfinite(pred), pred, 0.0).astype(np.float64)
+    g = active & (truth > 0)
+    n = int(g.sum())
+    if n == 0:
+        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0)
+    yy, xx = np.nonzero(g)
+    credit = np.zeros(n, dtype=np.float64)
+    H, W = p.shape
+    for dy, dx, k in _OFFS:
+        ny, nx = yy + dy, xx + dx
+        ok = (ny >= 0) & (ny < H) & (nx >= 0) & (nx < W)
+        credit[ok] = np.maximum(credit[ok], p[ny[ok], nx[ok]] * k)
+    tp = float(credit.sum())
+    fn = float(n) - tp
+    d = distance_transform_edt(~g)
+    fp = float((p * (1.0 - kernel(d))).sum())
+    dti = tp / (tp + alpha * fp + beta * fn + EPS)
+    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti), coverage=tp / n if n else 0)
 
-    # dist to nearest pred
-    dist_to_pred = distance_transform_edt(~has_pred)
-    # But we need max_k among preds weighted by p (binary 1 here)
-    # For each truth g, the best covering pred is min dist_to_pred at g, k = max(1-d/R,0)
-    best_k_at_truth = kernel(dist_to_pred[g])
-    TPw = float(best_k_at_truth.sum())
-    FNw = float(g.sum() - TPw)
 
-    # FPw: for each pred pixel x, weight is p(x)*(1 - k(d(x,G)))
-    # k(d(x,G)) is k_to_truth at x
-    FPw = float((p * (1.0 - k_to_truth)).sum())
+def dti_binary(pred_bool, truth, valid=None, known=None, alpha=ALPHA, beta=BETA):
+    pred_bool = np.asarray(pred_bool, bool)
+    truth = np.asarray(truth, bool)
+    valid_ = np.ones(pred_bool.shape, bool) if valid is None else np.asarray(valid, bool)
+    known_ = np.zeros(pred_bool.shape, bool) if known is None else np.asarray(known, bool)
+    active = valid_ & ~known_
+    p = pred_bool & active
+    g = truth & active
+    n = int(g.sum())
+    if n == 0:
+        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0)
+    if not p.any():
+        return dict(tp=0.0, fp=0.0, fn=float(n), n_truth=n, dti=0.0)
+    dp = distance_transform_edt(~p)
+    tp = float(kernel(dp[g]).sum())
+    fn = float(n) - tp
+    dg = distance_transform_edt(~g)
+    fp = float((1.0 - kernel(dg[p])).sum())
+    dti = tp / (tp + alpha * fp + beta * fn + EPS)
+    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti))
 
-    denom = TPw + ALPHA*FPw + BETA*FNw + eps
-    return float(TPw / denom) if denom>0 else 0.0
 
-def credit_bar(dti: float) -> float:
-    """Marginal credit bar: a new dot must have expected k > 0.2*DTI to help."""
-    return 0.2 * dti
+def marginal_bar(current_dti: float, alpha: float = ALPHA) -> float:
+    """k > alpha*DTI required for an added dot to improve DTI."""
+    return alpha * current_dti

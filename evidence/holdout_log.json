@@ -1,0 +1,7 @@
+{
+  "status": "not yet run",
+  "reason": "Full feature stack (training_features.tif 19 bands) not placed in data/ — login-walled. Synthetic-only generator cannot be scored on catalogue holdout without rewarding hidden faults. Leakage canary pending.",
+  "next_step": "Run bash scripts/download_competition_data.sh on unrestricted machine into data/, then python scripts/prepare_data.py, then python scripts/run_holdout.py --folds 4 --buffer 300m",
+  "blocked_folds": 4,
+  "preregistration": "GEMSDOE73-PREREG-1 (spatially blocked, whole fault segments, 300m buffer, catalogue features only from visible faults, pooled DTI alpha 0.2 beta 0.8 300m triangular kernel)"
+}
