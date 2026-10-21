@@ -1,0 +1,50 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT (post-merge addendum, measured 2026-10-21 in the H73-7 session after origin/main advanced by PRs #4-#8)",
+  "candidate": "gems73-h73-7-hardfault-pu-e1-37654dots-20261021.tif (37654 exact-1.0 dots)",
+  "method": "vendor/gems57/uniqueness.dot_overlap (binary 1.0 dots, 3 px) both directions + Spearman on fixed 200k sample seed 3 (same as evidence/uniqueness_h73-7.json stage A)",
+  "rows": [
+    {
+      "submission": "gems73-crossdrain-unet-submod-37654-20261021.tif",
+      "lane": "main PR#7 PROMOTE",
+      "their_dots": 37654,
+      "forward_mine_within_3px_of_theirs": 0.4079,
+      "reverse": 0.3255,
+      "mutual_overlap": 0.3255,
+      "spearman_sample200k": 0.0335
+    },
+    {
+      "submission": "gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif",
+      "lane": "main PR#6 PROMOTE (companion)",
+      "their_dots": 37654,
+      "forward_mine_within_3px_of_theirs": 0.3154,
+      "reverse": 0.3093,
+      "mutual_overlap": 0.3093,
+      "spearman_sample200k": 0.0168
+    },
+    {
+      "submission": "gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+      "lane": "main PR#5 NEGATIVE",
+      "their_dots": 37654,
+      "forward_mine_within_3px_of_theirs": 0.1858,
+      "reverse": 0.127,
+      "mutual_overlap": 0.127,
+      "spearman_sample200k": 0.0037
+    },
+    {
+      "submission": "gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+      "lane": "main PR#4",
+      "their_dots": 37654,
+      "forward_mine_within_3px_of_theirs": 0.126,
+      "reverse": 0.1057,
+      "mutual_overlap": 0.1057,
+      "spearman_sample200k": 0.0084
+    }
+  ],
+  "gates": {
+    "spearman_le_0.90": true,
+    "mutual_overlap_le_0.70": true,
+    "forward_le_0.70_literal": true
+  },
+  "conclusion": "H73-7 is a distinct lane from every candidate merged to main in parallel (worst mutual 0.326, worst forward 0.408), including under the literal one-way forward rule for these comparable-mass rasters.",
+  "holdout_comparability_note": "Main PR#7 crossdrain Instrument A is the same evaluator (gems57-pooled-hide-v2) and same withheld count (11,321): crossdrain 0.136023 [0.117451,0.155962] vs H73-7 E1 0.136888 [0.115779,0.157736] - a statistical tie on this instrument; neither lane may claim instrument-A superiority over the other. Selector picks per slot."
+}

@@ -64,3 +64,31 @@
   `DTI = T/(0.2(T+FP)+0.8|G|)`, collapsing the distinct sums T (over truth) and M (over
   dots). Code computed TP/FP/FN directly and was unaffected; docstring corrected to the
   vendor form `T/(0.2(T+S-M)+0.8|G|)`. Shared-tool fix reported here per protocol rule 2.
+- **IR-73-15 (literal forward-overlap gate vs H73-7, extension of IR-73-01):** the H73-7
+  candidate exceeds the brief's literal one-way 0.70 forward-overlap rule against four
+  dense/union registry rasters (r13 lattice 206,895 dots: 0.994; gems10 h25-ctx-ridge
+  174,232 dots: 0.808; gems10 h28-dotted 69,281 dots: 0.756; gems28 h37-1 union-pool
+  38,545 dots: 0.723; gems27 h28-1 59,075 dots: 0.710) while passing the shared tool's
+  operative gates (mutual ≤0.504 worst; dots ρ ≤0.0573; surface ρ ≤0.2089; vs champion
+  mutual 0.217; vs every comparable-mass lane merged to main in parallel, forward ≤0.408
+  and mutual ≤0.326 — `evidence/uniqueness_h73-7_vs_main_lanes.json`). Union/ridge rasters
+  are designed to cover the ridge network, so any geologically-placed field is largely
+  within 3 px of their dots. Printed in `evidence/run_card_h73-7.json` for the selector
+  rather than resolved silently. (This lane's branch numbered this IR-73-12 before the
+  parallel merge; renumbered at merge to avoid colliding with session-2's IR-73-12.)
+  One registry file errored in the H73-7 audit: `GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif`
+  (grid mismatch — by its own name not a submission).
+- **IR-73-16 (branch-time site forensic error, already corrected on main):** the pre-merge
+  site said the H33 champion deleted "1,152 dots (from ~38,800 → 37,654)" from an
+  "H27-4 0.2708 base", and the README quick-start named a non-existent file. Measured
+  (twice): 6,436 dots deleted from D2.8's 44,090 (D2.8 ⊂ H19-5, 121,131). Main's
+  forensic section already carries the correct 6,436; recorded here so the H73-7 lane's
+  earlier branch-time correction (its IR-73-11) has a main-numbered home.
+- **IR-73-17 (two PROMOTE candidates tie on Instrument A):** main's crossdrain lane
+  (PR #7) reports HOLDOUT-DTI Instrument A 0.136023 [0.117451, 0.155962] and H73-7
+  reports 0.136888 [0.115779, 0.157736] on the identical evaluator/draw (11,321 withheld
+  px). The point estimates differ by 0.0009 — indistinguishable. Site/README present
+  H73-7 as Orthogonal Slot #3, not as a replacement primary; any "#1" language on the
+  site pre-dates this merge and should be read as of its lane's merge date. Both lanes
+  share the catalogue-supervised transfer caveat; distinguishing them needs a live slot
+  each or a less catalogue-biased instrument, neither of which this repo can simulate.
