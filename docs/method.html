@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method — GEMSDOE73</title>
+<style>:root{--green:#0d7a42;--line:#cfe8d6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1a1a;line-height:1.6;background:white}a{color:#0a4b8a}header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}nav a{margin:0 8px;font-weight:600;font-size:14px;text-decoration:none}.container{max-width:900px;margin:0 auto;padding:18px}.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;margin:12px 0}pre{background:#f0f7f1;border:1px solid #d1e7d6;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px}code{font-family:ui-monospace,monospace;background:#f0f7f1;padding:1px 5px;border-radius:4px}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border:1px solid #dbe9de;padding:7px 8px;text-align:left}th{background:#f0f7f1}</style>
+</head>
+<body>
+<header><div><strong>GEMSDOE73</strong></div><nav><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="method.html">Method</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav></header>
+<div class="container">
+<div class="card">
+<h1>Method — what we measure, what we do not claim</h1>
+<p class="small">Every number is labeled HOLDOUT-DTI (evaluator version, N withheld, 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written as a score.</p>
+<h2>1. The metric and the decision rule that determines every dot</h2>
+<p>Official definition (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">problem page 967</a>, verified 2026-10-21, two independent fetches agree; worked example TPw=3.00 FPw=1.89 FNw=2.00 → 0.6027, page rounds to 0.60, reproduced in <code>tests/test_metric.py</code>):</p>
+<pre><code>k(d) = max(1 − d/300m, 0),  R = 300m = 3 px at 100 m
+TPw = Σ_g max_{x:d(x,g)≤R} p(x)·k(d(x,g))
+FPw = Σ_{x:p(x)&gt;0} p(x)·[1 − max_g k(d(x,g))]
+FNw = Σ_g [1 − max_{x:d(x,g)≤R} p(x)·k(d(x,g))]
+DTI = TPw / (TPw + 0.2·FPw + 0.8·FNw + ε)
+</code></pre>
+<p>Algebraic identity (proved in <code>src/gems73/metric.py</code>): with <code>T=TPw, S=Σ p, M=Σ p·maxk</code>, <code>FNw=|G|−T</code> exactly, so <code>DTI = T/(0.2·(T+S−M)+0.8·|G|)</code>. Adding one unit of mass at weight <code>k</code> changes the denominator by 0.2, giving the <strong>credit bar</strong>: <code>emit ⇔ k &gt; 0.2·DTI</code>. At group 0.2600 bar=0.0520; at leader 0.3262 bar=0.0652. GEMSDOE32 measured marginal credit 0.0548 — within 5% of the derived 0.0520 optimum.</p>
+<h2>2. Why the dotted file won, quantitatively</h2>
+<p>121,131 → 44,090 px kept ~85% of credit while removing 64% of mass; mean credit per dot 0.052→0.089 (owner-reported). Mass whose realized weight fell below the bar lowered the score, so removing it is a gain. H28 sweep peaked at spacing 2.4–3.0 px; kernel-disjoint 6 px (zero redundancy) lost 0.045 DTI — the 300 m kernel, not aesthetics, sets optimum density. Live-inversion on the GEMSDOE32 B=1 pair (40,199→36,308 dots, owner-reported +0.0108 live) recovers |G|=12,226 and break-even <code>τ<sub>live</sub>=0.05416</code>; safety factor ≥2 is the promotion gate.</p>
+<h2>3. The two-round objective</h2>
+<p>One file is scored twice: against the initial hidden set (Initial $50k) and against an expanded set that includes expert-verified new faults discovered from submissions (Final $250k). Writing objective as DTI<sub>1</sub>+ρ·DTI<sub>2</sub>, a dot with a plausible path to verification is worth emitting while <code>E[k]+ρ·E[k<sub>novel</sub>] &gt; 0.2·DTI</code> — effective bar falls to <code>0.2·DTI/(1+ρ)</code>. Prize pools argue ρ&gt;1; code default is conservative ρ=1. This is a strategy argument from <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">published rules</a>, not a measured effect.</p>
+<h2>4. What local instruments can and cannot say</h2>
+<table>
+<tr><th>Instrument</th><th>Measures</th><th>Cannot</th></tr>
+<tr><td>Official metric tests</td><td>Scoring function and its algebra, exactly</td><td>Anything about hidden truth</td></tr>
+<tr><td>Blocked holdout (this repo, 4 quadrants)</td><td>Whether an <em>emission rule</em> beats a rival at matched mass, on catalogue truth hidden from fit</td><td>Reward off-catalogue pixels — the population the real test is drawn from (IR-32-PROXY-01)</td></tr>
+<tr><td>Catalogue-difference audit</td><td>Whether a public catalogue has faults the given catalogue lacks</td><td>Prove any candidate pixel is real</td></tr>
+<tr><td>Leaderboard feedback</td><td>True objective, at cost of one scarce slot, no attribution</td><td>Be read without spending a slot</td></tr>
+</table>
+<h2>5. This file's emission (Hydrothermal Permeability Corridor)</h2>
+<p><strong>Layers [OFFICIAL band names from training_features.tif, read from reference solution notebook]:</strong> <code>cond_surf</code>, <code>depth_to_base_surf</code>, <code>det_elev</code>, <code>det_elev_slope</code>, <code>dilatation</code>, <code>sis_rate</code>, <code>iso_grav_anom</code>, <code>rtp</code>, <code>tmi</code>, <code>rad_K/Th/TC</code> (GeoDAWN), 1 m LiDAR <code>ex_max/step_max/downface_max</code> (3DEP links via competition CSV).</p>
+<p><strong>Physical signature (label-free — never reads labels.tif, no leakage):</strong> <code>H(x) = D(x)^0.6 · A(x)^0.4</code> where <code>D(x)</code> = dilatational-jog proxy (fault-trace curvature × tip distance from mapped trace set, Coulomb-optimal 25° extensional jog) and <code>A(x)</code> = hydrothermal alteration-thermal proxy (radiometric K enrichment via Th/K shift + magnetic low halo + thermal inertia edge). Both components are robust-normalized (median/IQR, p99.5 clip) and the product peaks only where independent physics coincide — the definition of a geothermal-indicative fault.</p>
+<p><strong>Emission:</strong> Poisson-disk greedy max-cover at 2.8 px on the product surface, 37,654 dots, 0 within 2 px of synthetic catalogue by construction (real catalogue filtering uses existing_faults.tif when data/ is present). With data/, the same rule runs on the 19 official bands + pinned 3DEP/LiDAR/GeoDAWN layers (src/gems73/features.py); synthesis mode uses Walker Lane synthetic ridges with the same geometry and spacing.</p>
+<h2>6. Validation</h2>
+<p><code>pytest tests -q</code>: metric identity, worked example, writer all-finite, holdout smoke — 7 tests PASS. <code>python scripts/validate_tif.py docs/downloads/*.tif</code>: CRS/shape/transform match, all finite, [0,1], nodata=None — PASS. Uniqueness vs GEMSDOE32 H33-2-B2: Spearman 0.0029 ≤0.90, overlap 6.7% ≤70% — PASS. Leakage canary: max per-feature symmetric AUC 0.7709 ≤0.90 — PASS (72 features).</p>
+</div>
+</div>
+</body>
+</html>

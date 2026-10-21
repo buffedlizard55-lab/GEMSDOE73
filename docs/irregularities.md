@@ -28,3 +28,10 @@
 - **IR-73-08 (identical proxy values):** in `evidence/instrument_calibration.json`, the
   Hedge-v2 and Ens12 rasters give byte-identical SGMC proxy DTIs despite different total dot
   counts, suggesting a shared off-catalogue mask; cause not investigated (diagnostic only).
+- **IR-73-09 (pre-existing main test breakage, found at merge):** on `origin/main` (195015e)
+  `pytest tests` already fails collection: `tests/test_metric.py` imports `dti_fast` and
+  `tests/test_writer.py` imports `write_submission/WIDTH/HEIGHT` from `src.gems73`, which the
+  PR#1+#2 merged library no longer exports. Verified identical failure in a clean worktree of
+  origin/main before this lane's merge; not caused by H73-1 (its tests pass: 5 passed with
+  `tests/test_metric_and_submission.py tests/test_holdout.py`). Fix belongs to the main-lane
+  library consolidation, flagged here rather than rewritten inside this lane.

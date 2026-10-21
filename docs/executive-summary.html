@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary — How to Submit — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><div class="wrap">
+<h1>GEMSDOE73 — Executive Summary</h1>
+<nav><a href="index.html">Home</a> <a href="executive-summary.html" class="active">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html">Irregularities</a></nav>
+</div></header>
+<main class="wrap">
+
+<div class="dl">
+<h2>⬇ ONE-CLICK SUBMISSION FILE</h2>
+<p><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">Download gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</a>
+<a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip</a></p>
+<p><b>Unique submission name:</b> <code>GEMSDOE73-H73A-STEPOVER</code><br>
+<b>Note for the form (127 chars):</b><br><code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code></p>
+<p class="mut">single band · float32 · EPSG:32611 · 100 m · 3292×3730 · 30,762 dots · all cells finite in [0,1] · 0 NaN · no nodata tag · sha256 <code>46859dc652c396…</code> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">receipt</a></p>
+</div>
+
+<h2>How to submit to DrivenData (30 seconds)</h2>
+<ol>
+<li>Download the <b>zeros</b> GeoTIFF above (or the <code>.zip</code> containing the same GeoTIFF — the portal accepts both).</li>
+<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> (requires login) → <b>New submission</b> → <b>File to submit: Choose File</b> → select the downloaded <code>.tif</code> or <code>.zip</code>.</li>
+<li>In <b>Note (optional)</b> paste: <code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code> (helps you tell submissions apart; &lt;200 chars).</li>
+<li>Click <b>Create</b>. The portal validates CRS/shape/transform match and that every predicted value is in <code>[0,1]</code>. This file passes both: <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">see receipt</a>.</li>
+<li>You will receive a DTI score on the public test set; it appears on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>. Only that organiser receipt counts as <code>ORGANIZER-CONFIRMED</code>; do not report projections as scores.</li>
+</ol>
+
+<h2>Which file to use if you see "Predicted values must be in range [0, 1]"</h2>
+<p>Use the <b>-zeros.tif</b> file (or the .zip of it). It has <code>nodata=None</code> and <code>0.0</code> outside the footprint, so every one of the <code>12,279,160</code> cells is finite and in <code>[0,1]</code>. The <code>-nan.tif</code> twin is byte-identical inside the footprint but carries <code>NaN</code> outside (competition spec format); it is offered for completeness but the zeros variant is the belt-and-braces portal-safe choice that fixes the two sentinel mechanisms that trigger the error (see <a href="index.html">home page</a>).</p>
+
+<h2>Is it OK to download and submit this file?</h2>
+<p><b>Yes — it is explicitly intended for download and submission.</b> It is a unique, newly-generated TIF (sha256 <code>46859dc652c396…</code>) that has not been submitted before, is not a copy of any GEMSDOE*-site raster, and passes the format validator (single-band float32, EPSG:32611, 100 m, 3292×3730, transform <code>[100,0,243350,0,-100,4508550]</code>). The file is not scored until you submit it; the “UNSCORED” note reflects that. Submitting it is the only way to obtain an organiser-confirmed DTI.</p>
+
+<h2>What happens after you submit</h2>
+<ul>
+<li>Initial Prize Round: scored against the fixed private hidden fault set (expert-labelled before the competition). Top 5 × $10k.</li>
+<li>Expert review: panel cross-references submitted faults to identify new verified faults.</li>
+<li>Final Prize Round: rescored against the expanded label set (initial + verified new). Top 5 → $100k/$70k/$40k/$25k/$15k. Your prediction can directly contribute new geological knowledge.</li>
+</ul>
+<p class="mut">Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">https://docs.nlr.gov/docs/fy26osti/96647.pdf</a> (also mirrored <a href="https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0">Dropbox</a>).</p>
+
+<h2>Verify the file yourself (optional)</h2>
+<pre><code>python scripts/validate_submission.py docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif --template data/sample_submission.tif --strict-finite
+# should print PASSED: dimensions, band_count, crs, transform, dtype, in_footprint_range, portal_safe_whole_array</code></pre>
+
+<h2>Core Values reminder</h2>
+<p><b>Maximize P(Win)</b> — every weekly slot is an experiment, not a lottery ticket. <b>Own the Outcome</b> — every claim carries evidence; defects are published, not quietly dropped.</p>
+
+</main>
+<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+</body></html>

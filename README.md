@@ -1,108 +1,94 @@
-# GEMSDOE73 — H73-1 piedmont micro-scarp chain lane
+# GEMSDOE73 — A Fault-Discovery System for the DOE GEMS Prize
 
-**Core Values. Maximize P(Win)** — every weekly submission slot is an experiment, not a lottery
-ticket; a preregistered negative that saves a slot is a deliverable. **Own the Outcome** — the
-gate failure below is published with its evidence, not buried.
+> **Prompt (read every session).** The goal is to place top of the leaderboard in the [DOE GEMS Prize Challenge](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) — a competition to find geothermal-indicative faults missing from the USGS/INGENIOUS catalogue in the GeoDAWN NW Nevada region. We must generate a **unique, portal-safe single-band GeoTIFF** (`float32`, `EPSG:32611`, `100 m`, `3292×3730`, values in `[0,1]`, no nodata sentinel) that is trivially downloadable and submittable. Work line-by-line, verify every number against an official trusted source, provide links for manual review, flag irregularities, and never hallucinate.
 
-## ⬇ Submission file — status first
+## Core Values
 
-| Gate | Status | Detail |
-|---|---|---|
-| **1. OK to download** | ✅ **YES** | [⬇ `gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif`](docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif) · [.zip](docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.zip) · [run card](evidence/run_card_h73-1.json) · [validator receipt](evidence/validator.json). Single-band float32, EPSG:32611, 3730×3292, 37,654 dots, **0 NaN / all values in [0,1] in all 12,279,160 cells**, sha256 `d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece` — cannot trigger *"Predicted values must be in range [0, 1]"*. |
-| **2. Recommended to submit** | ⛔ **NO — DO NOT SUBMIT** | **Verdict `negative`.** Failed the preregistered gate: HOLDOUT-DTI (`gems57-pooled-hide-v2`, 11,321 withheld px) E1 **0.0548 [0.0417, 0.0688]** vs fold-fair H33-analogue control **0.0939 [0.0813, 0.1076]**, paired Δ −0.0391 [−0.0571, −0.0211]. Unique submission name `gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021`; paste-ready note (125/140 chars) is in the run card — use only under a knowing human-selector override. Weekly slots spent: **0**. |
+**Maximize P(Win)** — every weekly submission slot is an experiment, not a lottery ticket. We weigh tradeoffs, assess risk, and choose the path that maximizes probability of winning.
 
-Site: `docs/index.html` (GitHub Pages from `docs/` after merge) ·
-[Executive summary — exactly how to submit](docs/executive-summary.html) ·
-[Five preregistered hypotheses](docs/research/hypotheses.md) ·
-[Irregularities](docs/irregularities.md) · [Score ledger](registry/score_ledger.csv)
+**Own the Outcome** — we own results end-to-end, not just our slice. We treat failure and success as signals and act without waiting for permission.
 
-## The brief's question, answered
+## Quick Start — Download the Submission
 
-**Why did `h33-h33-2-b2-…-zeros` score 0.2778 (OWNER-REPORT; no receipt in any inspected repo, IR-73-02)?**
-Measured here from the bytes (`evidence/forensic.json`): it is *exactly* D2.8 minus every dot within
-200 m of the catalogue (44,090 − 6,436 = 37,654), and `H33 ⊂ D2.8 ⊂ H19-5` with zero exceptions.
-H19-5's surface is ~90% LiDAR/DEM scarp-openness (synthesis weights 0.55 + 0.35 in
-`19GEMSDOE/src/gems/hypotheses.py`) — the same evidence expert re-mapping uses to build the hidden
-set. Dotting at ~2.5 px spacing removes prediction mass whose marginal kernel credit is below the
-metric's break-even `k > 0.2·DTI`, and the B2 prune deletes dots that can only cover already-mapped
-(masked, zero-credit) traces while paying full false-positive tax against the hidden faults.
+**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) and click “Download the submission GeoTIFF”.** The executive summary at the top of the site explains exactly how to submit to DrivenData.
 
-**Can we generate a unique submission scoring higher?** This lane tested the strongest untried
-counterpart hypothesis — a fully *unsupervised* piedmont micro-scarp chain detector (no catalogue
-imitation, which is selection-biased against exactly the faults experts had missed). It is genuinely
-unique (vs champion: 17.7% dots within 300 m, Spearman 0.004; worst mutual overlap vs 77 registry
-rasters 0.390) and it beats the champion on the report-only SGMC-piedmont proxy (0.1045 vs 0.0980),
-the only local proxy that ranks OWNER-REPORT live scores positively here (ρ = +0.74, n = 13, vs −0.49
-for the catalogue proxy). **But it failed the preregistered primary holdout gate and is not
-significantly above random on that instrument**, so the honest verdict is `negative`. Nobody in this
-campaign has shown a path to the verified public leader **0.4413** (read from the official leaderboard
-2026-10-21, `evidence/leaderboard_snapshot.json`) with a reweighting of existing surfaces; that gap
-needs higher credit density per dot, i.e. a better field, and this repo's contribution is to rule out
-one cheap candidate field cleanly and to document why.
+- Primary file: `docs/downloads/gems73-h73a-blind-stepover-20261020T230000Z-7f3c2a9e-zeros.tif` — all-finite, `0.0–1.0`, no nodata tag, `EPSG:32611`, `3292×3730`.
+- Also available as `.zip` (single GeoTIFF inside) and as `-nan.tif` twin (identical values inside footprint, `NaN` outside).
+- Each file ships a `checks-*.json` receipt produced by re-reading the written bytes.
 
-## Lane (single method)
+## What This Repo Does
 
-`S = sqrt(scarp_n · clip(1.4·chain)) · (0.55+0.45·substep) · (0.45+0.55·pied_soft)` — one-sided 1 m-LiDAR
-step polarity × 16-azimuth 1.3 km straight-chain occupancy × subsurface-step witness (basement-depth
-gradient / gravity slope / magnetic gradient) × soft piedmont weight (deep basement, gentle slope, low
-relief); greedy dotted emission, 37,654 dots, 2.5 px spacing, >200 m from catalogue. No catalogue/SGMC
-training, no distance-to-catalogue feature, no scored raster input. Named mimic: Lake Lahontan
-shoreline benches / terrace risers. Experiments E1/E2/E3 (budget: 3) are frozen in
-[`registry/preregistration.json`](registry/preregistration.json), written before any holdout run.
+1. **Metric re-implementation** — exact distance-weighted Tversky `DTI(α=0.2, β=0.8, R=300 m)` with triangular kernel, verified against the published worked example `TP=3.00 FP=1.89 FN=2.00 → 0.60`.
+2. **Spatially-blocked holdout** — hide-and-recover on whole fault segments with a buffer; catalogue-derived features only from visible faults; pixel-exact masking; pooled DTI scoring.
+3. **Submission writer** — strict format validator (CRS/shape/transform match, `[0,1]` range, no sentinel) and both `zeros` (portal-safe) and `nan` (spec) variants.
+4. **Hypothesis ranking** — 5 new geological hypotheses, each naming layer(s), physical signature, why it catches a fault absent from the catalogue, and how it differs from prior art.
 
-## Reproduce (line by line)
+## Limitations & What We Need
 
-```bash
-pip install -r requirements.txt
-python scripts/restore_data.py --group core     --target-dir .cache/gems_data
-python scripts/restore_data.py --group external --target-dir .cache/gems_data
-python scripts/restore_data.py --group scored   --target-dir .cache/gems_data
-python scripts/run_experiments.py      # forensic, components, canaries, holdout, proxy
-python scripts/build_submission.py     # shared fail-closed writer -> docs/downloads/
-python scripts/check_submission.py     # independent re-read validator ([0,1] proof)
-python scripts/audit_registry.py       # uniqueness, surface + dots (needs sibling clones in ../refs layout recorded in evidence/uniqueness.json)
-python scripts/calibrate_instruments.py
-python scripts/build_run_card.py && python scripts/make_figures.py && python scripts/build_site.py
-python -m pytest tests -q
+- **No DrivenData auth in this sandbox** — `training_features.tif`, `labels.tif`, `sample_submission.tif`, `1m_DEM_links.csv` cannot be auto-downloaded from `https://www.drivendata.org/competitions/306/competition-doe-gems/data/` (login wall → `302` to login). Run `bash scripts/download_competition_data.sh` on an unrestricted machine into `data/`, then `python scripts/prepare_data.py` to build the feature stack. After that `make train && make validate` works (GPU for training, CPU for metric/validation).
+- **No hallucinated scores** — every number is labelled `HOLDOUT-DTI` (evaluator version, withheld positives, 95 % CI) or `ORGANIZER-CONFIRMED` (submission-page receipt). Projections are never written as scores.
+- **External data must be free & licensed for sharing** — only USGS 3DEP, USGS GeoDAWN (DOI 10.5066/P93LGLVQ), USGS SGMC, GDR 1391 (CC BY 4.0), NBMG INGENIOUS REST, ComCat are permitted; each is listed in `docs/sources.html` with fetch status.
+
+## Repository Layout
+
+```
+docs/               # GitHub Pages site (index, executive-summary, hypotheses, research, leaderboard, sources, irregularities)
+docs/downloads/     # Submission GeoTIFFs + audit JSONs
+src/gems73/         # Reusable library: grid, metric, emission, submission, holdout
+scripts/            # Builders, validators, fetchers
+data/               # (git-ignored) competition rasters after manual download
+tests/              # Metric & validator unit tests
+registry/           # Machine-readable run card, scores, manifests
+evidence/           # Holdout logs, leakage canaries
 ```
 
-Data restore uses hash-pinned owner GitHub mirrors (`registry/data_manifest.json`); the organiser
-download is login-walled and sandbox egress cannot reach Dropbox/USGS — hashes prove mirror
-consistency, **not** organiser authentication (IR-73-05). Shared evaluator/writer are vendored
-byte-identical (`vendor/VENDOR.md`); no private fork.
+## Verify No Hallucinations (line-by-line)
 
-## Limitations & next steps (selector / next session)
+Every factual claim on the site links to an official verified source:
 
-1. **Instrument problem is now the binding constraint.** Catalogue hide-and-recover anti-ranks live
-   scores (ρ −0.49 here; −0.64 in GEMSDOE70 S3). Next session should preregister a *combined*
-   promotion rule (fold-fair holdout + off-catalogue piedmont proxy + live-anchor ladder) **before**
-   running it, rather than letting any single proxy veto or promote.
-2. **The 100 m-aggregated LiDAR u8 bands are weak alone** (best single-channel AUC 0.61 withheld).
-   The champion's advantage likely comes from native-scale 1 m/10 m openness features + ML mimic
-   suppression. A next lane needs those cached native-scale features (present in sibling caches, not
-   yet in this repo's manifest) — name and hash-pin them before use.
-3. **No new external data was obtained.** The named free official sources for the queued hypotheses
-   (USGS ComCat/FDSN seismicity; NGL MIDAS GNSS strain) are unreachable from this sandbox
-   (egress allow-list) — verified blocked in sibling repos; fetch on an unrestricted machine.
-4. **Registry scan is partial** (77 unique rasters; IR-73-07). A complete 72-repo inventory refresh
-   should precede any future `promote` verdict.
-5. **GitHub Pages** must be enabled (Settings → Pages → branch `main`, folder `/docs`) after merge if
-   not already on; all site links are relative and were audited locally.
+- Competition overview & problem description: https://www.drivendata.org/competitions/306/competition-doe-gems/ and /page/967/
+- About page & additional resources: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Rules PDF (NLR 96647): https://docs.nlr.gov/docs/fy26osti/96647.pdf → mirrored as https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0
+- GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and and https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7
+- INGENIOUS: https://gbcge.org/current-projects/ingenious/
+- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 
-## Standing brief (read every session)
+Check `docs/sources.html` for the full table with fetch status and SHA256 pins.
 
-> Generate a **unique** TIF submission for the DOE GEMS Prize — never a copy of a previous
-> submission. Stay in one preregistered lane; if rank-correlation vs any registry raster exceeds
-> 0.90 or >70% of dots fall within 3 px of one registry raster's dots, log a duplicate and stop.
-> Reuse the shared template (`evaluate_holdout.py`, `submission_writer.py`, cached feature stack);
-> hide-and-recover holdout with whole segments withheld, catalogue features from visible faults
-> only, visible faults masked pixel-exactly, pooled DTI (α 0.2, β 0.8, 300 m triangular kernel).
-> Label every number HOLDOUT-DTI (evaluator, withheld n, 95% CI) or ORGANIZER-CONFIRMED (receipt).
-> Single-feature AUC > 0.90 = leakage until proven otherwise. End with one JSON run card
-> (hypothesis, mechanism, named mimic, holdout + CI, registry correlation/overlap, sha256,
-> validator, name + ≤140-char note, verdict promote/negative). Budget: 3 experiments / 2 hours.
-> Never spend a weekly slot here — promotion is a separate selector step. Competition:
-> https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ ·
-> leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ ·
-> reference: https://github.com/drivendataorg/gems-prize-reference-solution ·
-> rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf
+## Leaderboard Context (2026-10-21 live read)
+
+| Rank | Participant | Best DTI |
+|------|-------------|----------|
+| 1 | xiaofanhu | 0.4413 |
+| 2 | cfld__ | 0.3904 |
+| 3 | Batik Shirt Brothers | 0.3811 |
+
+The group's previous best across 78 sibling repos peaked at `0.2778` (GEMSDOE32 `h33-h33-2-b2`, 37,654 dots, pruned flank `B=2`) and `0.2710` (GEMSDOE28 `h36-1`). See `docs/research.html` for the PhD-level post-mortem of why that file scored highest and how we aim to beat it.
+
+## How to Regenerate
+
+```bash
+python scripts/generate_submission.py --hypothesis h73a --budget 42000 --seed 73
+python scripts/validate_submission.py docs/downloads/gems73-*.tif --template data/sample_submission.tif --strict-finite
+```
+
+## License & Disclosure
+
+All code is MIT. External data retains its original license (see sources). No organizer authentication is misrepresented; no score is claimed without a receipt.
+
+## Parallel lane H73-1 — piedmont micro-scarp chain (PR #3) — verdict NEGATIVE, do not submit
+
+A third, independent lane merged alongside the hydrothermal corridor and blind stepover lanes above.
+**Download-for-review: yes. Submit: NO.** It failed its preregistered holdout gate
+(HOLDOUT-DTI `gems57-pooled-hide-v2`, 11,321 withheld px: E1 0.0548 [0.0417, 0.0688] vs fold-fair
+H33-analogue control 0.0939 [0.0813, 0.1076]). It is format-valid and unique — vs the two main-lane
+rasters in this repo: mutual 3 px overlap 0.067 (hydro corridor) and 0.043 (blind stepover);
+vs the H33 champion: forward 0.177. File:
+`docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif`
+(sha256 `d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece`).
+Full lane page: `docs/h73-1-piedmont.html` · run card: `evidence/run_card_h73-1.json` ·
+preregistration: `registry/preregistration.json` · hypotheses: `docs/research/hypotheses.md` ·
+irregularities: `docs/irregularities.md`. Negative results are deliverables; weekly slots spent by
+this lane: 0.

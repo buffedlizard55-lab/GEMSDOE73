@@ -1,5 +1,12 @@
-.cache/
+data/
+*.tif
+*.zip
+!docs/downloads/*.tif
+!docs/downloads/*.zip
 __pycache__/
 *.pyc
-data/*.tif
-data/raw_parts/
+.pytest_cache/
+.venv/
+node_modules/
+.DS_Store
+.cache/
