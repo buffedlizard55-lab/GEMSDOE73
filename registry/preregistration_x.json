@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "lane": "H73-6",
+  "session": "GEMSDOE73 session-2 (2026-10-21)",
+  "written_before_holdout": true,
+  "hypothesis_doc": "docs/research/hypotheses_x.md",
+  "diagnostic_screen": "evidence/diagnostics_x.json",
+  "single_method_paragraph": "Trace-localised, independently-corroborated scarps: polarity-weighted one-sided LiDAR step, ridge-thinned by orientation non-maximum suppression on its own structure tensor (soft factor 0.25 off-ridge), corroborated within 200 m (max-filter radius 2 px) by the stronger of a U/K radiometric gradient ridge and the isostatic-gravity slope ridge (factor 0.35+0.65*w), softly piedmont-weighted (factor 0.45+0.55*pied_soft). No catalogue/SGMC training, no distance-to-catalogue feature, no scored-raster input.",
+  "components_reused_unchanged": {
+    "scarp_n_and_pied_soft": "src/gems73/surface.py build_components (session-1, preregistered)",
+    "emission": "src/gems73/emit.py greedy_dots (2.5 px spacing)",
+    "evaluator": "vendor/gems57/evaluate_holdout.py gems57-pooled-hide-v2",
+    "folds": "vendor/gems57/holdout.py buffered_component_draw(seed=20, buffer_px=3, boundary_px=12)",
+    "writer": "vendor/gems57/submission_writer.py write_submission (fail-closed)",
+    "validator": "vendor/gems57/validate.py validate + assert_submittable"
+  },
+  "new_components": {
+    "ridge_soft_nms": "structure tensor of gaussian(scarp_n, sigma=1.5), tensor smoothing sigma=2.0; 8-direction quantised NMS along dominant gradient direction; ridge = scarp_n where local max else 0.25*scarp_n",
+    "witness": "w = max(norm(|grad UK|) , norm(iso_grav_anom_slope)) then maximum_filter size=5 (radius 2 px = 200 m); factor = 0.35+0.65*w. UK = geodawn_extensions_u8 band 2; zeros inside footprint treated as missing -> that witness term 0 there (gravity term still applies; factor floor 0.35 never zeroes a trace)"
+  },
+  "experiments": {
+    "X1": "ridge_soft_nms * (0.35+0.65*witness) * (0.45+0.55*pied_soft)",
+    "X2": "ridge_soft_nms * (0.45+0.55*pied_soft)",
+    "X3": "scarp_n * (0.35+0.65*witness) * (0.45+0.55*pied_soft)"
+  },
+  "controls": ["h33_analogue_foldfair (H19-5 support, fold-fair dotted)", "random_control (seed 73)", "h33_static_reference"],
+  "emission_frozen": {"budget_dots": 37654, "min_spacing_px": 2.5, "catalogue_exclusion_px": 2.0, "pool": 600000},
+  "promotion_gate": "selected arm beats h33_analogue_foldfair pooled HOLDOUT-DTI with paired 95% CI excluding 0 AND all leakage canaries symmetric AUC <= 0.90 AND uniqueness Spearman <= 0.90 and mutual 3px overlap <= 0.70 vs every accessible registry raster (surface + dots); else verdict=negative, DO-NOT-SUBMIT",
+  "budget": {"max_experiments": 3, "max_hours": 2, "weekly_slots_spent_by_this_repo": 0},
+  "production_file_pattern": "docs/downloads/gems73-h73-6-traceloc-{arm}-37654dots-20261021.tif (+ .zip + .json via vendor writer)",
+  "secondary_proxy_report_only_not_for_selection": "DTI vs SGMC off-catalogue piedmont subset (same definition as session-1)"
+}

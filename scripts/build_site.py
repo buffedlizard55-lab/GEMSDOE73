@@ -333,7 +333,7 @@ def main() -> None:
       <strong>Quarantine Warning on Historical Files in <code>docs/downloads/</code>:</strong>
       During audit of inherited commits on <code>main</code> (<a href="irregularities.html">see IR-73-10</a>), we discovered that PR #2's
       <code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code> (<code>HOLDOUT-DTI = 0.0015</code>) and PR #1's
-      <code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code> (<code>HOLDOUT-DTI = 0.0271</code>) were generated from procedural synthetic geometry,
+      <code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-pr1-hydro-corridor-zeros.tif</code> (<code>HOLDOUT-DTI = 0.0271</code>) were generated from procedural synthetic geometry,
       while PR #3's unsupervised <code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code> scored <code>0.0548</code>.
       <strong>Do NOT upload any of those three legacy files.</strong> Upload ONLY the green promoted artifact above:
       <code>{art["submission_filename"]}</code>.
@@ -606,3 +606,47 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+ALL_LANES_BLOCK = """
+  <div class="card">
+    <h2>Unified Tournament Across All Parallel <code>GEMSDOE73</code> Lanes (<code>gems57-pooled-hide-v2</code>, <code>n = 11,321</code>)</h2>
+    <p>Every independent parallel agent run merged into <code>buffedlizard55-lab/GEMSDOE73</code> evaluated on the bit-identical shared <code>vendor/gems57/evaluate_holdout.py</code> instrument (reproducing <code>h33_analogue_foldfair = 0.093861</code> and <code>random = 0.048374</code> to 6 decimal places across all runs):</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rank</th><th>PR / Lane</th><th>Submission Artifact</th><th>HOLDOUT-DTI (95% CI)</th><th>Paired &Delta; vs H33</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td><strong>PR #11 &mdash; H73-MVH Dual-Target Vent+Bridge OOF + Submod300</strong></td><td><code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros</code></td><td><strong>0.1599</strong> [0.1417, 0.1788]</td><td><strong>+0.0661 (+70.4%)</strong></td><td><span class="badge badge-ok">PROMOTE &mdash; #1 OVERALL</span></td></tr>
+          <tr><td>2</td><td>PR #9 &mdash; <a href="h73-7-hardfault.html">H73-7 Hard-Fault PU Ranker</a></td><td><code>gems73-h73-7-hardfault-pu-e1-37654dots-20261021</code></td><td>0.1369 [0.1158, 0.1577]</td><td>+0.0430 (+45.8%)</td><td>Runner-up (in-sample retrain)</td></tr>
+          <tr><td>3</td><td>PR #7 &mdash; CrossDrain 2D Dilated U-Net + 91-Feat + Submod300</td><td><code>gems73-crossdrain-unet-submod-37654-20261021</code></td><td>0.1360 [0.1175, 0.1560]</td><td>+0.0422 (+44.9%)</td><td>3rd place</td></tr>
+          <tr><td>4</td><td>PR #6 &mdash; <a href="hypotheses-and-ablation.html">4-Line Corroborated OOF + Submod300</a></td><td><code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code></td><td>0.1122 [0.0960, 0.1275]</td><td>+0.0184 (+19.6%)</td><td>4th place</td></tr>
+          <tr><td>&mdash;</td><td>Champion Architecture Control (<code>h33_analogue_foldfair</code>)</td><td>Exact reproduction across all lanes</td><td>0.0939 [0.0813, 0.1076]</td><td>0.0000 (control)</td><td>Benchmark baseline</td></tr>
+          <tr><td>5</td><td>PR #4 &mdash; <a href="h73-6-traceloc.html">H73-6 Unsupervised Trace-Localization</a></td><td><code>gems73-h73-6-traceloc-x1-37654dots-20261021</code></td><td>0.0592 [0.0490, 0.0700]</td><td>-0.0347 (-37.0%)</td><td>Negative (unsupervised)</td></tr>
+          <tr><td>6</td><td>PR #3 &mdash; <a href="h73-1-piedmont.html">H73-1 Unsupervised Piedmont Scarp-Chain</a></td><td><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021</code></td><td>0.0548 [0.0462, 0.0641]</td><td>-0.0391 (-41.7%)</td><td>Negative (unsupervised)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+"""
+
+def _post_root() -> None:
+    import re as _re
+    for pg in ("index.html", "executive-summary.html"):
+        dp = DOCS / pg
+        ht = dp.read_text(encoding="utf-8")
+        if "Unified Tournament Across All Parallel" not in ht:
+            pos = ht.find("</section>")
+            if pos != -1:
+                ht = ht[:pos + 10] + ALL_LANES_BLOCK + ht[pos + 10:]
+            else:
+                pos2 = ht.find("</div>", ht.find("<main"))
+                ht = ht[:pos2 + 6] + ALL_LANES_BLOCK + ht[pos2 + 6:]
+            dp.write_text(ht, encoding="utf-8")
+        rt = _re.sub(
+            r'(href|src)="((?!https?://|mailto:|javascript:|#|docs/)[^"]+)"',
+            r'="docs/"',
+            dp.read_text(encoding="utf-8"),
+        )
+        (ROOT / pg).write_text(rt, encoding="utf-8")
+
+_post_root()

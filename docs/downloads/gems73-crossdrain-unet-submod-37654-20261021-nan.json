@@ -1,0 +1,18 @@
+{
+  "file": "gems73-crossdrain-unet-submod-37654-20261021-nan.tif",
+  "bytes": 336936,
+  "sha256": "afb7d08220f4d70858ed69857ba6df4b35b3cc9dea558df65607d9084ece5f36",
+  "crs": "EPSG:32611",
+  "shape": [
+    3730,
+    3292
+  ],
+  "in_footprint_cells": 5167373,
+  "outside_footprint_nan_cells": 7111787,
+  "in_footprint_nan_cells": 0,
+  "in_footprint_min": 0.0,
+  "in_footprint_max": 1.0,
+  "emitted_positive_pixels": 37654,
+  "identical_in_footprint_to_primary_zeros": true,
+  "primary_zeros_sha256": "9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262"
+}

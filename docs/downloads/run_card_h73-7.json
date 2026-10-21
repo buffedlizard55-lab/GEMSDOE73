@@ -1,0 +1,198 @@
+{
+  "repo": "GEMSDOE73",
+  "lane": "H73-7",
+  "hypothesis": "Catalogue pixels that are hardest to see (weak 1 m-LiDAR step, deep basement, gentle detrended slope) are the catalogue subpopulation most similar to expert-added hidden faults; up-weighting them in a physical-feature ranker shifts dotted emission toward covered piedmont faults instead of easy bedrock/range-front traces.",
+  "mechanism": "Fold-fair HistGradientBoosting PU ranker (300 iters, lr 0.06, 63 leaves) on 41 physical channels (19 official GeoDAWN/topo bands, 10 LiDAR scarp bands, 8 radiometric/extension bands, 4 unsupervised H73-1 components); positives = visible catalogue (48,340 px) weighted 1+2h; negatives = 250,000 footprint px >5 px from VISIBLE faults only; no distance-to-catalogue feature, no scored-raster input. Frozen dotted emission: 37,654 dots, 2.5 px spacing, >2.0 px from visible (production: full) catalogue. Production surface retrained on the full 60,988-px catalogue with the identical recipe.",
+  "named_non_fault_mimic": "Lithologic contacts and alluvial-fan surfaces (magnetic/gravity/radiometric signature of covered faults without faulting), plus catalogue mapping bias itself - where mappers looked is not where hidden faults are.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "selected_experiment": "E1",
+    "selected_dti": 0.13688762020177397,
+    "selected_ci95": [
+      0.11577944168560617,
+      0.15773616076461247
+    ],
+    "E2_unweighted_ablation_dti": 0.13635325475034368,
+    "E3_no_scarp_ablation_dti": 0.12110562654115238,
+    "h33_analogue_foldfair_control_dti": 0.09386085313581098,
+    "h33_analogue_foldfair_control_ci95": [
+      0.08125297623437337,
+      0.10760036586090667
+    ],
+    "control_reproduction": "Control rebuilt identically to the merged H73-1 lane reproduced its published 0.093861 exactly (random 0.0484 and static-champion 0.0037 also exact): the comparison is on one unchanged instrument.",
+    "random_control_dti": 0.04837354917359226,
+    "paired_delta_vs_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.04302676706596299,
+      "ci95": [
+        0.02298787884384736,
+        0.06269410657858114
+      ],
+      "withheld_positive_pixels": 11321
+    },
+    "preregistered_gate_passed": true,
+    "mechanism_reading": "E1 (hard-weighted) 0.1369 vs E2 (unweighted) 0.1364: the hard-weighting is nearly inert on this instrument (+0.0005); the measured gain comes from the supervised physical stack itself. E3 without any scarp-family feature still scores 0.1211 > control 0.0939, so geophysics/radiometrics carry independent catalogue-holdout signal. The hypothesis' weighting mechanism is NOT confirmed by this run.",
+    "transfer_caveat": "HOLDOUT-DTI truth is withheld CATALOGUE segments, so this instrument structurally favours catalogue-supervised fields; the hidden expert set was selected for catalogue ABSENCE. Sibling supervised lanes live-scored 0.0286-0.2478 (OWNER-REPORT) despite strong catalogue fit. This card claims a holdout result, never a live score; whether the +0.043 transfers is exactly what one selector-approved slot would test.",
+    "production_caveat": "HOLDOUT-DTI describes the fold-fair twin (trained on the 48,340 visible px). The shipped bytes come from the same recipe retrained on all 60,988 catalogue px."
+  },
+  "leakage_canaries": {
+    "evidence_class": "HOLDOUT-DTI canary (single-feature AUC; gate symmetric AUC <= 0.90)",
+    "channels_tested": 41,
+    "all_pass": true,
+    "max_symmetric_auc": 0.6105073767776699,
+    "worst_channel": "lid_upface_max",
+    "file": "evidence/canaries_h73-7.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "REGISTRY-MEASUREMENT (accessible scan: 6 sibling clones' downloads + hash-pinned scored mirrors + this repo's own rasters; not a complete organizer registry - IR-73-07)",
+    "registry_unique_rasters_checked": 85,
+    "registry_files_seen": 92,
+    "stage_A_surface_spearman_max_sample200k": 0.20886426220665064,
+    "stage_A_worst": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "stage_B_dots_spearman_max_full": 0.0572861001089834,
+    "stage_B_worst_spearman_submission": "gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif",
+    "dots_mutual_overlap_max": 0.5040372407955989,
+    "dots_mutual_worst_submission": "gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif",
+    "vs_h33_champion": [
+      {
+        "forward": 0.28700802039623946,
+        "mutual": 0.21716152334413344,
+        "rho": 0.01505151782506215
+      }
+    ],
+    "vs_own_repo_previous_rasters": [
+      {
+        "submission": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif",
+        "forward": 0.13775428905295586,
+        "mutual": 0.11271046900727678,
+        "rho": -0.00025093842623667733
+      },
+      {
+        "submission": "gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
+        "forward": 0.0372337600254953,
+        "mutual": 0.0372337600254953,
+        "rho": 0.0005277094613172525
+      },
+      {
+        "submission": "gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
+        "forward": 0.06968715143145482,
+        "mutual": 0.06968715143145482,
+        "rho": 0.001755234313426755
+      }
+    ],
+    "literal_forward_overlap_over_0.70": [
+      {
+        "submission": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "forward": 0.9938386360014873,
+        "mutual": 0.12487493656202421,
+        "their_dots": 206895
+      },
+      {
+        "submission": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+        "forward": 0.8079354119084294,
+        "mutual": 0.4235387299692364,
+        "their_dots": 174232
+      },
+      {
+        "submission": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+        "forward": 0.755909066765815,
+        "mutual": 0.3615276915748907,
+        "their_dots": 69281
+      },
+      {
+        "submission": "gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-allfinite.tif",
+        "forward": 0.7226323896531577,
+        "mutual": 0.465481904267739,
+        "their_dots": 38545
+      },
+      {
+        "submission": "gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-nan.tif",
+        "forward": 0.7226323896531577,
+        "mutual": 0.465481904267739,
+        "their_dots": 38545
+      },
+      {
+        "submission": "gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif",
+        "forward": 0.7100972008285972,
+        "mutual": 0.5040372407955989,
+        "their_dots": 59075
+      },
+      {
+        "submission": "gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-nan.tif",
+        "forward": 0.7100972008285972,
+        "mutual": 0.5040372407955989,
+        "their_dots": 59075
+      }
+    ],
+    "literal_forward_note": "Under the brief's literal one-way rule (>70% of my dots within 3 px of one registry raster), this candidate fails against the dense/union rasters listed above - the documented IR-73-01 saturation artifact (the 206,895-dot r13 lattice's halo covers ~99% of ANY dot field). The operative shared-tool gate (vendor gems57 uniqueness, 2026-10-20 fix; PR#3 precedent) is mutual overlap <= 0.70 plus Spearman <= 0.90; both pass with margin (worst mutual 0.504 vs a 59,075-dot union-family raster; vs the champion mutual 0.217; vs the most similar supervised sibling GEMSDOE70 P5 mutual 0.337). Logged as IR-73-15 for the selector; not hidden.",
+    "error_rows": [
+      {
+        "repo": "GEMSDOE36",
+        "submission": "GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+        "file": "/home/user/refs/GEMSDOE36/docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+        "error": "registry grid or band-count mismatch"
+      }
+    ],
+    "unique_substantive_operative_gates": true,
+    "file": "evidence/uniqueness_h73-7.json"
+  },
+  "raster_sha256": "a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67",
+  "raster_bytes": 136426,
+  "zip_sha256": "cf92f88cfc9f0f4325993299fa81a058634b0bb848e5480bc1c32b7c077f1681",
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "dots": 37654,
+    "nodata": null,
+    "crs_shape_transform_match_sample": true,
+    "independent_reread": "Re-opened after writing in this session: single-band float32, EPSG:32611, 3730x3292, transform [100,0,243350,0,-100,4508550] matching sample_submission.tif, all 12,279,160 cells finite in [0,1], 0 NaN, 37,654 positive px, 0 outside footprint, ZIP contains exactly this TIFF byte-identically. Portal error 'Predicted values must be in range [0,1]' cannot trigger: nodata=None and no sentinel value exists anywhere in the file."
+  },
+  "submission_name": "gems73-h73-7-hardfault-pu-e1-37654dots-20261021",
+  "submission_note": "G73 H73-7 E1 hard-fault PU-HGB 37654 dots; HOLDOUT-DTI 0.1369 vs ctrl 0.0939 - beat ctrl, selector review",
+  "submission_note_chars": 105,
+  "download_ok": true,
+  "submit_recommended": true,
+  "preregistered_gates": {
+    "a_beats_control_ci_excluding_0": true,
+    "b_canaries_all_le_0.90": true,
+    "c_uniqueness_operative_gates": true,
+    "d_validator_all_checks_passed": true
+  },
+  "verdict": "promote",
+  "verdict_reason": "All four preregistered gates pass: E1 beats the exactly-reproduced fold-fair H33-analogue control on pooled HOLDOUT-DTI by +0.0430 [0.0230, 0.0627] (gems57-pooled-hide-v2, 11,321 withheld px); 41/41 leakage canaries <= 0.6105; operative uniqueness gates pass (surface rho max 0.2089, dots rho max 0.0573, mutual overlap max 0.504, vs champion 0.217); validator passes on re-read bytes. PROMOTE means promote-to-selector: this repo spends no weekly slot. The selector must weigh the transfer caveat (catalogue-supervised fields have historically transferred weakly to the expert hidden set) and IR-73-15 before spending a slot.",
+  "weekly_slots_spent": 0,
+  "organizer_score": null,
+  "experiments_run": 3,
+  "figure": "docs/assets/fig_h73-7_vs_h33.png",
+  "evidence_files": [
+    "evidence/holdout_h73-7.json",
+    "evidence/selection_h73-7.json",
+    "evidence/canaries_h73-7.json",
+    "evidence/uniqueness_h73-7.json",
+    "evidence/forensic_h73-7.json",
+    "registry/preregistration_h73-7.json"
+  ],
+  "reproduce": ".venv/bin/python scripts/restore_data.py --group all && .venv/bin/python scripts/run_experiments_h73_7.py && .venv/bin/python scripts/build_submission_h73_7.py && .venv/bin/python scripts/audit_registry_h73_7.py && .venv/bin/python scripts/build_run_card_h73_7.py"
+}

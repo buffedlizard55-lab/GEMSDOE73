@@ -1,0 +1,12 @@
+{
+  "evidence_class": "MEASURED-HERE from hash-pinned bytes (H73-7 session re-verification)",
+  "counts": {
+    "h33_champion": 37654,
+    "h19_5_support": 121131
+  },
+  "h33_file_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "h33_min_distance_to_catalogue_px": 2.23606797749979,
+  "static_dti_vs_full_catalogue": {
+    "h33_champion": 0.006709118968955278
+  }
+}

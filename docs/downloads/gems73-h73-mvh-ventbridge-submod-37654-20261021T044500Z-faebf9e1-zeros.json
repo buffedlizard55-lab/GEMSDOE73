@@ -281,5 +281,124 @@
   "ok_to_download": true,
   "ok_to_submit": true,
   "verdict": "promote",
-  "elapsed_seconds": 202.9
+  "elapsed_seconds": 202.9,
+  "experiments_used": 3,
+  "weekly_slots_spent_automatically": 0,
+  "all_lanes_comparison_gems57_pooled_hide_v2": [
+    {
+      "rank": 1,
+      "pr": "PR #11 (This Package)",
+      "lane": "H73-MVH Dual-Target Vent+Bridge OOF + Submod300",
+      "submission": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros",
+      "sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+      "holdout_dti": 0.159944,
+      "ci95": [
+        0.141748,
+        0.178817
+      ],
+      "delta_vs_h33": 0.066083,
+      "status": "PROMOTE \u2014 #1 Overall GEMSDOE73"
+    },
+    {
+      "rank": 2,
+      "pr": "PR #9",
+      "lane": "H73-7 Hard-Fault PU Ranker",
+      "submission": "gems73-h73-7-hardfault-pu-e1-37654dots-20261021",
+      "sha256": "a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67",
+      "holdout_dti": 0.136888,
+      "ci95": [
+        0.115779,
+        0.157736
+      ],
+      "delta_vs_h33": 0.043027,
+      "status": "Runner-up (shipped in-sample retrained)"
+    },
+    {
+      "rank": 3,
+      "pr": "PR #7",
+      "lane": "Cross-Drainage 2D Dilated U-Net + 91-Feat + Submod300",
+      "submission": "gems73-crossdrain-unet-submod-37654-20261021",
+      "sha256": "9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262",
+      "holdout_dti": 0.136023,
+      "ci95": [
+        0.117451,
+        0.155962
+      ],
+      "delta_vs_h33": 0.042162,
+      "status": "3rd place"
+    },
+    {
+      "rank": 4,
+      "pr": "PR #6",
+      "lane": "4-Line Corroborated Piedmont/Chi/Hydro/Dip OOF + Submod300",
+      "submission": "gems73-h73-piedmont-corrob-submod300-37654-20261021",
+      "sha256": "846d5fe0fe53c618ebfa467c2545b7b78a459747be4aa1598d54e4979311c932",
+      "holdout_dti": 0.11223,
+      "ci95": [
+        0.096022,
+        0.127457
+      ],
+      "delta_vs_h33": 0.018369,
+      "status": "4th place"
+    },
+    {
+      "rank": 5,
+      "pr": "Control",
+      "lane": "h33_analogue_foldfair (Champion Architecture Control)",
+      "submission": "fold-fair control",
+      "sha256": "reproduced bit-identically across all lanes",
+      "holdout_dti": 0.093861,
+      "ci95": [
+        0.081253,
+        0.1076
+      ],
+      "delta_vs_h33": 0.0,
+      "status": "Control baseline"
+    },
+    {
+      "rank": 6,
+      "pr": "PR #4",
+      "lane": "H73-6 Unsupervised Trace-Localization (X1)",
+      "submission": "gems73-h73-6-traceloc-x1-37654dots-20261021",
+      "sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+      "holdout_dti": 0.059157,
+      "ci95": [
+        0.048971,
+        0.070024
+      ],
+      "delta_vs_h33": -0.034704,
+      "status": "Negative (unsupervised)"
+    },
+    {
+      "rank": 7,
+      "pr": "PR #3",
+      "lane": "H73-1 Unsupervised Piedmont Scarp-Chain (E1)",
+      "submission": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021",
+      "sha256": "95b7cc504f1a104e8e3d970492e2e06905419bf496590edac8646458d910fb5b",
+      "holdout_dti": 0.054756,
+      "ci95": [
+        0.046233,
+        0.064101
+      ],
+      "delta_vs_h33": -0.039105,
+      "status": "Negative (unsupervised)"
+    }
+  ],
+  "raster_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+  "submission_note": "H73-MVH: 4-fold OOF dual-target vent+bridge GBDT + 300m submod; holdout 0.160 vs 0.094 ctrl",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "dti": 0.15994412361152446,
+    "ci95": [
+      0.14174802793253527,
+      0.178816904970839
+    ],
+    "paired_delta_vs_h33": 0.0660832704757135,
+    "paired_delta_ci95": [
+      0.04968941382524322,
+      0.0813408005482723
+    ]
+  }
 }

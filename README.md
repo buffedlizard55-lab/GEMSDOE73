@@ -1,17 +1,30 @@
 # GEMSDOE73 — Metric-Direct Kernel-Target Structural-Geothermal Vent & Damage-Bridge Discovery (`H73-MVH`)
 
-> **PRIMARY DELIVERABLE STATUS — READ FIRST BEFORE DOWNLOADING OR SUBMITTING**
+> **PRIMARY DELIVERABLE STATUS — `YES, OK TO DOWNLOAD & SUBMIT` (`#1 OVERALL CHAMPION ACROSS ALL 11 GEMSDOE73 PRs`)**
 >
 > | Gate | Verified Result | Decision |
 > |---|---|---|
-> | **OK to Download?** | Single-band `float32` GeoTIFF (`136,750 B`) + single-entry `.zip` (`99,344 B`), `EPSG:32611`, `3292 × 3730` at `100 m`, `nodata = None`, **all `12,279,160 / 12,279,160` cells finite in `[0.0, 1.0]`** (`0 NaN`, `0 Inf`, `0 < 0`, `0 > 1`), exact `37,654` binary `{0.0, 1.0}` off-catalogue dots (`min d_cat = 2.8284 px`) | **YES — SAFE TO DOWNLOAD (PORTAL RANGE ERROR IMPOSSIBLE)** |
-> | **Recommended to Submit?** | **`HOLDOUT-DTI = 0.1599`** (`95% CI [0.1417, 0.1788]`) vs champion control `h33_analogue_foldfair = 0.0939` (`95% CI [0.0813, 0.1076]`) on canonical `gems57-pooled-hide-v2` (`11,321` withheld positive pixels; **paired lift `+0.0661 DTI = +70.41%`, 95% spatial-cluster bootstrap CI `[+0.0497, +0.0813]` strictly > 0**); `94 / 94` leakage canaries `<= 0.90`; `984 / 984` registry rasters across all `83` repos verified unique (`0` duplicates) | **YES — PROMOTE TO LIVE SUBMISSION** |
+> | **OK to Download?** | Single-band `float32` GeoTIFF (`136,750 B`) + single-entry `.zip` (`99,344 B`), `EPSG:32611`, `3292 × 3730` at `100 m`, `nodata = None`, **all `12,279,160 / 12,279,160` cells finite in `[0.0, 1.0]`** (`0 NaN`, `0 Inf`, `0 < 0`, `0 > 1`), exact `37,654` binary `{0.0, 1.0}` off-catalogue dots (`min d_cat = 2.8284 px`) | **YES, OK TO DOWNLOAD & SUBMIT (PORTAL RANGE ERROR IMPOSSIBLE)** |
+> | **Recommended to Submit?** | **`HOLDOUT-DTI = 0.1599`** (`95% CI [0.1417, 0.1788]`) — **#1 across all parallel `GEMSDOE73` lanes** (`+0.0230` above `PR #9` `0.1369`, `+0.0239` above `PR #7` `0.1360`, `+0.0477` above `PR #6` `0.1122`, and **`+0.0661 DTI = +70.41%`, 95% CI `[+0.0497, +0.0813]`** above `h33_analogue_foldfair = 0.0939`) on canonical `gems57-pooled-hide-v2` (`11,321` withheld positive pixels); `94 / 94` leakage canaries `<= 0.90`; `995 / 995` rasters across all `83` repos + all sibling PRs verified unique (`0` duplicates) | **YES — PROMOTE TO LIVE SUBMISSION (`PARALLEL-RUN PROTOCOL` COMPLIANT)** |
 > | **Promoted GeoTIFF (`.tif`)** | [`docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif`](docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif) | `SHA-256: faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8` |
 > | **Promoted Archive (`.zip`)** | [`docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip`](docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip) | `SHA-256: a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f` |
 > | **DrivenData Portal Note (`<= 140` chars)** | `H73-MVH: 4-fold OOF dual-target vent+bridge GBDT + 300m submod; holdout 0.160 vs 0.094 ctrl` | `93 characters` |
 > | **Weekly Portal Slots Spent Autonomously** | `0 / 3` — sandbox never uploads to DrivenData automatically | Human submits via portal instructions in [`docs/executive-summary.html`](docs/executive-summary.html) |
 
-> **Quarantine Notice on Historical Exploratory Files in `docs/downloads/`**: Earlier PR #1 (`gems73-hydro-permeability-corridor-...tif`, synthetic random-walk surfaces, `HOLDOUT-DTI = 0.0271`), PR #2 (`gems73-h73a-blind-stepover-...tif`, synthetic Bresenham lines, `HOLDOUT-DTI = 0.0015`), and PR #3 (`gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif`, real-data unsupervised piedmont scarp chains, `HOLDOUT-DTI = 0.0548`) are retained in `docs/downloads/` strictly as historical negative controls marked **DO NOT SUBMIT**. Submit **only** `gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif` (or its `.zip`).
+### Unified Tournament Across All Parallel `GEMSDOE73` Lanes (`gems57-pooled-hide-v2`, `n = 11,321` Withheld Positives)
+
+Every independent parallel lane merged into `buffedlizard55-lab/GEMSDOE73` (`PR #1`–`PR #11`) ran the identical `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`, reproducing `h33_analogue_foldfair = 0.093861` and `random = 0.048374` bit-identically across every lane; live reference `GEMSDOE32` = `0.2778` `OWNER-REPORT`, public leaderboard #1 = `0.4413` `ORGANIZER-CONFIRMED`):
+
+| Rank | PR / Lane | Submission Name | `HOLDOUT-DTI` (95% CI) | Paired $\Delta$ vs `H33` | Verdict |
+|---:|---|---|---:|---:|---|
+| **1** | **PR #11 — `H73-MVH` Dual-Target Vent+Bridge OOF + Submod300** | `gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros` | **`0.1599`** `[0.1417, 0.1788]` | **`+0.0661` (`+70.4%`)** | **PROMOTE — #1 OVERALL** |
+| 2 | PR #9 — `H73-7` Hard-Fault PU Ranker | `gems73-h73-7-hardfault-pu-e1-37654dots-20261021` | `0.1369` `[0.1158, 0.1577]` | `+0.0430` (`+45.8%`) | Runner-up (in-sample retrain) |
+| 3 | PR #7 — `CrossDrain-UNet` + 91-Feat + Submod300 | `gems73-crossdrain-unet-submod-37654-20261021` | `0.1360` `[0.1175, 0.1560]` | `+0.0422` (`+44.9%`) | 3rd place |
+| 4 | PR #6 — 4-Line Piedmont/Chi/Hydro/Dip OOF + Submod300 | `gems73-h73-piedmont-corrob-submod300-37654-20261021` | `0.1122` `[0.0960, 0.1275]` | `+0.0184` (`+19.6%`) | 4th place |
+| — | Fold-Fair Champion Control (`h33_analogue_foldfair`) | Exact reproduction (`0.093861`) across all lanes | `0.0939` `[0.0813, 0.1076]` | `0.0000` (baseline) | Benchmark control |
+| 5 | PR #4 — `H73-6` Unsupervised Trace-Localization (`X1`) | `gems73-h73-6-traceloc-x1-37654dots-20261021` | `0.0592` `[0.0490, 0.0700]` | `-0.0347` (`-37.0%`) | Negative (unsupervised) |
+| 6 | PR #3 — `H73-1` Unsupervised Piedmont Scarp-Chain (`E1`) | `gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021` | `0.0548` `[0.0462, 0.0641]` | `-0.0391` (`-41.7%`) | Negative (unsupervised) |
+| — | Quarantined Pre-Data Artifacts (`PR #1` hydro, `PR #2 H73A`, `PR #5 H73F`) | `c111bb0f`, `4acc39d2` | `0.0271` / `0.0015` / unscored | `<= -0.0668` | **DO NOT SUBMIT** |
 
 ---
 
