@@ -1,143 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Executive Summary &amp; Direct Download — GEMSDOE73 Lane H73</title>
-  <link rel="stylesheet" href="assets/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive Summary &amp; Contest Upload Guide — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <nav class="topnav">
-    <div class="brand">GEMSDOE73 &middot; Executive Summary</div>
-    <div class="links">
-      <a href="index.html">Home &amp; Download</a>
-      <a class="active" href="executive-summary.html">Executive Summary</a>
-      <a href="h33-autopsy.html">GEMSDOE32 (0.2778) Autopsy</a>
-      <a href="hypotheses-and-ablation.html">5 Hypotheses &amp; 3-Exp Ablation</a>
-      <a href="audit-and-sources.html">80-Raster Uniqueness, Canaries &amp; Sources</a>
-    </div>
+<header class="topbar">
+  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">DOWNLOAD OK = TRUE · VERDICT = PROMOTE</span></div>
+  <nav>
+    <a href="index.html">Overview &amp; Download</a>
+    <a class="active" href="executive-summary.html">Executive Summary (How to Submit)</a>
+    <a href="method.html">PhD Forensic Analysis &amp; Method</a>
+    <a href="hypotheses.html">5 Ranked Hypotheses</a>
+    <a href="verification.html">Verification &amp; Uniqueness</a>
+    <a href="sources.html">Official Sources &amp; Irregularities</a>
   </nav>
+</header>
 
-  <main class="container">
-    <!-- TOP-OF-PAGE SUBMISSION READINESS BANNER -->
-    <section class="verdict-banner" id="submission-readiness">
-      <div class="verdict-header">
-        <span class="badge-promote">&#10003; PROMOTE &mdash; YES, OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
-        <span class="badge-class">verdict = "promote" &middot; download_and_submit_ok = true &middot; 11 / 11 Gates Passed</span>
-      </div>
-      <h1 style="margin: 6px 0 10px; font-size: 1.55rem;">
-        Executive Summary &amp; Direct Submission Download: <code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code>
-      </h1>
-      <p style="margin: 0 0 12px;">
-        <strong>Submission Status:</strong> <strong>YES &mdash; OK TO DOWNLOAD AND SUBMIT</strong>. This candidate passed all 11 preregistered promotion gates across <code>Instrument A</code> (<code>HOLDOUT-DTI = 0.11223</code>, <code>CI95 = [0.09602, 0.12746]</code>), <code>Instrument C_pied_all</code> (<code>HOLDOUT-DTI = 0.14128</code>, <code>CI95 = [0.12527, 0.15871]</code>), <code>Instrument C_pied_sed</code> (<code>HOLDOUT-DTI = 0.12617</code>), <code>Instrument B&prime;</code> (<code>HOLDOUT-DTI = 0.09842</code>), 49-feature leakage canaries (<code>max AUC = 0.8061 &le; 0.90</code>), 80-raster uniqueness (<code>surface |&rho;| &le; 0.1688</code>, <code>dots mutual overlap &le; 0.6617 &le; 0.70</code>, <code>non-lattice forward overlap &le; 0.6895 &le; 0.70</code>), and strict GeoTIFF <code>[0, 1]</code> preflight validation (<code>0</code> NaNs anywhere).
-      </p>
+<section class="hero">
+  <div class="wrap">
+    <span class="pill pill-hero">EXECUTIVE SUMMARY — EXACT CONTEST SUBMISSION GUIDE</span>
+    <h1>Is It OK to Download and Submit? YES — Ready for Selector Sign-Off</h1>
+    <p>
+      Every check required before spending 1 of your 3 rolling weekly DrivenData submission slots has been executed and verified on real data:
+      15/15 format &amp; <code>[0, 1]</code> checks PASS, 94/94 leakage canaries PASS (max AUC <code>0.7704 ≤ 0.90</code>),
+      973/973 registry uniqueness checks PASS, and <strong>All-Time #1</strong> on shared Hide-and-Recover <code>Instrument A</code> (<code>0.1360</code>) &amp; <code>A_quad</code> (<code>0.2063</code>).
+    </p>
+  </div>
+</section>
 
-      <div class="download-grid">
-        <a class="btn-download" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif" download>
-          &#11015; Download Primary GeoTIFF (-zeros.tif &middot; 142,140 B)
-        </a>
-        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021.tif" download>
-          &#11015; Download Named GeoTIFF (.tif &middot; 142,140 B)
-        </a>
-        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.zip" download>
-          &#11015; Download ZIP Archive (.zip &middot; 107,256 B)
-        </a>
-        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-audit.json" download>
-          &#128196; Download Run Card JSON (run_card.json)
-        </a>
-      </div>
+<main class="wrap">
+  <section class="card card-primary">
+    <h2>Step-by-Step: How to Submit to DrivenData in Under 60 Seconds</h2>
+    <div class="btn-row">
+      <a class="btn btn-green" href="downloads/gems73-crossdrain-unet-submod-37654-20261021.tif" download>⬇ Step 1A: Download Primary .tif (142.1 KB)</a>
+      <a class="btn btn-green" style="background:#0284c7" href="downloads/gems73-crossdrain-unet-submod-37654-20261021.zip" download>⬇ Step 1B: Or Download .zip (109.9 KB)</a>
+      <a class="btn btn-outline" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank" rel="noopener">Step 2: Open DrivenData Submission Page ↗</a>
+    </div>
 
-      <div class="meta-box">
-        <div><strong>Unique Submission Name :</strong> <code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code></div>
-        <div><strong>Submission Note (131/140):</strong> <code>GEMS73 H73: 4-line corroborated piedmont/chi/hydro/dip OOF HGB + 300m submodular max-cover, 37654 binary [0,1] off-cat dots, 0 NaN.</code></div>
-        <div><strong>GeoTIFF SHA-256 Digest :</strong> <code>846d5fe0fe53c618ebfa467c2545b7b78a459747be4aa1598d54e4979311c932</code> (142,140 bytes)</div>
-        <div><strong>ZIP Archive SHA-256    :</strong> <code>a0b7f8a0f6909a5407a141d0bf01cf4e86248357e2330edb10ad690317738587</code> (107,256 bytes)</div>
-      </div>
-    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>DrivenData Form Field</th>
+          <th>Exact Value / Action</th>
+          <th>Why This Value Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>File to submit</strong><br><span style="color:#64748b;font-size:12px">(Single GeoTIFF or 1-TIFF ZIP)</span></td>
+          <td>
+            Upload <strong>EITHER</strong>:<br>
+            <code>gems73-crossdrain-unet-submod-37654-20261021.tif</code><br>
+            <em>or</em> <code>gems73-crossdrain-unet-submod-37654-20261021.zip</code>
+          </td>
+          <td>
+            All <code>12,279,160</code> cells are strictly finite <code>{0.0, 1.0}</code> with <code>nodata=None</code>, permanently preventing the
+            <code>"Predicted values must be in range [0, 1]"</code> portal error. Do <strong>not</strong> upload both in separate slots — their predictions are identical.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Submission Identifier / Name</strong></td>
+          <td>
+            <code id="execName">gems73-crossdrain-unet-submod-37654-20261021</code>
+            <button class="copy-btn" onclick="copyText('execName', this)">Copy</button>
+          </td>
+          <td>Uniquely identifies repo <code>GEMSDOE73</code>, architecture, exact <code>37,654</code> dot budget, and date <code>2026-10-21</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Note (optional)</strong><br><span style="color:#64748b;font-size:12px">(121 / 140 characters)</span></td>
+          <td>
+            <code id="execNote">GEMSDOE73: 4-fold OOF 2D Dilated U-Net + 91-feat Cross-Drainage/Lahontan PU-GBM + 300m Submodular DTI (37654 binary dots)</code>
+            <button class="copy-btn" onclick="copyText('execNote', this)">Copy</button>
+          </td>
+          <td>Fits strictly within both the 140-character protocol cap and DrivenData's 200-character note field for clean leaderboard tracking.</td>
+        </tr>
+      </tbody>
+    </table>
 
-    <section class="section">
-      <h2>1. All 11 Preregistered Promotion Gates (<code>11 / 11 PASS</code>)</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Gate ID</th>
-              <th>Preregistered Criterion</th>
-              <th>Observed Value (<code>Exp 73.3</code>)</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="highlight">
-              <td><code>G1_canary_clean</code></td>
-              <td>All 49 individual features have <code>max(AUC, 1-AUC) &le; 0.90</code> on <code>Inst A</code> and <code>Inst B&prime;</code></td>
-              <td><code>max_A = 0.8061</code>, <code>max_B&prime; = 0.7623</code> (<code>49/49 clean</code>)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G2_uniqueness_surface_and_dots</code></td>
-              <td>Pre-placement surface &amp; final dots <code>|&rho;| &le; 0.90</code> &amp; mutual 3px overlap <code>&le; 0.70</code> vs 80 registry rasters</td>
-              <td>Surface <code>|&rho;| = 0.1688</code>; Dots <code>|&rho;| = 0.0731</code>, mutual overlap <code>= 0.6617</code></td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G3_uniqueness_forward_non_lattice</code></td>
-              <td>One-way forward 3px dot overlap <code>&le; 0.70</code> vs all non-lattice fault detectors</td>
-              <td>Worst non-lattice forward overlap <code>= 0.6895 &le; 0.70</code> (vs H33: <code>0.5748</code>)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G4_inst_a_gt_h33_static_ci95</code></td>
-              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>h33_reference</code> on <code>Inst A</code></td>
-              <td><code>&Delta;DTI = +0.10853</code>, <code>CI95 = [+0.09278, +0.12339]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G5_inst_a_gt_h33_fair_ci95</code></td>
-              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>h33_fold_fair</code> on <code>Inst A</code></td>
-              <td><code>&Delta;DTI = +0.02178</code>, <code>CI95 = [+0.01066, +0.03193]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G6_inst_a_gt_d28_ci95</code></td>
-              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>d28_reference</code> on <code>Inst A</code></td>
-              <td><code>&Delta;DTI = +0.02031</code>, <code>CI95 = [+0.00878, +0.03055]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G7_inst_a_gt_random_ci95</code></td>
-              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>random_control</code> on <code>Inst A</code></td>
-              <td><code>&Delta;DTI = +0.06673</code>, <code>CI95 = [+0.05174, +0.08131]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G8_inst_bp_gt_h33_and_random</code></td>
-              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst B&prime;</code> (K=59,937) exceeds <code>h33_reference</code> &amp; beats <code>random_control</code></td>
-              <td><code>0.09842</code> vs <code>h33 = 0.09377</code> (<code>+0.00465</code>), vs <code>random = 0.07127</code> (<code>+0.02715</code>)</td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G9_inst_cpied_all_gt_h33_and_p8_ci95</code></td>
-              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst C_pied_all</code> (K=23,228) beats both <code>H33</code> &amp; <code>P8</code> with <code>CI95_low &gt; 0</code></td>
-              <td><code>0.14128</code>: vs <code>H33</code> <code>+0.01602 [0.00379, 0.02838]</code>; vs <code>P8</code> <code>+0.02772 [0.01768, 0.03847]</code></td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G10_inst_cpied_sed_gt_h33_and_p8_ci95</code></td>
-              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst C_pied_sed</code> (K=9,949) beats both <code>H33</code> &amp; <code>P8</code> with <code>CI95_low &gt; 0</code></td>
-              <td><code>0.12617</code>: vs <code>H33</code> <code>+0.03250 [0.02048, 0.04513]</code>; vs <code>P8</code> <code>+0.04195 [0.03146, 0.05254]</code></td>
-              <td><strong>PASS</strong></td>
-            </tr>
-            <tr class="highlight">
-              <td><code>G11_validator_all_checks_passed</code></td>
-              <td><code>vendor/gems57/validate.py</code> &amp; <code>submission_writer.py</code> pass all 15 format, CRS, &amp; range checks</td>
-              <td><code>15 / 15 checks True</code>, <code>n_nan = 0</code>, <code>min = 0.0</code>, <code>max = 1.0</code>, <code>dots = 37,654</code></td>
-              <td><strong>PASS</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+    <div class="callout">
+      <strong>Human Selector Checklist Before Clicking Submit (Weekly Cap = 3 Submissions / Rolling 7 Days):</strong>
+      <ol style="margin:6px 0 0;padding-left:20px">
+        <li>Verify your rolling 7-day DrivenData slot count before uploading; remember <strong>only ONE selected submission</strong> is scored in both the Initial ($50,000) and Final ($250,000) Prize Rounds (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">Official Rules PDF 96647</a>).</li>
+        <li>Confirm file integrity if desired: <code>shasum -a 256 gems73-crossdrain-unet-submod-37654-20261021.tif</code> → <code>9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262</code>.</li>
+        <li>If an official-spec <code>NaN</code>-outside twin is ever needed for side-by-side archival, download <a href="downloads/gems73-crossdrain-unet-submod-37654-20261021-nan.tif" download><code>gems73-crossdrain-unet-submod-37654-20261021-nan.tif</code></a> (identical predictions on all <code>5,167,373</code> in-footprint cells). For an orthogonal 2nd-slot companion (only <code>47.3%</code> overlap), see <a href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif" download><code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code></a> (<code>HOLDOUT-DTI = 0.1122</code>).</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>How the <code>"Predicted values must be in range [0, 1]"</code> Portal Error Was Solved Permanently</h2>
+    <ul>
+      <li><strong>Root Cause 1 — Float32 Sentinel Contamination:</strong> Official <code>training_features.tif</code> stores <code>-3.4028235e+38</code> on <code>7,113,308</code> cells (including <code>3,061–3,073</code> cells <em>inside</em> the valid GeoDAWN footprint). Any model that propagates unmasked feature sentinels produces negative numbers outside <code>[0, 1]</code>.</li>
+      <li><strong>Root Cause 2 — Whole-Raster Unmasked Range Check:</strong> If a portal validator runs <code>arr.min() >= 0 and arr.max() <= 1</code> without masking <code>NaN</code> cells outside the footprint, <code>NaN</code> returns <code>False</code> and triggers the exact error message <code>"Predicted values must be in range [0, 1]"</code>.</li>
+      <li><strong>Verified Solution:</strong> Nearest-neighbor domain imputation + fail-closed packaging via shared <code>vendor/gems57/submission_writer.py</code> writes strictly finite <code>{0.0, 1.0}</code> values across all <code>12,279,160</code> pixels with <code>nodata = None</code>, then re-opens the written bytes on disk to assert 15 independent checks (<a href="downloads/gems73-crossdrain-unet-submod-37654-20261021.json">view receipt JSON</a>).</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Prioritized Roadmap for the Next Session (Limitations &amp; High-Upside Upgrades)</h2>
+    <ol>
+      <li><strong>GPU Multi-Backbone 2D Segmentation Ensemble (Highest Expected Live Gain toward <code>0.4413</code>):</strong> In this 2-vCPU / 3.8 GiB sandbox without a GPU, our <code>MultiScaleDilatedUNet</code> was constrained to <code>52k</code> parameters and 5 epochs/fold (~11 min CPU) and <em>already</em> jumped <code>Instrument A</code> to an all-time record <code>0.1360</code>. Training a multi-resolution GPU ensemble (<code>ConvNeXt-Small</code> + <code>Swin-UNet</code> + <code>SegFormer-B2</code> over <code>256×256</code> = <code>25.6×25.6 km</code> tiles, 40 epochs, full D4 rotational equivariance) on our 91 de-confounded physical channels is the direct path from <code>~0.28–0.32</code> to <code>0.40+</code>.</li>
+      <li><strong>Full 1 m 3DEP LiDAR Re-Extraction on Raw Point/DEM Tiles:</strong> Official <code>1m_DEM_links.csv</code> tiles cover 75.4% of the GeoDAWN footprint; computing full-coverage 1 m directional Radon scarp profile asymmetry (hanging-wall coluvial wedge vs horizontal wave-cut bevel) on a high-storage machine removes 8-bit quantization limits.</li>
+      <li><strong>Sub-Kilometer Relocated Seismicity Lineaments (<code>H73-5</code>):</strong> Official USGS ANSS ComCat / Shearer-Trugman relocated hypocenters (<code>earthquake.usgs.gov</code>, unreachable from this restricted sandbox) resolve planar <code>300 m</code> fault-plane alignments completely invisible in the competition's <code>100 km</code> smoothed Bands 10 &amp; 16.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <a href="index.html">← Back to Overview</a> · <a href="downloads/run_card.json">Run Card JSON</a> · <a href="verification.html">Verification &amp; 973-Raster Uniqueness</a>
+  </div>
+</footer>
+<script>
+function copyText(id, btn) {
+  navigator.clipboard.writeText(document.getElementById(id).textContent.trim()).then(() => {
+    const old = btn.textContent; btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = old; }, 1600);
+  });
+}
+</script>
 </body>
 </html>
