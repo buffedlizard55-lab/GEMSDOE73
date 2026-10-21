@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Summary &amp; Direct Download — GEMSDOE73 Lane H73</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">GEMSDOE73 &middot; Executive Summary</div>
+    <div class="links">
+      <a href="index.html">Home &amp; Download</a>
+      <a class="active" href="executive-summary.html">Executive Summary</a>
+      <a href="h33-autopsy.html">GEMSDOE32 (0.2778) Autopsy</a>
+      <a href="hypotheses-and-ablation.html">5 Hypotheses &amp; 3-Exp Ablation</a>
+      <a href="audit-and-sources.html">80-Raster Uniqueness, Canaries &amp; Sources</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- TOP-OF-PAGE SUBMISSION READINESS BANNER -->
+    <section class="verdict-banner" id="submission-readiness">
+      <div class="verdict-header">
+        <span class="badge-promote">&#10003; PROMOTE &mdash; YES, OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
+        <span class="badge-class">verdict = "promote" &middot; download_and_submit_ok = true &middot; 11 / 11 Gates Passed</span>
+      </div>
+      <h1 style="margin: 6px 0 10px; font-size: 1.55rem;">
+        Executive Summary &amp; Direct Submission Download: <code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code>
+      </h1>
+      <p style="margin: 0 0 12px;">
+        <strong>Submission Status:</strong> <strong>YES &mdash; OK TO DOWNLOAD AND SUBMIT</strong>. This candidate passed all 11 preregistered promotion gates across <code>Instrument A</code> (<code>HOLDOUT-DTI = 0.11223</code>, <code>CI95 = [0.09602, 0.12746]</code>), <code>Instrument C_pied_all</code> (<code>HOLDOUT-DTI = 0.14128</code>, <code>CI95 = [0.12527, 0.15871]</code>), <code>Instrument C_pied_sed</code> (<code>HOLDOUT-DTI = 0.12617</code>), <code>Instrument B&prime;</code> (<code>HOLDOUT-DTI = 0.09842</code>), 49-feature leakage canaries (<code>max AUC = 0.8061 &le; 0.90</code>), 80-raster uniqueness (<code>surface |&rho;| &le; 0.1688</code>, <code>dots mutual overlap &le; 0.6617 &le; 0.70</code>, <code>non-lattice forward overlap &le; 0.6895 &le; 0.70</code>), and strict GeoTIFF <code>[0, 1]</code> preflight validation (<code>0</code> NaNs anywhere).
+      </p>
+
+      <div class="download-grid">
+        <a class="btn-download" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif" download>
+          &#11015; Download Primary GeoTIFF (-zeros.tif &middot; 142,140 B)
+        </a>
+        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021.tif" download>
+          &#11015; Download Named GeoTIFF (.tif &middot; 142,140 B)
+        </a>
+        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.zip" download>
+          &#11015; Download ZIP Archive (.zip &middot; 107,256 B)
+        </a>
+        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-audit.json" download>
+          &#128196; Download Run Card JSON (run_card.json)
+        </a>
+      </div>
+
+      <div class="meta-box">
+        <div><strong>Unique Submission Name :</strong> <code>gems73-h73-piedmont-corrob-submod300-37654-20261021</code></div>
+        <div><strong>Submission Note (131/140):</strong> <code>GEMS73 H73: 4-line corroborated piedmont/chi/hydro/dip OOF HGB + 300m submodular max-cover, 37654 binary [0,1] off-cat dots, 0 NaN.</code></div>
+        <div><strong>GeoTIFF SHA-256 Digest :</strong> <code>846d5fe0fe53c618ebfa467c2545b7b78a459747be4aa1598d54e4979311c932</code> (142,140 bytes)</div>
+        <div><strong>ZIP Archive SHA-256    :</strong> <code>a0b7f8a0f6909a5407a141d0bf01cf4e86248357e2330edb10ad690317738587</code> (107,256 bytes)</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. All 11 Preregistered Promotion Gates (<code>11 / 11 PASS</code>)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Gate ID</th>
+              <th>Preregistered Criterion</th>
+              <th>Observed Value (<code>Exp 73.3</code>)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td><code>G1_canary_clean</code></td>
+              <td>All 49 individual features have <code>max(AUC, 1-AUC) &le; 0.90</code> on <code>Inst A</code> and <code>Inst B&prime;</code></td>
+              <td><code>max_A = 0.8061</code>, <code>max_B&prime; = 0.7623</code> (<code>49/49 clean</code>)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G2_uniqueness_surface_and_dots</code></td>
+              <td>Pre-placement surface &amp; final dots <code>|&rho;| &le; 0.90</code> &amp; mutual 3px overlap <code>&le; 0.70</code> vs 80 registry rasters</td>
+              <td>Surface <code>|&rho;| = 0.1688</code>; Dots <code>|&rho;| = 0.0731</code>, mutual overlap <code>= 0.6617</code></td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G3_uniqueness_forward_non_lattice</code></td>
+              <td>One-way forward 3px dot overlap <code>&le; 0.70</code> vs all non-lattice fault detectors</td>
+              <td>Worst non-lattice forward overlap <code>= 0.6895 &le; 0.70</code> (vs H33: <code>0.5748</code>)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G4_inst_a_gt_h33_static_ci95</code></td>
+              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>h33_reference</code> on <code>Inst A</code></td>
+              <td><code>&Delta;DTI = +0.10853</code>, <code>CI95 = [+0.09278, +0.12339]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G5_inst_a_gt_h33_fair_ci95</code></td>
+              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>h33_fold_fair</code> on <code>Inst A</code></td>
+              <td><code>&Delta;DTI = +0.02178</code>, <code>CI95 = [+0.01066, +0.03193]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G6_inst_a_gt_d28_ci95</code></td>
+              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>d28_reference</code> on <code>Inst A</code></td>
+              <td><code>&Delta;DTI = +0.02031</code>, <code>CI95 = [+0.00878, +0.03055]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G7_inst_a_gt_random_ci95</code></td>
+              <td>Paired 20 km block-bootstrap <code>&Delta;DTI &gt; 0</code> &amp; <code>CI95_low &gt; 0</code> vs <code>random_control</code> on <code>Inst A</code></td>
+              <td><code>&Delta;DTI = +0.06673</code>, <code>CI95 = [+0.05174, +0.08131]</code> (<code>HOLDOUT-DTI</code>, K=11,321)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G8_inst_bp_gt_h33_and_random</code></td>
+              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst B&prime;</code> (K=59,937) exceeds <code>h33_reference</code> &amp; beats <code>random_control</code></td>
+              <td><code>0.09842</code> vs <code>h33 = 0.09377</code> (<code>+0.00465</code>), vs <code>random = 0.07127</code> (<code>+0.02715</code>)</td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G9_inst_cpied_all_gt_h33_and_p8_ci95</code></td>
+              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst C_pied_all</code> (K=23,228) beats both <code>H33</code> &amp; <code>P8</code> with <code>CI95_low &gt; 0</code></td>
+              <td><code>0.14128</code>: vs <code>H33</code> <code>+0.01602 [0.00379, 0.02838]</code>; vs <code>P8</code> <code>+0.02772 [0.01768, 0.03847]</code></td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G10_inst_cpied_sed_gt_h33_and_p8_ci95</code></td>
+              <td>Out-of-fold <code>HOLDOUT-DTI</code> on <code>Inst C_pied_sed</code> (K=9,949) beats both <code>H33</code> &amp; <code>P8</code> with <code>CI95_low &gt; 0</code></td>
+              <td><code>0.12617</code>: vs <code>H33</code> <code>+0.03250 [0.02048, 0.04513]</code>; vs <code>P8</code> <code>+0.04195 [0.03146, 0.05254]</code></td>
+              <td><strong>PASS</strong></td>
+            </tr>
+            <tr class="highlight">
+              <td><code>G11_validator_all_checks_passed</code></td>
+              <td><code>vendor/gems57/validate.py</code> &amp; <code>submission_writer.py</code> pass all 15 format, CRS, &amp; range checks</td>
+              <td><code>15 / 15 checks True</code>, <code>n_nan = 0</code>, <code>min = 0.0</code>, <code>max = 1.0</code>, <code>dots = 37,654</code></td>
+              <td><strong>PASS</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
