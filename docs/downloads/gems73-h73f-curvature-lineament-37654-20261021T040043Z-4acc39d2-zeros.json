@@ -1,0 +1,41 @@
+{
+  "file": "gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+  "sha256": "27052259b8ba3b80d25cb2a6937998840f8682d639ecf37132dcf5b9dbea4187",
+  "sha256_short": "27052259",
+  "crs": "EPSG:32611",
+  "shape": [
+    3730,
+    3292
+  ],
+  "width": 3292,
+  "height": 3730,
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+  ],
+  "dtype": "float32",
+  "nodata": null,
+  "all_finite": true,
+  "nan_count": 0,
+  "in_footprint_min": 0.0,
+  "in_footprint_max": 1.0,
+  "outside_01_count": 0,
+  "emitted_positive_pixels": 37654,
+  "unique_values": [
+    0.0,
+    1.0
+  ],
+  "all_checks_passed": true,
+  "compress": "deflate",
+  "tiled": true
+}

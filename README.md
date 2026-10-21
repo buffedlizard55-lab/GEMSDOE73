@@ -37,6 +37,7 @@ gives exact DrivenData steps, the unique name + ≤140-char Note to paste, and t
 |---|---|---|
 | `gems73-h73-6-traceloc-x1-37654dots-20261021.tif` (session-2) | ✅ YES | 🚫 NO (NEGATIVE 0.0592 vs 0.0939) |
 | `gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif` (session-1) | ✅ YES | 🚫 NO (NEGATIVE 0.0548 vs 0.0939) |
+| `gems73-h73f-curvature-lineament-…-zeros.tif` (parallel PR #4) | ⚠️ review only | 🚫 NO (holdout NOT RUN) |
 | `gems73-h73a-blind-stepover-…-zeros.tif` (synthetic) | ⚠️ review only | 🚫 NO (no real holdout) |
 | `gems73-hydro-permeability-corridor-…-zeros.tif` (synthetic-demo) | ⚠️ review only | 🚫 NO (score void, IR-73-11) |
 
@@ -121,6 +122,9 @@ tests/              # 13 tests: metric identities, writer [0,1] bytes, emission,
 - **H73-6 session-2 (this lane)** — verdict NEGATIVE, see ⭐ section above.
 - **H73-1 session-1 (PR #3)** — piedmont micro-scarp chain, verdict NEGATIVE
   (0.0548 vs 0.0939; file sha256 `d09dca24…`; `docs/h73-1-piedmont.html`).
+- **H73-F curvature lineament (parallel session, PR #4)** — format-valid, holdout NOT RUN
+  (synthesis only per `registry/run_card_unique.json`); unique vs H73-6 (mutual 0.133).
+  Download-for-review only; **do not submit** until holdout-validated.
 - **H73-A / hydrothermal (pre-PR#3 mains)** — synthetic generators, no real holdout,
   promotion retracted (IR-73-10/11). Retained for provenance; **do not submit.**
 
