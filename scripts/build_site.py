@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Build the GitHub-Pages site in docs/ from evidence/run_card.json only."""
+"""Build the H73-1 lane page (docs/h73-1-piedmont.html) from evidence/run_card_h73-1.json.
+
+The site home/executive/sources pages belong to the merged main lanes; this
+builder only (re)writes the H73-1 lane page and its download receipts."""
 from __future__ import annotations
 
 import html
@@ -8,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-card = json.loads((ROOT / "evidence/run_card.json").read_text())
+card = json.loads((ROOT / "evidence/run_card_h73-1.json").read_text())
 cal = json.loads((ROOT / "evidence/instrument_calibration.json").read_text())
 tif = f"{card['submission_name']}.tif"
 zipn = f"{card['submission_name']}.zip"
@@ -49,7 +52,7 @@ override knowingly (see the report-only proxy below) — that decision is not ma
 </table>
 <p><a class="btn" href="downloads/{tif}">⬇ Download .tif (review only)</a>
 <a class="btn" href="downloads/{zipn}">⬇ Download .zip (single GeoTIFF inside)</a>
-<a class="btn" href="downloads/run_card.json">Run card (JSON)</a></p>
+<a class="btn" href="downloads/run_card_h73-1.json">Run card (JSON)</a></p>
 <p><b>Filename:</b> <code>{tif}</code><br>
 <b>Unique submission name:</b> <code>{card['submission_name']}</code><br>
 <b>Note to paste in the DrivenData “Note (optional)” field ({card['submission_note_chars']}/140 chars) — only if a selector overrides:</b><br>
@@ -58,7 +61,7 @@ override knowingly (see the report-only proxy below) — that decision is not ma
 single band float32 · EPSG:32611 · 3730×3292 · 37,654 dots · min {v['min']}, max {v['max']},
 {v['n_nan']} NaN in all 12,279,160 cells · CRS/shape/transform match the sample submission:
 <b>{v['crs_shape_transform_match_sample']}</b> · all validator checks passed:
-<b>{v['all_checks_passed']}</b> (<a href="downloads/validator.json">validator receipt</a>)</p>
+<b>{v['all_checks_passed']}</b> (<a href="downloads/validator_h73-1.json">validator receipt</a>)</p>
 <p class="small">Why this cannot trigger “Predicted values must be in range [0, 1]”: the file is written
 all-finite (0.0 outside the footprint, <code>nodata=None</code>), then re-opened from disk and every cell is
 checked finite and in [0,1] by the shared validator before delivery. See the
@@ -118,7 +121,7 @@ campaign. <b>Own the Outcome</b> — the gate failure is published, not buried. 
 exec_summary = f"""
 <h1>Executive summary — how to submit to the DOE GEMS Prize</h1>
 <div class="card bad"><p><b>For THIS repo's file: DO NOT SUBMIT</b> (verdict NEGATIVE, see
-<a href="index.html">home page</a>). The steps below are the exact, verified procedure for any
+<a href="index.html">site home (main lanes)</a>). The steps below are the exact, verified procedure for any
 candidate a selector promotes — including this file only under a knowing selector override.</p></div>
 <div class="card"><h2 style="margin-top:0">Step-by-step</h2>
 <ol>
@@ -128,7 +131,7 @@ candidate a selector promotes — including this file only under a knowing selec
 <b>New submission</b>.</li>
 <li><b>File to submit:</b> choose the .tif (or the single-GeoTIFF .zip). It must be single-band float32,
 EPSG:32611, 3730×3292, values in [0,1] — this repo's file is machine-checked for all of that
-(<a href="downloads/validator.json">receipt</a>, sha256 <code>{card['raster_sha256']}</code>).</li>
+(<a href="downloads/validator_h73-1.json">receipt</a>, sha256 <code>{card['raster_sha256']}</code>).</li>
 <li><b>Note (optional):</b> paste exactly ({card['submission_note_chars']}/140 chars):<br>
 <code>{html.escape(card['submission_note'])}</code></li>
 <li>Use the unique submission name <code>{card['submission_name']}</code> in your own ledger so the
@@ -178,11 +181,9 @@ number is presented as ORGANIZER-CONFIRMED without a receipt in hand.</p></div>
 <p><a href="index.html">← Back</a></p>
 """
 
-(DOCS / "index.html").write_text(page("GEMSDOE73 — H73-1 piedmont scarp-chain lane", index))
-(DOCS / "executive-summary.html").write_text(page("GEMSDOE73 — Executive summary", exec_summary))
-(DOCS / "sources.html").write_text(page("GEMSDOE73 — Official sources", sources))
+(DOCS / "h73-1-piedmont.html").write_text(page("GEMSDOE73 — H73-1 piedmont scarp-chain lane", index))
 (DOCS / ".nojekyll").write_text("")
 import shutil as _sh
-for _n in ("run_card.json", "validator.json"):
-    _sh.copy(ROOT / "evidence" / _n, DOCS / "downloads" / _n)
-print("site built:", [p.name for p in DOCS.glob("*.html")])
+_sh.copy(ROOT / "evidence" / "run_card_h73-1.json", DOCS / "downloads" / "run_card_h73-1.json")
+_sh.copy(ROOT / "evidence" / "validator.json", DOCS / "downloads" / "validator_h73-1.json")
+print("lane page built: docs/h73-1-piedmont.html")

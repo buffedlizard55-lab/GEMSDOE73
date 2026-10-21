@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble evidence/run_card.json from evidence files only (no hand-typed numbers)."""
+"""Assemble evidence/run_card_h73-1.json from evidence files only (no hand-typed numbers)."""
 from __future__ import annotations
 
 import hashlib
@@ -105,10 +105,11 @@ card = {
                        "format-valid and registry-unique and beats the champion on the report-only "
                        "SGMC-piedmont proxy, so it is kept as a selector-review discovery artifact; "
                        "do not spend a weekly slot on it without a knowing selector override."),
+    "uniqueness_vs_same_repo_main_lanes": (json.loads((EV / "uniqueness_main_lanes.json").read_text()) if (EV / "uniqueness_main_lanes.json").exists() else None),
     "weekly_slots_spent": 0,
     "organizer_score": None,
     "experiments_run": 3,
 }
 assert len(card["submission_note"]) == 125
-(EV / "run_card.json").write_text(json.dumps(card, indent=2) + "\n")
+(EV / "run_card_h73-1.json").write_text(json.dumps(card, indent=2) + "\n")
 print(json.dumps({k: card[k] for k in ("verdict", "download_ok", "submit_recommended", "raster_sha256")}, indent=2))

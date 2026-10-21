@@ -98,6 +98,29 @@
   "submit_recommended": false,
   "verdict": "negative",
   "verdict_reason": "E1/E2/E3 all failed the preregistered gate: best (E3) paired delta vs the fold-fair H33-analogue control is -0.0374 [-0.0555,-0.0202] on HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld px). E1 is not significantly above random on that instrument (+0.0064 [-0.0068,+0.0202]). The file is format-valid and registry-unique and beats the champion on the report-only SGMC-piedmont proxy, so it is kept as a selector-review discovery artifact; do not spend a weekly slot on it without a knowing selector override.",
+  "uniqueness_vs_same_repo_main_lanes": {
+    "evidence_class": "REGISTRY-MEASUREMENT (same-repo parallel lanes merged to main before this branch)",
+    "measured_with": "vendor/gems57/uniqueness.py dot_overlap (binary 1.0 dots, 3 px)",
+    "candidate": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif (37654 dots)",
+    "rows": [
+      {
+        "submission": "gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif (PR #1, main)",
+        "their_dots": 37654,
+        "forward_mine_within_3px_of_theirs": 0.0668,
+        "reverse": 0.0735,
+        "mutual_overlap": 0.0668
+      },
+      {
+        "submission": "gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif (PR #2, main)",
+        "their_dots": 30762,
+        "forward_mine_within_3px_of_theirs": 0.0432,
+        "reverse": 0.1565,
+        "mutual_overlap": 0.0432
+      }
+    ],
+    "pass_mutual_le_0.70": true,
+    "note": "Computed 2026-10-21 in this session from origin/main bytes after PR #3 initially failed to merge; values rounded to 4dp in this receipt, exact vendor call in session log."
+  },
   "weekly_slots_spent": 0,
   "organizer_score": null,
   "experiments_run": 3
