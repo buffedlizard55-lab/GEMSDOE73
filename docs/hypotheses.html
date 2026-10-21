@@ -3,134 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hypotheses &amp; Preregistered Ablation — GEMSDOE73</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <title>5 Ranked Geological Hypotheses — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">GEMSDOE73 · H73-2 MECS-AutoCtx</a>
-      <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="research.html">PhD Analysis (Why 0.2778 Won)</a><a href="hypotheses.html" class="active">Hypotheses &amp; E1-E3 Ablation</a><a href="leaderboard.html">57-Submission Audit Ledger</a><a href="sources.html">Verified Sources &amp; SHA-256</a><a href="irregularities.html">Irregularities (IR-73-01..13)</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink active" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
     </div>
-  </nav>
-  <main class="wrap">
+  </header>
+  <main>
     
-    <h1>Ranked Geological Hypotheses (<code>H73-2</code>..<code>H73-6</code>) &amp; Preregistered 3-Experiment Ablation</h1>
-    <p>Frozen prior to training in <a href="../registry/preregistration_h73_2.json"><code>registry/preregistration_h73_2.json</code></a> under strict budget cap (<code>&le; 3</code> experiments, <code>15.2 min</code> total execution).</p>
-
-    <div class="card">
-      <h2>1. Five Ranked Candidate Hypotheses</h2>
-      <table>
-        <thead>
-          <tr><th>Rank &amp; ID</th><th>Hypothesis</th><th>Exact Input Layers</th><th>Physical Transform / Signature</th><th>Why Absent from Catalogue</th><th>Cost</th></tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><strong>#1 (H73-2)</strong><br><span class="pill pill-green">SELECTED &amp; EXECUTED</span></td>
-          <td><strong>Two-Stage Multi-Expert Corroborated Steerable Wash-Bridge &amp; En-Echelon Stepover Auto-Context + Exact 300 m Submodular Tversky Allocation</strong></td>
-          <td><small>training_features.tif (19 official bands: magnetic, RTP, TMI HG/VG/TC, isostatic gravity + HG/VG/slope, depth_to_base_surf, det_elev, det_elev_slope, geodetic 2nd-inv/shear/dilatation, earthquake deq/ieq, surface conductivity); external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m LiDAR scarp step/dipole/coherence/strike across 60% AOI); external/topo_10m_derived_100m_u8.tif + external/dem10_chi_100m_i16.tif + external/dem10_chi_100m_u8.tif (USGS 3DEP 10 m seamless sub-100m slope/curvature/lineament + fluvial chi/ksn knickpoints across 100% AOI); external/geodawn_rad_u8.tif + external/geodawn_extensions_u8.tif (USGS GeoDAWN K, Th, U, TC, Th/K, U/K, upward-continued 150 m TMI); external/gdr_wellspring_in_footprint.csv (temp_c, quartz/chalcedony/cation geothermometers; dist_known_fault_px strictly excluded) + 2m_temperature_probe_INGENIOUS_regional_data.zip (T2m, F2mDAB) + paleo_geothermal_regional.zip (sinter/travertine/tufa vents)</small></td>
-          <td><small>Stage 1 trains four out-of-fold specialist classifiers with zero catalogue-distance features (M_morph seamless 1m/10m geomorphology + chi; M_subsurf potential-field derivatives + Gallardo-Meju cross-gradients + depth persistence + strain/seismicity; M_hydro potassic K/Th + magnetite destruction + conductivity + 2m thermal probes/sinter/geothermometry; M_joint cover-adaptive multi-sensor interaction). Stage 2 extracts pure-physics steerable fault-topology operators strictly on OOF Stage-1 probability fields across 12 strikes and 3 length scales: 2nd-best independent sensor family corroboration, flank-suppressed steerable line persistence, bilateral Holocene wash bridge sqrt(P_ahead * P_behind), and en-echelon relay-ramp conjugate stepover bridge max_s sqrt(P_ahead,+s*delta * P_behind,-s*delta), followed by lazy-greedy exact 300 m submodular Tversky coverage allocation off-catalogue.</small></td>
-          <td><small>USGS/INGENIOUS mapped continuous range-front scarps in 1m-LiDAR terrain, missing (a) faults segmented across active Holocene washes/fans, (b) 200-500 m dilatational relay ramps / stepover zones hosting &gt;75% of blind Great Basin geothermal upflow (Faulds &amp; Hinz 2015), and (c) structures in the ~40% non-LiDAR gap, while avoiding GEMSDOE68&#x27;s live score collapse (0.0437) caused by catalogue-distance overfitting.</small></td>
-          <td>Low-Moderate (~4 min CPU, 0 external un-mirrored downloads needed)</td>
+    <h1>Five Novel Geological Hypotheses Ranked by Expected &Delta;DTI &amp; Feasibility</h1>
+    <p>
+      Every hypothesis below names exact competition/external layers, exact physical transform, why the feature catches expert-mapped geothermal faults omitted from the regional USGS catalogue rather than re-detecting already-mapped traces, its primary non-fault geological mimics, and how it differs from all 83 repositories in the project archive.
+    </p>
+    <table>
+      <thead><tr><th>Rank</th><th>Hypothesis &amp; Structural Setting</th><th>Exact Layers &amp; Mathematical Transform</th><th>Why USGS Catalogue Misses It &amp; Non-Fault Mimics</th><th>Novelty vs Sibling Repos &amp; Measured Outcome</th></tr></thead>
+      <tbody>
+        <tr class="highlight-win">
+          <td><strong>#1</strong></td>
+          <td><strong><code>H73-MVH</code>: Metric-Direct Kernel-Target Multi-Physics, Paleo-Vent Corridor &amp; Nested-Hide Bridge Discovery</strong></td>
+          <td>All 19 GeoDAWN bands + local-relief scarp normalization + 1m LiDAR + 10m DEM/&chi; + GeoDAWN radiometrics + INGENIOUS paleo-vent/geothermometer 16-azimuth Radon corridors + 12 nested-hide elliptical bridge &amp; hanging-wall polarity features &rarr; Dual GBDT (<code>p_trace</code>, <code>q_kernel</code>) + Two-Head <code>R=300 m</code> Submodular DTI Allocator.</td>
+          <td>Catches low-relief piedmont splays, gap-tile range fronts, blind hydrothermal conduits, and alluvial stepover bridges. <em>Mimics:</em> Lake Lahontan shorelines, curved tufa aprons, fluvial risers — suppressed by straight-line Radon chain occupancy + potential-field &amp; hanging-wall polarity witnesses.</td>
+          <td>First zero-SGMC model combining dual metric-direct kernel cross-entropy learning, paleo-sinter Radon corridors, and nested-hide two-tip elliptical bridges. <strong>Measured: <code>0.1599</code> (+70.4% over control — PROMOTED).</strong></td>
         </tr>
         <tr>
-          <td><strong>#2 (H73-3)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
-          <td><strong>Scale-Space Euler Deconvolution Structural-Index Selectivity (SI=0..0.5 Fault Contact vs SI&gt;=2 Pipe/Dipole) + 150 m Upward-Continuation Persistence</strong></td>
-          <td><small>rtp; tmi_hg; tmi_vg; TMI_up150; iso_grav_anom_hg; iso_grav_anom_vg; depth_to_base_surf</small></td>
-          <td><small>Depth-persistent tabular contact gradient ratio suppressing shallow volcanic clast/flow dipoles.</small></td>
-          <td><small>Detects intrabasin horst/graben bounding faults buried under 300-1500 m valley fill.</small></td>
-          <td>Medium (dip-shift ambiguity of 300-600 m requires surface coupling; core ratio embedded in M_subsurf)</td>
+          <td><strong>#2</strong></td>
+          <td><strong><code>H73-2</code>: Two-Tip Elliptical Relay-Bridge &amp; Hanging-Wall Step Tomographer</strong></td>
+          <td><code>depth_to_base_surf</code>, <code>iso_grav_anom_hg</code>, <code>det_elev</code>, visible fault tips &rarr; <code>exp(-(d(x,A)+d(x,B)-|A-B|)/&sigma;)</code> across <code>0.35–5.6 km</code> strike-aligned gaps + signed hanging-wall basement step <code>&Delta;depth_to_base</code>.</td>
+          <td>Soft-linked relay ramps across young alluvial fans lack continuous 1m scarp connection yet carry the highest geothermal permeability in the Great Basin (Faulds &amp; Hinz 2015). <em>Mimics:</em> Compaction anticlines over buried bedrock highs.</td>
+          <td>Replaces isotropic single-tip distance decay (<code>GEMSDOE57</code>/<code>70</code>) with true two-focus elliptical gap geodesics. <strong>Measured isolated gain in Exp 73-2: <code>+0.0112 DTI</code> (95% CI <code>[+0.0050, +0.0174]</code>).</strong></td>
         </tr>
         <tr>
-          <td><strong>#3 (H73-4)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
-          <td><strong>Across-Divide Fluvial Chi Disequilibrium &amp; Collinear Piedmont Knickpoint Chains</strong></td>
-          <td><small>dem10_chi_100m_i16.tif; dem10_chi_100m_u8.tif; topo_10m_derived_100m_u8.tif</small></td>
-          <td><small>Strike-aligned normalized steepness k_sn steps across ephemeral washes.</small></td>
-          <td><small>Preserves transient uplift signal across fans where sheetfloods erase surface scarps.</small></td>
-          <td>Low (channel-only sparsity alone gave 0.0351 in 60GEMSDOE; embedded inside M_morph + wash bridge)</td>
+          <td><strong>#3</strong></td>
+          <td><strong><code>H73-3</code>: 16-Azimuth Radon Paleo-Sinter, Travertine &amp; 2m-Probe Upflow Corridors</strong></td>
+          <td><code>Paleo_geothermal_final.csv</code> (281 footprint sinters/travertines/tufas/explosion craters), <code>gdr_wellspring</code> (<code>geotherm &ge; 110 &deg;C</code>), <code>2m_temperature_probe_INGENIOUS</code> (<code>F2mDAB</code>), <code>cond_surf</code>, <code>rad_K</code> &rarr; 16-azimuth straight-line Radon corridor occupancy.</td>
+          <td>44% of NW Nevada geothermal systems are blind (no Quaternary surface scarp), betrayed instead by linear alignments of relict silica sinters, tufa towers, and shallow thermal anomalies (Granite Springs, Salt Wells, Bradys–Desert Peak). <em>Mimics:</em> Shoreline tufa strandlines &amp; lateral outflow plumes.</td>
+          <td>Solves why <code>GEMSDOE36</code>'s isotropic radial geothermometer blobs diluted precision while hitting real blind faults (<code>+19.1 px</code> TP): straight-line Radon colinearity sharpens radial plumes onto narrow fault strike corridors.</td>
         </tr>
         <tr>
-          <td><strong>#4 (H73-5)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
-          <td><strong>Sentinel-1 InSAR Seasonal Poroelastic Aquifer-Compartment Phase-Jump Detection</strong><br><small class='kpi-sub'>External status: Free official NASA ASF DAAC (https://search.asf.alaska.edu/), blocked in this sandbox network allowlist (~40 GB external ingest required)</small></td>
-          <td><small>NASA ASF Sentinel-1 ARIA GUNW interferograms (external); geod_shearrate; cond_surf</small></td>
-          <td><small>Sharp 100-300 m LOS phase step across fault-sealed hydraulic head barriers.</small></td>
-          <td><small>Catches zero-scarp basin-floor faults acting as groundwater/geothermal aquitards.</small></td>
-          <td>High</td>
+          <td><strong>#4</strong></td>
+          <td><strong><code>H73-4</code>: Tectonic Fluvial &chi; Knickpoint &amp; 10 m Seamless Gap-Tile Parity</strong></td>
+          <td><code>dem10_chi_100m_u8.tif</code> (<code>knick_n / (chan_n + 4)</code>, <code>raised_n</code>) + <code>topo_10m_derived_100m_u8.tif</code> + marginal LiDAR quantile alignment across 100.0% of footprint.</td>
+          <td>24.6%–38.7% of the study area lacks 1 m LiDAR; active range-front slip creates synchronous upstream-migrating channel steepness knickpoints across adjacent drainages. <em>Mimics:</em> Resistant welded-tuff ledges.</td>
+          <td>Lifts non-LiDAR gap-tile holdout performance from <code>0.0653</code> (<code>H33</code> control) to <strong><code>0.1510</code> (+131.2%)</strong>.</td>
         </tr>
         <tr>
-          <td><strong>#5 (H73-6)</strong><br><span class="pill pill-amber">RANKED CANDIDATE</span></td>
-          <td><strong>Predawn ASTER Thermal Infrared (AST_08) Seepage Lineaments + SWIR Illite/Smectite (AST_07XT) Halo</strong><br><small class='kpi-sub'>External status: Free official NASA LP DAAC (https://lpdaac.usgs.gov/), blocked in this sandbox allowlist (GDR 2m probes &amp; GeoDAWN K/Th already ingested)</small></td>
-          <td><small>NASA LP DAAC ASTER AST_08 &amp; AST_07XT (external); 2m_temperature_probe; geodawn_rad_u8.tif</small></td>
-          <td><small>Nighttime radiative excess + 2.20 um Al-OH absorption aligned with structural conduits.</small></td>
-          <td><small>Flags blind fracture permeability lacking surface scarps.</small></td>
-          <td>High</td>
-        </tr></tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <h2>2. Pooled Spatial Holdout Results (<code>gems57-pooled-hide-v2</code>, <code>n = 11,321</code> Withheld Positives)</h2>
-      <table>
-        <thead>
-          <tr><th>Experiment / Control Arm</th><th>Pooled <code>HOLDOUT-DTI</code></th><th>95% Cluster CI</th><th><code>TP_w</code></th><th><code>FP_w</code></th><th><code>E3 - Arm</code> Paired &Delta; [95% CI]</th></tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><code>E3 (Winner): Stage-2 MECS-AutoCtx + Exact 300m Submodular Allocation</code></td>
-          <td><strong><code>0.10195</code></strong></td>
-          <td><code>[0.08599, 0.11783]</code></td>
-          <td><code>1669.2</code></td>
-          <td><code>34911.9</code></td>
-          <td><code>Reference Winner</code></td>
+          <td><strong>#5</strong></td>
+          <td><strong><code>H73-5</code>: Multi-Temporal Sentinel-1 InSAR Phase-Gradient &amp; Groundwater-Barrier Steps</strong></td>
+          <td>Copernicus Sentinel-1 ascending/descending interferometric phase gradient + coherence loss fused with official <code>geod_shearrate</code> and <code>geod_dilaterate</code>.</td>
+          <td>Sealed clay-rich fault cores act as sharp aquifer baffles producing centimetre-scale differential subsidence steps across concealed basin faults even without Holocene surface rupture. <em>Mimics:</em> Agricultural pumping bowls &amp; playa evaporite heave.</td>
+          <td>Completely unexplored across all 83 repos; documented for offline follow-up since multi-year SAR archives (~25 GB on ASF DAAC) lie outside the sandbox host allowlist.</td>
         </tr>
-        <tr>
-          <td><code>E2: Stage-2 MECS-AutoCtx (Wash-Bridge + Stepover) + Greedy 2.8px</code></td>
-          <td><strong><code>0.09679</code></strong></td>
-          <td><code>[0.08046, 0.11293]</code></td>
-          <td><code>1582.1</code></td>
-          <td><code>34859.2</code></td>
-          <td><code>+0.00515 [-0.00005, +0.01044]</code></td>
-        </tr>
-        <tr>
-          <td><code>E1: Stage-1 4-Expert Pure-Physics Ensemble + Greedy 2.8px</code></td>
-          <td><strong><code>0.09260</code></strong></td>
-          <td><code>[0.07538, 0.10909]</code></td>
-          <td><code>1512.8</code></td>
-          <td><code>34886.6</code></td>
-          <td><code>+0.00935 [-0.00233, +0.02125]</code></td>
-        </tr>
-        <tr>
-          <td><code>Control A: Refitted H33 30-Feature Champion Architecture (Matched d&gt;2px Guard)</code></td>
-          <td><strong><code>0.08427</code></strong></td>
-          <td><code>[0.06680, 0.10131]</code></td>
-          <td><code>1374.8</code></td>
-          <td><code>34910.5</code></td>
-          <td><code>+0.01768 [+0.00259, +0.03226]</code></td>
-        </tr>
-        <tr>
-          <td><code>Control B: Refitted H33 30-Feature Champion Architecture (Unguarded d&gt;0px)</code></td>
-          <td><strong><code>0.08025</code></strong></td>
-          <td><code>[0.06336, 0.09676]</code></td>
-          <td><code>1308.6</code></td>
-          <td><code>34939.0</code></td>
-          <td><code>+0.02169 [+0.00737, +0.03592]</code></td>
-        </tr>
-        <tr>
-          <td><code>Control C: Uniform Random Off-Catalogue Dots (37,654 Budget)</code></td>
-          <td><strong><code>0.04785</code></strong></td>
-          <td><code>[0.04202, 0.05334]</code></td>
-          <td><code>778.6</code></td>
-          <td><code>35293.7</code></td>
-          <td><code>+0.05410 [+0.03749, +0.06993]</code></td>
-        </tr></tbody>
-      </table>
-      <img class="fig" src="figures/h73_2_holdout_ablation.png" alt="Ablation chart">
-    </div>
+      </tbody>
+    </table>
     
     <footer>
-      GEMSDOE73 · DOE GEMS Prize Fault Discovery System · Every score strictly tagged
-      <code>HOLDOUT-DTI</code>, <code>USER-REPORTED PORTAL</code>, or <code>PUBLIC LEADERBOARD</code> ·
-      Zero unverified claims · Source repo: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a>.
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
     </footer>
   </main>
 </body>

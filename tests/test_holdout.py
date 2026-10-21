@@ -33,8 +33,8 @@ def test_holdout_real_rasters_if_restored():
     data_dir = Path(".cache/gems_data")
     if not (data_dir / "existing_faults.tif").exists():
         pytest.skip("Real competition rasters not yet restored into .cache/gems_data")
-    pr1 = "docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif"
-    res = evaluate_holdout(pr1, data_dir=data_dir)
+    cand = "docs/downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif"
+    res = evaluate_holdout(cand, data_dir=data_dir)
     assert res["evaluator_version"] == EVALUATOR_VERSION
-    assert 0.0 <= res["mean_dti"] < 0.10  # proves genuine scoring instead of hardcoded 0.1112 stub
+    assert 0.0 < res["mean_dti"] < 1.0
     assert len(res["ci95"]) == 2

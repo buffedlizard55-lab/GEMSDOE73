@@ -40,7 +40,7 @@ from gems57 import (  # noqa: E402
     submission_writer as vendor_writer,
 )
 from gems73.emit import greedy_dots, submodular_dti_dots  # noqa: E402
-from gems73.features import FEATURE_NAMES, build_or_load_feature_bank  # noqa: E402
+from gems73.features_h73_2 import FEATURE_NAMES, build_or_load_feature_bank  # noqa: E402
 from gems73.submission import write_submission_geotiff  # noqa: E402
 from gems73.mecs import (  # noqa: E402
     STAGE2_FEATURE_NAMES,

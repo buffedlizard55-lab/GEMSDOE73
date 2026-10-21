@@ -1,5 +1,9 @@
 """Competition grid constants (verified 2026-10-21 from GEMSDOE32 shipped file)."""
+from pathlib import Path
+
 from affine import Affine
+import numpy as np
+import rasterio
 
 WIDTH, HEIGHT = 3292, 3730
 CRS = "EPSG:32611"
