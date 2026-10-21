@@ -1,0 +1,18 @@
+{
+  "path": "docs/downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
+  "sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
+  "bytes": 216930,
+  "crs": "EPSG:32611",
+  "width": 3292,
+  "height": 3730,
+  "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+  "dtype": "float32",
+  "nodata": null,
+  "finite_px": 12279160,
+  "positive_px": 30762,
+  "min": 0.0,
+  "max": 1.0,
+  "range_ok": true,
+  "portal_safe": true,
+  "validation": "PASSED all 7 checks (dimensions, band_count, crs, transform, dtype, in_footprint_range, portal_safe_whole_array)"
+}
