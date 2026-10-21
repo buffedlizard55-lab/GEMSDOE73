@@ -10,9 +10,9 @@
 
 ## Quick Start — Download the Submission
 
-**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) and click “Download the submission GeoTIFF”.** The executive summary at the top of the site explains exactly how to submit to DrivenData.
+**👉 Go to the [GitHub Pages site](https://buffedlizard55-lab.github.io/GEMSDOE73/) and click “Download the submission GeoTIFF” (H73-F curvature lineament ridge, primary).** The executive summary at the top of the site explains exactly how to submit to DrivenData.
 
-- Primary file: `docs/downloads/gems73-h73a-blind-stepover-20261020T230000Z-7f3c2a9e-zeros.tif` — all-finite, `0.0–1.0`, no nodata tag, `EPSG:32611`, `3292×3730`.
+- Primary file: `docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif` — all-finite, `0.0–1.0`, no nodata tag, `EPSG:32611`, `3292×3730`, 37,654 dots, sha256 `27052259b8ba3b80…`.
 - Also available as `.zip` (single GeoTIFF inside) and as `-nan.tif` twin (identical values inside footprint, `NaN` outside).
 - Each file ships a `checks-*.json` receipt produced by re-reading the written bytes.
 
