@@ -1,13 +1,14 @@
 """GEMSDOE73 — Emission & Submodular DTI Allocation Module.
 
-Exports both:
+Exports:
   - ``calibrate_1d_trace_posterior``, ``peak_nms_emit``, ``submodular_dti_emit`` (GEMSDOE73
-    Cross-Drainage 2D Dilated U-Net + Multi-Tree exact 300 m submodular lane)
+    Cross-Drainage 2D Dilated U-Net + H73-M Piedmont Co-Kriging exact 300 m submodular lanes)
   - ``greedy_dots`` (compatibility emitter for earlier GEMSDOE73 ablation tests)
 """
 from __future__ import annotations
 
 import heapq
+import math
 import sys
 from pathlib import Path
 
@@ -102,19 +103,29 @@ def submodular_dti_emit(
     allowed_mask: np.ndarray,
     n_dots: int = 37654,
     fp_penalty_weight: float = 0.0,
-    candidate_pool: int = 420000,
+    min_spacing_px: float = 0.0,
+    candidate_pool: int = 850_000,
 ) -> np.ndarray:
     """Exact lazy-greedy Minoux submodular maximizer of expected 300 m kernel coverage."""
     H, W = prob.shape
-    pad = 3
+    pad = max(3, int(math.ceil(min_spacing_px)) + 1)
     q_pad = np.zeros((H + 2 * pad, W + 2 * pad), dtype=np.float64)
     q_pad[pad : pad + H, pad : pad + W] = np.clip(np.where(np.isfinite(prob), prob, 0.0), 0.0, 1.0)
     cov_pad = np.zeros_like(q_pad)
+    blocked_pad = np.zeros((H + 2 * pad, W + 2 * pad), dtype=bool)
 
     dy = metric.OFF_DY.tolist()
     dx = metric.OFF_DX.tolist()
     kw = metric.OFF_K.tolist()
     n_off = len(kw)
+
+    blk_offsets: list[tuple[int, int]] = []
+    if min_spacing_px > 0.0:
+        r_blk = int(math.ceil(min_spacing_px))
+        for by in range(-r_blk, r_blk + 1):
+            for bx in range(-r_blk, r_blk + 1):
+                if math.hypot(by, bx) < min_spacing_px:
+                    blk_offsets.append((by, bx))
 
     init_tp = np.zeros((H, W), dtype=np.float64)
     q_self = np.zeros((H, W), dtype=np.float64)
@@ -147,6 +158,8 @@ def submodular_dti_emit(
         neg_upper, i = heapq.heappop(heap)
         cy = ys[i]
         cx = xs[i]
+        if blocked_pad[cy, cx]:
+            continue
         gain = 0.0
         for m in range(n_off):
             ny = cy + dy[m]
@@ -159,6 +172,9 @@ def submodular_dti_emit(
 
         if not heap or (-exact_u <= heap[0][0] + 1e-15):
             out[cy - pad, cx - pad] = 1.0
+            blocked_pad[cy, cx] = True
+            for by, bx in blk_offsets:
+                blocked_pad[cy + by, cx + bx] = True
             for m in range(n_off):
                 ny = cy + dy[m]
                 nx = cx + dx[m]
@@ -169,7 +185,25 @@ def submodular_dti_emit(
         else:
             heapq.heappush(heap, (-exact_u, i))
 
-    assert selected == int(n_dots), f"Selected {selected} < {n_dots}"
+    if selected < n_dots:
+        rem_mask = allowed_mask & (out < 0.5) & (~blocked_pad[pad : pad + H, pad : pad + W])
+        rem_idx = np.flatnonzero(rem_mask)
+        rem_scores = u0.ravel()[rem_idx]
+        order = np.argsort(-rem_scores)
+        for idx_flat in rem_idx[order].tolist():
+            if selected >= n_dots:
+                break
+            ry = idx_flat // W + pad
+            rx = idx_flat % W + pad
+            if blocked_pad[ry, rx]:
+                continue
+            out[ry - pad, rx - pad] = 1.0
+            blocked_pad[ry, rx] = True
+            for by, bx in blk_offsets:
+                blocked_pad[ry + by, rx + bx] = True
+            selected += 1
+
+    assert int((out > 0.5).sum()) == int(n_dots), f"Expected {n_dots}, got {int((out > 0.5).sum())}"
     return out
 
 

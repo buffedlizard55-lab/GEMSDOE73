@@ -17,6 +17,8 @@
   <nav>
     <a class="active" href="index.html">Overview &amp; Download</a>
     <a href="executive-summary.html">Executive Summary (How to Submit)</a>
+    <a href="h73m-regime-cokrig.html">H73-M Lane (#1 C_pied)</a>
+    <a href="h73-7-hardfault.html">H73-7 Lane</a>
     <a href="method.html">PhD Forensic Analysis &amp; Method</a>
     <a href="hypotheses.html">5 Ranked Hypotheses</a>
     <a href="verification.html">Verification &amp; Uniqueness</a>
@@ -125,7 +127,15 @@
       verdict <strong>PROMOTE to selector</strong> under its own preregistration, 0 slots auto-spent.
       Note for the portal (105/140): <code>G73 H73-7 E1 hard-fault PU-HGB 37654 dots; HOLDOUT-DTI 0.1369 vs ctrl 0.0939 - beat ctrl, selector review</code> ·
       <a href="h73-7-hardfault.html">lane page</a> · <a href="downloads/run_card_h73-7.json">run card</a> · <a href="downloads/gems73-h73-7-hardfault-pu-e1-37654dots-20261021.zip" download>.zip</a>.
-      Transfer caveat: Instrument-A truth is withheld catalogue segments, which structurally favours catalogue-supervised lanes (this one and the Primary alike); no live score is claimed for either.
+      <dt>Orthogonal Piedmont Co-Kriging Companion — parallel lane H73-M (merged 2026-10-21 · #1 All-Time Instrument C<sub>pied</sub>)</dt>
+      <dd><a href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download><code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code></a>
+      (3-expert 4-quadrant LOQO piedmont co-kriging + fold-safe transtensional wing-bridge + radius-matched <code>d_min = 3.0 px</code> 300 m submodular DTI, 85 physical features, preregistered) ·
+      <code>HOLDOUT-DTI (Instrument A, gems57-pooled-hide-v2, 11,321 withheld) = 0.1224 [0.1072, 0.1390]</code> vs fold-fair H33-analogue control <code>0.0939</code> (paired Δ +0.0285 [+0.0154, +0.0419], +30.4%) ·
+      <strong>All-Time #1 on Live-Calibrated Piedmont <code>Instrument C_pied = 0.1435 [0.1237, 0.1601]</code></strong> (+53.2% vs H33 <code>0.0937</code>) and <code>Instrument B′ = 0.1212 [0.1051, 0.1361]</code> (+29.2% vs H33).
+      Mutual &amp; forward 3-px overlap ≤ 0.6677 across all 167 sparse rasters (vs Primary <code>0.5577</code>, vs H73-corrob <code>0.4179</code>, vs H73-7 <code>0.3035</code>, vs H33 <code>0.4186</code>);
+      SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code> · verdict <strong>PROMOTE to selector</strong>, 0 slots auto-spent.
+      Note for the portal (130/140): <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code> ·
+      <a href="h73m-regime-cokrig.html">H73-M lane page</a> · <a href="downloads/run_card_h73m.json">run card</a> · <a href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>.zip</a> · <a href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>-nan.tif</a>.</dd>
     </dl>
 
     <div class="callout">
@@ -209,6 +219,15 @@
           <td><strong>0.2063</strong> [0.1873, 0.2254]</td>
           <td><strong>0.0996</strong> [0.0865, 0.1129]</td>
           <td>0.0869 [0.0781, 0.0967]</td>
+        </tr>
+        <tr>
+          <td><strong>★ H73-M M3: 3-Expert LOQO Piedmont Co-Kriging + Wing-Bridge + d<sub>min</sub>=3.0 Submod</strong></td>
+          <td><strong>37,654</strong></td>
+          <td>Piedmont Expert Only (20%)</td>
+          <td><strong>0.1224</strong> [0.1072, 0.1390]</td>
+          <td>—</td>
+          <td><strong>0.1435</strong> [0.1237, 0.1601]</td>
+          <td><strong>0.1212</strong> [0.1051, 0.1361]</td>
         </tr>
         <tr>
           <td>Exp-73-2: 24-Ch 2D Multi-Scale Dilated U-Net + 7×7 Peak NMS (Ablation 2)</td>
