@@ -110,3 +110,13 @@ def dti_binary(pred_bool, truth, valid=None, known=None, alpha=ALPHA, beta=BETA)
 def marginal_bar(current_dti: float, alpha: float = ALPHA) -> float:
     """k > alpha*DTI required for an added dot to improve DTI."""
     return alpha * current_dti
+
+
+def dti_fast(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> float:
+    """Scalar DTI helper supporting the empty-truth identity convention (1.0 when both empty)."""
+    p = np.asarray(pred, dtype=np.float64)
+    g = np.asarray(truth) > 0
+    if not g.any():
+        return 1.0 if float(np.nan_to_num(p, nan=0.0).sum()) == 0.0 else 0.0
+    return float(dti_exact(p, g, valid=valid, known=known, alpha=alpha, beta=beta)["dti"])
+

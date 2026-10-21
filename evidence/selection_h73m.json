@@ -1,0 +1,83 @@
+{
+  "lane": "H73-M",
+  "best_experiment": "M3",
+  "best_holdout_dti": 0.12239034907157308,
+  "best_holdout_ci95": [
+    0.1072497323614954,
+    0.13901028753045425
+  ],
+  "h33_analogue_foldfair_dti": 0.09388628086150866,
+  "h33_analogue_foldfair_ci95": [
+    0.0812831705886052,
+    0.10763389298405551
+  ],
+  "h73_1_e1_foldfair_dti": 0.05476916038055671,
+  "random_control_dti": 0.04866448734471363,
+  "paired_delta_vs_h33_analogue_foldfair": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.028504068210064418,
+    "ci95": [
+      0.015403753870787063,
+      0.04192448357142431
+    ],
+    "withheld_positive_pixels": 11321
+  },
+  "paired_delta_vs_h73_1_e1": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.06762118869101637,
+    "ci95": [
+      0.05119999979901616,
+      0.08480127723794323
+    ],
+    "withheld_positive_pixels": 11321
+  },
+  "paired_delta_vs_h33_static": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.1186905673859435,
+    "ci95": [
+      0.10352383342161116,
+      0.13491457137009283
+    ],
+    "withheld_positive_pixels": 11321
+  },
+  "beats_control_ci_excluding_0": true,
+  "canaries_all_pass": true,
+  "max_canary_symmetric_auc": 0.794961,
+  "c_pied_dti": 0.14354112650983172,
+  "c_pied_ci95": [
+    0.12366505717396059,
+    0.16010931861418232
+  ],
+  "c_pied_paired_vs_h33": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.0498678935148851,
+    "ci95": [
+      0.03192730512359741,
+      0.06564058081095439
+    ],
+    "withheld_positive_pixels": 9949
+  },
+  "b_prime_dti": 0.12118314164067738,
+  "b_prime_ci95": [
+    0.10509436985108514,
+    0.1360796160426256
+  ],
+  "b_prime_paired_vs_h33": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.02741257302575277,
+    "ci95": [
+      0.013461851707292657,
+      0.04078519048665799
+    ],
+    "withheld_positive_pixels": 59937
+  },
+  "production_dots": 37654,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "runtime_s": 120.9
+}

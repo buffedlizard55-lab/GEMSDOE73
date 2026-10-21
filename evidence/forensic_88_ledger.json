@@ -1,0 +1,66 @@
+{
+  "exact_nested_deletion_chain_proof": {
+    "D2_8_score": 0.26,
+    "D2_8_dots": 44090,
+    "H27_4_score": 0.2708,
+    "H27_4_dots": 40199,
+    "H27_4_deleted_0_to_1px": 3891,
+    "H27_4_gain_per_deleted_dot": 2.776e-06,
+    "H33_2_B2_score": 0.2778,
+    "H33_2_B2_dots": 37654,
+    "H33_2_B2_deleted_1_to_2px": 2545,
+    "H33_2_B2_gain_per_deleted_dot": 2.75e-06,
+    "implied_H33_TP_w_px": 5223.1,
+    "implied_public_hidden_fault_pixels_G_pub": 13182,
+    "remaining_dead_weight_dots_in_2_to_3px_inside_H33": 2171,
+    "theoretical_free_upside_from_removing_2_to_3px_alone": 0.0058,
+    "GEMSDOE36_delta_dots": 1200,
+    "GEMSDOE36_zero_hit_predicted_score": 0.2743,
+    "GEMSDOE36_actual_live_score": 0.275,
+    "GEMSDOE36_implied_real_geothermal_TP_gain_px": 19.1
+  },
+  "key_live_submissions": [
+    {
+      "name": "GEMSDOE32 \u2014 H33-2-B2 (Group #1 Champion)",
+      "cache_file": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9.tif",
+      "live_score_owner_report": 0.2778,
+      "score_provenance": "OWNER-REPORT (DrivenData public leaderboard log)",
+      "nonzero_pixels": 37654,
+      "probability_mass": 37654.0,
+      "dots_0_to_2px": 0,
+      "dots_2_to_3px": 2171,
+      "dots_3_to_15px": 13494,
+      "dots_gt_15px": 21989,
+      "piedmont_share": 0.0912,
+      "lidar_tile_share": 0.7642
+    },
+    {
+      "name": "GEMSDOE24 \u2014 D2.8 Uncensored H19-5 Base",
+      "cache_file": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8.tif",
+      "live_score_owner_report": 0.26,
+      "score_provenance": "OWNER-REPORT (DrivenData public leaderboard log)",
+      "nonzero_pixels": 44090,
+      "probability_mass": 44090.0,
+      "dots_0_to_2px": 6436,
+      "dots_2_to_3px": 2171,
+      "dots_3_to_15px": 13494,
+      "dots_gt_15px": 21989,
+      "piedmont_share": 0.0891,
+      "lidar_tile_share": 0.772
+    },
+    {
+      "name": "19GEMSDOE \u2014 H19-5 Multi-Scale Openness Base",
+      "cache_file": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d.tif",
+      "live_score_owner_report": 0.2367,
+      "score_provenance": "OWNER-REPORT (DrivenData public leaderboard log)",
+      "nonzero_pixels": 121131,
+      "probability_mass": 121131.0,
+      "dots_0_to_2px": 17326,
+      "dots_2_to_3px": 6841,
+      "dots_3_to_15px": 37373,
+      "dots_gt_15px": 59591,
+      "piedmont_share": 0.0848,
+      "lidar_tile_share": 0.764
+    }
+  ]
+}

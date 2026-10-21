@@ -1,0 +1,42 @@
+{
+  "lane": "H73",
+  "candidates": [
+    {
+      "id": "H73-A",
+      "rank": 1,
+      "executed_as": "Exp_73.3",
+      "status": "PROMOTED",
+      "holdout_dti_inst_a": 0.11223012667702426,
+      "holdout_dti_inst_c_pied_all": 0.14128312449799157
+    },
+    {
+      "id": "H73-B",
+      "rank": 2,
+      "executed_as": "Exp_73.1",
+      "status": "ABLATION_BASELINE",
+      "holdout_dti_inst_a": 0.0903335,
+      "holdout_dti_inst_c_pied_all": 0.1031656
+    },
+    {
+      "id": "H73-C",
+      "rank": 3,
+      "executed_as": "Exp_73.2",
+      "status": "ABLATION_NMS28",
+      "holdout_dti_inst_a": 0.1075498,
+      "holdout_dti_inst_c_pied_all": 0.1412485
+    },
+    {
+      "id": "H73-D",
+      "rank": 4,
+      "executed_as": "Feature_Col_45_in_H73-A..C",
+      "status": "INTEGRATED_FEATURE",
+      "single_feature_auc_b_prime": 0.5356
+    },
+    {
+      "id": "H73-E",
+      "rank": 5,
+      "executed_as": "Not_Run_External_Egress_Blocked",
+      "status": "DOCUMENTED_FUTURE_LANE"
+    }
+  ]
+}

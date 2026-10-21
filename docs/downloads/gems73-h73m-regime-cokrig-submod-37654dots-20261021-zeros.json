@@ -1,0 +1,212 @@
+{
+  "file": "gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif",
+  "sha256": "ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe",
+  "bytes": 142737,
+  "submission_name": "gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros",
+  "note": "G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939",
+  "note_chars": 130,
+  "validator": {
+    "file": "/home/user/GEMSDOE73/docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif",
+    "bytes": 142737,
+    "sha256": "ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE73/docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif",
+    "bytes": 142737,
+    "sha256": "ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip",
+  "zip_sha256": "f5eb5816d90242c11e71542790dac2eddba9f9ace16acda40a4a9b882ea17a50",
+  "approved_for_weekly_slot": true,
+  "promoted": true,
+  "submission_slots_used": 0,
+  "status": "PROMOTED \u2014 passed HOLDOUT-DTI gate (0.1224 vs 0.0939 control, paired 95% CI [+0.0154, +0.0419]), all 85 leakage canaries (max sym AUC 0.7950 <= 0.90), all 15 GeoTIFF validator checks, and 161-raster registry uniqueness gate (mutual & sparse forward 3px overlap 0.6677 <= 0.70, Spearman 0.1329 <= 0.90).",
+  "metadata": {
+    "experiment": "M3",
+    "lane": "H73-M",
+    "selection": {
+      "lane": "H73-M",
+      "best_experiment": "M3",
+      "best_holdout_dti": 0.12239034907157308,
+      "best_holdout_ci95": [
+        0.1072497323614954,
+        0.13901028753045425
+      ],
+      "h33_analogue_foldfair_dti": 0.09388628086150866,
+      "h33_analogue_foldfair_ci95": [
+        0.0812831705886052,
+        0.10763389298405551
+      ],
+      "h73_1_e1_foldfair_dti": 0.05476916038055671,
+      "random_control_dti": 0.04866448734471363,
+      "paired_delta_vs_h33_analogue_foldfair": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.028504068210064418,
+        "ci95": [
+          0.015403753870787063,
+          0.04192448357142431
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "paired_delta_vs_h73_1_e1": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.06762118869101637,
+        "ci95": [
+          0.05119999979901616,
+          0.08480127723794323
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "paired_delta_vs_h33_static": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.1186905673859435,
+        "ci95": [
+          0.10352383342161116,
+          0.13491457137009283
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "beats_control_ci_excluding_0": true,
+      "canaries_all_pass": true,
+      "max_canary_symmetric_auc": 0.794961,
+      "c_pied_dti": 0.14354112650983172,
+      "c_pied_ci95": [
+        0.12366505717396059,
+        0.16010931861418232
+      ],
+      "c_pied_paired_vs_h33": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.0498678935148851,
+        "ci95": [
+          0.03192730512359741,
+          0.06564058081095439
+        ],
+        "withheld_positive_pixels": 9949
+      },
+      "b_prime_dti": 0.12118314164067738,
+      "b_prime_ci95": [
+        0.10509436985108514,
+        0.1360796160426256
+      ],
+      "b_prime_paired_vs_h33": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.02741257302575277,
+        "ci95": [
+          0.013461851707292657,
+          0.04078519048665799
+        ],
+        "withheld_positive_pixels": 59937
+      },
+      "production_dots": 37654,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "runtime_s": 120.9
+    },
+    "verdict": "promote",
+    "download_ok": true,
+    "submit_recommended": true
+  },
+  "nan_companion_file": "gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif",
+  "nan_companion_sha256": "923e2aecd972af1854a52fe83971d43707e578bb765eef224ea159c3ee899678",
+  "nan_companion_bytes": 185788
+}

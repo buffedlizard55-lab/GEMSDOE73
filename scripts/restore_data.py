@@ -34,28 +34,44 @@ def fetch(repo: str, ref: str, path: str, dest: Path) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".partial")
     try:
-        if shutil.which("gh"):
-            with tmp.open("wb") as out:
-                subprocess.run(
-                    [
-                        "gh",
-                        "api",
-                        f"repos/{repo}/contents/{path}?ref={ref}",
-                        "-H",
-                        "Accept: application/vnd.github.raw",
-                    ],
-                    stdout=out,
-                    check=True,
-                )
-        else:
-            import requests
+        # Prefer zero-rate-limit streaming tarball extraction via codeload.github.com first
+        import tarfile
+        import urllib.request
 
-            url = f"https://raw.githubusercontent.com/{repo}/{ref}/{path}"
-            with requests.get(url, stream=True, timeout=120) as r:
-                r.raise_for_status()
+        tar_url = f"https://codeload.github.com/{repo}/tar.gz/{ref}"
+        found_member = False
+        try:
+            req = urllib.request.Request(tar_url, headers={"User-Agent": "gemsdoe73-restore/1.0"})
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                with tarfile.open(fileobj=resp, mode="r|gz") as tf:
+                    for m in tf:
+                        rel = m.name.split("/", 1)[1] if "/" in m.name else m.name
+                        if rel == path and m.isfile():
+                            fobj = tf.extractfile(m)
+                            if fobj is not None:
+                                with tmp.open("wb") as out:
+                                    shutil.copyfileobj(fobj, out, 1 << 20)
+                                found_member = True
+                            break
+        except Exception:
+            found_member = False
+
+        if not found_member:
+            if shutil.which("gh"):
                 with tmp.open("wb") as out:
-                    for chunk in r.iter_content(1 << 20):
-                        out.write(chunk)
+                    subprocess.run(
+                        [
+                            "gh",
+                            "api",
+                            f"repos/{repo}/contents/{path}?ref={ref}",
+                            "-H",
+                            "Accept: application/vnd.github.raw",
+                        ],
+                        stdout=out,
+                        check=True,
+                    )
+            else:
+                raise RuntimeError(f"Could not fetch {repo}@{ref}:{path}")
         tmp.replace(dest)
     finally:
         tmp.unlink(missing_ok=True)

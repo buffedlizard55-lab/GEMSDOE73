@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>80-Raster Uniqueness, 49-Feature Canaries &amp; Official Sources — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">GEMSDOE73 &middot; Uniqueness, Canaries &amp; Official Sources</div>
+    <div class="links">
+      <a href="index.html">Home &amp; Download</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="h33-autopsy.html">GEMSDOE32 (0.2778) Autopsy</a>
+      <a href="hypotheses-and-ablation.html">5 Hypotheses &amp; 3-Exp Ablation</a>
+      <a class="active" href="audit-and-sources.html">80-Raster Uniqueness, Canaries &amp; Sources</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="verdict-banner">
+      <div class="verdict-header">
+        <span class="badge-promote">&#10003; PROMOTE &mdash; YES, OK TO DOWNLOAD &amp; SUBMIT</span>
+        <span class="badge-class">80 / 80 Registry Rasters Unique &middot; 49 / 49 Canaries Clean</span>
+      </div>
+      <div class="download-grid">
+        <a class="btn-download" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif" download>
+          &#11015; Download Primary GeoTIFF (-zeros.tif &middot; 142,140 B)
+        </a>
+        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.zip" download>
+          &#11015; Download ZIP (.zip &middot; 107,256 B)
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. 80-Raster Uniqueness Audit (Pre-Placement Continuous Surface &amp; Final Binary Dots)</h2>
+      <p>
+        Per Parallel-Run Protocol Rule 1, uniqueness was audited against all <strong>80 deduplicated historical prediction rasters</strong> (<code>88</code> <code>.tif</code> files across <code>6GEMSDOE</code> through <code>GEMSDOE72</code>) on <strong>both</strong> the continuous posterior surface before dot placement and the final <code>37,654</code> binary dots:
+      </p>
+      <ul>
+        <li><strong>Pre-Placement Continuous Surface (<code>S_73.2</code>):</strong> Worst full-footprint Spearman <code>|&rho;| = 0.1688 &le; 0.90</code> (vs <code>19GEMSDOE__h19-4-multiline-corroborated.tif</code>); <code>unique = true</code>; <code>duplicate_count = 0</code>.</li>
+        <li><strong>Final Binary Dots (<code>37,654</code> dots):</strong> Worst full-footprint Spearman <code>|&rho;| = 0.0731 &le; 0.90</code>; worst symmetric mutual 3-px overlap <code>= 0.6617 &le; 0.70</code> (vs <code>gems70-p5-dual-submod300-oof38k-20261020.tif</code>); worst non-lattice one-way forward 3-px overlap <code>= 0.6895 &le; 0.70</code> (vs <code>calib_h161_01855.tif</code>); 3-px overlap vs <code>GEMSDOE32 H33</code> (<code>0.2778</code>) <code>= 0.5748 &le; 0.70</code>; 3-px overlap vs <code>GEMSDOE70 P5</code> <code>= 0.5432 &le; 0.70</code>.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>2. Official Verified Primary Sources &amp; Provenance Table</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Source / Dataset</th>
+              <th>Official Citation &amp; Verified Link</th>
+              <th>Role in <code>GEMSDOE73</code></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DrivenData DOE GEMS Competition</td>
+              <td><a href="https://www.drivendata.org/competitions/311/doe-gems/" target="_blank" rel="noopener">DrivenData Competition #311: DOE GEMS — Reveal Hidden Faults</a></td>
+              <td>Official problem definition, <code>EPSG:32611</code> grid (<code>3730 &times; 3292</code> @ <code>100 m</code>), 300 m DTI metric (<code>&alpha;=0.2, &beta;=0.8</code>)</td>
+            </tr>
+            <tr>
+              <td>DrivenData Forum Topic 11516 Post #4</td>
+              <td><a href="https://community.drivendata.org/t/known-faults-in-target-for-test-eval/11516/4" target="_blank" rel="noopener">Organizer Confirmation: Known Faults in Target for Test Eval (Oct 2025)</a></td>
+              <td>Confirms known faults are masked at exact pixel coordinates (motivating <code>d_cat &gt; 2.05 px</code> flank collar)</td>
+            </tr>
+            <tr>
+              <td>OpenEI GDR Submission #1734 (INGENIOUS)</td>
+              <td><a href="https://gdr.openei.org/submissions/1734" target="_blank" rel="noopener">OpenEI Geothermal Data Repository #1734: Great Basin INGENIOUS Dataset</a></td>
+              <td>Source of 19-band <code>training_features.tif</code>, <code>existing_faults.tif</code>, 2 m temperature probes, and paleo-geothermal sinter</td>
+            </tr>
+            <tr>
+              <td>OpenEI GDR Submission #1391</td>
+              <td><a href="https://gdr.openei.org/submissions/1391" target="_blank" rel="noopener">OpenEI GDR #1391: Great Basin Thermal Springs, Wells &amp; Geothermometry</a></td>
+              <td>Source of thermal spring/well coordinates and quartz/chalcedony/Na-K-Ca geothermometers in Line 3</td>
+            </tr>
+            <tr>
+              <td>USGS SGMC (DS-1052)</td>
+              <td><a href="https://doi.org/10.3133/ds1052" target="_blank" rel="noopener">Horton et al. (2017), USGS Data Series 1052: State Geologic Map Compilation</a></td>
+              <td>Source of <code>sgmc_faults_100m.tif</code> (used strictly as held-in OOF target for <code>M_pied</code> and <code>M_bed</code> and off-catalogue evaluation)</td>
+            </tr>
+            <tr>
+              <td>USGS 3DEP 1 m LiDAR &amp; 10 m DEM</td>
+              <td><a href="https://www.usgs.gov/3d-elevation-program" target="_blank" rel="noopener">U.S. Geological Survey 3D Elevation Program (3DEP)</a></td>
+              <td>Source of <code>lidar_scarp_features_u8.tif</code>, <code>topo_10m_derived_100m_u8.tif</code>, <code>dem10_chi_100m_{i16,u8}.tif</code></td>
+            </tr>
+            <tr>
+              <td>USGS GeoDAWN Airborne Geophysics</td>
+              <td><a href="https://www.usgs.gov/centers/gggsc/science/geodawn" target="_blank" rel="noopener">USGS GeoDAWN Radiometric &amp; High-Resolution Aeromagnetic Surveys</a></td>
+              <td>Source of <code>geodawn_extensions_u8.tif</code> (<code>Th/K</code>, <code>U/K</code> radiometric ratios and <code>TMI_150m</code>)</td>
+            </tr>
+            <tr>
+              <td>US Census Bureau TIGER/Line Roads</td>
+              <td><a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html" target="_blank" rel="noopener">US Census Bureau TIGER/Line Primary &amp; Secondary Roads</a></td>
+              <td>Source of <code>tiger_road_distance_m.tif</code> road-embankment de-confounder (Col 44)</td>
+            </tr>
+            <tr>
+              <td>Perron &amp; Royden (2013) Fluvial <code>&chi;</code> Integral</td>
+              <td><a href="https://doi.org/10.1002/esp.3302" target="_blank" rel="noopener">Perron &amp; Royden (2013), Earth Surface Processes and Landforms 38(6), 570&ndash;576</a></td>
+              <td>Theoretical basis for integral drainage-area-transformed channel steepness <code>k_sn</code> and knickzone steps (Col 41)</td>
+            </tr>
+            <tr>
+              <td>Gallardo &amp; Meju (2004) Cross-Gradients</td>
+              <td><a href="https://doi.org/10.1029/2003JB002771" target="_blank" rel="noopener">Gallardo &amp; Meju (2004), Journal of Geophysical Research: Solid Earth 109(B3)</a></td>
+              <td>Theoretical basis for gravity-magnetic structural coupling <code>|&nabla;g &middot; &nabla;RTP|</code> vs <code>|&nabla;g &times; &nabla;RTP|</code> (Cols 22&ndash;23)</td>
+            </tr>
+            <tr>
+              <td>Minoux (1978) Lazy-Greedy Submodular Cover</td>
+              <td><a href="https://doi.org/10.1007/BFb0006528" target="_blank" rel="noopener">Minoux (1978), Optimization Techniques, Lecture Notes in Control and Information Sciences 7, 234&ndash;243</a></td>
+              <td>Theoretical basis for accelerated lazy-greedy maximization of the monotone submodular 300 m kernel coverage objective</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

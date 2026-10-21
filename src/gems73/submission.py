@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
+from .grid import WIDTH, HEIGHT, CRS, TRANSFORM
 
 from .grid import CRS, HEIGHT, TRANSFORM, WIDTH
 

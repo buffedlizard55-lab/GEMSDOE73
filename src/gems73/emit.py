@@ -11,6 +11,7 @@ from __future__ import annotations
 import heapq
 
 import numpy as np
+from scipy.ndimage import gaussian_filter, maximum_filter
 
 # Exact 300 m (3.0 px) positive triangular kernel support: 29 offsets where hypot(dy, dx) < 3.0
 KERNEL_300M: tuple[tuple[int, int, float], ...] = tuple(

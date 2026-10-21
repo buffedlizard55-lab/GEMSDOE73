@@ -8,3 +8,4 @@ score,evidence_class,artifact_or_participant,source
 0.2478,OWNER-REPORT (brief),gems70-p5-dual-submod300-oof38k-20261020,https://buffedlizard55-lab.github.io/GEMSDOE70/
 0.1922,OWNER-REPORT (brief),h19-5 solid (121131 px),https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html
 ,HOLDOUT-DTI gems57-pooled-hide-v2 n=11321 (NOT a live score),gems73 E1 = 0.0548 [0.0417-0.0688] vs control 0.0939,evidence/run_card_h73-1.json
+,HOLDOUT-DTI gems57-pooled-hide-v2 n=11321 (NOT a live score),gems73 H73-7 E1 = 0.1369 [0.1158-0.1577] vs fold-fair H33-analogue ctrl 0.0939 delta +0.0430 [0.0230-0.0627],evidence/run_card_h73-7.json

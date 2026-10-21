@@ -11,7 +11,7 @@
 
 ---
 
-## Core Values
+### Unified Tournament Across All Parallel `GEMSDOE73` Lanes (`gems57-pooled-hide-v2`, `n = 11,321` Withheld Positives)
 
 - **Maximize P(Win):** Every weekly DrivenData submission slot is a scarce scientific experiment. We forbid catalogue-proximity shortcuts that inflate spatial holdout while collapsing `6x–50x` on live test (`GEMSDOE68 = 0.0437`), validate strictly on buffered whole-segment spatial blocks (`gems57-pooled-hide-v2`, `n = 11,321` withheld positive pixels), verify full-registry uniqueness across all `78` `GEMSDOE` repositories (`949` grid rasters), and only promote when a preregistered experiment beats the refitted `H33` champion architecture with statistically significant paired cluster-bootstrap confidence (`95% CI > 0`).
 - **Own the Outcome:** Line-by-line audit of inherited `GEMSDOE73` code uncovered and fixed critical pre-existing defects — including a green `"Submit"` banner on an RNG synthetic raster scoring `0.0015` real `HOLDOUT-DTI` (**`IR-73-10`**), a hardcoded `0.1112` synthetic stub in `src/gems73/holdout.py` masking a `57%` out-of-footprint bug scoring `0.0271` (**`IR-73-11`**), broken unit tests (**`IR-73-09`**), a dead README download link (**`IR-73-12`**), and an incomplete 77-raster uniqueness scan (**`IR-73-07`**).
