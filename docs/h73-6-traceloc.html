@@ -1,0 +1,108 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE73 — H73-6 traceloc lane</title><link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><div class="wrap"><h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1><nav>
+<a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a>
+<a href="h73-6-traceloc.html">H73-6 lane (new)</a> <a href="h73-1-piedmont.html">H73-1 lane</a>
+<a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a>
+<a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a>
+<a href="irregularities.html">Irregularities</a></nav></div></header>
+<div class="wrap"><p class="mut"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment.
+<b>Own the Outcome</b> — every claim carries an evidence class; negative results are published, not buried.</p></div>
+<main class="wrap">
+<h1>H73-6 — trace-localised, independently-corroborated scarps (session-2 lane)</h1>
+<p class="mut">One preregistered lane · 3 experiments (X1/X2/X3) · every number HOLDOUT-DTI or OWNER-REPORT ·
+0 weekly slots spent · no organiser score exists for this file.</p>
+
+<div class="dl bad">
+<h2>⬇ ONE-CLICK DOWNLOAD — newest unique submission file (H73-6 X1) — READ THE STATUS FIRST</h2>
+
+<table><tr><th>File (all format-valid, portal-safe)</th><th>OK to download?</th><th>Recommended to submit?</th><th>Why</th></tr>
+<tr><td><b>NEW — H73-6 X1 traceloc</b><br><code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code></td><td><span class="pill yes">YES</span></td>
+<td><span class="pill no">NO — DO NOT SUBMIT</span></td><td>Unique + valid, but <b>verdict NEGATIVE</b>:
+HOLDOUT-DTI 0.0592 vs fold-fair control 0.0939 (gate failed).</td></tr>
+<tr><td>H73-1 E1 piedmont scarp-chain<br><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></td>
+<td><span class="pill yes">YES</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Session-1 NEGATIVE: HOLDOUT-DTI 0.0548 vs control 0.0939. See <a href="h73-1-piedmont.html">lane page</a>.</td></tr>
+<tr><td>H73-A blind stepover (<b>synthetic generator</b>)<br><code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Random-geometry synthetic dots, <b>no real holdout</b> (its own run card: verdict negative).
+Earlier revisions of this site wrongly labelled it “PRIMARY” — corrected 2026-10-21 (IR-73-10).</td></tr>
+<tr><td>Hydrothermal corridor (<b>synthetic-demo holdout</b>)<br><code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Its “holdout” was a hard-coded synthetic demo, now removed from the code (IR-73-11). No trustworthy score exists.</td></tr>
+</table>
+<p><b>Bottom line:</b> no file in this repo is currently recommended for a weekly slot. Downloading any
+file is safe; <em>submitting</em> one spends a slot against this repo's own evidence and requires a human
+selector override. That separation is deliberate — it is how a slot is never wasted on an unvalidated idea.</p>
+<p><a class="btn" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif">⬇ Download gems73-h73-6-traceloc-x1-37654dots-20261021.tif</a>
+<a class="btn alt" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.zip">.zip (single GeoTIFF inside)</a>
+<a class="btn alt" href="downloads/run_card_h73-6.json">Run card (JSON)</a></p>
+<p><b>Filename:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code><br>
+<b>Unique submission name:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021</code><br>
+<b>Note for the DrivenData “Note (optional)” field (92/140 chars) — only if a selector overrides:</b><br>
+<code>G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE</code><br>
+<b>sha256:</b> <code>2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554</code> · 146,965 bytes · single band float32 · EPSG:32611 ·
+100 m · 3730×3292 · 37,654 dots · min 0.0 max 1.0 · 0 NaN in all 12,279,160 cells · no nodata tag ·
+CRS/shape/transform match sample submission: <b>True</b> ·
+(<a href="downloads/validator_h73-6.json">validator receipt</a>)</p>
+<p class="mut">This file is newly generated this session, is not a copy of any GEMSDOE-site raster
+(uniqueness vs H33 champion: forward overlap 0.199,
+surface ρ 0.042), and has never been submitted.
+<b>It is OK to download. It is NOT recommended to submit</b> (verdict above). No organiser score exists for it.</p>
+</div>
+
+<div class="dl">
+<h2>⚠ Portal error “Predicted values must be in range [0, 1]” — cause and fix</h2>
+<p>DrivenData requires every predicted value in <code>[0,1]</code> (official submission format,
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page 967</a>,
+re-verified 2026-10-21). The usual trigger in this project family is the float32 sentinel
+<code>-3.4028234663852886e+38</code>: <code>training_features.tif</code> uses it as nodata, and any pipeline
+that writes it through (as data or as a nodata tag a validator reads as a value) fails the range check.</p>
+<p><b>Fix applied to every file above:</b> written <b>all-finite</b> with <code>nodata=None</code> and
+<code>0.0</code> outside the footprint, then <b>re-opened from disk</b> and checked cell-by-cell
+(all 12,279,160 cells finite, min ≥ 0, max ≤ 1, 0 NaN) by the shared validator before delivery.
+Each file ships its re-read receipt. If you ever see the error, you have picked a stale/sentinel file —
+re-download the <code>-zeros</code>/all-finite file from this page.</p>
+</div>
+<div class="card"><h2 style="margin-top:0">Method (single paragraph — the lane)</h2>
+<p>Trace-localised, independently-corroborated scarps: polarity-weighted one-sided LiDAR step, ridge-thinned by orientation non-maximum suppression on its own structure tensor (soft factor 0.25 off-ridge), corroborated within 200 m (max-filter radius 2 px) by the stronger of a U/K radiometric gradient ridge and the isostatic-gravity slope ridge (factor 0.35+0.65*w), softly piedmont-weighted (factor 0.45+0.55*pied_soft). No catalogue/SGMC training, no distance-to-catalogue feature, no scored-raster input.</p>
+<p><b>Named non-fault mimic:</b> Linear infrastructure / land-use edges (roads, canals, field boundaries): narrow straight centrelines without a basement gravity step; secondary mimic Lahontan shoreline benches.</p></div>
+<div class="card"><h2 style="margin-top:0">Holdout — primary instrument</h2>
+<p class="mut">HOLDOUT-DTI · evaluator <code>gems57-pooled-hide-v2</code> · whole-component hide-and-recover,
+fold-fair emission, visible faults masked pixel-exactly · 11,321 withheld px · α=0.2 β=0.8 300 m triangular
+kernel · paired spatial-cluster bootstrap 95% CIs. Controls reproduce session-1 exactly (same folds/seeds).</p>
+<table><tr><th>Arm</th><th>DTI</th><th>95% CI</th></tr>
+<tr><td><b>X1 full (NMS + witness)</b></td><td>0.0592</td><td>[0.0490, 0.0700]</td></tr>
+<tr><td>X2 thinning only</td><td>0.0578</td><td>—</td></tr>
+<tr><td>X3 witness only</td><td>0.0585</td><td>—</td></tr>
+<tr><td>H33-analogue control (fold-fair)</td><td>0.0939</td><td>[0.0813, 0.1076]</td></tr>
+<tr><td>Random control</td><td>0.0484</td><td>—</td></tr>
+<tr><td>Session-1 E1 (same instrument, ref)</td><td>0.0548</td><td>[0.0417, 0.0688]</td></tr></table>
+<p>X1 − control = -0.0347 [-0.0522,
+-0.0192] (gate FAILED); X1 − random =
++0.0108 [+0.0001,
++0.0222] (real but small signal).
+Leakage canaries: 20 channels, max symmetric AUC
+0.611 ≤ 0.90 PASS.
+Report-only SGMC-piedmont proxy (never used for selection): X1 0.0883
+vs champion 0.0980 — no override temptation this time.
+Reading: thinning (+0.0014 over the E3-style base) and corroboration (+0.0021) each help marginally and
+additively, but neither closes the gap to the tuned H19-5 geography. Negative results are deliverables.</p></div>
+<div class="card"><h2 style="margin-top:0">Uniqueness vs accessible registry (16 rasters)</h2>
+<table>
+<tr><th>Surface Spearman (pre-placement, 200k sample)</th><td>max 0.120 ≤ 0.90 ✓</td></tr>
+<tr><th>Final-dots Spearman (200k sample)</th><td>max 0.250 ≤ 0.90 ✓</td></tr>
+<tr><th>Mutual 3 px overlap</th><td>max 0.596 ≤ 0.70 ✓ (worst: session-1 H73-1 E1 — shared scarp/piedmont base, disclosed)</td></tr>
+<tr><th>vs H33 champion</th><td>forward 0.199 · mutual 0.199 · surface ρ 0.042</td></tr>
+<tr><th>Literal forward overlap</th><td>Forward 0.994 only vs 206,895-dot r13 lattice (halo covers ~100% footprint; mutual 0.165) - IR-73-01. Vs session-1 H73-1 E1: forward 0.596 / reverse 0.693 / mutual 0.596 (shared scarp+piedmont base, disclosed; below 0.70 gate).</td></tr>
+</table>
+<img class="fig" src="assets/fig_x1_vs_h33.png" alt="Map of X1 dots vs H33 champion"></div>
+<p><a href="executive-summary.html">Executive summary — exactly how to submit (and why not to submit this file)</a> ·
+<a href="sources.html">Official sources</a> · <a href="research/hypotheses_x.md">Five new hypotheses</a> ·
+<a href="downloads/run_card_h73-6.json">Run card JSON</a></p></main>
+<footer><div class="wrap">Generated 2026-10-21 by <code>scripts/build_site_x.py</code> from
+<code>evidence/run_card_x.json</code>. Owner scores are labelled OWNER-REPORT; only organiser
+receipts are ORGANIZER-CONFIRMED. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+</body></html>

@@ -1,101 +1,130 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</title>
-<link rel="stylesheet" href="assets/site.css">
+<title>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</title><link rel="stylesheet" href="assets/site.css">
 </head><body>
-<header class="top"><div class="wrap">
-<h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1>
-<nav>
-<a href="index.html" class="active">Home</a>
-<a href="executive-summary.html">Make a submission</a>
-<a href="research.html">Research</a>
-<a href="hypotheses.html">Hypotheses</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a href="sources.html">Sources</a>
-<a href="irregularities.html">Irregularities</a>
-</nav>
-<div class="dlbtn"><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">⬇ Download the submission GeoTIFF</a> <a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip</a></div>
-</div></header>
-<div class="values"><div class="wrap"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment. <b>Own the Outcome</b> — every claim carries an evidence class; defects are measured, published, replaced.</div></div>
+<header class="top"><div class="wrap"><h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1><nav>
+<a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a>
+<a href="h73-6-traceloc.html">H73-6 lane (new)</a> <a href="h73-1-piedmont.html">H73-1 lane</a>
+<a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a>
+<a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a>
+<a href="irregularities.html">Irregularities</a></nav></div></header>
+<div class="wrap"><p class="mut"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment.
+<b>Own the Outcome</b> — every claim carries an evidence class; negative results are published, not buried.</p></div>
 <main class="wrap">
 
-<div class="dl">
-<h2>⬇ ONE-CLICK SUBMISSION FILE</h2>
-<p><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">Download gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</a>
-<a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip (single GeoTIFF inside)</a>
-</p>
-<p><b>Filename:</b> <code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code><br>
-<b>Unique submission name to use:</b> <code>GEMSDOE73-H73A-STEPOVER</code><br>
-<b>Note to paste into the submit form's <em>Note (optional)</em> field (127/200 chars):</b><br>
-<code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code>
-</p>
-<p class="mut">single band · float32 · EPSG:32611 · 100 m · 3292×3730 · 30,762 predicted pixels · every cell finite · every value in [0,1] · 0 NaN anywhere · no nodata tag · sha256 <code>46859dc652c396…</code> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">audit receipt (independent re-read)</a></p>
-<p><b>NaN-outside twin (competition spec format, identical values inside footprint):</b> <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif">gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif</a> — same 30,762 dots, nodata=NaN outside footprint.</p>
-<p><b>ALTERNATIVE (hydrothermal permeability corridor, from parallel lane — also portal-safe):</b> <a href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif">gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</a> — 37,654 dots, hydrothermal corridor hypothesis, sha256 <code>2bbb79d4…</code> <a href="downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json">receipt</a> · <a href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.zip">.zip</a></p>
-<p class="warn"><b>Status:</b> PRIMARY = H73-A blind stepover (Tier 1 candidate). 30,762 dots, 0 within 200 m (2 px) of the USGS/INGENIOUS catalogue. Target budget 42,000 → effective 30,762 after footprint + B=2 prune (pruned 1,152). Portal-safe (all-finite, [0,1], no sentinel). NO ORGANISER SCORE EXISTS for this artifact; any score shown elsewhere is a projection, not a receipt. See <a href="executive-summary.html">executive summary for submission steps</a>. The hydrothermal corridor file is a second unique lane from a parallel session — pick <em>one</em> file to submit per slot; both pass the portal validator.</p>
+<div class="dl bad">
+<h2>⬇ ONE-CLICK DOWNLOAD — newest unique submission file (H73-6 X1) — READ THE STATUS FIRST</h2>
+
+<table><tr><th>File (all format-valid, portal-safe)</th><th>OK to download?</th><th>Recommended to submit?</th><th>Why</th></tr>
+<tr><td><b>NEW — H73-6 X1 traceloc</b><br><code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code></td><td><span class="pill yes">YES</span></td>
+<td><span class="pill no">NO — DO NOT SUBMIT</span></td><td>Unique + valid, but <b>verdict NEGATIVE</b>:
+HOLDOUT-DTI 0.0592 vs fold-fair control 0.0939 (gate failed).</td></tr>
+<tr><td>H73-1 E1 piedmont scarp-chain<br><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></td>
+<td><span class="pill yes">YES</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Session-1 NEGATIVE: HOLDOUT-DTI 0.0548 vs control 0.0939. See <a href="h73-1-piedmont.html">lane page</a>.</td></tr>
+<tr><td>H73-A blind stepover (<b>synthetic generator</b>)<br><code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Random-geometry synthetic dots, <b>no real holdout</b> (its own run card: verdict negative).
+Earlier revisions of this site wrongly labelled it “PRIMARY” — corrected 2026-10-21 (IR-73-10).</td></tr>
+<tr><td>Hydrothermal corridor (<b>synthetic-demo holdout</b>)<br><code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code></td>
+<td><span class="pill rev">REVIEW ONLY</span></td><td><span class="pill no">NO — DO NOT SUBMIT</span></td>
+<td>Its “holdout” was a hard-coded synthetic demo, now removed from the code (IR-73-11). No trustworthy score exists.</td></tr>
+</table>
+<p><b>Bottom line:</b> no file in this repo is currently recommended for a weekly slot. Downloading any
+file is safe; <em>submitting</em> one spends a slot against this repo's own evidence and requires a human
+selector override. That separation is deliberate — it is how a slot is never wasted on an unvalidated idea.</p>
+<p><a class="btn" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif">⬇ Download gems73-h73-6-traceloc-x1-37654dots-20261021.tif</a>
+<a class="btn alt" href="downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.zip">.zip (single GeoTIFF inside)</a>
+<a class="btn alt" href="downloads/run_card_h73-6.json">Run card (JSON)</a></p>
+<p><b>Filename:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021.tif</code><br>
+<b>Unique submission name:</b> <code>gems73-h73-6-traceloc-x1-37654dots-20261021</code><br>
+<b>Note for the DrivenData “Note (optional)” field (92/140 chars) — only if a selector overrides:</b><br>
+<code>G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE</code><br>
+<b>sha256:</b> <code>2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554</code> · 146,965 bytes · single band float32 · EPSG:32611 ·
+100 m · 3730×3292 · 37,654 dots · min 0.0 max 1.0 · 0 NaN in all 12,279,160 cells · no nodata tag ·
+CRS/shape/transform match sample submission: <b>True</b> ·
+(<a href="downloads/validator_h73-6.json">validator receipt</a>)</p>
+<p class="mut">This file is newly generated this session, is not a copy of any GEMSDOE-site raster
+(uniqueness vs H33 champion: forward overlap 0.199,
+surface ρ 0.042), and has never been submitted.
+<b>It is OK to download. It is NOT recommended to submit</b> (verdict above). No organiser score exists for it.</p>
 </div>
 
 <div class="dl">
-<h2>⚠ The portal error "Predicted values must be in range [0, 1]" — fixed</h2>
-<p>DrivenData rejects a raster whose values fall outside <code>[0,1]</code> or whose <code>nodata</code> tag is a sentinel like <code>-3.4028234663852886e+38</code> (that sentinel is not in <code>[0,1]</code>). Two failures produce the same message:</p>
-<ul>
-<li><b>Mechanism 1 — float32 sentinel:</b> <code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata: <code>7,113,308</code> cells, of which <code>3,061</code> lie <em>inside</em> the submission footprint. Writing those through unchanged puts them outside <code>[0,1]</code>.</li>
-<li><b>Mechanism 2 — NaN outside:</b> A raster with <code>nodata=NaN</code> and NaN cells outside footprint is legal per spec, but one validator change away from the same rejection. Every primary here is written <b>all-finite</b> with <code>nodata=None</code> and <code>0.0</code> outside footprint.</li>
-</ul>
-<p><b>The fix, verified by re-reading written bytes:</b> every GeoTIFF on this site is single-band float32, EPSG:32611, 100 m, 3730×3292, <b>all 12,279,160 cells finite</b>, <b>min 0.0 max 1.0, zero cells outside [0,1], zero NaN</b>, <b>no nodata tag</b>. Each ships a <code>*.json</code> receipt from re-open.</p>
-</div>
-
-<h2>What this is</h2>
-<p>GEMSDOE73 is an auditable system for the <b>DOE GEMS Prize</b> (DrivenData #306, GeoDAWN NW Nevada): find geothermal faults <em>not</em> in the USGS/INGENIOUS catalogue and ship them as a legal GeoTIFF. Three parts: exact metric re-implementation; preregistered spatially-blocked holdout scoring emission rules under that metric; and a hypothesis-gated submission builder.</p>
-
-<div class="grid">
-<div class="card"><h3>Verified in this repo</h3><ul>
-<li>Published metric formula + worked example <code>TP=3.00 FP=1.89 FN=2.00 → 0.60</code> reproduced in <code>tests/test_metric.py</code>.</li>
-<li>Credit bar <code>k &gt; 0.2·DTI</code> that every emitted pixel must clear (derived from <code>DTI = T/(0.2(T+S-M)+0.8|G|)</code>).</li>
-<li>Byte identity (sha256) of every raster offered here.</li>
-<li>Official source links on <a href="sources.html">sources</a> page.</li>
-</ul></div>
-<div class="card"><h3>Not claimed</h3><ul>
-<li>No score in this repo is organiser-verified; owner-reported numbers are labelled <em>claim</em>.</li>
-<li>Holdout truth is the visible catalogue, so it <em>cannot</em> reward a genuinely new fault (proxy limitation).</li>
-<li>Submitted file is a candidate, <b>not</b> a proven improvement.</li>
-</ul></div>
+<h2>⚠ Portal error “Predicted values must be in range [0, 1]” — cause and fix</h2>
+<p>DrivenData requires every predicted value in <code>[0,1]</code> (official submission format,
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page 967</a>,
+re-verified 2026-10-21). The usual trigger in this project family is the float32 sentinel
+<code>-3.4028234663852886e+38</code>: <code>training_features.tif</code> uses it as nodata, and any pipeline
+that writes it through (as data or as a nodata tag a validator reads as a value) fails the range check.</p>
+<p><b>Fix applied to every file above:</b> written <b>all-finite</b> with <code>nodata=None</code> and
+<code>0.0</code> outside the footprint, then <b>re-opened from disk</b> and checked cell-by-cell
+(all 12,279,160 cells finite, min ≥ 0, max ≤ 1, 0 NaN) by the shared validator before delivery.
+Each file ships its re-read receipt. If you ever see the error, you have picked a stale/sentinel file —
+re-download the <code>-zeros</code>/all-finite file from this page.</p>
 </div>
 
 <h2>The brief's question, answered (PhD-level)</h2>
-<p><b>Why did the dotted H19-5 file (and its 0.2778 derivative) score highest among siblings?</b></p>
-<p>The metric is a budget. For binary predictions, <code>DTI = T / (0.2(T+F) + 0.8|G|)</code> where <code>T = Σ max_k p·k(d)</code> (weighted true positives), <code>F = Σ p·(1 − max_k)</code> (weighted false positives), and <code>|G|</code> is hidden truth size. Every unit of emitted mass <code>S = T+F</code> costs <code>0.2·DTI</code> in the denominator and contributes at most <code>k(d) ≤ 1</code> to the numerator. Thinning a thick surface while preserving geometry removes mass already covered (redundant) and raises mean credit per dot. The empirical break-even at the sibling best was <code>0.0548</code> credit per dot; the analytic form is <code>0.2·0.274 = 0.0548</code> — two routes, one number. GEMSDOE32's 0.2778 did two things: (i) started from the best available field (H27-4 dotted ridge, 0.2708 base) and (ii) pruned every dot within <code>B=2</code> (200 m) of the catalogue. Since Round-1 hidden truth <em>excludes</em> the catalogue by construction, mass on the catalogue is always <code>FP</code> and can never earn <code>T</code>. Deleting 1,152 such dots (from ~38,800 → 37,654) raised credit density with zero recall loss — a free gain of ~+0.004–0.007 DTI, which the live score confirmed (0.2708 → 0.2778).</p>
-<p><b>Can we beat 0.2778 — and the current 0.4413 leader — with this lane?</b></p>
-<p>Yes in expectation, but only by raising <em>credit density</em> of the top-ranked pixels, not by emitting more mass. At 30–44k dots, the 0.4413 leader needs ~35–50% higher mean credit per pixel than the sibling best field delivers. That cannot come from public catalogues (the newest public compilation SGMC is 59,065 px, all but one within 300 m of the given catalogue — already inside). It must come from a better detector: one that places mass where hidden geothermal faults actually are. Our lane (H73-A) targets a known blind-fault mechanism — dilatant stepovers / relay ramps between en echelon segments — that is (a) invisible in topography where buried by basin fill, (b) visible in magnetic second-vertical-derivative + gravity slope concordance, and (c) mechanically favoured for geothermal upflow (dilatation + fracture permeability). Prior sibling lanes were scarp-first or tilt-first; this lane is <em>magnetics-first stepover linker</em>, hence rank-correlation &lt; 0.30 with any registry raster (measured) and overlap &lt; 35% within 3 px.</p>
-<p><b>What would disprove it?</b> If the hidden set is dominated by isolated long traces rather than segmented stepovers, this linker adds FP without T; holdout would show ≤0 vs random. If magnetic edge + gravity concordance is dominated by lithologic contacts (not structures), the 0.90 leakage canary would fire (AUC &gt; 0.90 on single feature) indicating catalogue leakage, not geothermal signal. Both are testable on the blocked holdout without spending a slot.</p>
+<p><b>Why did <code>h33-h33-2-b2…-zeros</code> score 0.2778 (OWNER-REPORT; no receipt in any repo — IR-73-02),
+the group best?</b> Measured byte-exact in session-1 and re-verified this session
+(H33 ⊂ H19-5, zero exceptions): it is the dotted H19-5 field with every dot ≤200 m from the catalogue
+deleted. DTI pays for <em>credit density</em> — a non-redundant dot helps iff realised kernel credit
+<code>k &gt; 0.2·DTI ≈ 0.056</code>. H19-5's ~90% scarp/openness surface matches the evidence class human
+mappers used to draw the hidden set (“manually identified by fault experts”, official page); dotting to
+≈2.5 px spacing removed sub-bar redundant mass; the B2 prune deleted dots that could only cover
+already-mapped, masked traces while paying full false-positive tax.</p>
+<p><b>Can we beat 0.2778, or the current leader 0.4413 (ORGANIZER-CONFIRMED leaderboard read 2026-10-21:
+#1 xiaofanhu 0.4413, #2 cfld__ 0.3904, #3 Batik Shirt Brothers 0.3894)?</b> Emission gains are nearly
+exhausted (+0.055 → +0.012 → +0.007); only a field with higher credit density in its top 37,654 dots can.
+This session tested trace localisation + independent corroboration (H73-6): HOLDOUT-DTI
+0.0592 [0.0490, 0.0700] vs control 0.0939
+— better than session-1 (0.0548) and better than random (0.0484), but it does
+<b>not</b> beat the control, so we do not claim it beats 0.2778 live and we do not spend a slot on it.
+0.4413 (≈+60% credit density over H33 at equal mass) remains out of reach of any single unsupervised
+transform tried across 78 sibling repos; claiming otherwise would be a projection dressed as a score.</p>
+<p><b>What would change the verdict?</b> A field that beats the fold-fair control with paired CI excluding 0
+on this instrument — most plausibly (per <a href="research/hypotheses_x.md">H73-8</a>) absolute-elevation
+bench rejection from USGS 3DEP 1 m DEMs, which needs an unrestricted machine (sandbox egress is
+github/pypi only), or expert-style multi-scale openness tracing rebuilt from the 1 m DEMs.</p>
 
-<h2>Hypotheses at a glance</h2>
-<table><tr><th>Hypothesis</th><th>Layer(s)</th><th>Signature</th><th>Why it catches hidden (not catalogue)</th><th>Cost</th><th>Expected ΔDTI*</th></tr>
-<tr><td><b>H73-A — blind stepover linker ✓ PRIMARY</b></td><td>GeoDAWN TMI vertical gradient + TMI upward-continued 150 m + isostatic gravity slope</td><td>second-vertical-derivative edge + tilt-angle concordance; tip-stepover linkage (100–300 m offset)</td><td>Catalogue faults are continuous; hidden geothermal faults are segmented stepovers buried by alluvium — magnetics see the offset where topography does not</td><td>Low (synthetic generator + 2-px prune)</td><td>+0.015–0.025</td></tr>
-<tr><td>H73-B — dilatational jog corridor</td><td>Geodetic second invariant + shear + dilatation rate (GPS/InSAR strain)</td><td>divergence magnitude threshold + curvature coherence (100 m)</td><td>Active transtensional jogs are creeping/dilating today but have no Holocene scarp; strain sees them, lidar misses them</td><td>Medium (need strain stack)</td><td>+0.008–0.018</td></tr>
-<tr><td>H73-C — clay-cap halo</td><td>GeoDAWN K, Th/K, U/K ratios + TMI</td><td>radiometric K depletion + magnetic low (demagnetised alteration) + ratio anomaly</td><td>Hydrothermal alteration demagnetises and leaches K; catalogue faults are unaltered scarps</td><td>Medium (need rad mosaic)</td><td>+0.005–0.012</td></tr>
-<tr><td>H73-D — microquake halo</td><td>ANSS ComCat distance-to-earthquake + detrended elevation openness</td><td>kernel density (n=100 km, a=15°) + positive openness at fault tips</td><td>Seismicity illuminates active blind faults under cover; catalogue faults are historically quiescent segments</td><td>High (need ComCat)</td><td>+0.004–0.010</td></tr>
-<tr><td>H73-E — thermal-pop openness (ablation)</td><td>Detrended elevation + lidar relief + multi-line corroboration</td><td>topographic position index + multi-azimuth hillshade convergence</td><td>Rare open fractures at intrusion tips host upflow; catalogue omits &lt; 500 m splays</td><td>Low</td><td>+0.002–0.006</td></tr>
+<h2>Five new hypotheses this session (ranked before any holdout run)</h2>
+<table><tr><th>#</th><th>Hypothesis</th><th>Layers</th><th>Signature</th><th>Why off-catalogue</th><th>Status</th></tr>
+<tr><td>H73-6 ★ lane</td><td>Trace-localised corroborated scarps</td><td>LiDAR step/pol. + U/K + gravity slope + piedmont</td><td>Structure-tensor NMS centreline × non-topo witness ≤200 m</td><td>Narrow piedmont centrelines magnitude-ranking buries</td><td>Tested: NEGATIVE (above)</td></tr>
+<tr><td>H73-7</td><td>Witness-only corroboration</td><td>Same, no thinning</td><td>Scarp × witness × piedmont</td><td>Basement-offsetting traces only</td><td>Tested as X3 ablation: 0.0585</td></tr>
+<tr><td>H73-8</td><td>Absolute-elevation bench rejection</td><td>USGS 3DEP 1 m DEM (absolute z)</td><td>Reject steps at paleo-shoreline elevations</td><td>Benches mimic scarps; faults cross elevation bands</td><td>Not viable in sandbox (named source checked)</td></tr>
+<tr><td>H73-9</td><td>Magnetic contact terminations</td><td>RTP/TMI/tmi_vg/tc</td><td>Tensor eigenframe jump across a line</td><td>Subsurface offsets under cover</td><td>Low prior (worm lanes 0.03–0.10)</td></tr>
+<tr><td>H73-10</td><td>Seismicity-aligned scarps</td><td>ieq/deq × scarp</td><td>Scarp on quake-density ridge</td><td>Active blind structures</td><td>100 km kernel too smooth for 300 m credit</td></tr>
 </table>
-<p class="mut">* Projected vs sibling best 0.2778 at matched mass, under the same truth-scatter model (σ=1.85 px) used in GEMSDOE32 Monte Carlo. A projection is never written as a score.</p>
-
-<h2>Run card (this build)</h2>
+<p class="mut">Full text with named mimics and ranking rationale: <a href="research/hypotheses_x.md">docs/research/hypotheses_x.md</a>;
+preregistration: <code>registry/preregistration_x.json</code>. Session-1 hypotheses H73-1…5: <a href="research/hypotheses.md">hypotheses.md</a>.</p>
+<div class="card"><h2 style="margin-top:0">Run card (JSON, this build)</h2>
 <pre><code>{
-  "hypothesis": "H73-A blind-stepover linkage via magnetic second-vertical-derivative + gravity slope",
-  "mechanism": "Second-vertical-derivative magnetic edge (tilt/total-curvature) + gravity-slope concordance; Andersonian 60/30° conjugate fabric, power-law lengths (α=1.8), 15% tip stepovers (1-3 px offset), 30° wing cracks; B=2 catalogue prune",
-  "non_fault_mimic": "Basin-fill lithologic contacts and paleo-shorelines (Walker Lake Lahontan) produce similar magnetic-gravity steps without faulting; mitigated by requiring stepover geometry, not just edge strength",
-  "holdout_DTI": "HOLDOUT-DTI not yet run on full feature stack (template-only synthetic generator); leakage canary AUC not computed on this build — pending data placement",
-  "correlation_vs_registry": "&lt;0.30 rank-correlation, &lt;35% overlap within 3 px vs any registry raster (synthetic stepover lane vs dotted-ridge lane)",
-  "raster_sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
-  "validator": "PASSED: single-band float32 EPSG:32611 100m 3292×3730, transform [100,0,243350,0,-100,4508550], all 12,279,160 cells finite in [0,1], no NaN, no nodata tag, CRS/shape/transform match template",
-  "submission_name": "GEMSDOE73-H73A-STEPOVER",
-  "note": "GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED",
-  "verdict": "negative (deliverable, not promotion)"
-}</code></pre>
-<p class="mut">Verdict <code>negative</code> means this build is a documented deliverable, not a promotion to a real slot. Weekly slot promotion requires beating the current holdout best on the spatially-blocked instrument and passing the slot gate (see <a href="hypotheses.html">hypotheses</a>).</p>
-
-</main>
-<footer><div class="wrap">
-Site generated 2026-10-21 from <code>registry/submission_build.json</code> by <code>scripts/generate_submission.py</code>. Owner scores are labelled <em>claim</em>; only organiser receipts are <em>ORGANIZER-CONFIRMED</em>. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">manifest</a> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">download</a>
-</div></footer>
+  &quot;lane&quot;: &quot;H73-6&quot;,
+  &quot;hypothesis&quot;: &quot;Unmapped piedmont fault scarps are recoverable as orientation-thinned (structure-tensor NMS) polarity-step centrelines corroborated within 200 m by a non-topographic edge (U/K radiometric gradient or isostatic-gravity slope ridge), in deep-basement gentle-slope low-relief terrain.&quot;,
+  &quot;mechanism&quot;: &quot;X1 = soft-NMS ridge of scarp_n (off-ridge x0.25) * (0.35+0.65*witness) * (0.45+0.55*pied_soft); greedy dotted emission 37,654 dots, 2.5 px spacing, &gt;200 m from catalogue. Ablations X2 (no witness), X3 (no NMS). No catalogue/SGMC training, no scored-raster input. Preregistered in registry/preregistration_x.json before holdout.&quot;,
+  &quot;named_non_fault_mimic&quot;: &quot;Linear infrastructure / land-use edges (roads, canals, field boundaries): narrow straight centrelines without a basement gravity step; secondary mimic Lahontan shoreline benches.&quot;,
+  &quot;verdict&quot;: &quot;negative&quot;,
+  &quot;download_ok&quot;: true,
+  &quot;submit_recommended&quot;: false
+}
+holdout X1 = 0.0592 [0.0490,0.0700] (HOLDOUT-DTI gems57-pooled-hide-v2, 11,321 withheld)
+raster sha256 = 2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554
+validator = PASSED (all-finite [0,1], EPSG:32611 3730x3292, sample match True)
+submission name = gems73-h73-6-traceloc-x1-37654dots-20261021 | note (92/140) = G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE</code></pre>
+<p class="mut">Full card: <a href="downloads/run_card_h73-6.json">run_card_h73-6.json</a>. Prior lane:
+<a href="h73-1-piedmont.html">H73-1 piedmont scarp-chain (also NEGATIVE)</a>.</p></div>
+<h2>Limitations &amp; what we need</h2>
+<ul>
+<li><b>Data placement — SOLVED this session without any login:</b> all 23 competition/external/scored files were
+restored from owner GitHub mirrors and SHA-256-verified (<code>python scripts/restore_data.py --group all</code>,
+receipt <code>data/restore_receipt.json</code>). Hashes prove mirror consistency, not organiser authentication (IR-73-05).
+DrivenData originals still require login: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data page</a>.</li>
+<li><b>Sandbox egress</b> is github/pypi only → USGS 3DEP tiles for H73-8 cannot be fetched here; run that lane on an unrestricted machine.</li>
+<li><b>Holdout ≠ leaderboard:</b> truth here is the visible catalogue; static catalogue DTI anti-ranks live scores
+(Spearman −0.49, session-1 MEASURED-HERE). Fold-fair DTI is a screen that saves slots, not a score prediction.</li>
+<li><b>No GPU needed</b> for anything on this site (all CPU, ~2 min/experiment suite).</li>
+</ul></main>
+<footer><div class="wrap">Generated 2026-10-21 by <code>scripts/build_site_x.py</code> from
+<code>evidence/run_card_x.json</code>. Owner scores are labelled OWNER-REPORT; only organiser
+receipts are ORGANIZER-CONFIRMED. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
 </body></html>

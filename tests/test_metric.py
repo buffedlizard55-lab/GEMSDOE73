@@ -1,45 +1,49 @@
+"""Metric checks for the src implementation (official page 967 values).
+
+Session-2 fix (IR-73-09): the previous revision concatenated two test
+modules, redefined test_worked_example, and imported a non-existent
+``dti_fast``. Replaced with tests against the actual src API; the shared
+vendor metric is cross-checked in tests/test_metric_and_submission.py.
+"""
 import numpy as np
-from src.gems73.metric import kernel, dti_exact, ALPHA, BETA, RADIUS_PX
+
+from src.gems73.metric import ALPHA, BETA, RADIUS_PX, dti_binary, dti_exact, kernel, marginal_bar
+
 
 def test_worked_example():
-    # From competition page: TP=3 FP=1.89 FN=2 DTI=0.60
-    tp=3.0; fp=1.89; fn=2.0
-    dti = tp/(tp+ALPHA*fp+BETA*fn)
-    assert abs(dti-0.60) < 1e-6
+    # Official page 967: TPw=3.00 FPw=1.89 FNw=2.00 -> 0.60 (page rounding)
+    dti = 3.0 / (3.0 + ALPHA * 1.89 + BETA * 2.0)
+    assert abs(dti - 0.60) < 0.005
 
-def test_kernel():
-    assert kernel(0) == 1.0
-    assert kernel(3.0) == 0.0
-    assert abs(kernel(np.hypot(2,2)) - (1-2*np.sqrt(2)/3)) < 1e-9
-
-
-"""Metric identity and worked example (problem page 967)."""
-from src.gems73.metric import dti_fast, kernel, ALPHA, BETA
-import numpy as np
-from scipy.ndimage import distance_transform_edt
-
-def test_worked_example():
-    # Published TPw=3.00 FPw=1.89 FNw=2.00 -> 0.60
-    TPw, FPw, FNw = 3.00, 1.89, 2.00
-    dti = TPw/(TPw+ALPHA*FPw+BETA*FNw)
-    assert abs(dti-0.60) < 0.01
 
 def test_kernel_support():
-    assert kernel(np.array([0.0]))[0]==1.0
-    assert kernel(np.array([3.0]))[0]==0.0
-    assert kernel(np.array([1.5]))[0]==0.5
+    assert float(kernel(0.0)) == 1.0
+    assert float(kernel(RADIUS_PX)) == 0.0
+    assert float(kernel(1.5)) == 0.5
+    assert abs(float(kernel(np.hypot(2, 2))) - (1 - 2 * np.sqrt(2) / 3)) < 1e-9
 
-def test_dti_brute_vs_fast():
-    pred = np.zeros((20,20), dtype=np.float32)
-    truth = np.zeros((20,20), dtype=np.uint8)
-    truth[10,10]=1
-    pred[10,11]=1.0
-    # distance 1 -> k=0.666
-    dti = dti_fast(pred, truth)
-    assert 0 <= dti <= 1
 
-def test_identity_no_truth():
-    pred = np.zeros((10,10), dtype=np.float32)
-    truth = np.zeros((10,10), dtype=np.uint8)
-    assert dti_fast(pred, truth)==1.0
+def test_exact_vs_binary_and_bounds():
+    truth = np.zeros((20, 20), bool)
+    truth[4:16, 10] = True
+    pred = np.zeros((20, 20), np.float32)
+    pred[5:15, 11] = 1.0  # 1 px offset -> k = 2/3 on covered truth
+    r_exact = dti_exact(pred, truth)
+    r_binary = dti_binary(pred > 0, truth)
+    assert 0.0 < r_exact["dti"] < 1.0
+    assert abs(r_exact["dti"] - r_binary["dti"]) < 1e-9
+    assert r_exact["n_truth"] == 12
 
+
+def test_perfect_and_empty():
+    truth = np.zeros((10, 10), bool)
+    truth[5, 2:8] = True
+    perfect = truth.astype(np.float32)
+    assert abs(dti_exact(perfect, truth)["dti"] - 1.0) < 1e-9
+    assert dti_exact(np.zeros((10, 10), np.float32), truth)["dti"] == 0.0
+
+
+def test_marginal_bar():
+    # Non-redundant dot helps iff k > alpha*DTI (vendor metric derivation)
+    assert marginal_bar(0.2778) == ALPHA * 0.2778
+    assert abs(marginal_bar(0.2778) - 0.05556) < 1e-9

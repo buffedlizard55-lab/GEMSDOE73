@@ -15,3 +15,7 @@ th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;font-size:14
 th{background:#0f1a33}code{background:#0f1a33;padding:2px 6px;border-radius:6px}
 footer{border-top:1px solid var(--line);margin-top:30px;padding:18px 0;color:var(--mut);font-size:13px}
 .pill{font-size:11px;background:var(--line);padding:2px 8px;border-radius:99px}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-weight:700;font-size:12px}
+.pill.yes{background:#16a34a;color:#fff}.pill.no{background:#dc2626;color:#fff}.pill.rev{background:#d97706;color:#fff}
+.dl.bad{border-color:#dc2626}.dl.good{border-color:#16a34a}
+img.fig{max-width:100%;border-radius:10px;background:#fff}

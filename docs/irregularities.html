@@ -17,7 +17,7 @@
 <tr><td>IR-73-PROMOTION-01</td><td>Weekly submission cap: slot promotion is a separate selector step. This build is verdict=negative (deliverable, not promotion). It does not consume a weekly slot.</td><td>info</td></tr>
 <tr><td>IR-73-REGISTRY-01</td><td>Lane-uniqueness check: rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster — checked on surface before placement and on final dots. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs dotted ridge) → pass.</td><td>pass</td></tr>
 <tr><td>IR-73-METRIC-01</td><td>Earlier sibling form of the marginal bar <code>αs/(1−αs)</code> was wrong (IR-32-BAR-01, corrected 2026-10-04). Correct form is <code>α·s</code>. At 0.27 the wrong form rejects a legitimate (2,2)-diagonal emission (k=0.05719). This repo uses the corrected <code>α·s</code>.</td><td>fixed</td></tr>
-</table>
+<tr><td>IR-73-09→14</td><td><b>Session-2 (2026-10-21):</b> test breakage fixed (13 passed, incl. a real writer tiling bug); site PRIMARY promotion of a synthetic file retracted (IR-73-10); hard-coded synthetic holdout numbers removed from code, stale promote verdict voided (IR-73-11); H73-6↔H73-1 relatedness disclosed, mutual 0.596 &lt; 0.70 (IR-73-12); leaderboard #3 moved same-day 0.3811→0.3894 (IR-73-13); src metric docstring T/M identity corrected (IR-73-14). Full text: <a href="irregularities.md">irregularities.md</a>. Data blocker IR-73-DATA-01 is <b>resolved</b>: 23 files restored + SHA-256-verified via GitHub mirrors, no login used.</td><td>review</td></tr></table>
 
 <h2>How to report</h2>
 <p>Open an issue at <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/issues">github.com/buffedlizard55-lab/GEMSDOE73/issues</a>.</p>

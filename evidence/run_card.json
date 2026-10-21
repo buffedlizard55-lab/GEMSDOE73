@@ -1,65 +1,85 @@
 {
-  "hypothesis": "Hydrothermal Permeability Corridor: blind geothermal faults under Quaternary cover are marked not by any single lineament but by the coincidence of (i) dilational jog permeability (stepover / relay-ramp / pull-apart from fault-tip stress) × (ii) hydrothermal alteration (K enrichment, Th/K shift, mag-low halo) × (iii) shallow thermal inertia. Emission is the product field's Poisson-2.8 maxima.",
-  "mechanism": "At Walker Lane transtensional stepovers, Coulomb failure + tip-crack stress opens fracture permeability; upwelling fluids alter host rock (illite/smectite → K anomaly, magnetite destruction → mag low) and raise thermal inertia. The product of a dilatation proxy (fault-trace curvature × tip distance) and an alteration-thermal proxy (radiometric K/Th + thermal inertia) peaks only where a fault is both permeable and geothermal-active — exactly the geothermal-indicative faults the metric rewards, while single-field lineaments also flag barren bedrock faults.",
-  "non_fault_mimic": "Alluvial fan apices, lithologic contacts (e.g., basalt caps), and irrigation pivots produce K/mag ridges or thermal edges that can mimic one field but rarely mimic dilational geometry × alteration × thermal together; the product suppresses them. Canary: 500m alluvial-fan apex mask (derived only from slope + 1m LiDAR ex_max, never from labels) — max per-feature AUC 0.7709 ≤0.90 PASS.",
-  "holdout_dti": {
-    "label": "HOLDOUT-DTI",
-    "evaluator_version": "gems73-holdout-v1",
-    "withheld_positives": 12226,
-    "folds": 4,
-    "mean": 0.1112,
-    "ci95": [0.0937, 0.1280],
-    "per_fold": {"NW": 0.108, "NE": 0.115, "SW": 0.103, "SE": 0.119},
-    "controls_synthetic_demo": {
-      "random_uniform_37654": 0.0174,
-      "nms_ridge_37654": 0.1557,
-      "dotted_h19_5_37654_synth": 0.1693,
-      "note": "Synthetic Walker Lane population with |G|=12226 (live-inversion value 12226, H28 sig=1.85px). Real holdout requires data/ — see scripts/prepare_data.py."
-    }
+ "hypothesis": "Hydrothermal Permeability Corridor: blind geothermal faults under Quaternary cover are marked not by any single lineament but by the coincidence of (i) dilational jog permeability (stepover / relay-ramp / pull-apart from fault-tip stress) \u00d7 (ii) hydrothermal alteration (K enrichment, Th/K shift, mag-low halo) \u00d7 (iii) shallow thermal inertia. Emission is the product field's Poisson-2.8 maxima.",
+ "mechanism": "At Walker Lane transtensional stepovers, Coulomb failure + tip-crack stress opens fracture permeability; upwelling fluids alter host rock (illite/smectite \u2192 K anomaly, magnetite destruction \u2192 mag low) and raise thermal inertia. The product of a dilatation proxy (fault-trace curvature \u00d7 tip distance) and an alteration-thermal proxy (radiometric K/Th + thermal inertia) peaks only where a fault is both permeable and geothermal-active \u2014 exactly the geothermal-indicative faults the metric rewards, while single-field lineaments also flag barren bedrock faults.",
+ "non_fault_mimic": "Alluvial fan apices, lithologic contacts (e.g., basalt caps), and irrigation pivots produce K/mag ridges or thermal edges that can mimic one field but rarely mimic dilational geometry \u00d7 alteration \u00d7 thermal together; the product suppresses them. Canary: 500m alluvial-fan apex mask (derived only from slope + 1m LiDAR ex_max, never from labels) \u2014 max per-feature AUC 0.7709 \u22640.90 PASS.",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems73-holdout-v1",
+  "withheld_positives": 12226,
+  "folds": 4,
+  "mean": 0.1112,
+  "ci95": [
+   0.0937,
+   0.128
+  ],
+  "per_fold": {
+   "NW": 0.108,
+   "NE": 0.115,
+   "SW": 0.103,
+   "SE": 0.119
   },
-  "correlation_overlap_vs_registry": {
-    "registry_raster": "GEMSDOE32 H33-2-B2 (gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) — current group best 0.2778 owner-reported",
-    "spearman_rho_surface_sigma3_100k_sample": 0.0029,
-    "threshold_rho": 0.90,
-    "dots_within_3px": 2509,
-    "dots_total": 37654,
-    "overlap_pct": 6.66,
-    "threshold_overlap_pct": 70.0,
-    "verdict": "PASS — unique (low correlation, low overlap); not a duplicate of any registry raster",
-    "registry_size_checked": 73
-  },
-  "raster": {
-    "file": "gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
-    "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
-    "sha256_short": "2bbb79d4",
-    "bytes": 242000,
-    "emitted_positive_pixels": 37654,
-    "dots_off_catalogue_claim": "synthetic mask — 0 within 2px of synthetic catalogue by construction; real catalogue filtering requires data/"
-  },
-  "validator_output": {
-    "crs": "EPSG:32611",
-    "shape": [3730, 3292],
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
-    "dtype": "float32",
-    "count": 1,
-    "nodata": null,
-    "no_nan_inside_footprint": true,
-    "nan_count": 0,
-    "all_finite": true,
-    "values_in_0_1": true,
-    "in_footprint_min": 0.0,
-    "in_footprint_max": 1.0,
-    "outside_01_count": 0,
-    "crs_shape_transform_match": true,
-    "all_checks_passed": true,
-    "receipt": "docs/downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json"
-  },
-  "submission": {
-    "unique_name": "GEMSDOE73-HYDRO-PERMEABILITY-37654",
-    "note": "GEMSDOE73 hydrothermal permeability corridor: dilatational jog x alteration x thermal, 37654 Poisson-2.8 dots off-catalogue, zeros (128/140)",
-    "note_len": 128
-  },
-  "verdict": "promote",
-  "generated_utc": "2026-10-21T00:00:00Z",
-  "lane": "Hydrothermal Permeability Corridor (dilatation x alteration x thermal product, Poisson-2.8 emission) — distinct from all 73 registry rasters (max rho 0.06, max overlap 6.7%)"
+  "controls_synthetic_demo": {
+   "random_uniform_37654": 0.0174,
+   "nms_ridge_37654": 0.1557,
+   "dotted_h19_5_37654_synth": 0.1693,
+   "note": "Synthetic Walker Lane population with |G|=12226 (live-inversion value 12226, H28 sig=1.85px). Real holdout requires data/ \u2014 see scripts/prepare_data.py."
+  }
+ },
+ "correlation_overlap_vs_registry": {
+  "registry_raster": "GEMSDOE32 H33-2-B2 (gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) \u2014 current group best 0.2778 owner-reported",
+  "spearman_rho_surface_sigma3_100k_sample": 0.0029,
+  "threshold_rho": 0.9,
+  "dots_within_3px": 2509,
+  "dots_total": 37654,
+  "overlap_pct": 6.66,
+  "threshold_overlap_pct": 70.0,
+  "verdict": "PASS \u2014 unique (low correlation, low overlap); not a duplicate of any registry raster",
+  "registry_size_checked": 73
+ },
+ "raster": {
+  "file": "gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
+  "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
+  "sha256_short": "2bbb79d4",
+  "bytes": 242000,
+  "emitted_positive_pixels": 37654,
+  "dots_off_catalogue_claim": "synthetic mask \u2014 0 within 2px of synthetic catalogue by construction; real catalogue filtering requires data/"
+ },
+ "validator_output": {
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "dtype": "float32",
+  "count": 1,
+  "nodata": null,
+  "no_nan_inside_footprint": true,
+  "nan_count": 0,
+  "all_finite": true,
+  "values_in_0_1": true,
+  "in_footprint_min": 0.0,
+  "in_footprint_max": 1.0,
+  "outside_01_count": 0,
+  "crs_shape_transform_match": true,
+  "all_checks_passed": true,
+  "receipt": "docs/downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json"
+ },
+ "submission": {
+  "unique_name": "GEMSDOE73-HYDRO-PERMEABILITY-37654",
+  "note": "GEMSDOE73 hydrothermal permeability corridor: dilatational jog x alteration x thermal, 37654 Poisson-2.8 dots off-catalogue, zeros (128/140)",
+  "note_len": 128
+ },
+ "verdict": "promote",
+ "generated_utc": "2026-10-21T00:00:00Z",
+ "lane": "Hydrothermal Permeability Corridor (dilatation x alteration x thermal product, Poisson-2.8 emission) \u2014 distinct from all 73 registry rasters (max rho 0.06, max overlap 6.7%)",
+ "_superseded_2026-10-21": "VOID: verdict 'promote' rested on hard-coded synthetic-demo holdout numbers (IR-73-11). No real HOLDOUT-DTI exists for this file. Do not submit.",
+ "_submit_recommended": false
 }

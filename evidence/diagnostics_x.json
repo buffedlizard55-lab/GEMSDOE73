@@ -1,0 +1,248 @@
+{
+ "evidence_class": "MEASURED-HERE diagnostic screen (per-pixel AUC; NOT holdout DTI, never used as a score)",
+ "date": "2026-10-21",
+ "n_neg_sample": 200000,
+ "neg_rule": "footprint & dist_to_catalogue>5px, rng seed 7",
+ "n_pos_catalogue": 60988,
+ "n_pos_piedmont_catalogue": 30152,
+ "piedmont_def": "depth_to_base>=250 & det_elev_slope<=13.08 (p80 of catalogue slope)",
+ "h19_support_px": 121131,
+ "h19_near_le3px": 24167,
+ "h19_far_gt10px": 71385,
+ "channels": [
+  {
+   "name": "lid_ex_max",
+   "auc_catalogue": 0.568758782465403,
+   "auc_piedmont_catalogue": 0.5252048173421332,
+   "auc_h19_near_vs_far": 0.5067532575265665
+  },
+  {
+   "name": "lid_ex_mean",
+   "auc_catalogue": 0.5605394015626024,
+   "auc_piedmont_catalogue": 0.5162299045668612,
+   "auc_h19_near_vs_far": 0.5025479478427551
+  },
+  {
+   "name": "lid_step_max",
+   "auc_catalogue": 0.5697080989702893,
+   "auc_piedmont_catalogue": 0.5249609585599629,
+   "auc_h19_near_vs_far": 0.4942342188357524
+  },
+  {
+   "name": "lid_lapneg",
+   "auc_catalogue": 0.573335360152817,
+   "auc_piedmont_catalogue": 0.5254628417683735,
+   "auc_h19_near_vs_far": 0.5081174522872657
+  },
+  {
+   "name": "lid_lappos",
+   "auc_catalogue": 0.5760977026628189,
+   "auc_piedmont_catalogue": 0.5257459818585831,
+   "auc_h19_near_vs_far": 0.5106233452217579
+  },
+  {
+   "name": "lid_downface",
+   "auc_catalogue": 0.5820180001393717,
+   "auc_piedmont_catalogue": 0.5259972886541523,
+   "auc_h19_near_vs_far": 0.4945025207048828
+  },
+  {
+   "name": "lid_upface",
+   "auc_catalogue": 0.5873692141896767,
+   "auc_piedmont_catalogue": 0.5368846500232157,
+   "auc_h19_near_vs_far": 0.5101731705034572
+  },
+  {
+   "name": "lid_cross",
+   "auc_catalogue": 0.5790648023381649,
+   "auc_piedmont_catalogue": 0.5186357229205361,
+   "auc_h19_near_vs_far": 0.5085355708725194
+  },
+  {
+   "name": "lid_relief",
+   "auc_catalogue": 0.5704734999918016,
+   "auc_piedmont_catalogue": 0.5099464754410984,
+   "auc_h19_near_vs_far": 0.5180065571781798
+  },
+  {
+   "name": "lid_coh100",
+   "auc_catalogue": 0.5104177129107366,
+   "auc_piedmont_catalogue": 0.5182095260679225,
+   "auc_h19_near_vs_far": 0.5314427735871502
+  },
+  {
+   "name": "lid_strike",
+   "auc_catalogue": 0.5292389193775825,
+   "auc_piedmont_catalogue": 0.5368453506400903,
+   "auc_h19_near_vs_far": 0.5297050609983689
+  },
+  {
+   "name": "off01_mag_anom",
+   "auc_catalogue": 0.4905727105659685,
+   "auc_piedmont_catalogue": 0.4615370876321237,
+   "auc_h19_near_vs_far": 0.4714296144860914
+  },
+  {
+   "name": "off02_rtp",
+   "auc_catalogue": 0.4982295397310061,
+   "auc_piedmont_catalogue": 0.4885885348438382,
+   "auc_h19_near_vs_far": 0.49054058682006885
+  },
+  {
+   "name": "off03_tmi_hg",
+   "auc_catalogue": 0.531098680542395,
+   "auc_piedmont_catalogue": 0.528882571001315,
+   "auc_h19_near_vs_far": 0.43128639243230593
+  },
+  {
+   "name": "off04_geod_2ndinv",
+   "auc_catalogue": 0.5769783797925561,
+   "auc_piedmont_catalogue": 0.5933970820762182,
+   "auc_h19_near_vs_far": 0.49427082057172245
+  },
+  {
+   "name": "off05_iso_slope",
+   "auc_catalogue": 0.5383371632548097,
+   "auc_piedmont_catalogue": 0.5686973312033179,
+   "auc_h19_near_vs_far": 0.5678513466707285
+  },
+  {
+   "name": "off06_tc_tilt",
+   "auc_catalogue": 0.4397107047540338,
+   "auc_piedmont_catalogue": 0.4991688785922952,
+   "auc_h19_near_vs_far": 0.47708157817787505
+  },
+  {
+   "name": "off07_shear",
+   "auc_catalogue": 0.5752345635875152,
+   "auc_piedmont_catalogue": 0.5988543725060193,
+   "auc_h19_near_vs_far": 0.48877520931691626
+  },
+  {
+   "name": "off08_dilat",
+   "auc_catalogue": 0.5300943485851132,
+   "auc_piedmont_catalogue": 0.530986709607481,
+   "auc_h19_near_vs_far": 0.5254830284826103
+  },
+  {
+   "name": "off09_tmi_vg",
+   "auc_catalogue": 0.48593052508182977,
+   "auc_piedmont_catalogue": 0.48633316199423726,
+   "auc_h19_near_vs_far": 0.4900789846236846
+  },
+  {
+   "name": "off10_deq",
+   "auc_catalogue": 0.5554384493829578,
+   "auc_piedmont_catalogue": 0.5592314713470081,
+   "auc_h19_near_vs_far": 0.4876160585937782
+  },
+  {
+   "name": "off11_iso_vg",
+   "auc_catalogue": 0.5321093458125943,
+   "auc_piedmont_catalogue": 0.5477413640457914,
+   "auc_h19_near_vs_far": 0.5357777905092136
+  },
+  {
+   "name": "off12_det_elev",
+   "auc_catalogue": 0.48517508873617915,
+   "auc_piedmont_catalogue": 0.43029378018879466,
+   "auc_h19_near_vs_far": 0.4467458267573367
+  },
+  {
+   "name": "off13_iso_grav",
+   "auc_catalogue": 0.4564335655054761,
+   "auc_piedmont_catalogue": 0.3221722426117002,
+   "auc_h19_near_vs_far": 0.4788523677781845
+  },
+  {
+   "name": "off14_tmi",
+   "auc_catalogue": 0.48789082905603265,
+   "auc_piedmont_catalogue": 0.4629187124240245,
+   "auc_h19_near_vs_far": 0.4665380559532013
+  },
+  {
+   "name": "off15_depth_base",
+   "auc_catalogue": 0.5133329855217755,
+   "auc_piedmont_catalogue": 0.698988643008907,
+   "auc_h19_near_vs_far": 0.48674218638851857
+  },
+  {
+   "name": "off16_ieq",
+   "auc_catalogue": 0.5763942392260955,
+   "auc_piedmont_catalogue": 0.5731637617146903,
+   "auc_h19_near_vs_far": 0.5295131213500808
+  },
+  {
+   "name": "off17_cond",
+   "auc_catalogue": 0.48140680764144317,
+   "auc_piedmont_catalogue": 0.4729973273853898,
+   "auc_h19_near_vs_far": 0.49755396952388137
+  },
+  {
+   "name": "off18_iso_hg",
+   "auc_catalogue": 0.4999748258400522,
+   "auc_piedmont_catalogue": 0.5107394881336214,
+   "auc_h19_near_vs_far": 0.5346208419657413
+  },
+  {
+   "name": "off19_det_slope",
+   "auc_catalogue": 0.5643201468774088,
+   "auc_piedmont_catalogue": 0.43710898351480193,
+   "auc_h19_near_vs_far": 0.4911735456143615
+  },
+  {
+   "name": "rad1_K",
+   "auc_catalogue": 0.4304122442939594,
+   "auc_piedmont_catalogue": 0.5193424683271425,
+   "auc_h19_near_vs_far": 0.4098775822002197
+  },
+  {
+   "name": "rad2_Th",
+   "auc_catalogue": 0.4433200851806913,
+   "auc_piedmont_catalogue": 0.47536618184531704,
+   "auc_h19_near_vs_far": 0.4802358691915819
+  },
+  {
+   "name": "rad3_U",
+   "auc_catalogue": 0.4724730488374762,
+   "auc_piedmont_catalogue": 0.5016544893373573,
+   "auc_h19_near_vs_far": 0.5359424412544567
+  },
+  {
+   "name": "rad4_TC",
+   "auc_catalogue": 0.43929895922148615,
+   "auc_piedmont_catalogue": 0.499260049167551,
+   "auc_h19_near_vs_far": 0.47704640568115686
+  },
+  {
+   "name": "ext1_ThK",
+   "auc_catalogue": 0.48282904743556104,
+   "auc_piedmont_catalogue": 0.4535405636442027,
+   "auc_h19_near_vs_far": 0.5385187441270528
+  },
+  {
+   "name": "ext2_UK",
+   "auc_catalogue": 0.5404142332508035,
+   "auc_piedmont_catalogue": 0.4840438993267445,
+   "auc_h19_near_vs_far": 0.5903581867688494
+  },
+  {
+   "name": "ext3_UTh",
+   "auc_catalogue": 0.5461141226142847,
+   "auc_piedmont_catalogue": 0.5305784373341735,
+   "auc_h19_near_vs_far": 0.5400558917014192
+  },
+  {
+   "name": "ext4_TMI_up150",
+   "auc_catalogue": 0.48866826383878803,
+   "auc_piedmont_catalogue": 0.4621309499369859,
+   "auc_h19_near_vs_far": 0.4646795078369759
+  }
+ ],
+ "reading": [
+  "All single-channel symmetric AUCs <=0.70 (depth on piedmont subset is definitional); no leakage canary fires (gate 0.90).",
+  "Best H19-support near-vs-far discriminators: U/K 0.590, iso_grav_slope 0.568, U/Th 0.540, Th/K 0.539, coh100 0.531.",
+  "tmi_hg near-vs-far AUC 0.431 (inverse): magnetic-gradient witness alone would favour H19 far (proxy-FP) pixels; excluded from witness set.",
+  "Per-pixel AUC cannot measure trace localisation; it screens witnesses only. Selection uses pooled HOLDOUT-DTI."
+ ]
+}

@@ -1,11 +1,38 @@
 {
-  "read_utc": "2026-10-21T02:26:00Z",
-  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-  "method": "manual read (fetch_page)",
-  "top3": [
-    {"rank": 1, "participant": "xiaofanhu", "best_public_dti": 0.4413, "submissions": 26},
-    {"rank": 2, "participant": "cfld__", "best_public_dti": 0.3904, "submissions": 14},
-    {"rank": 3, "participant": "Batik Shirt Brothers", "best_public_dti": 0.3811, "submissions": 43}
-  ],
-  "group_best_before": {"participant": "GEMSDOE32 h33-h33-2-b2", "dti": 0.2778, "px": 37654}
+ "evidence_class": "ORGANIZER-CONFIRMED public leaderboard page read (no file-to-score crosswalk)",
+ "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+ "read_date": "2026-10-21",
+ "top_rows_as_read": [
+  {
+   "rank": 1,
+   "participant": "xiaofanhu",
+   "best_public_dw_tversky": 0.4413,
+   "submissions": 26
+  },
+  {
+   "rank": 2,
+   "participant": "cfld__",
+   "best_public_dw_tversky": 0.3904,
+   "submissions": 14
+  },
+  {
+   "rank": 3,
+   "participant": "Batik Shirt Brothers",
+   "best_public_dw_tversky": 0.3894,
+   "submissions": 45
+  },
+  {
+   "rank": 4,
+   "participant": "BrandenKMurray",
+   "best_public_dw_tversky": 0.3713,
+   "submissions": 27
+  },
+  {
+   "rank": 5,
+   "participant": "No Fault of Our Own",
+   "best_public_dw_tversky": 0.3539,
+   "submissions": 37
+  }
+ ],
+ "note": "Public chunk only; dynamic. Supersedes same-day earlier snapshot only in #3 (0.3811->0.3894, submissions 43->45): page changed between reads, both reads 2026-10-21."
 }
