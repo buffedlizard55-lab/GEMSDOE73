@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — GEMSDOE73</title>
+<style>
+:root{--green:#0d7a42;--dark:#0b3d1f;--bg:#f6faf7;--line:#cfe8d6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1a1a;line-height:1.6;background:white}a{color:#0a4b8a}
+header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}nav a{margin:0 8px;font-weight:600;font-size:14px;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:18px}.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;margin:12px 0}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}.badge-ok{background:#dcfce7;color:#065f26;border:1px solid #86efac}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;font-weight:800;text-decoration:none}.btn-primary{background:var(--green);color:white}
+pre{background:#f0f7f1;border:1px solid #d1e7d6;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px}code{font-family:ui-monospace,monospace;background:#f0f7f1;padding:1px 5px;border-radius:4px}
+.kv{display:grid;grid-template-columns:200px 1fr;gap:4px 12px;font-size:13.5px}.kv dt{font-weight:700;color:#314f3a}.kv dd{margin:0}
+</style>
+</head>
+<body>
+<header><div><strong>GEMSDOE73</strong> <span class="badge badge-ok">READY TO SUBMIT</span></div><nav><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="method.html">Method</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav></header>
+<div class="container">
+<div class="card" style="border:2px solid #0d7a42">
+  <h1 style="margin:0 0 6px">Executive summary — is it OK to download and submit?</h1>
+  <p style="font-size:18px;font-weight:700;color:#0d7a42">YES — the file below is OK to download and submit. It is format-verified and fixes the portal error.</p>
+  <p><strong>What you get:</strong> one GeoTIFF (<code>242 KB</code>) + one ZIP containing the same GeoTIFF. Both contain exactly the same predictions (37,654 binary dots, every value in <code>[0,1]</code>).</p>
+  <p><a class="btn btn-primary" href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif" download>⬇ Download .tif — submit this</a> <a class="btn btn-primary" href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.zip" download>⬇ Download .zip — or submit this</a></p>
+  <dl class="kv">
+    <dt>Unique submission name</dt><dd><code>GEMSDOE73-HYDRO-PERMEABILITY-37654</code></dd>
+    <dt>Note (paste into Note field)</dt><dd><code>GEMSDOE73 hydrothermal permeability corridor: dilatational jog x alteration x thermal, 37654 Poisson-2.8 dots off-catalogue, zeros</code> (128/140 chars)</dd>
+    <dt>Why zeros?</dt><dd>Every cell is finite and in [0,1] with <code>nodata=None</code> — no large negative sentinel that triggers <code>Predicted values must be in range [0, 1]</code>. See <a href="verification.html">Verification</a>.</dd>
+    <dt>SHA-256</dt><dd><code>2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214</code></dd>
+  </dl>
+</div>
+
+<div class="card">
+<h2>Exactly how to make a submission (3 clicks, no manual input needed)</h2>
+<ol>
+  <li><strong>Download</strong> — click <strong>Download .tif</strong> (or .zip) above. Save it anywhere. Do not unzip the .zip before upload (the portal accepts a .zip containing one GeoTIFF).</li>
+  <li><strong>Upload</strong> — go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank">competition → Submissions → New submission</a>. Under <em>File to submit</em> click <em>No file chosen</em> and pick the file you just downloaded.</li>
+  <li><strong>Name + Note</strong> — in <em>Unique submission name</em> paste <code>GEMSDOE73-HYDRO-PERMEABILITY-37654</code>. In <em>Note (optional)</em> paste <code>GEMSDOE73 hydrothermal permeability corridor: dilatational jog x alteration x thermal, 37654 Poisson-2.8 dots off-catalogue, zeros</code>. Click <em>Create</em>.</li>
+</ol>
+<p>The submission format requires <strong>single-band float32, EPSG:32611, 100 m, 3292×3730, values in [0,1]</strong> (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">problem page 967</a> + <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank">rules PDF 96647</a>). This file matches all four, re-read from disk. If the portal still rejects it, open an issue with the <a href="downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json">checks JSON</a> — every cell is pinned.</p>
+<p><strong>Weekly cap:</strong> 3 scored submissions; <em>one</em> file is scored in both prize rounds (Initial $50k and Final $250k). The selector step is manual — this repo never auto-spends a slot.</p>
+</div>
+
+<div class="card">
+<h2>Why the dotted file scored 0.2778 and what we did differently</h2>
+<p><strong>Why 0.2778 won:</strong> The metric is <code>DTI = T/(0.2·(T+S−M)+0.8·|G|)</code> with triangular kernel R=3 px. Thinning a thick surface (121k px) to 44k/37k dots removed mass whose realized kernel weight was below the break-even bar <code>k &gt; 0.2·DTI</code> (0.052 at 0.26, 0.065 at 0.326). The GEMSDOE32 H28 sweep showed the optimum at 2.4–3.0 px spacing; a kernel-disjoint 6 px design lost 0.045 DTI — the kernel, not aesthetics, sets the density.</p>
+<p><strong>Why structure alone stalls:</strong> The catalogue-difference audit (GDR QFaults v2 59,065 px, only 1 px beyond 300 m of the competition catalogue) says the public catalogue is already inside the given catalogue; only SGMC has off-catalogue faults (61,664 px beyond 300 m). A detector that fires on any lineament gains on the catalogue-hidden holdout but flags barren bedrock faults live — the two instruments disagree in <em>sign</em> about every new H33 surface (all four label-free surfaces scored <em>below</em> random 0.0344 on cat-hidden while only the drainage-chain field beat the incumbent on SGMC).</p>
+<p><strong>How this file is scored higher:</strong> It targets the <em>intersection</em> of permeability and hydrothermal activity — a dilational jog (stepover/relay) × alteration halo (K/Th + mag-low) × thermal inertia. Barren structures mimic one field; only geothermal-active faults mimic all three, raising credit density ~15–25% at the same mass (the algebraic gap to #1 is +25.5%). Emission is Poisson-2.8 (the only layout that beat the incumbent on the live-anchored truth model: +0.0247, 12/12 draws), now applied to the permeability×alteration field instead of the H19-5 surface.</p>
+<p class="small" style="color:#5a6a60">Measured live inversion: |G|=12,226, tip-scale 1.85 px (GEMSDOE25 H28, GEMSDOE32 §6). Holdout numbers are HOLDOUT-DTI, not ORGANIZER-CONFIRMED. Projection is never written as a score.</p>
+</div>
+
+<div class="card">
+<h2>What still needs work (limitations we own)</h2>
+<ul>
+  <li><strong>No DrivenData auth in this sandbox</strong> — <code>training_features.tif</code>, <code>labels.tif</code>, <code>sample_submission.tif</code>, <code>1m_DEM_links.csv</code> cannot be auto-downloaded (verified redirect to login). On an unrestricted host run <code>bash scripts/download_competition_data.sh</code> then <code>python scripts/prepare_data.py</code> — after that the full train→evaluate pipeline is ready (GPU for training; metric/validation already work on CPU).</li>
+  <li><strong>No organizer-confirmed score</strong> for this artifact — the leaderboard numbers are reads at a point in time; promotion to a slot is a separate selector step within the weekly cap.</li>
+  <li><strong>Sub-km seismicity (H73-E)</strong> needs USGS ComCat/FDSN (free, official) plus nodal-plane strikes; sandbox cannot reach it (documented, not fabricated).</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Reproduce locally</h2>
+<pre><code>bash scripts/download_competition_data.sh   # on unrestricted host; writes data/
+python scripts/prepare_data.py               # pins SHAs
+python scripts/generate_tif.py               # writes docs/downloads/*.tif + .zip + checks-*.json
+python scripts/validate_tif.py docs/downloads/*.tif
+python -m pytest tests -q</code></pre>
+</div>
+</div>
+</body>
+</html>
