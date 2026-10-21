@@ -1,0 +1,198 @@
+{
+  "schema_version": 2,
+  "repository": "buffedlizard55-lab/GEMSDOE73",
+  "branch": "arena/148c59e4-gemsdoe73",
+  "date_utc": "2026-10-21",
+  "hypothesis": "H73-2: Two-Stage Multi-Expert Corroborated Steerable Wash-Bridge & En-Echelon Stepover Auto-Context (MECS-AutoCtx) + Exact 300 m Submodular Tversky Coverage Allocation",
+  "mechanism": "Stage 1 cross-fits four zero-catalogue-distance physical specialists across 48 channels (seamless quantile-harmonized 1m+10m USGS 3DEP geomorphology + 10m fluvial chi/ksn, potential-field worms + 150m upward-continuation persistence + Gallardo-Meju cross-gradients + strain/seismicity, GeoDAWN K/Th + magnetite destruction + 3,800 UNR 2m temperature probes + Quaternary sinter/geothermometers). Stage 2 applies steerable bilateral wash-bridge and conjugate en-echelon relay-stepover operators across 12 strikes on nested out-of-fold probability tails, followed by Minoux lazy-greedy maximization of exact 300 m Tversky coverage.",
+  "mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches and radial alluvial-fan distributary channels (suppressed via surface-subsurface cross-gradient alignment, low-gradient playa contour guards, and independent 2nd-sensor-family corroboration).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "spatial_bootstrap_draws": 1000,
+    "E3_mecs_stage2_submodular": {
+      "dti": 0.10195,
+      "ci95": [
+        0.08599,
+        0.11783
+      ]
+    },
+    "E2_mecs_stage2_greedy": {
+      "dti": 0.09679,
+      "ci95": [
+        0.08046,
+        0.11293
+      ]
+    },
+    "E1_mecs_stage1_greedy": {
+      "dti": 0.0926,
+      "ci95": [
+        0.07538,
+        0.10909
+      ]
+    },
+    "control_h33_analogue_foldfair": {
+      "dti": 0.08427,
+      "ci95": [
+        0.0668,
+        0.10131
+      ]
+    },
+    "paired_delta_E3_minus_h33_foldfair": {
+      "delta": 0.01768,
+      "ci95": [
+        0.00259,
+        0.03226
+      ],
+      "statistically_significant_95pct": true
+    },
+    "previous_gems73_baselines": {
+      "G73_PR3_h73_1_piedmont_scarpchain_foldfair": 0.05478,
+      "G73_PR1_pr1_stub_measured": 0.02709,
+      "G73_PR2_c111bb0f_measured": 0.00147
+    },
+    "leakage_canary": {
+      "n_features_tested": 48,
+      "max_symmetric_auc": 0.59273,
+      "max_feature": "m03_lidar_lap_dipole",
+      "threshold": 0.9,
+      "all_passed": true
+    }
+  },
+  "uniqueness_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "complete_accessible_scan": true,
+    "repos_scanned": 78,
+    "valid_grid_rasters_compared": 949,
+    "vendor_unique": true,
+    "max_stage_a_surface_spearman": 0.39221,
+    "max_stage_b_dots_spearman": 0.088538,
+    "max_mutual_3px_overlap_all_949": 0.522195,
+    "max_forward_3px_overlap_matched_budget_749": 0.636426,
+    "overlap_with_H33_champion_e5eb6e7e": 0.4997,
+    "overlap_with_G70_P8_multiphysics": 0.4408,
+    "overlap_with_H19_5_multiline": 0.5222,
+    "unique_grid_rasters_compared": 963,
+    "parallel_gemsdoe73_lanes_audited": {
+      "H73-MVH (PR #11, 0.1599)": {
+        "mutual_3px": 0.3523,
+        "forward_3px": 0.3523,
+        "spearman": 0.0322,
+        "novel_dots_vs_mvh": 24388
+      },
+      "H73-7 HardFault-PU (PR #9, 0.1369)": {
+        "mutual_3px": 0.2426,
+        "forward_3px": 0.2426,
+        "spearman": 0.0207
+      },
+      "CrossDrain-UNet (PR #7, 0.1360)": {
+        "mutual_3px": 0.5088,
+        "forward_3px": 0.5117,
+        "spearman": 0.0508
+      },
+      "H73-M Regime CoKrig (PR #10, 0.1224)": {
+        "mutual_3px": 0.4476,
+        "forward_3px": 0.5481,
+        "spearman": 0.0475
+      },
+      "H73 Piedmont Corrob (PR #6, 0.1122)": {
+        "mutual_3px": 0.4449,
+        "forward_3px": 0.4449,
+        "spearman": 0.0359
+      },
+      "H73-6 TraceLoc (PR #4, 0.0592)": {
+        "mutual_3px": 0.2174,
+        "forward_3px": 0.2427,
+        "spearman": 0.0106
+      },
+      "H73-1 Piedmont Formula (PR #3, 0.0548)": {
+        "mutual_3px": 0.1856,
+        "forward_3px": 0.1856,
+        "spearman": 0.0096
+      },
+      "H73-F Curvature (PR #5)": {
+        "mutual_3px": 0.1328,
+        "forward_3px": 0.1328,
+        "spearman": 0.0048
+      }
+    }
+  },
+  "raster_sha256": {
+    "primary_portal_safe_zeros_tif": "b8e10300a96aa6735835d674f8e9493c7c66e7a35e4aa5584178de5c461958aa",
+    "primary_zip": "138bae3c6e29e0299dd1d842f105c2fba730b243914bf7e249b2236da75bf23e",
+    "companion_nan_tif": "91885418f3a377cc211142446b1ae85b34417f3373d6466b8e167c1ae54dee2d"
+  },
+  "validator_output": {
+    "file": "/home/user/GEMSDOE73/docs/downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif",
+    "bytes": 142170,
+    "sha256": "b8e10300a96aa6735835d674f8e9493c7c66e7a35e4aa5584178de5c461958aa",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission": {
+    "file": "gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif",
+    "zip_file": "gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.zip",
+    "name": "gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros",
+    "note": "GEMS73 H73-2 MECS-AutoCtx 2-stage wash/stepover+submodular 300m (37654 dots); HOLDOUT-DTI 0.1019 vs H33 0.0843",
+    "note_chars": 110,
+    "emitted_dots": 37654
+  },
+  "verdict": "promote",
+  "slot_allocation_recommendation": {
+    "beats_live_champion_h33_control": true,
+    "rank_among_zero_catalogue_tip_pure_physics_lanes": 1,
+    "overall_rank_across_all_12_gemsdoe73_prs": 6,
+    "primary_single_slot_choice": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif (PR #11, HOLDOUT-DTI = 0.1599)",
+    "orthogonal_slot_2_blind_fault_choice": "gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif (PR #12, HOLDOUT-DTI = 0.1020, 0 fault-tip features, 24,388 non-overlapping dots vs H73-MVH)"
+  }
+}

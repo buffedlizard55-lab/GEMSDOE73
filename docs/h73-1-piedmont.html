@@ -3,123 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Superseded PR #3 Archive (DO NOT SUBMIT) — GEMSDOE73 (H73-MCSC)</title>
-  <style>
-:root {
-  --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
-  --line: #e2e8f0; --green: #15803d; --green-bg: #f0fdf4; --green-bd: #86efac;
-  --red: #b91c1c; --red-bg: #fef2f2; --red-bd: #fca5a5;
-  --blue: #0369a1; --blue-bg: #f0f9ff; --navy: #0f172a;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
-header.nav { background: var(--navy); color: #fff; padding: 0.85rem 1.5rem; position: sticky; top: 0; z-index: 20; border-bottom: 3px solid #22c55e; }
-header.nav .wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
-header.nav a.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.01em; }
-header.nav nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-header.nav nav a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 6px; }
-header.nav nav a:hover, header.nav nav a.active { color: #fff; background: rgba(255,255,255,0.14); }
-main { max-width: 1180px; margin: 1.8rem auto 3.5rem; padding: 0 1.4rem; }
-.hero-promote { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 14px; padding: 1.6rem 1.8rem; box-shadow: 0 6px 20px rgba(21,128,61,0.08); margin-bottom: 1.8rem; }
-.badge-ok { display: inline-block; background: #15803d; color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.32rem 0.8rem; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
-.badge-no { display: inline-block; background: #b91c1c; color: #fff; font-weight: 700; font-size: 0.76rem; padding: 0.2rem 0.6rem; border-radius: 999px; }
-.badge-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.76rem; padding: 0.16rem 0.5rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-h1 { margin: 0.6rem 0 0.5rem; font-size: 1.85rem; line-height: 1.25; }
-h2 { margin-top: 2rem; font-size: 1.35rem; border-bottom: 2px solid var(--line); padding-bottom: 0.4rem; }
-h3 { margin-top: 1.3rem; font-size: 1.08rem; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin: 1.15rem 0 1rem; }
-.btn { display: inline-block; text-decoration: none; font-weight: 700; padding: 0.72rem 1.2rem; border-radius: 9px; font-size: 0.95rem; transition: transform 0.08s ease; cursor: pointer; border: none; }
-.btn-primary { background: #15803d; color: #fff; box-shadow: 0 3px 10px rgba(21,128,61,0.28); }
-.btn-secondary { background: #0f172a; color: #fff; }
-.btn-outline { background: #fff; color: #0f172a; border: 1.5px solid #94a3b8; }
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1rem; margin: 1.3rem 0; }
-.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1rem 1.15rem; }
-.kpi .lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em; }
-.kpi .val { font-size: 1.55rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0; }
-.kpi .sub { font-size: 0.83rem; color: #15803d; font-weight: 600; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.35rem 1.5rem; margin-bottom: 1.4rem; }
-.quarantine { background: var(--red-bg); border: 1.5px solid var(--red-bd); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.5rem 0; }
-table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
-th, td { text-align: left; padding: 0.62rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
-tr.highlight { background: #f0fdf4; font-weight: 600; }
-code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86rem; }
-pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.15rem; border-radius: 10px; overflow-x: auto; line-height: 1.45; }
-.copy-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.55rem 0.8rem; margin: 0.4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-figure { margin: 1.2rem 0; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 0.9rem; }
-figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
-figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.55rem; }
-footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1.8rem 1rem; border-top: 1px solid var(--line); }
-</style>
-  <script>
-    function copyText(id, btn) {
-      const txt = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const old = btn.innerText;
-        btn.innerText = "Copied!";
-        setTimeout(() => btn.innerText = old, 1400);
-      });
-    }
-  </script>
+  <title>Archived Negative Lane H73-1 — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap">
-      <a class="brand" href="index.html">GEMSDOE73 · Lane H73-MCSC (PROMOTED)</a>
-      <nav><a href="index.html" class="">Portal & Download</a>
-<a href="executive-summary.html" class="">Executive Answer</a>
-<a href="hypotheses.html" class="">Hypotheses & Ablation</a>
-<a href="method.html" class="">MCSC Architecture</a>
-<a href="leaderboard.html" class="">Live Score Physics</a>
-<a href="verification.html" class="">Uniqueness & Validators</a>
-<a href="irregularities.html" class="">Irregularities (16)</a>
-<a href="sources.html" class="">Official Sources</a></nav>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-2 MECS-AutoCtx</a>
+      <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="research.html">PhD Analysis (Why 0.2778 Won)</a><a href="hypotheses.html">Hypotheses &amp; E1-E3 Ablation</a><a href="leaderboard.html">57-Submission Audit Ledger</a><a href="sources.html">Verified Sources &amp; SHA-256</a><a href="irregularities.html">Irregularities (IR-73-01..13)</a>
     </div>
-  </header>
-  <main>
+  </nav>
+  <main class="wrap">
     
-<section class="hero-promote">
-  <span class="badge-ok">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
-  <h1>Promoted Submission: <code>gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif</code></h1>
-  <p style="margin:0.35rem 0 0.7rem;color:#1e293b;">
-    <strong>Single-band portal-safe GeoTIFF</strong> (<code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>float32</code>, <code>nodata = None</code>, <strong>12,279,160 / 12,279,160 finite values in [0.0, 1.0]</strong>, <code>37,654</code> binary <code>1.0</code> fault dots, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> on mapped catalogue). Statistically beats <code>GEMSDOE32 H33-2-B2</code> (<code>0.2778</code> live champion) on both pooled withheld faults (<strong>0.1095 vs 0.0940</strong>, paired 95% CI <code>[+0.0019, +0.0302]</code>) and blind off-catalogue faults &gt; 1 km (<strong>0.1006 vs 0.0732, +37.4%</strong>, paired 95% CI <code>[+0.0092, +0.0486]</code>), and passes <strong>100% of all 92 leakage canaries and all 888 fleet uniqueness checks</strong>.
-  </p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif" download>Download Primary GeoTIFF (.tif, 144.2 KB) — UPLOAD THIS FILE</a>
-    <a class="btn btn-secondary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip" download>Download ZIP Archive (112.3 KB)</a>
-    <a class="btn btn-outline" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif" download>GIS Companion (-nan.tif)</a>
-    <a class="btn btn-outline" href="evidence/run_card.json">View Raw JSON Run Card</a>
-  </div>
-  <div class="copy-box">
-    <div><strong>Unique Submission Name:</strong> <code id="sub-name">gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-name', this)">Copy Name</button>
-  </div>
-  <div class="copy-box">
-    <div><strong>Portal Note (100 / 140 chars):</strong> <code id="sub-note">H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-note', this)">Copy Note</button>
-  </div>
-  <div style="font-size:0.82rem;color:#334155;margin-top:0.55rem;">
-    <strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249</code><br>
-    <strong>SHA-256 (<code>.zip</code>):</strong> <code>2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1</code>
-  </div>
-</section>
-
-<section class="quarantine">
-  <h3 style="margin-top:0;color:#991b1b;">Quarantined Legacy Rasters in <code>docs/downloads/</code> — DO NOT SUBMIT</h3>
-  <p style="margin:0.3rem 0 0.7rem;font-size:0.9rem;">Preserved strictly for git audit trail across PRs #1–#3. Only upload the emerald-badged <strong><code>b27ac445-zeros.tif</code></strong> file at the top of this page:</p>
-  <table>
-    <thead><tr><th>Legacy File</th><th>Origin</th><th>Status</th><th>Audit Finding</th></tr></thead>
-    <tbody>
-      <tr><td><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></td><td>PR #3</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Superseded baseline (<code>0.0548</code> HOLDOUT-DTI vs <code>0.1095</code> H73-MCSC; <code>IR-73-04</code>).</td></tr>
-      <tr><td><code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code></td><td>PR #2</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Negative stepover ablation (<code>0.0085</code> HOLDOUT-DTI; <code>IR-73-02</code>).</td></tr>
-      <tr><td><code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code></td><td>PR #1</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Under-budget legacy artifact (<code>16,180</code> dots emitted vs <code>37,654</code> name; <code>IR-73-01</code>).</td></tr>
-    </tbody>
-  </table>
-</section>
-
+    <div class="banner-warn">
+      <strong>ARCHIVAL NEGATIVE LANE (<code>H73-1</code>, PR #3) — DO NOT SUBMIT THIS HISTORICAL FILE.</strong>
+      This page preserves the earlier unsupervised formula baseline (<code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code>, <code>HOLDOUT-DTI = 0.0548</code> vs H33 control <code>0.0939</code>, verdict <code>NEGATIVE</code>).
+      For the current <strong>PROMOTED</strong> submission that beats the H33 control (<code>HOLDOUT-DTI = 0.1020</code>), go to <a href="index.html"><strong>Overview &amp; Promoted Submission Download (<code>H73-2</code>)</strong></a>.
+    </div>
+    <div class="card">
+      <h1>Archived Negative Lane: <code>H73-1</code> Piedmont Micro-Scarp Chain (PR #3)</h1>
+      <ul>
+        <li><strong>Archived File (Review Only — Do Not Submit):</strong> <a href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif"><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></a> (SHA-256: <code>d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece</code>)</li>
+        <li><strong>Holdout Result (`gems57-pooled-hide-v2`, `n = 11,321`):</strong> <code>HOLDOUT-DTI = 0.0548</code> [<code>0.0417, 0.0688</code>] — failed gate against H33 control; superseded by <strong><code>H73-2</code> (<code>0.1020</code>)</strong>.</li>
+      </ul>
+    </div>
+    
+    <footer>
+      GEMSDOE73 · DOE GEMS Prize Fault Discovery System · Every score strictly tagged
+      <code>HOLDOUT-DTI</code>, <code>USER-REPORTED PORTAL</code>, or <code>PUBLIC LEADERBOARD</code> ·
+      Zero unverified claims · Source repo: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a>.
+    </footer>
   </main>
-  <footer>
-    buffedlizard55-lab/GEMSDOE73 · Core Values: <strong>Maximize P(Win)</strong> &amp; <strong>Own the Outcome</strong> · All metrics tagged <code>HOLDOUT-DTI</code>, <code>ORGANIZER-CONFIRMED</code>, or <code>OWNER-REPORT</code>.
-  </footer>
 </body>
 </html>

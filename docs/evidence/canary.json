@@ -1,0 +1,397 @@
+{
+  "evidence_class": "LEAKAGE-CANARY",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "sampled_negative_pixels": 200000,
+  "n_features_tested": 48,
+  "threshold_symmetric_auc": 0.9,
+  "all_passed": true,
+  "max_symmetric_auc": 0.59273,
+  "max_feature": "m03_lidar_lap_dipole",
+  "features": [
+    {
+      "col": 0,
+      "feature": "m00_scarp_seamless_q",
+      "auc_signed": 0.57638,
+      "auc_symmetric": 0.57638,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 1,
+      "feature": "m01_lidar_step_raw",
+      "auc_signed": 0.58608,
+      "auc_symmetric": 0.58608,
+      "finite_fraction": 0.7604,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 2,
+      "feature": "m02_lidar_dipole",
+      "auc_signed": 0.58541,
+      "auc_symmetric": 0.58541,
+      "finite_fraction": 0.7604,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 3,
+      "feature": "m03_lidar_lap_dipole",
+      "auc_signed": 0.59273,
+      "auc_symmetric": 0.59273,
+      "finite_fraction": 0.7604,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 4,
+      "feature": "m04_lidar_coh_cross",
+      "auc_signed": 0.57877,
+      "auc_symmetric": 0.57877,
+      "finite_fraction": 0.7604,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 5,
+      "feature": "m05_topo10_slope_p90",
+      "auc_signed": 0.56876,
+      "auc_symmetric": 0.56876,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 6,
+      "feature": "m06_topo10_slope_max_hp",
+      "auc_signed": 0.5269,
+      "auc_symmetric": 0.5269,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 7,
+      "feature": "m07_topo10_steep_frac",
+      "auc_signed": 0.55151,
+      "auc_symmetric": 0.55151,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 8,
+      "feature": "m08_topo10_slope_std",
+      "auc_signed": 0.58815,
+      "auc_symmetric": 0.58815,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 9,
+      "feature": "m09_topo10_curv_prof",
+      "auc_signed": 0.58583,
+      "auc_symmetric": 0.58583,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 10,
+      "feature": "m10_topo10_aspect_coh",
+      "auc_signed": 0.49838,
+      "auc_symmetric": 0.50162,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 11,
+      "feature": "m11_topo10_hs_lineament",
+      "auc_signed": 0.57672,
+      "auc_symmetric": 0.57672,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 12,
+      "feature": "m12_elev_slope_hp15",
+      "auc_signed": 0.42895,
+      "auc_symmetric": 0.57105,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 13,
+      "feature": "m13_det_elev_tpi7",
+      "auc_signed": 0.49337,
+      "auc_symmetric": 0.50663,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 14,
+      "feature": "m14_morph_worm_1500m",
+      "auc_signed": 0.58337,
+      "auc_symmetric": 0.58337,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 15,
+      "feature": "m15_chi_ksn_knick",
+      "auc_signed": 0.48457,
+      "auc_symmetric": 0.51543,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 16,
+      "feature": "s16_mag_anom_hp15",
+      "auc_signed": 0.50588,
+      "auc_symmetric": 0.50588,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 17,
+      "feature": "s17_rtp_hp15",
+      "auc_signed": 0.49181,
+      "auc_symmetric": 0.50819,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 18,
+      "feature": "s18_log_tmi_hg",
+      "auc_signed": 0.52874,
+      "auc_symmetric": 0.52874,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 19,
+      "feature": "s19_tmi_vg",
+      "auc_signed": 0.56651,
+      "auc_symmetric": 0.56651,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 20,
+      "feature": "s20_tc_tilt",
+      "auc_signed": 0.5235,
+      "auc_symmetric": 0.5235,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 21,
+      "feature": "s21_analytic_sig",
+      "auc_signed": 0.54914,
+      "auc_symmetric": 0.54914,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 22,
+      "feature": "s22_mag_up150_persist",
+      "auc_signed": 0.5285,
+      "auc_symmetric": 0.5285,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 23,
+      "feature": "s23_worm_mag_1500m",
+      "auc_signed": 0.51755,
+      "auc_symmetric": 0.51755,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 24,
+      "feature": "s24_grav_hp15",
+      "auc_signed": 0.47061,
+      "auc_symmetric": 0.52939,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 25,
+      "feature": "s25_grav_slope",
+      "auc_signed": 0.56593,
+      "auc_symmetric": 0.56593,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 26,
+      "feature": "s26_grav_vg",
+      "auc_signed": 0.51629,
+      "auc_symmetric": 0.51629,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 27,
+      "feature": "s27_grav_hg_abs",
+      "auc_signed": 0.51846,
+      "auc_symmetric": 0.51846,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 28,
+      "feature": "s28_worm_grav_1500m",
+      "auc_signed": 0.53058,
+      "auc_symmetric": 0.53058,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 29,
+      "feature": "s29_basement_depth_log",
+      "auc_signed": 0.53637,
+      "auc_symmetric": 0.53637,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 30,
+      "feature": "s30_basement_grad",
+      "auc_signed": 0.50767,
+      "auc_symmetric": 0.50767,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 31,
+      "feature": "s31_xgrad_gm_align",
+      "auc_signed": 0.51823,
+      "auc_symmetric": 0.51823,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 32,
+      "feature": "s32_xgrad_gm_ortho",
+      "auc_signed": 0.53306,
+      "auc_symmetric": 0.53306,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 33,
+      "feature": "s33_strain_2ndinv",
+      "auc_signed": 0.4601,
+      "auc_symmetric": 0.5399,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 34,
+      "feature": "s34_strain_shear",
+      "auc_signed": 0.50907,
+      "auc_symmetric": 0.50907,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 35,
+      "feature": "s35_strain_dilate_eq",
+      "auc_signed": 0.52322,
+      "auc_symmetric": 0.52322,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 36,
+      "feature": "h36_k_th_potassic",
+      "auc_signed": 0.47496,
+      "auc_symmetric": 0.52504,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 37,
+      "feature": "h37_uk_ratio_anom",
+      "auc_signed": 0.52769,
+      "auc_symmetric": 0.52769,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 38,
+      "feature": "h38_demag_conduit",
+      "auc_signed": 0.51109,
+      "auc_symmetric": 0.51109,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 39,
+      "feature": "h39_cond_cap_grad",
+      "auc_signed": 0.52212,
+      "auc_symmetric": 0.52212,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 40,
+      "feature": "h40_gdr_spring_temp",
+      "auc_signed": 0.48084,
+      "auc_symmetric": 0.51916,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 41,
+      "feature": "h41_gdr_geothermom",
+      "auc_signed": 0.48459,
+      "auc_symmetric": 0.51541,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 42,
+      "feature": "h42_ingenious_2m_probe",
+      "auc_signed": 0.50732,
+      "auc_symmetric": 0.50732,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 43,
+      "feature": "h43_paleo_sinter_vent",
+      "auc_signed": 0.45426,
+      "auc_symmetric": 0.54574,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 44,
+      "feature": "c44_xgrad_topo_subsurf",
+      "auc_signed": 0.53972,
+      "auc_symmetric": 0.53972,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 45,
+      "feature": "c45_anderson_strike_fav",
+      "auc_signed": 0.49171,
+      "auc_symmetric": 0.50829,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 46,
+      "feature": "c46_playa_fan_confounder",
+      "auc_signed": 0.55589,
+      "auc_symmetric": 0.55589,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    },
+    {
+      "col": 47,
+      "feature": "c47_multisensor_witness",
+      "auc_signed": 0.53508,
+      "auc_symmetric": 0.53508,
+      "finite_fraction": 1.0,
+      "pass_le_0.90": true
+    }
+  ]
+}

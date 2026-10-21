@@ -1,437 +1,172 @@
 {
-  "schema_version": "gems-run-card-v2",
+  "schema": "parallel-run-protocol-v1",
   "repo": "buffedlizard55-lab/GEMSDOE73",
-  "lane_id": "H73-MCSC",
-  "hypothesis": "H73-MCSC: Unmapped Great Basin faults trace sub-pixel physical contact crests across surface topography, potential fields, and hydrothermal conduits across both 3DEP LiDAR tiles and the 24.6% (47.4% in NE) non-LiDAR survey gap. Combining 67 pure sensor + Steger-Blakely sub-pixel contact-crest channels, dual-regime seam-free quantile calibration, 12-azimuth x 3-scale (900m, 2.3km, 4.5km) steerable strand propagation, and directional crest-sharpened 300m submodular decoding recovers buried/blind strands while preventing collar leakage and 2D apron bloat.",
-  "mechanism": "Stage 1 fuses 52 de-regionalized physical sensor channels + 15 closed-form scale-normalized Steger (1998) / Blakely-Simpson (1986) sub-pixel contact-crest channels via dual-regime specialists (Expert_All67 + LiDAR-free Expert_NoLiDAR51 quantile-aligned per quadrant across survey seams; 0 d_cat covariates, >=4.4 km spatial train-test separation). Stage 2 applies steerable multi-scale curvilinear line integrals, bilateral half-ray min(I+,I-), flank-subtracted crestness, and smooth (cos 2theta, sin 2theta) strike kinematics, decoded by directional apron-subtracted Minoux lazy-greedy 300m triangular-kernel submodular optimization (37,654 binary dots, d_cat > 200m).",
-  "named_non_fault_mimic": "Playa evaporite / lithologic / wide hillside aprons & USGS 3DEP tile-seam step artifacts",
-  "mimic_suppression_audit": {
-    "named_non_fault_mimic": "Playa evaporite / lithologic / wide hillside aprons & USGS 3DEP tile-seam step artifacts",
-    "playa_flat_dot_fraction": 0.02656,
-    "deep_alluvial_cover_ge_250m_dots": 26207,
-    "deep_alluvial_cover_ge_250m_fraction": 0.696,
-    "non_lidar_gap_dots": 7597,
-    "non_lidar_gap_fraction": 0.20176,
-    "footprint_non_lidar_gap_fraction": 0.24634,
-    "far_gt_1km_from_catalogue_dots": 22979,
-    "far_gt_1km_from_catalogue_fraction": 0.61027,
-    "dots_within_2px_of_catalogue": 0,
-    "dots_on_catalogue": 0,
-    "prod_sgmc_piedmont_dti": 0.124413
-  },
-  "holdout_dti": {
-    "label": "HOLDOUT-DTI",
+  "generated_utc": "2026-10-21T05:31:17Z",
+  "lane": "H73-MVH: Metric-Direct Kernel-Target Structural-Geothermal Vent & Damage-Bridge Discovery",
+  "hypothesis": "Hidden expert-mapped geothermal faults in the NW Great Basin occupy a dual structural-hydrothermal niche missed by both pure scarp thresholders and unweighted 1-px classifiers: (1) low-prominence Quaternary piedmont & gap-tile scarps normalized relative to local background relief across combined 1m LiDAR + 10m seamless DEM + 100m GeoDAWN surfaces, (2) blind conduits traced along strike by colinear paleo-geothermal sinters/travertines/tufas, 2m probes & geothermometers, and (3) two-tip elliptical relay bridges & hanging-wall step-outs across alluvial gaps \u2014 learned directly against the official continuous R=300 m triangular kernel target K_3(x)=max(0,1-d/3) alongside a collar-clean centerline classifier, and emitted via Two-Head Exact R=300 m Submodular DTI Allocation.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches, curvilinear tufa strandlines, fluvial terrace risers, and volcanic flow margins \u2014 suppressed via 16-azimuth Radon straight-chain occupancy, potential-field tilt/worm witnesses, hanging-wall basement polarity, and out-of-fold multi-physics GBDT trees.",
+  "primary_score": {
+    "kind": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "split": "buffered-whole-components-loqo-v2 (seed=20, buffer_px=3, boundary_px=12)",
-    "withheld_positive_pixels": 11321,
-    "selected_experiment": "E3_mcsc_seamfree_curvilinear",
-    "pooled_dti": 0.109514,
-    "ci95_pooled_dti": [
-      0.091089,
-      0.12859
+    "n_withheld_positive_pixels": 11321,
+    "selected_experiment": "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300",
+    "pooled_dti": 0.1599,
+    "ci95": [
+      0.1417,
+      0.1788
     ],
-    "per_fold_dti": {
-      "NW": 0.099113,
-      "NE": 0.135984,
-      "SW": 0.082036,
-      "SE": 0.129705
-    },
-    "far_gt_1km_pooled_dti": 0.100588,
-    "far_gt_1km_ci95": [
-      0.076216,
-      0.127347
+    "h33_analogue_control_dti": 0.0939,
+    "h33_analogue_control_ci95": [
+      0.0813,
+      0.1076
     ],
-    "paired_differences_all": {
-      "E1_sensor_submod": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.030459435660836837,
-        "ci95": [
-          0.016440028164862883,
-          0.045013379965026495
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "E2_seamfree_blakely_submod": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.01689064451581751,
-        "ci95": [
-          0.003982002619426415,
-          0.029858871353173045
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_h33_champion_raw": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.10581521550745578,
-        "ci95": [
-          0.08759897951177062,
-          0.12448178989146848
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_h33_foldfair": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.015520359610667805,
-        "ci95": [
-          0.0019379248887268921,
-          0.03023174134304999
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_d28": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.017625571433981774,
-        "ci95": [
-          0.005693863038976586,
-          0.029886277983938687
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_d15": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.020705527742466937,
-        "ci95": [
-          0.007982851578425397,
-          0.033446908660651385
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_h19_5": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.04409092982476863,
-        "ci95": [
-          0.031065085626574823,
-          0.05787910507608456
-        ],
-        "withheld_positive_pixels": 11321
-      },
-      "ctrl_random_37654": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.0637388594872137,
-        "ci95": [
-          0.04661999382202215,
-          0.08203876345189214
-        ],
-        "withheld_positive_pixels": 11321
-      }
-    },
-    "paired_differences_far_gt_1km": {
-      "E1_sensor_submod": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.032064188749431,
-        "ci95": [
-          0.013473468365016715,
-          0.05215217118590316
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "E2_seamfree_blakely_submod": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.018311493608160034,
-        "ci95": [
-          0.0016153798799205942,
-          0.03485413170297675
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_h33_champion_raw": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.0972285808922288,
-        "ci95": [
-          0.07331767023541146,
-          0.12387170695807473
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_h33_foldfair": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.027405485780366473,
-        "ci95": [
-          0.009241579979903592,
-          0.04864793720318799
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_d28": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.02312301093632997,
-        "ci95": [
-          0.007770958096607897,
-          0.039043771916552755
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_d15": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.02732511926605659,
-        "ci95": [
-          0.01134468010543696,
-          0.04385911124994528
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_h19_5": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.04812544114462828,
-        "ci95": [
-          0.03085690386248959,
-          0.06595429938113899
-        ],
-        "withheld_positive_pixels": 5150
-      },
-      "ctrl_random_37654": {
-        "evidence_class": "HOLDOUT-DTI",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "delta": 0.06654165735503063,
-        "ci95": [
-          0.043317573919324934,
-          0.09175537383894651
-        ],
-        "withheld_positive_pixels": 5150
-      }
-    },
-    "beats_prior_gemsdoe73_pr3_0_0548": true,
-    "beats_d28_ci95_gt_0": true,
-    "beats_h33_foldfair_ci95_gt_0": true,
-    "beats_h33_far_gt_1km_ci95_gt_0": true,
+    "paired_delta_vs_h33_control": 0.0661,
+    "paired_delta_ci95": [
+      0.0497,
+      0.0813
+    ],
+    "relative_lift_vs_h33_control_pct": 70.41,
+    "prior_gemsdoe73_pr3_e1_dti": 0.0548,
+    "prior_gemsdoe73_pr2_synthetic_dti": 0.0015,
+    "prior_gemsdoe73_pr1_synthetic_dti": 0.0271,
+    "random_control_dti": 0.0484,
     "all_3_experiments": {
-      "E1_sensor_submod": {
-        "emitted_pixels": 37654,
-        "pooled_dti": 0.079054,
-        "ci95_dti": [
-          0.06494,
-          0.094871
-        ],
-        "tpw": 1283.1,
-        "fpw": 34585.87,
-        "fnw": 10037.9,
-        "fold_mean_dti": 0.079783,
-        "fold_std_dti": 0.005025,
-        "per_fold_dti": {
-          "NW": 0.08522,
-          "NE": 0.082254,
-          "SW": 0.071702,
-          "SE": 0.079955
-        },
-        "far_gt_1km_pooled_dti": 0.068524,
-        "far_gt_1km_ci95": [
-          0.049502,
-          0.086644
-        ],
-        "far_gt_1km_per_fold": {
-          "NW": 0.052552,
-          "NE": 0.089284,
-          "SW": 0.068644,
-          "SE": 0.068852
-        },
-        "sgmc_piedmont_dti": 0.070986
+      "M1_Static_Vent_DualTarget_NMS": {
+        "pooled_dti": 0.0765,
+        "ci95": [
+          0.0681,
+          0.0853
+        ]
       },
-      "E2_seamfree_blakely_submod": {
-        "emitted_pixels": 37654,
-        "pooled_dti": 0.092623,
-        "ci95_dti": [
-          0.076027,
-          0.110462
-        ],
-        "tpw": 1501.48,
-        "fpw": 34267.47,
-        "fnw": 9819.52,
-        "fold_mean_dti": 0.093544,
-        "fold_std_dti": 0.005761,
-        "per_fold_dti": {
-          "NW": 0.09337,
-          "NE": 0.095322,
-          "SW": 0.084734,
-          "SE": 0.10075
-        },
-        "far_gt_1km_pooled_dti": 0.082277,
-        "far_gt_1km_ci95": [
-          0.06175,
-          0.104181
-        ],
-        "far_gt_1km_per_fold": {
-          "NW": 0.0574,
-          "NE": 0.103313,
-          "SW": 0.082657,
-          "SE": 0.095089
-        },
-        "sgmc_piedmont_dti": 0.079697
+      "M2_NestedHide_Bridge_Vent_NMS": {
+        "pooled_dti": 0.0877,
+        "ci95": [
+          0.0806,
+          0.0955
+        ]
       },
-      "E3_mcsc_seamfree_curvilinear": {
-        "emitted_pixels": 37654,
-        "pooled_dti": 0.109514,
-        "ci95_dti": [
-          0.091089,
-          0.12859
-        ],
-        "tpw": 1765.24,
-        "fpw": 33545.31,
-        "fnw": 9555.76,
-        "fold_mean_dti": 0.111709,
-        "fold_std_dti": 0.022092,
-        "per_fold_dti": {
-          "NW": 0.099113,
-          "NE": 0.135984,
-          "SW": 0.082036,
-          "SE": 0.129705
-        },
-        "far_gt_1km_pooled_dti": 0.100588,
-        "far_gt_1km_ci95": [
-          0.076216,
-          0.127347
-        ],
-        "far_gt_1km_per_fold": {
-          "NW": 0.080181,
-          "NE": 0.134072,
-          "SW": 0.06696,
-          "SE": 0.124774
-        },
-        "sgmc_piedmont_dti": 0.118235
+      "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300": {
+        "pooled_dti": 0.1599,
+        "ci95": [
+          0.1417,
+          0.1788
+        ]
       }
+    },
+    "causal_ablation_paired_deltas": {
+      "M2_minus_M1_nested_bridge_mechanics": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.011175588720697766,
+        "ci95": [
+          0.005008870767223975,
+          0.017415334445608523
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "M3_minus_M2_two_head_submodular_300m": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.07223422858619688,
+        "ci95": [
+          0.05706896940847523,
+          0.08882455237249826
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "M3_minus_M1_combined_gain": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.08340981730689465,
+        "ci95": [
+          0.0678679093610734,
+          0.09970186308609817
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "stratified_holdout": {
+      "winner_lidar_tiles_holdout_dti": 0.1622,
+      "h33_ctrl_lidar_tiles_holdout_dti": 0.0977,
+      "winner_non_lidar_gap_tiles_holdout_dti": 0.151,
+      "h33_ctrl_non_lidar_gap_tiles_holdout_dti": 0.0653,
+      "winner_alluvial_piedmont_holdout_dti": 0.1591,
+      "h33_ctrl_alluvial_piedmont_holdout_dti": 0.0761,
+      "winner_bedrock_rangefront_holdout_dti": 0.1447,
+      "h33_ctrl_bedrock_rangefront_holdout_dti": 0.083
     }
   },
+  "secondary_diagnostic_proxy_not_used_for_selection": {
+    "evidence_class": "PROXY-DTI (external USGS SGMC off-catalogue faults; strictly diagnostic, never used for selection)",
+    "mvh_all_offcatalogue_sgmc_dti": 0.0676,
+    "h33_all_offcatalogue_sgmc_dti": 0.0954,
+    "mvh_piedmont_offcatalogue_sgmc_dti": 0.0854,
+    "h33_piedmont_offcatalogue_sgmc_dti": 0.098
+  },
+  "live_score": null,
+  "live_score_note": "NOT YET SUBMITTED \u2014 zero weekly portal slots spent autonomously in sandbox.",
   "leakage_canary": {
-    "features_tested": 92,
-    "max_symmetric_auc_stage1": 0.61028,
-    "max_symmetric_auc_stage2": 0.67052,
-    "limit": 0.9,
-    "all_pass": true
+    "n_features_checked": 94,
+    "threshold_symmetric_auc": 0.9,
+    "max_symmetric_auc_observed": 0.8416,
+    "passed": true
   },
-  "correlation_overlap_vs_registry": {
+  "uniqueness": {
     "complete_accessible_scan": true,
-    "repos_scanned": 78,
-    "unique_rasters_audited": 888,
-    "unique_prediction_rasters_audited": 888,
-    "max_abs_spearman_surface": {
-      "value": 0.335504,
-      "signed": 0.335504,
-      "nearest_neighbor": "GEMSDOE48:docs/downloads/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif",
-      "sha256": "9242c831dc103966e7ea961e342e4dce5e655b11313d349a112ece8a4d8b0d15",
-      "limit": 0.9,
-      "pass": true
+    "repos_scanned": 83,
+    "unique_rasters_audited": 984,
+    "vendor_gems57_uniqueness_verdict": "promote-to-selector-only",
+    "vendor_gems57_duplicate_count": 0,
+    "max_abs_spearman_stage_a_surface": 0.7381,
+    "max_abs_spearman_stage_b_dots": 0.1036,
+    "max_vendor_mutual_min_3px_overlap_all_984": 0.4808,
+    "max_symmetric_mean_3px_overlap_all_984": 0.6035,
+    "max_oneway_3px_overlap_matched_budget_le_65k": 0.622,
+    "vs_GEMSDOE32_H33_02778": {
+      "first_repo": "58GEMSDOE",
+      "first_path": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256_16": "c55bafc470054e82",
+      "n_other_dots": 37654,
+      "is_dense_or_lattice_gt_65k": false,
+      "spearman_stage_a_surface": 0.048,
+      "spearman_stage_b_dots": 0.0195,
+      "mutual_min_3px_overlap": 0.2932,
+      "mutual_mean_3px_overlap": 0.3255,
+      "forward_cand_in_other_3px": 0.3578,
+      "reverse_other_in_cand_3px": 0.2932,
+      "jaccard_dot_sets": 0.01254
     },
-    "max_abs_spearman_final_dots": {
-      "value": 0.09036,
-      "signed": 0.09036,
-      "nearest_neighbor": "GEMSDOE22:docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif",
-      "sha256": "cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337",
-      "limit": 0.9,
-      "pass": true
+    "vs_GEMSDOE70_P8_02478": {
+      "first_repo": "GEMSDOE70",
+      "first_path": "docs/downloads/gems70-discordance-corridor-v1-20261020-7f3a9c2e.tif",
+      "sha256_16": "d8ac9f2c4842bbc6",
+      "n_other_dots": 24872,
+      "is_dense_or_lattice_gt_65k": false,
+      "spearman_stage_a_surface": 0.0016,
+      "spearman_stage_b_dots": 0.0022,
+      "mutual_min_3px_overlap": 0.0549,
+      "mutual_mean_3px_overlap": 0.1105,
+      "forward_cand_in_other_3px": 0.0549,
+      "reverse_other_in_cand_3px": 0.1662,
+      "jaccard_dot_sets": 0.00385
     },
-    "max_3px_overlap_vs_sparse_submissions": {
-      "value": 0.695358,
-      "pred_in_ref3px": 0.695358,
-      "ref_in_pred3px": 0.20909,
-      "nearest_neighbor": "GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-allfinite.tif",
-      "ref_positive_pixels": 100000,
-      "sha256": "ae5c5aafce85a395af73944ab10f3fc2cad7bcc1244d49a52d53443bd0f5c3c2",
-      "limit": 0.7,
-      "pass": true
-    },
-    "all_uniqueness_gates_passed": true
+    "passed": true
   },
-  "raster_sha256": "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249",
-  "deliverables": {
-    "primary_zeros_tif": {
-      "filename": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
-      "path": "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
-      "sha256": "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249",
-      "size_bytes": 147617,
-      "nodata": null,
-      "emitted_positive_pixels": 37654
-    },
-    "companion_nan_tif": {
-      "filename": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif",
-      "path": "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif",
-      "sha256": "0883256111ef03d93820292a1f037224b38a65b7241daa4d7ad3d517089a7d75",
-      "size_bytes": 190505,
-      "nodata": "NaN"
-    },
-    "zip_bundle": {
-      "filename": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip",
-      "path": "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip",
-      "sha256": "2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1",
-      "size_bytes": 115002
-    }
-  },
-  "validator": {
-    "gems57_validate": {
-      "single_band": true,
-      "dtype_float32": true,
-      "dimensions_3730x3292": true,
-      "crs_epsg_32611": true,
-      "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
-      "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "in_footprint_all_finite": true,
-      "in_footprint_range_0_1": true,
-      "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
-    },
-    "gems73_validate": [
-      {
-        "name": "dimensions",
-        "passed": true,
-        "detail": "shape (3730, 3292) expected (3730, 3292)"
-      },
-      {
-        "name": "band_count",
-        "passed": true,
-        "detail": "bands 1 expected 1"
-      },
-      {
-        "name": "crs",
-        "passed": true,
-        "detail": "CRS EPSG:32611 expected EPSG:32611"
-      },
-      {
-        "name": "transform",
-        "passed": true,
-        "detail": "transform match"
-      },
-      {
-        "name": "dtype",
-        "passed": true,
-        "detail": "dtype float32 expected float32"
-      },
-      {
-        "name": "in_footprint_range",
-        "passed": true,
-        "detail": "in-footprint [0.0000,1.0000] finite=True"
-      },
-      {
-        "name": "portal_safe_whole_array",
-        "passed": true,
-        "detail": "whole [0.0000,1.0000] finite=True"
-      }
-    ],
-    "stats": {
-      "crs": "EPSG:32611",
-      "shape": [
-        3730,
-        3292
-      ],
+  "artifact": {
+    "submission_filename": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+    "zip_filename": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip",
+    "download_url_tif": "downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif",
+    "download_url_zip": "downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip",
+    "raster_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+    "zip_sha256": "a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f",
+    "emitted_dots": 37654,
+    "validator": {
+      "driver": "GTiff",
+      "width": 3292,
+      "height": 3730,
+      "count": 1,
       "dtype": "float32",
-      "nodata": null,
+      "crs": "EPSG:32611",
       "transform": [
         100.0,
         0.0,
@@ -440,19 +175,230 @@
         -100.0,
         4508550.0
       ],
-      "n_finite": 12279160,
-      "n_nan": 0,
-      "n_infinite": 0,
-      "min": 0.0,
-      "max": 1.0,
-      "emitted_positive_pixels": 37654,
-      "on_catalogue_positive_pixels": 0
+      "nodata": null,
+      "total_cells": 12279160,
+      "finite_cells": 12279160,
+      "nan_cells": 0,
+      "inf_cells": 0,
+      "lt_zero_cells": 0,
+      "gt_one_cells": 0,
+      "global_min": 0.0,
+      "global_max": 1.0,
+      "footprint_min": 0.0,
+      "footprint_max": 1.0,
+      "outside_footprint_nonzero_cells": 0,
+      "emitted_dots": 37654,
+      "min_distance_to_catalogue_px": 2.8284,
+      "median_distance_to_catalogue_px": 8.54,
+      "dots_gt_15px_deep_blind_discovery": 7884,
+      "piedmont_dot_share": 0.5282,
+      "lidar_tile_dot_share": 0.7509,
+      "gap_tile_dot_share": 0.2491,
+      "tif_bytes": 136750,
+      "zip_bytes": 99344,
+      "tif_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+      "zip_sha256": "a6765a8d0020cc24df0f55dbdcd09178512bdab20214d9c3960cc321dce79c5f"
     },
-    "all_checks_passed": true
+    "top_features_by_gain": [
+      {
+        "rank": 1,
+        "feature": "d_vis_collar",
+        "gain_share_pct": 21.389
+      },
+      {
+        "rank": 2,
+        "feature": "hw_elev_delta",
+        "gain_share_pct": 5.319
+      },
+      {
+        "rank": 3,
+        "feature": "comp_loglen_vis",
+        "gain_share_pct": 4.491
+      },
+      {
+        "rank": 4,
+        "feature": "vis_annulus_density",
+        "gain_share_pct": 3.619
+      },
+      {
+        "rank": 5,
+        "feature": "volcanic_vent_logdist",
+        "gain_share_pct": 3.42
+      },
+      {
+        "rank": 6,
+        "feature": "ieq_n100a15",
+        "gain_share_pct": 2.587
+      },
+      {
+        "rank": 7,
+        "feature": "det_elev",
+        "gain_share_pct": 2.454
+      },
+      {
+        "rank": 8,
+        "feature": "deq_n100a15",
+        "gain_share_pct": 2.399
+      },
+      {
+        "rank": 9,
+        "feature": "geod_dilaterate",
+        "gain_share_pct": 2.366
+      },
+      {
+        "rank": 10,
+        "feature": "cond_surf",
+        "gain_share_pct": 2.351
+      },
+      {
+        "rank": 11,
+        "feature": "iso_grav_anom",
+        "gain_share_pct": 2.245
+      },
+      {
+        "rank": 12,
+        "feature": "geod_shearrate",
+        "gain_share_pct": 2.176
+      },
+      {
+        "rank": 13,
+        "feature": "geod_2ndinv",
+        "gain_share_pct": 2.166
+      },
+      {
+        "rank": 14,
+        "feature": "topo10_dem_mean",
+        "gain_share_pct": 2.066
+      },
+      {
+        "rank": 15,
+        "feature": "det_elev_lrm_s6",
+        "gain_share_pct": 2.063
+      }
+    ]
   },
-  "submission_name": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
-  "note": "H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)",
-  "note_length": 100,
+  "submission_note_lte_140_chars": "H73-MVH: 4-fold OOF dual-target vent+bridge GBDT + 300m submod; holdout 0.160 vs 0.094 ctrl",
+  "ok_to_download": true,
+  "ok_to_submit": true,
   "verdict": "promote",
-  "generated_utc": "2026-10-21T07:37:18+00:00"
+  "elapsed_seconds": 202.9,
+  "experiments_used": 3,
+  "weekly_slots_spent_automatically": 0,
+  "all_lanes_comparison_gems57_pooled_hide_v2": [
+    {
+      "rank": 1,
+      "pr": "PR #11 (This Package)",
+      "lane": "H73-MVH Dual-Target Vent+Bridge OOF + Submod300",
+      "submission": "gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros",
+      "sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+      "holdout_dti": 0.159944,
+      "ci95": [
+        0.141748,
+        0.178817
+      ],
+      "delta_vs_h33": 0.066083,
+      "status": "PROMOTE \u2014 #1 Overall GEMSDOE73"
+    },
+    {
+      "rank": 2,
+      "pr": "PR #9",
+      "lane": "H73-7 Hard-Fault PU Ranker",
+      "submission": "gems73-h73-7-hardfault-pu-e1-37654dots-20261021",
+      "sha256": "a0e4b3f31cb84270b10d19fff8399412a0850f3cffeb77d59b553c7ff0475d67",
+      "holdout_dti": 0.136888,
+      "ci95": [
+        0.115779,
+        0.157736
+      ],
+      "delta_vs_h33": 0.043027,
+      "status": "Runner-up (shipped in-sample retrained)"
+    },
+    {
+      "rank": 3,
+      "pr": "PR #7",
+      "lane": "Cross-Drainage 2D Dilated U-Net + 91-Feat + Submod300",
+      "submission": "gems73-crossdrain-unet-submod-37654-20261021",
+      "sha256": "9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262",
+      "holdout_dti": 0.136023,
+      "ci95": [
+        0.117451,
+        0.155962
+      ],
+      "delta_vs_h33": 0.042162,
+      "status": "3rd place"
+    },
+    {
+      "rank": 4,
+      "pr": "PR #6",
+      "lane": "4-Line Corroborated Piedmont/Chi/Hydro/Dip OOF + Submod300",
+      "submission": "gems73-h73-piedmont-corrob-submod300-37654-20261021",
+      "sha256": "846d5fe0fe53c618ebfa467c2545b7b78a459747be4aa1598d54e4979311c932",
+      "holdout_dti": 0.11223,
+      "ci95": [
+        0.096022,
+        0.127457
+      ],
+      "delta_vs_h33": 0.018369,
+      "status": "4th place"
+    },
+    {
+      "rank": 5,
+      "pr": "Control",
+      "lane": "h33_analogue_foldfair (Champion Architecture Control)",
+      "submission": "fold-fair control",
+      "sha256": "reproduced bit-identically across all lanes",
+      "holdout_dti": 0.093861,
+      "ci95": [
+        0.081253,
+        0.1076
+      ],
+      "delta_vs_h33": 0.0,
+      "status": "Control baseline"
+    },
+    {
+      "rank": 6,
+      "pr": "PR #4",
+      "lane": "H73-6 Unsupervised Trace-Localization (X1)",
+      "submission": "gems73-h73-6-traceloc-x1-37654dots-20261021",
+      "sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+      "holdout_dti": 0.059157,
+      "ci95": [
+        0.048971,
+        0.070024
+      ],
+      "delta_vs_h33": -0.034704,
+      "status": "Negative (unsupervised)"
+    },
+    {
+      "rank": 7,
+      "pr": "PR #3",
+      "lane": "H73-1 Unsupervised Piedmont Scarp-Chain (E1)",
+      "submission": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021",
+      "sha256": "95b7cc504f1a104e8e3d970492e2e06905419bf496590edac8646458d910fb5b",
+      "holdout_dti": 0.054756,
+      "ci95": [
+        0.046233,
+        0.064101
+      ],
+      "delta_vs_h33": -0.039105,
+      "status": "Negative (unsupervised)"
+    }
+  ],
+  "raster_sha256": "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8",
+  "submission_note": "H73-MVH: 4-fold OOF dual-target vent+bridge GBDT + 300m submod; holdout 0.160 vs 0.094 ctrl",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "dti": 0.15994412361152446,
+    "ci95": [
+      0.14174802793253527,
+      0.178816904970839
+    ],
+    "paired_delta_vs_h33": 0.0660832704757135,
+    "paired_delta_ci95": [
+      0.04968941382524322,
+      0.0813408005482723
+    ]
+  }
 }

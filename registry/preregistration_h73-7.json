@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "repo": "GEMSDOE73",
+  "session_lane": "H73-7",
+  "lane_paragraph": "Fold-fair hard-fault Positive-Unlabelled detection: a HistGradientBoosting ranker trained ONLY on the visible catalogue faults of each holdout draw (production twin: full catalogue), with positive sample weights up-weighting low-visibility catalogue pixels (weak 1 m-LiDAR step, deep basement, gentle detrended slope), using only physical per-pixel transforms of the hash-pinned bands (19 official GeoDAWN/topographic bands, 10 LiDAR scarp bands, 8 GeoDAWN radiometric/extension bands, and the 4 unsupervised H73-1 components scarp_n/chain/substep/pied_soft). No distance-to-catalogue feature, no scored raster input, no SGMC feature. Dotted emission frozen: score-ordered greedy dots, 2.5 px spacing, 37,654 dots, >2.0 px from visible (production: full) catalogue.",
+  "frozen_before_any_h73_7_holdout_run": true,
+  "written_utc": "2026-10-21",
+  "hypothesis": "Catalogue pixels that are hardest to see (low scarp expression under deep, gentle piedmont cover) are the catalogue subpopulation most similar to the expert-added hidden faults; up-weighting them shifts a physical-feature ranker toward the hidden population instead of toward easy bedrock/range-front traces that plain catalogue imitation (sibling HGB lanes, live 0.0286-0.2478 OWNER-REPORT) over-rewards.",
+  "mechanism": "Hardness score h = mean(1 - norm01(lidar step_max), norm01(depth_to_base_surf), 1 - norm01(det_elev_slope)) with norm01 = footprint p01/p99 clip; positive weight w = 1 + 2h in [1,3]; negatives weight 1, sampled uniformly from footprint pixels >5 px from the VISIBLE catalogue only (hidden-positive contamination ~0.2% is the PU setting, accepted and recorded). HGB: max_iter=300, learning_rate=0.06, max_leaf_nodes=63, min_samples_leaf=40, l2_regularization=1.0, early_stopping=False, random_state=7307. Negatives n=250,000 seed 7307; positives = all visible catalogue pixels inside footprint.",
+  "named_non_fault_mimic": "Lithologic contacts and alluvial-fan surfaces share the magnetic/gravity/radiometric signature of covered faults; shoreline benches share the weak-step signature. The ranker can also simply re-learn catalogue mapping bias (where mappers looked), which is why E3 (no scarp features) and the leakage canaries are preregistered ablations/diagnostics.",
+  "experiments_budget": 3,
+  "experiments": {
+    "E1": "Candidate: hard-weighted HGB, full physical stack (41 channels: 19 official + 10 lidar [excl. strike, valid] + 4 radiometric + 4 extensions + 4 H73-1 components).",
+    "E2": "Ablation: identical to E1 but all sample weights = 1 (plain catalogue imitation). Tests whether hard-weighting is the active ingredient.",
+    "E3": "Ablation: hard-weighted as E1 but WITHOUT lidar bands and WITHOUT the 4 scarp-derived components (27 channels: 19 official + 8 radiometric/extension). Tests whether any signal survives removal of the scarp family that dominates the champion lineage."
+  },
+  "controls_not_counted_as_experiments": {
+    "h33_analogue_foldfair": "Identical construction to the merged H73-1 lane: greedy 37,654 dots from the H19-5 binary support inside the same fold-fair allowed mask. Reproducibility target: HOLDOUT-DTI 0.0939 (gems57-pooled-hide-v2, 11,321 withheld px) from evidence/holdout_all_arms.json.",
+    "random_control": "Greedy dots on a uniform-random surface, seed 73, same allowed mask and budget.",
+    "h33_static_reference": "The GEMSDOE32 champion raster scored unchanged (expected near-zero: its B=2 prune deletes catalogue-covering dots by design)."
+  },
+  "instrument": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py pooled_summary, VERSION gems57-pooled-hide-v2 (shared tool, not forked)",
+    "folds": "vendor/gems57/holdout.buffered_component_draw(seed=20, buffer_px=3, boundary_px=12) - identical draw to the H73-1 lane (11,321 withheld positive pixels expected)",
+    "metric": "DTI alpha=0.2 beta=0.8, 300 m triangular kernel; visible faults masked pixel-exactly; pooled across folds; paired 20 km spatial-cluster bootstrap, 1000 draws, seed 73073",
+    "emission_for_evaluation": "One fold-fair dot field per arm: allowed = footprint, per fold region restricted to ~masked_known and distance-to-visible > 2.0 px (identical a_allowed construction to scripts/run_experiments.py)"
+  },
+  "leakage_canary_gate": "Every one of the 41 channels alone: symmetric AUC (catalogue vs 200k negatives >5 px from full catalogue for the diagnostic, seed 7, same protocol as evidence/canaries.json; and withheld vs same negatives) must be <= 0.90. AUC > 0.90 = leakage until proven otherwise; the lane stops.",
+  "uniqueness_gate": "Stage A (pre-placement): Spearman of the selected experiment's continuous surface vs every accessible registry raster, 200k footprint sample seed 3, must be <= 0.90. Stage B (final dots): vendor gems57 uniqueness compare_array_to_registry; no registry raster with Spearman > 0.90 or mutual 3 px dot overlap > 0.70 (forward overlap also reported; the known 206,895-dot lattice dense-halo artifact IR-73-01 is handled by the mutual definition, as in the merged lane). Registry scope: scored mirrors in registry/data_manifest.json + docs/downloads of GEMSDOE32, GEMSDOE28, GEMSDOE70, 19GEMSDOE, GEMSDOE25, GEMSDOE36 cloned this session + this repo's own three published rasters; labelled accessible scan, not a complete organizer registry.",
+  "promotion_rule": "Selected experiment = highest pooled HOLDOUT-DTI among E1/E2/E3. Verdict PROMOTE (to selector; this repo spends no weekly slot) only if ALL hold: (a) paired delta vs h33_analogue_foldfair > 0 with 95% CI excluding 0; (b) all canaries pass; (c) both uniqueness stages pass; (d) validator passes on re-read bytes (single-band float32, EPSG:32611, 3730x3292, pinned transform, all cells finite in [0,1], nodata None for the zeros file, 0 dots within 2 px of the full catalogue). Otherwise verdict NEGATIVE and the site banner must say DO NOT SUBMIT. Negative results are deliverables.",
+  "production_rule": "Production surface = selected recipe retrained on the FULL catalogue (positives = all 60,988 catalogue pixels; negatives >5 px from full catalogue, same seed/size/weights formula). HOLDOUT-DTI numbers therefore describe the fold-fair twin of the same recipe, not the production bytes directly; this caveat goes in the run card verbatim.",
+  "external_data": "None new. Every layer already hash-pinned in registry/data_manifest.json (official: DrivenData training_features mirror; USGS 3DEP-derived lidar stack; USGS GeoDAWN DOI 10.5066/P93LGLVQ radiometric derivatives). No candidate requiring unfetched external data is proposed as viable in this session.",
+  "stop_conditions": [
+    "Any canary symmetric AUC > 0.90: stop, log leakage, verdict negative.",
+    "Stage A or B uniqueness failure vs any registry raster: log as duplicate and stop (parallel-run protocol rule 1).",
+    "Control reproduction failure (h33_analogue_foldfair HOLDOUT-DTI differs from 0.0939 by > 0.002 or withheld count != 11,321): stop and fix the shared instrument usage before interpreting any experiment.",
+    "Budget: 3 experiments maximum; no extra hyperparameter searches after seeing holdout results."
+  ]
+}

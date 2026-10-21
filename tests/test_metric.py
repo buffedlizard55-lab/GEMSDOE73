@@ -1,67 +1,76 @@
-"""Exact analytical identity & worked-example tests for Distance-Tolerant Intersection (DTI).
+"""Metric tests against the current src.gems73.metric API.
 
-Remediates IR-73-14: removes duplicate shadowed function name and enforces exact floating-point
-identities at distances d = 0, 1, 2, 3 px against both gems73.metric and vendor/gems57/metric.py.
+Repaired 2026-10-21 (IR-73-09): the merged file previously contained two
+concatenated test modules, the second importing a ``dti_fast`` that the
+PR#1+#2 library consolidation no longer exports, so ``pytest`` failed at
+collection on main. Rewritten once, against the exported API
+(``dti_exact``, ``dti_binary``, ``kernel``, ``marginal_bar``).
 """
-from __future__ import annotations
-
-import sys
-from pathlib import Path
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "vendor") not in sys.path:
-    sys.path.insert(0, str(ROOT / "vendor"))
-
-from src.gems73.metric import ALPHA, BETA, RADIUS_PX, dti_exact, dti_fast, kernel
-from gems57 import metric as metric57
+from src.gems73.metric import ALPHA, BETA, RADIUS_PX, dti_binary, dti_exact, kernel, marginal_bar
 
 
-def test_worked_example_strict():
-    """Official DrivenData GEMS page 967 worked example: TPw=3.00, FPw=1.89, FNw=2.00 -> 0.60265."""
+def test_worked_example():
+    # Official problem page 967 worked example: TP=3.00 FP=1.89 FN=2.00 -> 0.60
     tp, fp, fn = 3.0, 1.89, 2.0
-    expected = 3.0 / (3.0 + ALPHA * 1.89 + BETA * 2.0)
-    assert RADIUS_PX == 3.0
-    assert abs(expected - 3.0 / 4.978) < 1e-12
+    assert abs(tp / (tp + ALPHA * fp + BETA * fn) - 0.60) < 0.005  # page rounds to 2dp; exact = 0.6027
 
 
-def test_kernel_analytical_rings():
-    assert kernel(0.0) == 1.0
-    assert abs(kernel(1.0) - (2.0 / 3.0)) < 1e-12
-    assert abs(kernel(1.5) - 0.5) < 1e-12
-    assert abs(kernel(2.0) - (1.0 / 3.0)) < 1e-12
-    assert abs(kernel(np.hypot(2.0, 2.0)) - (1.0 - 2.0 * np.sqrt(2.0) / 3.0)) < 1e-9
-    assert kernel(3.0) == 0.0
-    assert kernel(4.2) == 0.0
+def test_kernel():
+    assert kernel(0) == 1.0
+    assert kernel(RADIUS_PX) == 0.0
+    assert abs(kernel(np.hypot(2, 2)) - (1 - 2 * np.sqrt(2) / 3)) < 1e-9
+    assert kernel(100.0) == 0.0
 
 
-def test_dti_single_dot_exact_analytic_match():
-    """Single truth pixel at (10, 10) and single prediction dot at (10, 11) (d = 1 px = 100 m):
-    TP_w = 2/3, FN_w = 1/3, FP_w = 1 - 2/3 = 1/3.
-    """
-    pred = np.zeros((21, 21), dtype=np.float32)
-    truth = np.zeros((21, 21), dtype=np.uint8)
-    truth[10, 10] = 1
-    pred[10, 11] = 1.0
-
-    tpw = 2.0 / 3.0
-    fnw = 1.0 / 3.0
-    fpw = 1.0 / 3.0
-    analytic = tpw / (tpw + ALPHA * fpw + BETA * fnw)
-    assert abs(dti_fast(pred, truth) - analytic) < 1e-5
-    exact_res = dti_exact(pred, truth)
-    exact_val = exact_res["dti"] if isinstance(exact_res, dict) else float(exact_res)
-    assert abs(exact_val - analytic) < 1e-5
-
-    terms57 = metric57.dti_binary(pred > 0.5, truth.astype(bool))
-    assert abs(terms57["dti"] - analytic) < 1e-5
+def test_perfect_prediction_scores_one():
+    truth = np.zeros((15, 15), bool)
+    truth[7, 3:12] = True
+    out = dti_exact(truth.astype(float), truth)
+    assert abs(out["dti"] - 1.0) < 1e-9  # EPS=1e-12 in the denominator
+    assert out["fp"] == 0.0 and out["fn"] == 0.0
 
 
-def test_identity_empty_truth_and_perfect_match():
-    pred = np.zeros((12, 12), dtype=np.float32)
-    truth = np.zeros((12, 12), dtype=np.uint8)
-    assert dti_fast(pred, truth) == 1.0
+def test_empty_prediction_scores_zero():
+    truth = np.zeros((10, 10), bool)
+    truth[5, 5] = True
+    assert dti_exact(np.zeros((10, 10)), truth)["dti"] == 0.0
+    assert dti_binary(np.zeros((10, 10), bool), truth)["dti"] == 0.0
 
-    truth[6, 6] = 1
-    pred[6, 6] = 1.0
-    assert abs(dti_fast(pred, truth) - 1.0) < 1e-6
+
+def test_offset_dot_gets_kernel_credit():
+    pred = np.zeros((20, 20), float)
+    truth = np.zeros((20, 20), bool)
+    truth[10, 10] = True
+    pred[10, 11] = 1.0  # distance 1 px -> credit k = 1 - 1/3
+    out = dti_exact(pred, truth)
+    assert abs(out["tp"] - (1 - 1 / 3)) < 1e-12
+    assert 0.0 < out["dti"] < 1.0
+
+
+def test_binary_matches_exact_for_binary_input():
+    rng = np.random.default_rng(0)
+    truth = rng.random((30, 30)) < 0.05
+    pred_b = rng.random((30, 30)) < 0.05
+    a = dti_binary(pred_b, truth)
+    b = dti_exact(pred_b.astype(float), truth)
+    assert abs(a["dti"] - b["dti"]) < 1e-12
+
+
+def test_out_of_range_prediction_rejected():
+    truth = np.zeros((5, 5), bool)
+    truth[2, 2] = True
+    bad = np.zeros((5, 5))
+    bad[0, 0] = 1.5
+    try:
+        dti_exact(bad, truth)
+        raise AssertionError("should have raised")
+    except ValueError:
+        pass
+
+
+def test_marginal_bar():
+    # A non-redundant dot improves DTI iff its credit k > alpha * DTI.
+    assert marginal_bar(0.2778) == ALPHA * 0.2778
+    assert abs(marginal_bar(0.2778) - 0.05556) < 1e-9

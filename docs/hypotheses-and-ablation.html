@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5 Candidate Geological Hypotheses &amp; 3-Experiment Ablation — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">GEMSDOE73 &middot; 5 Geological Hypotheses &amp; 3-Experiment Ablation</div>
+    <div class="links">
+      <a href="index.html">Home &amp; Download</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="h33-autopsy.html">GEMSDOE32 (0.2778) Autopsy</a>
+      <a class="active" href="hypotheses-and-ablation.html">5 Hypotheses &amp; 3-Exp Ablation</a>
+      <a href="audit-and-sources.html">80-Raster Uniqueness, Canaries &amp; Sources</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="verdict-banner">
+      <div class="verdict-header">
+        <span class="badge-promote">&#10003; PROMOTE &mdash; YES, OK TO DOWNLOAD &amp; SUBMIT</span>
+        <span class="badge-class">gems73-h73-piedmont-corrob-submod300-37654-20261021 &middot; 11 / 11 Gates Passed</span>
+      </div>
+      <div class="download-grid">
+        <a class="btn-download" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.tif" download>
+          &#11015; Download Primary GeoTIFF (-zeros.tif &middot; 142,140 B)
+        </a>
+        <a class="btn-download secondary" href="downloads/gems73-h73-piedmont-corrob-submod300-37654-20261021-zeros.zip" download>
+          &#11015; Download ZIP (.zip &middot; 107,256 B)
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1. Five Preregistered Candidate Geological Hypotheses (<code>H73-A</code> .. <code>H73-E</code>)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>ID</th>
+              <th>Candidate Hypothesis &amp; Specific Layers Involved</th>
+              <th>Physical Signature &amp; Named Non-Fault Mimic</th>
+              <th>Why It Catches Unmapped (Off-Catalogue) Faults</th>
+              <th>Expected DTI Gain &amp; Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td><strong>#1</strong></td>
+              <td><strong><code>H73-A</code></strong><br/>(<code>Exp 73.3</code>)</td>
+              <td><strong>4-Line Corroborated Piedmont/Intrabasin Multi-Physics &amp; Fluvial-Knickzone OOF Inversion + Exact 300 m Submodular Max-Cover</strong><br/><code>lidar_scarp_features_u8.tif</code>, <code>dem10_onesided3.f32.npy</code>, <code>dem10_chi_100m_{i16,u8}.tif</code>, <code>tiger_road_distance_m.tif</code>, <code>training_features.tif</code> (19 bands), <code>geodawn_extensions_u8.tif</code>, GDR #1391 thermal springs/2m-probes/sinter, OOF <code>sgmc_faults_100m.tif</code> targets</td>
+              <td>Combines 4-quadrant OOF HGB experts (<code>M_neo</code>, <code>M_pied</code>, <code>M_bed</code>) with 4 physical lines (<code>L1..L4</code>), gated by median-line corroboration <code>G_corrob</code> and piedmont habitat <code>H_pied</code>, packed via exact unblurred 300 m submodular max-cover.<br/><strong>Mimics:</strong> Lake Lahontan (<code>1330m/1235m</code>) &amp; Bonneville (<code>1463m/1552m</code>) paleoshorelines, TIGER road cuts, steep mountain-crest bedrock contacts.</td>
+              <td>Master range-front faults (<code>L &ge; 1.8 km</code>) are already in <code>existing_faults.tif</code>. Hidden test faults are degraded <code>0.4&ndash;1.5 m</code> piedmont scarps, blind intrabasin faults expressed by fluvial knickzones + gravity/magnetic steps + hydrothermal upflow, and horse-tail tip splays at <code>d_cat &gt; 200 m</code>.</td>
+              <td><strong>High</strong> (<code>+0.02178</code> vs H33 fair on Inst A; <code>+0.01602</code> vs H33 on Inst C_pied_all)<br/>Cost: ~150s CPU</td>
+            </tr>
+            <tr>
+              <td><strong>#2</strong></td>
+              <td><strong><code>H73-B</code></strong><br/>(<code>Exp 73.1</code>)</td>
+              <td><strong>Relief-Normalized Multi-Scale Scarp, Fluvial <code>&chi;</code>-<code>k_sn</code> Knickzone &amp; Geopotential Strike-Worm OOF Detector (<code>d=2.8 px</code> NMS)</strong><br/><code>lidar_scarp_features_u8.tif</code>, <code>dem10_onesided3.f32.npy</code>, <code>dem10_chi_100m_{i16,u8}.tif</code> (fixing <code>IR-73-04</code> <code>-32768</code> nodata), <code>training_features.tif</code></td>
+              <td>Relief-normalized 1 m LiDAR scarp asymmetry + 10 m one-sided breakline + masked fluvial knickzone halo <code>G_3.5((step_max &middot; log1p(ksn) + 0.35 n_knick) / sqrt(rel10+9))</code>.<br/><strong>Mimics:</strong> Pluvial shoreline contours &amp; highway embankments.</td>
+              <td>Normalizing topographic steps and channel knickzones by <code>sqrt(rel10 + 9)</code> prevents steep canyon walls from drowning out subtle <code>&lt;1.5 m</code> alluvial-fan fault scarps.</td>
+              <td>Moderate (<code>0.09033</code> Inst A; <code>0.10317</code> Inst C_pied_all)<br/>Cost: ~45s CPU</td>
+            </tr>
+            <tr>
+              <td><strong>#3</strong></td>
+              <td><strong><code>H73-C</code></strong><br/>(<code>Exp 73.2</code>)</td>
+              <td><strong>4-Line Corroborated Piedmont-Conditioned Dual OOF Posterior + Greedy <code>d=2.8 px</code> NMS Thinning</strong><br/>All 46 static physical features + 3 fold-visible mechanical channels</td>
+              <td>Identical 4-line corroborated posterior surface <code>S_73.2</code> as <code>H73-A</code>, emitted via greedy <code>d=2.8 px</code> Poisson-disk NMS.<br/><strong>Mimics:</strong> Same triple mimic decontamination as <code>H73-A</code>.</td>
+              <td>Isolates the exact contribution of piedmont-conditioned structural supervision (<code>M_pied</code>) + hydrothermal line <code>L3</code> + 4-line corroboration gate <code>G_corrob</code> over <code>H73-B</code> while holding <code>2.8 px</code> NMS fixed.</td>
+              <td>High (<code>+0.01722</code> over Exp 73.1 on Inst A; <code>+0.03808</code> on Inst C_pied_all)<br/>Cost: ~120s CPU</td>
+            </tr>
+            <tr>
+              <td><strong>#4</strong></td>
+              <td><strong><code>H73-D</code></strong><br/>(Col 45)</td>
+              <td><strong>Andersonian 60&deg; Updip-Projected Basement-to-Surface Gradient Coincidence Operator</strong><br/><code>depth_to_base_surf</code> (Band 15), <code>iso_grav_anom_hg</code> (Band 18), <code>topo_10m_derived_100m_u8.tif</code></td>
+              <td>Projects horizontal basement gradient <code>||&nabla;Z_b||</code> updip by <code>&Delta;x = clip(Z_b cot 60&deg;, 0, 1.2 km)</code>.<br/><strong>Mimic:</strong> Differential compaction across buried paleovalleys without brittle surface rupture.</td>
+              <td>Normal faults dipping <code>55&deg;&ndash;65&deg;</code> basinward produce a basement density/gravity step offset <code>300&ndash;1,200 m</code> hanging-wall-ward of the surface trace.</td>
+              <td>Moderate standalone (<code>AUC = 0.5356</code>); integrated as Col 45 in <code>H73-A..C</code></td>
+            </tr>
+            <tr>
+              <td><strong>#5</strong></td>
+              <td><strong><code>H73-E</code></strong><br/>(External)</td>
+              <td><strong>Sentinel-1 / ARIA InSAR Phase-Gradient &amp; Terra ASTER TIR/SWIR Silicification/Argillic Lineaments</strong><br/>ASF DAAC Sentinel-1 ARIA unwrapped interferograms + LP DAAC Terra ASTER <code>AST_05</code> / <code>AST_07XT</code></td>
+              <td>Stacked LOS phase-velocity gradient <code>||&nabla;v_LOS||</code> + quartz/argillic alteration lineament ratio.<br/><strong>Mimic:</strong> Agricultural pumping subsidence bowls &amp; evaporite playas.</td>
+              <td>Detects aseismically creeping intrabasin faults and silicified fault-core breccia ribs lacking topographic scarps.</td>
+              <td>External hosts blocked in sandbox egress allowlist; documented for future external runs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

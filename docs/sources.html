@@ -3,54 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Official Sources — GEMSDOE73 (H73-MCSC)</title>
-  <style>
-:root {
-  --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
-  --line: #e2e8f0; --green: #15803d; --green-bg: #f0fdf4; --green-bd: #86efac;
-  --red: #b91c1c; --red-bg: #fef2f2; --red-bd: #fca5a5;
-  --blue: #0369a1; --blue-bg: #f0f9ff; --navy: #0f172a;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
-header.nav { background: var(--navy); color: #fff; padding: 0.85rem 1.5rem; position: sticky; top: 0; z-index: 20; border-bottom: 3px solid #22c55e; }
-header.nav .wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
-header.nav a.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.01em; }
-header.nav nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-header.nav nav a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 6px; }
-header.nav nav a:hover, header.nav nav a.active { color: #fff; background: rgba(255,255,255,0.14); }
-main { max-width: 1180px; margin: 1.8rem auto 3.5rem; padding: 0 1.4rem; }
-.hero-promote { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 14px; padding: 1.6rem 1.8rem; box-shadow: 0 6px 20px rgba(21,128,61,0.08); margin-bottom: 1.8rem; }
-.badge-ok { display: inline-block; background: #15803d; color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.32rem 0.8rem; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
-.badge-no { display: inline-block; background: #b91c1c; color: #fff; font-weight: 700; font-size: 0.76rem; padding: 0.2rem 0.6rem; border-radius: 999px; }
-.badge-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.76rem; padding: 0.16rem 0.5rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-h1 { margin: 0.6rem 0 0.5rem; font-size: 1.85rem; line-height: 1.25; }
-h2 { margin-top: 2rem; font-size: 1.35rem; border-bottom: 2px solid var(--line); padding-bottom: 0.4rem; }
-h3 { margin-top: 1.3rem; font-size: 1.08rem; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin: 1.15rem 0 1rem; }
-.btn { display: inline-block; text-decoration: none; font-weight: 700; padding: 0.72rem 1.2rem; border-radius: 9px; font-size: 0.95rem; transition: transform 0.08s ease; cursor: pointer; border: none; }
-.btn-primary { background: #15803d; color: #fff; box-shadow: 0 3px 10px rgba(21,128,61,0.28); }
-.btn-secondary { background: #0f172a; color: #fff; }
-.btn-outline { background: #fff; color: #0f172a; border: 1.5px solid #94a3b8; }
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1rem; margin: 1.3rem 0; }
-.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1rem 1.15rem; }
-.kpi .lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em; }
-.kpi .val { font-size: 1.55rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0; }
-.kpi .sub { font-size: 0.83rem; color: #15803d; font-weight: 600; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.35rem 1.5rem; margin-bottom: 1.4rem; }
-.quarantine { background: var(--red-bg); border: 1.5px solid var(--red-bd); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.5rem 0; }
-table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
-th, td { text-align: left; padding: 0.62rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
-tr.highlight { background: #f0fdf4; font-weight: 600; }
-code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86rem; }
-pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.15rem; border-radius: 10px; overflow-x: auto; line-height: 1.45; }
-.copy-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.55rem 0.8rem; margin: 0.4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-figure { margin: 1.2rem 0; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 0.9rem; }
-figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
-figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.55rem; }
-footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1.8rem 1rem; border-top: 1px solid var(--line); }
-</style>
+  <title>Verified Official Sources &amp; SHA-256 Manifest — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
   <script>
     function copyText(id, btn) {
       const txt = document.getElementById(id).innerText;
@@ -63,61 +17,43 @@ footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1
   </script>
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap">
-      <a class="brand" href="index.html">GEMSDOE73 · Lane H73-MCSC (PROMOTED)</a>
-      <nav><a href="index.html" class="">Portal & Download</a>
-<a href="executive-summary.html" class="">Executive Answer</a>
-<a href="hypotheses.html" class="">Hypotheses & Ablation</a>
-<a href="method.html" class="">MCSC Architecture</a>
-<a href="leaderboard.html" class="">Live Score Physics</a>
-<a href="verification.html" class="">Uniqueness & Validators</a>
-<a href="irregularities.html" class="">Irregularities (16)</a>
-<a href="sources.html" class="active">Official Sources</a></nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink active" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
     </div>
   </header>
   <main>
     
-<section class="hero-promote">
-  <span class="badge-ok">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
-  <h1>Promoted Submission: <code>gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif</code></h1>
-  <p style="margin:0.35rem 0 0.7rem;color:#1e293b;">
-    <strong>Single-band portal-safe GeoTIFF</strong> (<code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>float32</code>, <code>nodata = None</code>, <strong>12,279,160 / 12,279,160 finite values in [0.0, 1.0]</strong>, <code>37,654</code> binary <code>1.0</code> fault dots, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> on mapped catalogue). Statistically beats <code>GEMSDOE32 H33-2-B2</code> (<code>0.2778</code> live champion) on both pooled withheld faults (<strong>0.1095 vs 0.0940</strong>, paired 95% CI <code>[+0.0019, +0.0302]</code>) and blind off-catalogue faults &gt; 1 km (<strong>0.1006 vs 0.0732, +37.4%</strong>, paired 95% CI <code>[+0.0092, +0.0486]</code>), and passes <strong>100% of all 92 leakage canaries and all 888 fleet uniqueness checks</strong>.
-  </p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif" download>Download Primary GeoTIFF (.tif, 144.2 KB) — UPLOAD THIS FILE</a>
-    <a class="btn btn-secondary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip" download>Download ZIP Archive (112.3 KB)</a>
-    <a class="btn btn-outline" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif" download>GIS Companion (-nan.tif)</a>
-    <a class="btn btn-outline" href="evidence/run_card.json">View Raw JSON Run Card</a>
-  </div>
-  <div class="copy-box">
-    <div><strong>Unique Submission Name:</strong> <code id="sub-name">gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-name', this)">Copy Name</button>
-  </div>
-  <div class="copy-box">
-    <div><strong>Portal Note (100 / 140 chars):</strong> <code id="sub-note">H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-note', this)">Copy Note</button>
-  </div>
-  <div style="font-size:0.82rem;color:#334155;margin-top:0.55rem;">
-    <strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249</code><br>
-    <strong>SHA-256 (<code>.zip</code>):</strong> <code>2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1</code>
-  </div>
-</section>
-
-<section class="card">
-  <h2 style="margin-top:0;">Verified Primary Competition &amp; Scientific Sources</h2>
-  <ul>
-    <li><strong>DOE / DrivenData Competition Portal:</strong> <a href="https://www.drivendata.org/competitions/306/gems-geothermal-exploration/">GEMS: Geothermal Exploration Machine Learning Competition (Problem #306)</a></li>
-    <li><strong>Steger (1998):</strong> Curvilinear Differential-Geometric Ridge &amp; Sub-Pixel Line Detection, <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 20(2), 113–125.</li>
-    <li><strong>Blakely &amp; Simpson (1986):</strong> Approximating Edges of Source Bodies from Magnetic or Gravity Anomalies, <em>Geophysics</em>, 51(7), 1494–1498.</li>
-    <li><strong>USGS State Geologic Map Compilation (SGMC):</strong> <a href="https://mrdata.usgs.gov/geology/state/">https://mrdata.usgs.gov/geology/state/</a></li>
-    <li><strong>USGS ScienceBase Great Basin Heat Flow &amp; DOE GDR-1391 INGENIOUS Regional Dataset:</strong> SHA-256 verified in <code>registry/data_manifest.json</code>.</li>
-  </ul>
-</section>
-
+    <h1>Verified Primary Official Sources &amp; 29 SHA-256 Pinned Manifest Files</h1>
+    <ul>
+      <li><strong>DOE GEMS Competition Overview &amp; Rules:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">https://www.drivendata.org/competitions/306/competition-doe-gems/</a></li>
+      <li><strong>Distance-Weighted Tversky Index Specification (Page 967):</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric</a></li>
+      <li><strong>USGS GeoDAWN Airborne Geophysics &amp; EarthMRI LiDAR Compilation (DOI:10.5066/P93LGLVQ):</strong> <a href="https://www.sciencebase.gov/catalog/item/618176eed34e9f2789e4789c">https://www.sciencebase.gov/catalog/item/618176eed34e9f2789e4789c</a></li>
+      <li><strong>Great Basin Center for Geothermal Energy INGENIOUS Compilation (GDR #1391):</strong> <a href="https://gdr.openei.org/submissions/1391">https://gdr.openei.org/submissions/1391</a></li>
+      <li><strong>USGS State Geologic Map Compilation (SGMC, DOI:10.3133/ds1052 — external diagnostic proxy only):</strong> <a href="https://doi.org/10.3133/ds1052">https://doi.org/10.3133/ds1052</a></li>
+      <li><strong>USGS 3D Elevation Program (3DEP):</strong> <a href="https://www.usgs.gov/3d-elevation-program">https://www.usgs.gov/3d-elevation-program</a></li>
+    </ul>
+    <h2>Complete 29-Entry SHA-256 Data Manifest (<code>registry/data_manifest.json</code>)</h2>
+    <table>
+      <thead><tr><th>Local Cache Path</th><th>Group</th><th>Bytes</th><th>SHA-256 Prefix</th><th>Pinned Mirror Commit</th></tr></thead>
+      <tbody><tr><td><code>training_features.tif</code></td><td><code>core</code></td><td><code>418,912,844 B</code></td><td><code>4371c82e3b8339b807bdffcf…</code></td><td><code>buffedlizard55-lab/GEMSDOE@c0c06ac8</code></td></tr><tr><td><code>labels.tif</code></td><td><code>core</code></td><td><code>425,830 B</code></td><td><code>7ba308ccdc4418b31a178f4f…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>existing_faults.tif</code></td><td><code>core</code></td><td><code>425,830 B</code></td><td><code>7ba308ccdc4418b31a178f4f…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>sample_submission.tif</code></td><td><code>core</code></td><td><code>1,599,597 B</code></td><td><code>2176d08e485aa2cd2860ce8d…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/lidar_scarp_features_u8.tif</code></td><td><code>external</code></td><td><code>36,943,606 B</code></td><td><code>d580bb8bdcdb941e32fefb8b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/geodawn_rad_u8.tif</code></td><td><code>external</code></td><td><code>26,612,970 B</code></td><td><code>c22420f75999030d7cc65c9e…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/geodawn_extensions_u8.tif</code></td><td><code>external</code></td><td><code>27,132,925 B</code></td><td><code>a35a9c6d2a14786f4dab8548…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/derived_sgmc_faults_100m_u8.tif</code></td><td><code>external</code></td><td><code>198,602 B</code></td><td><code>643cbe992ef4ba37588fb469…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_wellspring_in_footprint.csv</code></td><td><code>external</code></td><td><code>2,146,771 B</code></td><td><code>122718e65bdf55aab0ee12ad…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_qfaults_traces.csv</code></td><td><code>external</code></td><td><code>126,177 B</code></td><td><code>9702f2e5c382a4f472ae834d…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_volcanic_vents_in_footprint.csv</code></td><td><code>external</code></td><td><code>672 B</code></td><td><code>f91bafbaccaaf2754e71d604…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/topo_10m_derived_100m_u8.tif</code></td><td><code>external</code></td><td><code>32,523,329 B</code></td><td><code>a6398d9950965dec6aae6cce…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/dem10_chi_100m_i16.tif</code></td><td><code>external</code></td><td><code>12,777,098 B</code></td><td><code>8897ba9c30ef1cd7ad5f23c1…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/2m_temperature_probe_INGENIOUS_regional_data.zip</code></td><td><code>external</code></td><td><code>1,080,530 B</code></td><td><code>1301f70d230058e616ea5d34…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/paleo_geothermal_regional.zip</code></td><td><code>external</code></td><td><code>84,008 B</code></td><td><code>faffcf697f32dbbf6cbb317c…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/sgmc_faults_100m.tif</code></td><td><code>external</code></td><td><code>213,034 B</code></td><td><code>26d142c4c93282cd94f6950a…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif</code></td><td><code>scored</code></td><td><code>1,712,322 B</code></td><td><code>ec1f9b56b83ce33cad781ceb…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif</code></td><td><code>scored</code></td><td><code>1,716,768 B</code></td><td><code>89109a3bd2cd3b12e7a0f388…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif</code></td><td><code>scored</code></td><td><code>1,718,028 B</code></td><td><code>055309694ed499ca3d87e76b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></td><td><code>scored</code></td><td><code>1,632,732 B</code></td><td><code>68d0e2e4fcc594f9a23f56c4…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></td><td><code>scored</code></td><td><code>1,603,424 B</code></td><td><code>91eae1ca42ec845eaa8c2ba3…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</code></td><td><code>scored</code></td><td><code>1,706,456 B</code></td><td><code>b4570b406efec198eb2f4d14…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/8GEMSDOE_Hedge-v2_submission.tif</code></td><td><code>scored</code></td><td><code>736,494 B</code></td><td><code>052688eafbc7a55d90caab72…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif</code></td><td><code>scored</code></td><td><code>1,772,935 B</code></td><td><code>1381e784fb8b8340beffd0e7…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif</code></td><td><code>scored</code></td><td><code>1,620,739 B</code></td><td><code>7637b72d4c6c3e10226bf46b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gemsdoe-ens12-adopted-7f00890a.tif</code></td><td><code>scored</code></td><td><code>570,890 B</code></td><td><code>7f00890a62878d612fb5eef6…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gemsdoe9-PLACEHOLDER-2314b599.tif</code></td><td><code>scored</code></td><td><code>439,456 B</code></td><td><code>2314b59920bfeeaf6a592d48…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></td><td><code>scored</code></td><td><code>1,635,084 B</code></td><td><code>33003374335d84bf885f2d8f…</code></td><td><code>buffedlizard55-lab/GEMSDOE27@main</code></td></tr><tr><td><code>external/topo_10m_derived_100m_u8.tif</code></td><td><code>external</code></td><td><code>32,523,329 B</code></td><td><code>a6398d9950965dec6aae6cce…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/dem10_chi_100m_u8.tif</code></td><td><code>external</code></td><td><code>2,061,484 B</code></td><td><code>e8830ba6f0bb99f525266b1b…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/paleo_geothermal_regional.zip</code></td><td><code>external</code></td><td><code>84,008 B</code></td><td><code>faffcf697f32dbbf6cbb317c…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/2m_temperature_probe_INGENIOUS_regional_data.zip</code></td><td><code>external</code></td><td><code>1,080,530 B</code></td><td><code>1301f70d230058e616ea5d34…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/trace_segments_utm11.csv</code></td><td><code>external</code></td><td><code>5,283,577 B</code></td><td><code>c5edf9df3e0e1413c5278488…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td><td><code>scored</code></td><td><code>219,065 B</code></td><td><code>c55bafc470054e8271dcb893…</code></td><td><code>buffedlizard55-lab/GEMSDOE32@98901f31</code></td></tr></tbody>
+    </table>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
   </main>
-  <footer>
-    buffedlizard55-lab/GEMSDOE73 · Core Values: <strong>Maximize P(Win)</strong> &amp; <strong>Own the Outcome</strong> · All metrics tagged <code>HOLDOUT-DTI</code>, <code>ORGANIZER-CONFIRMED</code>, or <code>OWNER-REPORT</code>.
-  </footer>
 </body>
 </html>

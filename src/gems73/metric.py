@@ -6,15 +6,15 @@ and organizer forum clarification Thread 11516.
 
 Formulation:
   Triangular kernel k(d) = max(1 - d/R, 0), R = 300 m = 3 px at 100 m
-  TP_w = sum_{g in G} max_{x:d(x,g) <=R} p(x) * k(d)
+  TP_w = sum_{g in G} max_{x:d(x,g) <= R} p(x) * k(d)
   FP_w = sum_{x:p(x)>0} p(x) * [1 - max_{g} k(d(x,g))]
   FN_w = |G| - TP_w
-  DTI(α=0.2, β=0.8) = TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w)
-                 = TP_w / (0.2*(TP_w+FP_w) + 0.8*|G|)  [since FP = S-M]
+  DTI(alpha=0.2, beta=0.8) = TP_w / (TP_w + 0.2*FP_w + 0.8*FN_w)
 
-Worked example TP=3.00 FP=1.89 FN=2.00 → 0.60 reproduced in tests.
+Worked example TP=3.00 FP=1.89 FN=2.00 -> 0.60 reproduced in tests.
 """
 from __future__ import annotations
+
 import numpy as np
 from scipy.ndimage import distance_transform_edt
 
@@ -38,6 +38,7 @@ def _offsets(radius: float = RADIUS_PX):
                 out.append((dy, dx, k))
     return out
 
+
 _OFFS = _offsets()
 
 
@@ -56,20 +57,32 @@ def dti_exact(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA):
     g = active & (truth > 0)
     n = int(g.sum())
     if n == 0:
-        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0)
+        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0, coverage=0.0)
     yy, xx = np.nonzero(g)
     credit = np.zeros(n, dtype=np.float64)
-    H, W = p.shape
+    h, w = p.shape
     for dy, dx, k in _OFFS:
         ny, nx = yy + dy, xx + dx
-        ok = (ny >= 0) & (ny < H) & (nx >= 0) & (nx < W)
+        ok = (ny >= 0) & (ny < h) & (nx >= 0) & (nx < w)
         credit[ok] = np.maximum(credit[ok], p[ny[ok], nx[ok]] * k)
     tp = float(credit.sum())
     fn = float(n) - tp
     d = distance_transform_edt(~g)
     fp = float((p * (1.0 - kernel(d))).sum())
     dti = tp / (tp + alpha * fp + beta * fn + EPS)
-    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti), coverage=tp / n if n else 0)
+    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti), coverage=tp / n if n else 0.0)
+
+
+def dti_fast(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> float:
+    """Scalar DTI convenience wrapper (returns 1.0 when both truth and pred are empty)."""
+    pred_arr = np.asarray(pred, float)
+    truth_arr = np.asarray(truth) > 0
+    valid_arr = np.ones(pred_arr.shape, bool) if valid is None else np.asarray(valid, bool)
+    known_arr = np.zeros(pred_arr.shape, bool) if known is None else np.asarray(known, bool)
+    active = valid_arr & ~known_arr
+    if not (truth_arr & active).any() and float(np.where(active, pred_arr, 0.0).sum()) == 0.0:
+        return 1.0
+    return float(dti_exact(pred_arr, truth_arr, valid=valid_arr, known=known_arr, alpha=alpha, beta=beta)["dti"])
 
 
 def dti_binary(pred_bool, truth, valid=None, known=None, alpha=ALPHA, beta=BETA):
@@ -99,18 +112,11 @@ def marginal_bar(current_dti: float, alpha: float = ALPHA) -> float:
     return alpha * current_dti
 
 
-def dti_fast(pred, truth, valid=None, known=None, alpha: float = ALPHA, beta: float = BETA) -> float:
-    """Fast scalar DTI helper matching official convention (empty pred & empty truth -> 1.0)."""
-    pred_arr = np.asarray(pred, dtype=np.float64)
-    truth_bool = np.asarray(truth, dtype=bool)
-    valid_bool = np.ones(pred_arr.shape, dtype=bool) if valid is None else np.asarray(valid, dtype=bool)
-    known_bool = np.zeros(pred_arr.shape, dtype=bool) if known is None else np.asarray(known, dtype=bool)
-    active = valid_bool & ~known_bool
-    has_truth = bool((truth_bool & active).any())
-    has_pred = bool(((pred_arr > 0) & active).any())
-    if not has_truth and not has_pred:
-        return 1.0
-    if np.all((pred_arr == 0.0) | (pred_arr == 1.0)):
-        return float(dti_binary(pred_arr > 0.5, truth_bool, valid=valid_bool, known=known_bool, alpha=alpha, beta=beta)["dti"])
-    return float(dti_exact(pred_arr, truth_bool, valid=valid_bool, known=known_bool, alpha=alpha, beta=beta)["dti"])
+def dti_fast(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> float:
+    """Scalar DTI helper supporting the empty-truth identity convention (1.0 when both empty)."""
+    p = np.asarray(pred, dtype=np.float64)
+    g = np.asarray(truth) > 0
+    if not g.any():
+        return 1.0 if float(np.nan_to_num(p, nan=0.0).sum()) == 0.0 else 0.0
+    return float(dti_exact(p, g, valid=valid, known=known, alpha=alpha, beta=beta)["dti"])
 

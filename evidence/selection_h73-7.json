@@ -1,0 +1,36 @@
+{
+  "lane": "H73-7",
+  "best_experiment": "E1",
+  "best_holdout_dti": 0.13688762020177397,
+  "best_holdout_ci95": [
+    0.11577944168560617,
+    0.15773616076461247
+  ],
+  "control_holdout_dti": 0.09386085313581098,
+  "control_reproduction_target": 0.09386085313581098,
+  "paired_delta_vs_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.04302676706596299,
+    "ci95": [
+      0.02298787884384736,
+      0.06269410657858114
+    ],
+    "withheld_positive_pixels": 11321
+  },
+  "beats_control_ci_excluding_0": true,
+  "random_holdout_dti": 0.04837354917359226,
+  "canaries_all_pass": true,
+  "canaries_max_symmetric_auc": 0.6105073767776699,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 11321,
+  "all_scores": {
+    "E1": 0.13688762020177397,
+    "E2": 0.13635325475034368,
+    "E3": 0.12110562654115238,
+    "h33_analogue_foldfair": 0.09386085313581098,
+    "random_control": 0.04837354917359226,
+    "h33_static_reference": 0.003698680598708719
+  },
+  "runtime_s": 598.5
+}

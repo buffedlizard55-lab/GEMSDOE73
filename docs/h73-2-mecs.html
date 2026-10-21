@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PR #12 H73-2 MECS-AutoCtx (#1 Pure-Physics Zero-Tip Lane) — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · Unified 12-PR Hub</a>
+      <a class="navlink" href="index.html">Overview &amp; #1 Download</a>
+      <a class="navlink" href="executive-summary.html">Executive Summary</a>
+      <a class="navlink active" href="h73-2-mecs.html">PR #12 H73-2 (Pure Physics)</a>
+      <a class="navlink" href="h73m-regime-cokrig.html">PR #10 H73-M</a>
+      <a class="navlink" href="h73-7-hardfault.html">PR #9 H73-7</a>
+      <a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+      <a class="navlink" href="leaderboard.html">Live Score Ledger</a>
+      <a class="navlink" href="verification.html">Verification &amp; [0,1] Proof</a>
+      <a class="navlink" href="irregularities.html">Irregularities</a>
+      <a class="navlink" href="sources.html">Official Sources</a>
+    </div>
+  </header>
+  <main style="max-width:1080px;margin:24px auto;padding:0 18px;">
+    <section class="decision-hero" style="margin-bottom:24px;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;">
+        <span class="badge badge-green">VERDICT: PROMOTE (#1 PURE-PHYSICS ZERO-TIP LANE)</span>
+        <span class="badge badge-green">OK TO DOWNLOAD: YES (100% PORTAL-SAFE [0, 1])</span>
+        <span class="badge badge-blue">SLOT STRATEGY: #2 ORTHOGONAL BLIND-FAULT SLOT (64.8% NOVEL DOTS VS H73-MVH; BEATS H33 +21.0%)</span>
+      </div>
+      <h1>PR #12 — H73-2: Multi-Expert Corroborated Steerable Wash-Bridge &amp; Stepover Auto-Context + 300 m Submodular Allocation</h1>
+      <p style="color:#cbd5e1;line-height:1.6;">
+        <strong>Honest 2-Slot Campaign Guidance:</strong> If spending only <strong>1 weekly DrivenData slot</strong>, submit overall tournament #1
+        <a href="downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif"><code>H73-MVH</code> (<code>HOLDOUT-DTI = 0.1599</code>)</a>.
+        If allocating a <strong>2nd orthogonal slot</strong> targeting <strong>isolated intra-basin blind hydrothermal faults completely detached from mapped fault tips</strong>
+        (zero fault-tip or catalogue-distance features used anywhere in training or inference), download &amp; submit
+        <strong><code>gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif</code></strong>: <strong><code>HOLDOUT-DTI = 0.1020</code></strong> (95% CI <code>[0.0860, 0.1178]</code>),
+        statistically beating refitted <code>H33</code> champion control (<code>0.0843</code>) by <strong><code>+21.0%</code></strong> (paired 95% CI <code>[+0.0026, +0.0323]</code>),
+        with <strong><code>24,388</code> (<code>64.8%</code>) completely distinct dots vs <code>H73-MVH</code></strong> (<code>mutual 3-px overlap = 0.3523 &le; 0.70</code>) and
+        <code>963 / 963</code> registry rasters verified unique.
+      </p>
+      <p style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;">
+        <a class="btn btn-primary" href="downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif">⬇ Download H73-2 Primary .tif (142 KB, [0,1] zeros)</a>
+        <a class="btn" href="downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.zip">⬇ Download H73-2 Single-TIFF .zip (107 KB)</a>
+        <a class="btn" href="downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-nan.tif">⬇ Spec Companion -nan.tif</a>
+        <a class="btn" href="downloads/run_card_h73_2.json">JSON Run Card</a>
+        <a class="btn" href="downloads/validator_h73_2.json">Validator Receipt</a>
+      </p>
+      <div style="font-size:13.5px;color:#e2e8f0;line-height:1.7;">
+        <strong>Submission Name:</strong> <code>gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros</code><br>
+        <strong>DrivenData Note (110/140 chars):</strong> <code>GEMS73 H73-2 MECS-AutoCtx 2-stage wash/stepover+submodular 300m (37654 dots); HOLDOUT-DTI 0.1019 vs H33 0.0843</code><br>
+        <strong>SHA-256 (.tif):</strong> <code>b8e10300a96aa6735835d674f8e9493c7c66e7a35e4aa5584178de5c461958aa</code> &middot;
+        <strong>SHA-256 (.zip):</strong> <code>138bae3c6e29e0299dd1d842f105c2fba730b243914bf7e249b2236da75bf23e</code>
+      </div>
+    </section>
+
+    <section class="card" style="padding:20px;margin-bottom:20px;">
+      <h2>1. Monotonic 3-Experiment Holdout Progression (<code>gems57-pooled-hide-v2</code>, <code>n = 11,321</code>)</h2>
+      <p><img src="figures/h73_2_holdout_ablation.png" alt="H73-2 Holdout Ablation" style="max-width:100%;border-radius:8px;"></p>
+    </section>
+
+    <section class="card" style="padding:20px;margin-bottom:20px;">
+      <h2>2. 963-Raster Registry Uniqueness &amp; 48-Channel Pure-Physics Leakage Canary (<code>max AUC = 0.5927 &le; 0.90</code>)</h2>
+      <p><img src="figures/h73_2_uniqueness_canary.png" alt="H73-2 Uniqueness and Canary" style="max-width:100%;border-radius:8px;"></p>
+    </section>
+
+    <section class="card" style="padding:20px;margin-bottom:20px;">
+      <h2>3. Full-Basin Spatial Comparison Map (<code>H73-2</code> vs Live Champion <code>GEMSDOE32 H33</code>: <code>18,839</code> Novel Dots)</h2>
+      <p><img src="figures/h73_2_prediction_map.png" alt="H73-2 Spatial Map" style="max-width:100%;border-radius:8px;"></p>
+    </section>
+
+    <section class="card" style="padding:20px;margin-bottom:24px;">
+      <h2>4. Complete Machine-Readable JSON Run Card (<code>H73-2</code>)</h2>
+      <pre style="overflow-x:auto;font-size:12.5px;">{
+  &quot;schema_version&quot;: 2,
+  &quot;repository&quot;: &quot;buffedlizard55-lab/GEMSDOE73&quot;,
+  &quot;branch&quot;: &quot;arena/148c59e4-gemsdoe73&quot;,
+  &quot;date_utc&quot;: &quot;2026-10-21&quot;,
+  &quot;hypothesis&quot;: &quot;H73-2: Two-Stage Multi-Expert Corroborated Steerable Wash-Bridge &amp; En-Echelon Stepover Auto-Context (MECS-AutoCtx) + Exact 300 m Submodular Tversky Coverage Allocation&quot;,
+  &quot;mechanism&quot;: &quot;Stage 1 cross-fits four zero-catalogue-distance physical specialists across 48 channels (seamless quantile-harmonized 1m+10m USGS 3DEP geomorphology + 10m fluvial chi/ksn, potential-field worms + 150m upward-continuation persistence + Gallardo-Meju cross-gradients + strain/seismicity, GeoDAWN K/Th + magnetite destruction + 3,800 UNR 2m temperature probes + Quaternary sinter/geothermometers). Stage 2 applies steerable bilateral wash-bridge and conjugate en-echelon relay-stepover operators across 12 strikes on nested out-of-fold probability tails, followed by Minoux lazy-greedy maximization of exact 300 m Tversky coverage.&quot;,
+  &quot;mimic&quot;: &quot;Pleistocene Lake Lahontan wave-cut shoreline benches and radial alluvial-fan distributary channels (suppressed via surface-subsurface cross-gradient alignment, low-gradient playa contour guards, and independent 2nd-sensor-family corroboration).&quot;,
+  &quot;holdout_dti&quot;: {
+    &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+    &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+    &quot;withheld_positive_pixels&quot;: 11321,
+    &quot;spatial_bootstrap_draws&quot;: 1000,
+    &quot;E3_mecs_stage2_submodular&quot;: {
+      &quot;dti&quot;: 0.10195,
+      &quot;ci95&quot;: [
+        0.08599,
+        0.11783
+      ]
+    },
+    &quot;E2_mecs_stage2_greedy&quot;: {
+      &quot;dti&quot;: 0.09679,
+      &quot;ci95&quot;: [
+        0.08046,
+        0.11293
+      ]
+    },
+    &quot;E1_mecs_stage1_greedy&quot;: {
+      &quot;dti&quot;: 0.0926,
+      &quot;ci95&quot;: [
+        0.07538,
+        0.10909
+      ]
+    },
+    &quot;control_h33_analogue_foldfair&quot;: {
+      &quot;dti&quot;: 0.08427,
+      &quot;ci95&quot;: [
+        0.0668,
+        0.10131
+      ]
+    },
+    &quot;paired_delta_E3_minus_h33_foldfair&quot;: {
+      &quot;delta&quot;: 0.01768,
+      &quot;ci95&quot;: [
+        0.00259,
+        0.03226
+      ],
+      &quot;statistically_significant_95pct&quot;: true
+    },
+    &quot;previous_gems73_baselines&quot;: {
+      &quot;G73_PR3_h73_1_piedmont_scarpchain_foldfair&quot;: 0.05478,
+      &quot;G73_PR1_pr1_stub_measured&quot;: 0.02709,
+      &quot;G73_PR2_c111bb0f_measured&quot;: 0.00147
+    },
+    &quot;leakage_canary&quot;: {
+      &quot;n_features_tested&quot;: 48,
+      &quot;max_symmetric_auc&quot;: 0.59273,
+      &quot;max_feature&quot;: &quot;m03_lidar_lap_dipole&quot;,
+      &quot;threshold&quot;: 0.9,
+      &quot;all_passed&quot;: true
+    }
+  },
+  &quot;uniqueness_vs_registry&quot;: {
+    &quot;evidence_class&quot;: &quot;REGISTRY-MEASUREMENT&quot;,
+    &quot;complete_accessible_scan&quot;: true,
+    &quot;repos_scanned&quot;: 78,
+    &quot;valid_grid_rasters_compared&quot;: 949,
+    &quot;vendor_unique&quot;: true,
+    &quot;max_stage_a_surface_spearman&quot;: 0.39221,
+    &quot;max_stage_b_dots_spearman&quot;: 0.088538,
+    &quot;max_mutual_3px_overlap_all_949&quot;: 0.522195,
+    &quot;max_forward_3px_overlap_matched_budget_749&quot;: 0.636426,
+    &quot;overlap_with_H33_champion_e5eb6e7e&quot;: 0.4997,
+    &quot;overlap_with_G70_P8_multiphysics&quot;: 0.4408,
+    &quot;overlap_with_H19_5_multiline&quot;: 0.5222,
+    &quot;unique_grid_rasters_compared&quot;: 963,
+    &quot;parallel_gemsdoe73_lanes_audited&quot;: {
+      &quot;H73-MVH (PR #11, 0.1599)&quot;: {
+        &quot;mutual_3px&quot;: 0.3523,
+        &quot;forward_3px&quot;: 0.3523,
+        &quot;spearman&quot;: 0.0322,
+        &quot;novel_dots_vs_mvh&quot;: 24388
+      },
+      &quot;H73-7 HardFault-PU (PR #9, 0.1369)&quot;: {
+        &quot;mutual_3px&quot;: 0.2426,
+        &quot;forward_3px&quot;: 0.2426,
+        &quot;spearman&quot;: 0.0207
+      },
+      &quot;CrossDrain-UNet (PR #7, 0.1360)&quot;: {
+        &quot;mutual_3px&quot;: 0.5088,
+        &quot;forward_3px&quot;: 0.5117,
+        &quot;spearman&quot;: 0.0508
+      },
+      &quot;H73-M Regime CoKrig (PR #10, 0.1224)&quot;: {
+        &quot;mutual_3px&quot;: 0.4476,
+        &quot;forward_3px&quot;: 0.5481,
+        &quot;spearman&quot;: 0.0475
+      },
+      &quot;H73 Piedmont Corrob (PR #6, 0.1122)&quot;: {
+        &quot;mutual_3px&quot;: 0.4449,
+        &quot;forward_3px&quot;: 0.4449,
+        &quot;spearman&quot;: 0.0359
+      },
+      &quot;H73-6 TraceLoc (PR #4, 0.0592)&quot;: {
+        &quot;mutual_3px&quot;: 0.2174,
+        &quot;forward_3px&quot;: 0.2427,
+        &quot;spearman&quot;: 0.0106
+      },
+      &quot;H73-1 Piedmont Formula (PR #3, 0.0548)&quot;: {
+        &quot;mutual_3px&quot;: 0.1856,
+        &quot;forward_3px&quot;: 0.1856,
+        &quot;spearman&quot;: 0.0096
+      },
+      &quot;H73-F Curvature (PR #5)&quot;: {
+        &quot;mutual_3px&quot;: 0.1328,
+        &quot;forward_3px&quot;: 0.1328,
+        &quot;spearman&quot;: 0.0048
+      }
+    }
+  },
+  &quot;raster_sha256&quot;: {
+    &quot;primary_portal_safe_zeros_tif&quot;: &quot;b8e10300a96aa6735835d674f8e9493c7c66e7a35e4aa5584178de5c461958aa&quot;,
+    &quot;primary_zip&quot;: &quot;138bae3c6e29e0299dd1d842f105c2fba730b243914bf7e249b2236da75bf23e&quot;,
+    &quot;companion_nan_tif&quot;: &quot;91885418f3a377cc211142446b1ae85b34417f3373d6466b8e167c1ae54dee2d&quot;
+  },
+  &quot;validator_output&quot;: {
+    &quot;file&quot;: &quot;/home/user/GEMSDOE73/docs/downloads/gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif&quot;,
+    &quot;bytes&quot;: 142170,
+    &quot;sha256&quot;: &quot;b8e10300a96aa6735835d674f8e9493c7c66e7a35e4aa5584178de5c461958aa&quot;,
+    &quot;meta&quot;: {
+      &quot;crs&quot;: &quot;EPSG:32611&quot;,
+      &quot;shape&quot;: [
+        3730,
+        3292
+      ],
+      &quot;dtype&quot;: &quot;float32&quot;,
+      &quot;count&quot;: 1,
+      &quot;nodata&quot;: null,
+      &quot;transform&quot;: [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      &quot;profile_compress&quot;: &quot;deflate&quot;
+    },
+    &quot;band_description&quot;: [
+      null
+    ],
+    &quot;n_finite&quot;: 12279160,
+    &quot;n_nan&quot;: 0,
+    &quot;n_infinite&quot;: 0,
+    &quot;min&quot;: 0.0,
+    &quot;max&quot;: 1.0,
+    &quot;mean&quot;: 0.0030664964579045773,
+    &quot;emitted_positive_pixels&quot;: 37654,
+    &quot;checks&quot;: {
+      &quot;single_band&quot;: true,
+      &quot;dtype_float32&quot;: true,
+      &quot;dimensions_3730x3292&quot;: true,
+      &quot;crs_epsg_32611&quot;: true,
+      &quot;transform_matches_sample_submission&quot;: true,
+      &quot;no_nan_anywhere&quot;: true,
+      &quot;no_inf_anywhere&quot;: true,
+      &quot;no_sentinel_values&quot;: true,
+      &quot;range_0_1_guaranteed&quot;: true,
+      &quot;min_ge_0&quot;: true,
+      &quot;max_le_1&quot;: true,
+      &quot;in_footprint_all_finite&quot;: true,
+      &quot;in_footprint_range_0_1&quot;: true,
+      &quot;outside_footprint_zero&quot;: true,
+      &quot;zero_dots_on_mapped_catalogue&quot;: true
+    },
+    &quot;all_checks_passed&quot;: true,
+    &quot;validation_class&quot;: &quot;local format/range preflight; not organizer acceptance or uniqueness clearance&quot;,
+    &quot;on_catalogue_positive_pixels&quot;: 0,
+    &quot;in_footprint_positive_pixels&quot;: 37654,
+    &quot;footprint_fraction&quot;: 0.007286874781441169
+  },
+  &quot;submission&quot;: {
+    &quot;file&quot;: &quot;gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif&quot;,
+    &quot;zip_file&quot;: &quot;gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.zip&quot;,
+    &quot;name&quot;: &quot;gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros&quot;,
+    &quot;note&quot;: &quot;GEMS73 H73-2 MECS-AutoCtx 2-stage wash/stepover+submodular 300m (37654 dots); HOLDOUT-DTI 0.1019 vs H33 0.0843&quot;,
+    &quot;note_chars&quot;: 110,
+    &quot;emitted_dots&quot;: 37654
+  },
+  &quot;verdict&quot;: &quot;promote&quot;,
+  &quot;slot_allocation_recommendation&quot;: {
+    &quot;beats_live_champion_h33_control&quot;: true,
+    &quot;rank_among_zero_catalogue_tip_pure_physics_lanes&quot;: 1,
+    &quot;overall_rank_across_all_12_gemsdoe73_prs&quot;: 6,
+    &quot;primary_single_slot_choice&quot;: &quot;gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif (PR #11, HOLDOUT-DTI = 0.1599)&quot;,
+    &quot;orthogonal_slot_2_blind_fault_choice&quot;: &quot;gems73-h73-2-mecs-autoctx-submod-37654dots-20261021-zeros.tif (PR #12, HOLDOUT-DTI = 0.1020, 0 fault-tip features, 24,388 non-overlapping dots vs H73-MVH)&quot;
+  }
+}</pre>
+    </section>
+  </main>
+</body>
+</html>

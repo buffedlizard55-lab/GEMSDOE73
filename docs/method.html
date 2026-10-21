@@ -3,54 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MCSC Architecture — GEMSDOE73 (H73-MCSC)</title>
-  <style>
-:root {
-  --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
-  --line: #e2e8f0; --green: #15803d; --green-bg: #f0fdf4; --green-bd: #86efac;
-  --red: #b91c1c; --red-bg: #fef2f2; --red-bd: #fca5a5;
-  --blue: #0369a1; --blue-bg: #f0f9ff; --navy: #0f172a;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
-header.nav { background: var(--navy); color: #fff; padding: 0.85rem 1.5rem; position: sticky; top: 0; z-index: 20; border-bottom: 3px solid #22c55e; }
-header.nav .wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
-header.nav a.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.01em; }
-header.nav nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
-header.nav nav a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 6px; }
-header.nav nav a:hover, header.nav nav a.active { color: #fff; background: rgba(255,255,255,0.14); }
-main { max-width: 1180px; margin: 1.8rem auto 3.5rem; padding: 0 1.4rem; }
-.hero-promote { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 14px; padding: 1.6rem 1.8rem; box-shadow: 0 6px 20px rgba(21,128,61,0.08); margin-bottom: 1.8rem; }
-.badge-ok { display: inline-block; background: #15803d; color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.32rem 0.8rem; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
-.badge-no { display: inline-block; background: #b91c1c; color: #fff; font-weight: 700; font-size: 0.76rem; padding: 0.2rem 0.6rem; border-radius: 999px; }
-.badge-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.76rem; padding: 0.16rem 0.5rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-h1 { margin: 0.6rem 0 0.5rem; font-size: 1.85rem; line-height: 1.25; }
-h2 { margin-top: 2rem; font-size: 1.35rem; border-bottom: 2px solid var(--line); padding-bottom: 0.4rem; }
-h3 { margin-top: 1.3rem; font-size: 1.08rem; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin: 1.15rem 0 1rem; }
-.btn { display: inline-block; text-decoration: none; font-weight: 700; padding: 0.72rem 1.2rem; border-radius: 9px; font-size: 0.95rem; transition: transform 0.08s ease; cursor: pointer; border: none; }
-.btn-primary { background: #15803d; color: #fff; box-shadow: 0 3px 10px rgba(21,128,61,0.28); }
-.btn-secondary { background: #0f172a; color: #fff; }
-.btn-outline { background: #fff; color: #0f172a; border: 1.5px solid #94a3b8; }
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1rem; margin: 1.3rem 0; }
-.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1rem 1.15rem; }
-.kpi .lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em; }
-.kpi .val { font-size: 1.55rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0; }
-.kpi .sub { font-size: 0.83rem; color: #15803d; font-weight: 600; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.35rem 1.5rem; margin-bottom: 1.4rem; }
-.quarantine { background: var(--red-bg); border: 1.5px solid var(--red-bd); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.5rem 0; }
-table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
-th, td { text-align: left; padding: 0.62rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
-tr.highlight { background: #f0fdf4; font-weight: 600; }
-code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86rem; }
-pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.15rem; border-radius: 10px; overflow-x: auto; line-height: 1.45; }
-.copy-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.55rem 0.8rem; margin: 0.4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-figure { margin: 1.2rem 0; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 0.9rem; }
-figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
-figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.55rem; }
-footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1.8rem 1rem; border-top: 1px solid var(--line); }
-</style>
+  <title>H73-MVH Architecture &amp; Ablation — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
   <script>
     function copyText(id, btn) {
       const txt = document.getElementById(id).innerText;
@@ -63,77 +17,63 @@ footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1
   </script>
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap">
-      <a class="brand" href="index.html">GEMSDOE73 · Lane H73-MCSC (PROMOTED)</a>
-      <nav><a href="index.html" class="">Portal & Download</a>
-<a href="executive-summary.html" class="">Executive Answer</a>
-<a href="hypotheses.html" class="">Hypotheses & Ablation</a>
-<a href="method.html" class="active">MCSC Architecture</a>
-<a href="leaderboard.html" class="">Live Score Physics</a>
-<a href="verification.html" class="">Uniqueness & Validators</a>
-<a href="irregularities.html" class="">Irregularities (16)</a>
-<a href="sources.html" class="">Official Sources</a></nav>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink active" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
     </div>
   </header>
   <main>
     
-<section class="hero-promote">
-  <span class="badge-ok">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
-  <h1>Promoted Submission: <code>gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif</code></h1>
-  <p style="margin:0.35rem 0 0.7rem;color:#1e293b;">
-    <strong>Single-band portal-safe GeoTIFF</strong> (<code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>float32</code>, <code>nodata = None</code>, <strong>12,279,160 / 12,279,160 finite values in [0.0, 1.0]</strong>, <code>37,654</code> binary <code>1.0</code> fault dots, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> on mapped catalogue). Statistically beats <code>GEMSDOE32 H33-2-B2</code> (<code>0.2778</code> live champion) on both pooled withheld faults (<strong>0.1095 vs 0.0940</strong>, paired 95% CI <code>[+0.0019, +0.0302]</code>) and blind off-catalogue faults &gt; 1 km (<strong>0.1006 vs 0.0732, +37.4%</strong>, paired 95% CI <code>[+0.0092, +0.0486]</code>), and passes <strong>100% of all 92 leakage canaries and all 888 fleet uniqueness checks</strong>.
-  </p>
-  <div class="cta-row">
-    <a class="btn btn-primary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif" download>Download Primary GeoTIFF (.tif, 144.2 KB) — UPLOAD THIS FILE</a>
-    <a class="btn btn-secondary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip" download>Download ZIP Archive (112.3 KB)</a>
-    <a class="btn btn-outline" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif" download>GIS Companion (-nan.tif)</a>
-    <a class="btn btn-outline" href="evidence/run_card.json">View Raw JSON Run Card</a>
-  </div>
-  <div class="copy-box">
-    <div><strong>Unique Submission Name:</strong> <code id="sub-name">gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-name', this)">Copy Name</button>
-  </div>
-  <div class="copy-box">
-    <div><strong>Portal Note (100 / 140 chars):</strong> <code id="sub-note">H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)</code></div>
-    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-note', this)">Copy Note</button>
-  </div>
-  <div style="font-size:0.82rem;color:#334155;margin-top:0.55rem;">
-    <strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249</code><br>
-    <strong>SHA-256 (<code>.zip</code>):</strong> <code>2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1</code>
-  </div>
-</section>
+    <h1>H73-MVH Architecture &amp; 3-Experiment Causal Ablation</h1>
+    <p>
+      <code>H73-MVH</code> was frozen in <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/blob/main/registry/preregistration_h73_mvh.json"><code>registry/preregistration_h73_mvh.json</code></a>
+      prior to holdout evaluation, respecting all six rules of the Parallel-Run Protocol (strictly 3 experiments, zero prior prediction rasters read,
+      zero SGMC input bands, <code>dist_known_fault_px</code> hard-banned, strict 4-quadrant Leave-One-Quadrant-Out with a <code>3.0 km</code> boundary exclusion strip).
+    </p>
+    <h2>1. Five-Block Feature Stack (94 Features Total: 82 Static + 12 Fold-Isolated Network Mechanics)</h2>
+    <table>
+      <thead><tr><th>Block</th><th>Cols</th><th>Physical Layers &amp; Exact Mathematical Transforms</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Block A: Multi-Physics &amp; Local Relief</strong></td><td>29</td><td>All 19 official <code>training_features.tif</code> GeoDAWN channels + Miller-Singh (1994) tilt-angle derivative zero-crossing proximity <code>cos(arctan2(tmi_vg, tmi_hg))</code> + multi-scale potential-field worms + basement gradient/curvature + local relief models (<code>&sigma;=2,6 px</code>) + terrain-normalized slope prominence.</td></tr>
+        <tr><td><strong>Block B: 1 m EarthMRI 3DEP LiDAR</strong></td><td>16</td><td>Native <code>NaN</code>-preserving 11 scarp channels + downface/upface polarity + local relief-normalized prominence + Walker Lane N18&deg;E strike alignment + 16-azimuth <code>1.3 km</code> straight-line Radon chain occupancy suppressing curved paleo-shorelines.</td></tr>
+        <tr><td><strong>Block C: 10 m Seamless DEM + Fluvial &chi;</strong></td><td>16</td><td>100%-footprint 10 m seamless DEM scarp/curvature/lineaments + 16-azimuth Radon chain + tectonic channel steepness &amp; knickpoint excess <code>knick_n / (chan_n + 4)</code> across all non-LiDAR gap tiles.</td></tr>
+        <tr><td><strong>Block D: GeoDAWN Radiometrics &amp; Shallow Mag</strong></td><td>11</td><td>Airborne gamma-ray <code>K, Th, U, TC, Th/K, U/K, U/Th</code> alteration ratios + shallow crustal magnetic residual <code>norm(TMI) - norm(TMI_up150)</code> isolating magnetite destruction along hydrothermally altered fault gouge.</td></tr>
+        <tr><td><strong>Block E: INGENIOUS Paleo-Vents &amp; Geothermometers</strong></td><td>10</td><td><code>Paleo_geothermal_final.csv</code> (281 sinters, travertines, tufas, explosion craters), <code>gdr_wellspring</code> (<code>T &ge; 37 &deg;C</code> &amp; geothermometers <code>&ge; 110 &deg;C</code>), 2 m thermal probes (<code>F2mDAB</code>), Quaternary vents &rarr; log-distances + 16-azimuth straight-line Radon upflow corridors.</td></tr>
+        <tr><td><strong>Block F: Fold-Isolated Bridge &amp; Hanging-Wall Mechanics</strong></td><td>12</td><td>Computed strictly from <code>fold["visible"]</code> in holdout and <code>K=4</code> nested whole-component hide draws (45% &amp; 22% hide fractions, <code>3 px</code> collar) inside training quadrants: two-tip elliptical relay bridges <code>exp(-(d(x,A)+d(x,B)-|A-B|)/&sigma;)</code>, log-length tip lobes, collar-safe anchor frame, hanging-wall basement/elevation step deltas, scarp-to-parent strike concordance, and slip-sense damage annulus.</td></tr>
+      </tbody>
+    </table>
 
-<section class="card">
-  <h2 style="margin-top:0;">Two-Stage Zero-Leakage H73-MCSC Architecture</h2>
-  <ul>
-    <li><strong>Stage 1A — 52 De-Regionalized Multi-Sensor Channels:</strong> 1m 3DEP LiDAR steps/excess, 10m National Map DEM multi-scale slopes &amp; curvature, CBA gravity horizontal/vertical gradients &amp; upward continuations, TMI + RTP magnetics, seismic Kostrov strain &amp; catalog density, basement depth &amp; gradient, USGS SGMC Quaternary piedmont context, and DOE GDR-1391 + ScienceBase hydrothermal upflow/outflow anomalies.</li>
-    <li><strong>Stage 1B — 15 Closed-Form Steger (1998) &amp; Blakely-Simpson (1986) Contact-Crest Channels:</strong> Analytical 2D Gaussian-Hessian principal ridge curvature and sub-pixel normal offset <code>|t*| &lt;= 0.75 px</code> locking onto 100 m centerlines across topography, gravity, magnetics, and basement depth.</li>
-    <li><strong>Seam-Free Dual-Regime Specialists:</strong> Dedicated <code>Expert_All67</code> and pure non-LiDAR <code>Expert_NoLiDAR51</code> fused via exact per-quadrant empirical quantile matching across the 24.63% (47.4% in NE) 3DEP LiDAR survey gap.</li>
-    <li><strong>Stage 2 — 25-Channel Steerable Curvilinear Propagation &amp; Submodular Decoding:</strong> 12 azimuths × 3 fault scales (<code>900 m</code>, <code>2.3 km</code>, <code>4.5 km</code>), bilateral half-ray minimum <code>min(I+, I-)</code>, flank-subtracted ridge sharpness, smooth <code>(cos 2θ, sin 2θ)</code> strike kinematics, deep-basin geophysical conduit branch (<code>lam_blind = 0.062</code>), and exact Minoux lazy-greedy 300 m submodular optimization (<code>37,654</code> binary <code>1.0</code> dots, <code>d_cat &gt; 200 m</code>).</li>
-  </ul>
-</section>
+    <h2>2. Exact Causal Contribution of Each Preregistered Step</h2>
+    <table>
+      <thead><tr><th>Causal Transition</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% Spatial Bootstrap CI</th><th>Physical &amp; Mathematical Mechanism Isolated</th></tr></thead>
+      <tbody>
+        <tr><td><code>M1</code> (Static + Vent Dual-Target GBDT + NMS)</td><td><code>0.0765</code> (abs)</td><td><code>[0.0681, 0.0853]</code></td><td>Outperforms PR #3 unsupervised scarp surface (<code>0.0548</code>) by <strong>+39.6%</strong> using pure physical + geothermal features alone with zero fault-network inputs.</td></tr>
+        <tr><td><code>M2 &minus; M1</code> (+12 Nested-Hide Bridge Mechanics)</td><td><strong><code>+0.0112</code></strong></td><td><code>[+0.0050, +0.0174]</code></td><td>Two-tip elliptical relay bridges, directional tip lobes, and hanging-wall step polarity significantly improve fault localization at identical <code>7&times;7</code> Peak NMS budget.</td></tr>
+        <tr class="highlight-win"><td><code>M3 &minus; M2</code> (Two-Head Exact R=300 m Submodular Allocator)</td><td><strong><code>+0.0722</code></strong></td><td><code>[+0.0571, +0.0888]</code></td><td>Allocating frozen <code>M2</code> posteriors via exact submodular <code>300 m</code> kernel coverage over <code>p_trace</code> minus <code>&lambda;(1 - q_kern)</code> eliminates redundant halo overlap and concentrates dots along continuous fault corridors.</td></tr>
+      </tbody>
+    </table>
 
-<figure>
-  <img src="assets/fig1_live_leaderboard_physics.png" alt="Live DrivenData Score Physics and Test-Mass Inversion">
-  <figcaption><strong>Figure 1:</strong> (A) Relationship between zero-leakage buffered holdout DTI (<code>gems57-pooled-hide-v2</code>) and <code>ORGANIZER-CONFIRMED</code> DrivenData scores across the repository fleet, contrasting zero-<code>d_cat</code> physical models against catastrophic <code>d_cat</code> collar leakage (<code>GEMSDOE68</code>: <code>0.2069 -&gt; 0.0437</code>). (B) Closed-form inversion of hidden test mass (<code>N_test ≈ 36,600</code> px) predicting out-of-sample <code>H25-1 d1.5 = 0.2460</code> vs actual <code>0.2463</code> (error <code>0.0003</code>).</figcaption>
-</figure>
-<figure>
-  <img src="assets/fig2_mcsc_architecture_and_ablation.png" alt="Monotonic 3-Experiment Ablation and Quadrant Breakdown">
-  <figcaption><strong>Figure 2:</strong> (A) Monotonic 3-experiment preregistered ablation on <code>gems57-pooled-hide-v2</code> (<code>11,321</code> withheld positives). (B) Per-quadrant breakdown highlighting the <code>+65.3%</code> jump in the 47.4% non-LiDAR NE quadrant (<code>0.0823 -&gt; 0.1360</code>) and <code>+37.4%</code> gain on blind off-catalogue faults &gt; 1 km (<code>0.1006 vs 0.0732</code>).</figcaption>
-</figure>
-<figure>
-  <img src="assets/fig3_nevada_spatial_prediction_map.png" alt="Nevada Spatial Prediction Map and Seam-Free 3DEP Zoom">
-  <figcaption><strong>Figure 3:</strong> (A) Calibrated H73-MCSC posterior surface across Nevada with cyan contour showing the 24.63% USGS 3DEP non-LiDAR survey gap. (B) Final <code>37,654</code> binary <code>1.0</code> submodular fault dots (emerald) vs mapped NBMG/USGS catalogue (blue, 0 overlap). (C) 76 km × 76 km zoom demonstrating seamless fault strand propagation directly across the 3DEP LiDAR tile boundary.</figcaption>
-</figure>
-<figure>
-  <img src="assets/fig4_uniqueness_canaries_and_importance.png" alt="Fleet Uniqueness Audit, 92 Leakage Canaries, and Feature Importance">
-  <figcaption><strong>Figure 4:</strong> (A) Forward 3-px dot overlap across key fleet submissions (all 888 non-probe rasters strictly &lt; 70% limit; <code>48.6%</code> overlap / <code>51.4%</code> novel dots vs <code>H33-2-B2</code>). (B) Single-feature symmetric AUC audit across all 92 Stage-1 &amp; Stage-2 features (max <code>0.6705 &lt;= 0.90</code>). (C) Top 12 physical &amp; Steger-Blakely Stage-1 features.</figcaption>
-</figure>
-
+    <h2>3. Top 15 Predictors by Out-of-Fold Ensemble Split Gain</h2>
+    <table>
+      <thead><tr><th>Rank</th><th>Feature Name</th><th>Share of Total Ensemble Gain</th></tr></thead>
+      <tbody><tr><td>1</td><td><code>d_vis_collar</code></td><td><code>21.389%</code></td></tr><tr><td>2</td><td><code>hw_elev_delta</code></td><td><code>5.319%</code></td></tr><tr><td>3</td><td><code>comp_loglen_vis</code></td><td><code>4.491%</code></td></tr><tr><td>4</td><td><code>vis_annulus_density</code></td><td><code>3.619%</code></td></tr><tr><td>5</td><td><code>volcanic_vent_logdist</code></td><td><code>3.420%</code></td></tr><tr><td>6</td><td><code>ieq_n100a15</code></td><td><code>2.587%</code></td></tr><tr><td>7</td><td><code>det_elev</code></td><td><code>2.454%</code></td></tr><tr><td>8</td><td><code>deq_n100a15</code></td><td><code>2.399%</code></td></tr><tr><td>9</td><td><code>geod_dilaterate</code></td><td><code>2.366%</code></td></tr><tr><td>10</td><td><code>cond_surf</code></td><td><code>2.351%</code></td></tr><tr><td>11</td><td><code>iso_grav_anom</code></td><td><code>2.245%</code></td></tr><tr><td>12</td><td><code>geod_shearrate</code></td><td><code>2.176%</code></td></tr><tr><td>13</td><td><code>geod_2ndinv</code></td><td><code>2.166%</code></td></tr><tr><td>14</td><td><code>topo10_dem_mean</code></td><td><code>2.066%</code></td></tr><tr><td>15</td><td><code>det_elev_lrm_s6</code></td><td><code>2.063%</code></td></tr></tbody>
+    </table>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
   </main>
-  <footer>
-    buffedlizard55-lab/GEMSDOE73 · Core Values: <strong>Maximize P(Win)</strong> &amp; <strong>Own the Outcome</strong> · All metrics tagged <code>HOLDOUT-DTI</code>, <code>ORGANIZER-CONFIRMED</code>, or <code>OWNER-REPORT</code>.
-  </footer>
 </body>
 </html>

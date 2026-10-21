@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# Restore and SHA-256 verify all core competition rasters, public USGS/DOE external layers,
-# and historical scored reference artifacts via zero-rate-limit codeload tar streams, linking into data/.
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PY="${ROOT}/.venv/bin/python"
-if [ ! -x "${PY}" ]; then
-  PY="python3"
-fi
-exec "${PY}" "${ROOT}/scripts/restore_data.py" --group all --link-data "$@"
+# Autonomous zero-manual-input competition & auxiliary public geoscience data restoration.
+# Streams SHA-256 pinned split archives via codeload.github.com and verifies every byte.
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+python3 scripts/prepare_data.py

@@ -1,0 +1,299 @@
+{
+  "evidence_class": "HOLDOUT-DTI canary (single-feature AUC; gate symmetric AUC <= 0.90)",
+  "lane": "H73-7",
+  "n_neg_sample": 200000,
+  "n_pos_catalogue": 60988,
+  "n_pos_withheld": 11321,
+  "note": "Diagnostic negatives >5 px from the FULL catalogue (same protocol as evidence/canaries.json); training negatives use visible-only distance.",
+  "channels": {
+    "off_mag_anom": {
+      "group": "official",
+      "auc_catalogue": 0.4905727105659685,
+      "auc_withheld": 0.5111413206148722,
+      "symmetric_auc": 0.5111413206148722,
+      "pass": true
+    },
+    "off_rtp": {
+      "group": "official",
+      "auc_catalogue": 0.4982295397310061,
+      "auc_withheld": 0.5207611787955815,
+      "symmetric_auc": 0.5207611787955815,
+      "pass": true
+    },
+    "off_tmi_hg": {
+      "group": "official",
+      "auc_catalogue": 0.531098680542395,
+      "auc_withheld": 0.5340208549203445,
+      "symmetric_auc": 0.5340208549203445,
+      "pass": true
+    },
+    "off_geod_2ndinv": {
+      "group": "official",
+      "auc_catalogue": 0.5769783797925561,
+      "auc_withheld": 0.5718005811204475,
+      "symmetric_auc": 0.5769783797925561,
+      "pass": true
+    },
+    "off_iso_grav_anom_slope": {
+      "group": "official",
+      "auc_catalogue": 0.5383371632548097,
+      "auc_withheld": 0.5257568967553405,
+      "symmetric_auc": 0.5383371632548097,
+      "pass": true
+    },
+    "off_tc": {
+      "group": "official",
+      "auc_catalogue": 0.4397107047540338,
+      "auc_withheld": 0.4625495334052545,
+      "symmetric_auc": 0.5602892952459662,
+      "pass": true
+    },
+    "off_geod_shearrate": {
+      "group": "official",
+      "auc_catalogue": 0.5752345635875152,
+      "auc_withheld": 0.5710893225597719,
+      "symmetric_auc": 0.5752345635875152,
+      "pass": true
+    },
+    "off_geod_dilaterate": {
+      "group": "official",
+      "auc_catalogue": 0.5300943485851132,
+      "auc_withheld": 0.519229196149986,
+      "symmetric_auc": 0.5300943485851132,
+      "pass": true
+    },
+    "off_tmi_vg": {
+      "group": "official",
+      "auc_catalogue": 0.48593052508182977,
+      "auc_withheld": 0.48689488088076,
+      "symmetric_auc": 0.5140694749181702,
+      "pass": true
+    },
+    "off_deq_n100a15": {
+      "group": "official",
+      "auc_catalogue": 0.5554384493829578,
+      "auc_withheld": 0.5419099100812381,
+      "symmetric_auc": 0.5554384493829578,
+      "pass": true
+    },
+    "off_iso_grav_anom_vg": {
+      "group": "official",
+      "auc_catalogue": 0.5321093458125943,
+      "auc_withheld": 0.5199679313447052,
+      "symmetric_auc": 0.5321093458125943,
+      "pass": true
+    },
+    "off_det_elev": {
+      "group": "official",
+      "auc_catalogue": 0.48517508873617915,
+      "auc_withheld": 0.5145063932085379,
+      "symmetric_auc": 0.5148249112638208,
+      "pass": true
+    },
+    "off_iso_grav_anom": {
+      "group": "official",
+      "auc_catalogue": 0.4564335655054761,
+      "auc_withheld": 0.4583747187088483,
+      "symmetric_auc": 0.5435664344945239,
+      "pass": true
+    },
+    "off_tmi": {
+      "group": "official",
+      "auc_catalogue": 0.48789082905603265,
+      "auc_withheld": 0.5106316911176201,
+      "symmetric_auc": 0.5121091709439674,
+      "pass": true
+    },
+    "off_depth_to_base_surf": {
+      "group": "official",
+      "auc_catalogue": 0.5133329855217755,
+      "auc_withheld": 0.5258107196541728,
+      "symmetric_auc": 0.5258107196541728,
+      "pass": true
+    },
+    "off_ieq_n100a15": {
+      "group": "official",
+      "auc_catalogue": 0.5763942392260955,
+      "auc_withheld": 0.5475303355800473,
+      "symmetric_auc": 0.5763942392260955,
+      "pass": true
+    },
+    "off_cond_surf": {
+      "group": "official",
+      "auc_catalogue": 0.48140680764144317,
+      "auc_withheld": 0.4775118370474247,
+      "symmetric_auc": 0.5224881629525753,
+      "pass": true
+    },
+    "off_iso_grav_anom_hg": {
+      "group": "official",
+      "auc_catalogue": 0.4999748258400522,
+      "auc_withheld": 0.4920227042291911,
+      "symmetric_auc": 0.5079772957708089,
+      "pass": true
+    },
+    "off_det_elev_slope": {
+      "group": "official",
+      "auc_catalogue": 0.5643201468774088,
+      "auc_withheld": 0.5700285684523154,
+      "symmetric_auc": 0.5700285684523154,
+      "pass": true
+    },
+    "lid_ex_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.568758782465403,
+      "auc_withheld": 0.5919973306245031,
+      "symmetric_auc": 0.5919973306245031,
+      "pass": true
+    },
+    "lid_ex_mean": {
+      "group": "lidar",
+      "auc_catalogue": 0.5605394015626024,
+      "auc_withheld": 0.5851164212525396,
+      "symmetric_auc": 0.5851164212525396,
+      "pass": true
+    },
+    "lid_step_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.5697080989702893,
+      "auc_withheld": 0.5930956359862203,
+      "symmetric_auc": 0.5930956359862203,
+      "pass": true
+    },
+    "lid_lapneg_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.573335360152817,
+      "auc_withheld": 0.5957052312074905,
+      "symmetric_auc": 0.5957052312074905,
+      "pass": true
+    },
+    "lid_lappos_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.5760977026628189,
+      "auc_withheld": 0.5987791352354033,
+      "symmetric_auc": 0.5987791352354033,
+      "pass": true
+    },
+    "lid_downface_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.5820180001393717,
+      "auc_withheld": 0.605274342372582,
+      "symmetric_auc": 0.605274342372582,
+      "pass": true
+    },
+    "lid_upface_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.5873692141896767,
+      "auc_withheld": 0.6105073767776699,
+      "symmetric_auc": 0.6105073767776699,
+      "pass": true
+    },
+    "lid_cross_max": {
+      "group": "lidar",
+      "auc_catalogue": 0.5790648023381649,
+      "auc_withheld": 0.6049499054853811,
+      "symmetric_auc": 0.6049499054853811,
+      "pass": true
+    },
+    "lid_relief": {
+      "group": "lidar",
+      "auc_catalogue": 0.5704734999918016,
+      "auc_withheld": 0.5917379847186646,
+      "symmetric_auc": 0.5917379847186646,
+      "pass": true
+    },
+    "lid_coh100": {
+      "group": "lidar",
+      "auc_catalogue": 0.5104177129107366,
+      "auc_withheld": 0.5287809345464182,
+      "symmetric_auc": 0.5287809345464182,
+      "pass": true
+    },
+    "rad_K": {
+      "group": "radiometric",
+      "auc_catalogue": 0.4307970924393589,
+      "auc_withheld": 0.456807036043926,
+      "symmetric_auc": 0.5692029075606411,
+      "pass": true
+    },
+    "rad_Th": {
+      "group": "radiometric",
+      "auc_catalogue": 0.4437226274113182,
+      "auc_withheld": 0.47231180846273646,
+      "symmetric_auc": 0.5562773725886818,
+      "pass": true
+    },
+    "rad_U": {
+      "group": "radiometric",
+      "auc_catalogue": 0.4729155539889436,
+      "auc_withheld": 0.46689035235086895,
+      "symmetric_auc": 0.533109647649131,
+      "pass": true
+    },
+    "rad_TC": {
+      "group": "radiometric",
+      "auc_catalogue": 0.439695989287371,
+      "auc_withheld": 0.46257765325771305,
+      "symmetric_auc": 0.5603040107126289,
+      "pass": true
+    },
+    "rad_ThK": {
+      "group": "radiometric",
+      "auc_catalogue": 0.4832857486034978,
+      "auc_withheld": 0.4989839353336314,
+      "symmetric_auc": 0.5167142513965022,
+      "pass": true
+    },
+    "rad_UK": {
+      "group": "radiometric",
+      "auc_catalogue": 0.5409498722670294,
+      "auc_withheld": 0.5110847891647485,
+      "symmetric_auc": 0.5409498722670294,
+      "pass": true
+    },
+    "rad_UTh": {
+      "group": "radiometric",
+      "auc_catalogue": 0.5466575750463306,
+      "auc_withheld": 0.5151642057384065,
+      "symmetric_auc": 0.5466575750463306,
+      "pass": true
+    },
+    "rad_TMI_up150": {
+      "group": "radiometric",
+      "auc_catalogue": 0.489146326670358,
+      "auc_withheld": 0.5112882204513395,
+      "symmetric_auc": 0.5112882204513395,
+      "pass": true
+    },
+    "cmp_scarp_n": {
+      "group": "component",
+      "auc_catalogue": 0.5681455978225225,
+      "auc_withheld": 0.5806307165886405,
+      "symmetric_auc": 0.5806307165886405,
+      "pass": true
+    },
+    "cmp_chain": {
+      "group": "component",
+      "auc_catalogue": 0.5389537169197218,
+      "auc_withheld": 0.5526607956452609,
+      "symmetric_auc": 0.5526607956452609,
+      "pass": true
+    },
+    "cmp_substep": {
+      "group": "component",
+      "auc_catalogue": 0.542085681363547,
+      "auc_withheld": 0.5315998105291051,
+      "symmetric_auc": 0.542085681363547,
+      "pass": true
+    },
+    "cmp_pied_soft": {
+      "group": "component",
+      "auc_catalogue": 0.47319893130615864,
+      "auc_withheld": 0.4845087560727851,
+      "symmetric_auc": 0.5268010686938414,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "max_symmetric_auc": 0.6105073767776699
+}
