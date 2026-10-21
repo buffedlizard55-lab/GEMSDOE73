@@ -3,56 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Historical PR #3 Negative Archive (H73-1) — GEMSDOE73 (H73-MVH)</title>
-  <link rel="stylesheet" href="assets/site.css">
-  <script>
-    function copyText(id, btn) {
-      const txt = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const old = btn.innerText;
-        btn.innerText = "Copied!";
-        setTimeout(() => btn.innerText = old, 1400);
-      });
-    }
-  </script>
+  <title>Archived Negative Lane H73-1 — GEMSDOE73</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
-      <a class="navlink" href="index.html">Overview &amp; Download</a>
-<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
-<a class="navlink" href="method.html">H73-MVH Architecture</a>
-<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
-<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
-<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
-<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
-<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
-<a class="navlink" href="sources.html">Verified Official Sources</a>
-<a class="navlink active" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-2 MECS-AutoCtx</a>
+      <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="research.html">PhD Analysis (Why 0.2778 Won)</a><a href="hypotheses.html">Hypotheses &amp; E1-E3 Ablation</a><a href="leaderboard.html">57-Submission Audit Ledger</a><a href="sources.html">Verified Sources &amp; SHA-256</a><a href="irregularities.html">Irregularities (IR-73-01..13)</a>
     </div>
-  </header>
-  <main>
+  </nav>
+  <main class="wrap">
     
-    <div class="callout-warn">
-      <strong>HISTORICAL NEGATIVE RECORD — DO NOT SUBMIT THIS PRIOR CANDIDATE:</strong>
-      PR #3's unsupervised piedmont scarp-chain experiment (<code>H73-1 E1</code>) achieved <code>HOLDOUT-DTI = 0.0548</code> vs <code>0.0939</code> control and has been superseded by
-      <strong>promoted <code>H73-MVH</code> (<code>HOLDOUT-DTI = 0.1599</code>, +70.41% over control)</strong>.
-      Go to <a href="index.html"><strong>Overview &amp; Promoted Download</strong></a> to download <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code>.
+    <div class="banner-warn">
+      <strong>ARCHIVAL NEGATIVE LANE (<code>H73-1</code>, PR #3) — DO NOT SUBMIT THIS HISTORICAL FILE.</strong>
+      This page preserves the earlier unsupervised formula baseline (<code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code>, <code>HOLDOUT-DTI = 0.0548</code> vs H33 control <code>0.0939</code>, verdict <code>NEGATIVE</code>).
+      For the current <strong>PROMOTED</strong> submission that beats the H33 control (<code>HOLDOUT-DTI = 0.1020</code>), go to <a href="index.html"><strong>Overview &amp; Promoted Submission Download (<code>H73-2</code>)</strong></a>.
     </div>
-    <h1>Historical Archive: PR #3 Unsupervised Piedmont Scarp-Chain (<code>H73-1</code> — Negative Result)</h1>
-    <p>
-      Preserved intact for full scientific transparency per Parallel-Run Protocol Rule 5. Unsupervised threshold multiplication of scarp prominence and 16-azimuth chain occupancy without multi-physics supervision scored <code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>) on <code>gems57-pooled-hide-v2</code> because Pleistocene Lake Lahontan shoreline benches and fluvial terrace risers mimic low-relief tectonic scarps unless discriminated jointly with potential-field, hanging-wall step, and geothermal-vent evidence — directly motivating the winning <code>H73-MVH</code> architecture.
-    </p>
-    <figure>
-      <img src="assets/fig_e1_vs_h33.png" alt="Historical PR #3 H73-1 diagnostic figure">
-      <figcaption>Historical diagnostic figure from PR #3 (<code>H73-1</code> unsupervised piedmont surface).</figcaption>
-    </figure>
+    <div class="card">
+      <h1>Archived Negative Lane: <code>H73-1</code> Piedmont Micro-Scarp Chain (PR #3)</h1>
+      <ul>
+        <li><strong>Archived File (Review Only — Do Not Submit):</strong> <a href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif"><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></a> (SHA-256: <code>d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece</code>)</li>
+        <li><strong>Holdout Result (`gems57-pooled-hide-v2`, `n = 11,321`):</strong> <code>HOLDOUT-DTI = 0.0548</code> [<code>0.0417, 0.0688</code>] — failed gate against H33 control; superseded by <strong><code>H73-2</code> (<code>0.1020</code>)</strong>.</li>
+      </ul>
+    </div>
     
     <footer>
-      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
-      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
-      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+      GEMSDOE73 · DOE GEMS Prize Fault Discovery System · Every score strictly tagged
+      <code>HOLDOUT-DTI</code>, <code>USER-REPORTED PORTAL</code>, or <code>PUBLIC LEADERBOARD</code> ·
+      Zero unverified claims · Source repo: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a>.
     </footer>
   </main>
 </body>

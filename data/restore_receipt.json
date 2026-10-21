@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "verified_files_count": 29,
+  "verified_files_count": 28,
   "storage_root": "/home/user/GEMSDOE73/.cache/gems_data",
   "files": [
     {
@@ -188,7 +188,7 @@
       "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d"
     },
     {
-      "id": "ext_topo_10m_derived_100m_u8",
+      "id": "ext_topo_10m_derived_u8",
       "dest": "external/topo_10m_derived_100m_u8.tif",
       "group": "external",
       "status": "present",
@@ -196,7 +196,15 @@
       "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4"
     },
     {
-      "id": "ext_dem10_chi_100m_u8",
+      "id": "ext_dem10_chi_i16",
+      "dest": "external/dem10_chi_100m_i16.tif",
+      "group": "external",
+      "status": "present",
+      "bytes": 12777098,
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5"
+    },
+    {
+      "id": "ext_dem10_chi_u8",
       "dest": "external/dem10_chi_100m_u8.tif",
       "group": "external",
       "status": "present",
@@ -204,15 +212,7 @@
       "sha256": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
     },
     {
-      "id": "ext_paleo_geothermal_regional",
-      "dest": "external/paleo_geothermal_regional.zip",
-      "group": "external",
-      "status": "present",
-      "bytes": 84008,
-      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca"
-    },
-    {
-      "id": "ext_2m_temperature_probe_ingenious",
+      "id": "ext_gdr_2m_probes",
       "dest": "external/2m_temperature_probe_INGENIOUS_regional_data.zip",
       "group": "external",
       "status": "present",
@@ -220,20 +220,12 @@
       "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3"
     },
     {
-      "id": "ext_trace_segments_utm11",
-      "dest": "external/trace_segments_utm11.csv",
+      "id": "ext_gdr_paleo_geothermal",
+      "dest": "external/paleo_geothermal_regional.zip",
       "group": "external",
       "status": "present",
-      "bytes": 5283577,
-      "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513"
-    },
-    {
-      "id": "scored_h33_champion",
-      "dest": "scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
-      "group": "scored",
-      "status": "present",
-      "bytes": 219065,
-      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      "bytes": 84008,
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca"
     }
   ]
 }

@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "preregistration_id": "GEMSDOE73-H73-2-PREREG-2026-10-21",
+  "frozen_utc": "2026-10-21T04:10:00Z",
+  "lane": "H73-2 — Two-Stage Multi-Expert Corroborated Steerable Bridge & Stepover Auto-Context (MECS-AutoCtx) + Exact 300 m Submodular Tversky Allocation",
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H73-2",
+      "title": "Two-Stage Multi-Expert Corroborated Steerable Wash-Bridge & En-Echelon Stepover Auto-Context + Exact 300 m Submodular Tversky Allocation",
+      "selected_for_execution": true,
+      "layers": [
+        "training_features.tif (19 official bands: magnetic, RTP, TMI HG/VG/TC, isostatic gravity + HG/VG/slope, depth_to_base_surf, det_elev, det_elev_slope, geodetic 2nd-inv/shear/dilatation, earthquake deq/ieq, surface conductivity)",
+        "external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m LiDAR scarp step/dipole/coherence/strike across 60% AOI)",
+        "external/topo_10m_derived_100m_u8.tif + external/dem10_chi_100m_i16.tif + external/dem10_chi_100m_u8.tif (USGS 3DEP 10 m seamless sub-100m slope/curvature/lineament + fluvial chi/ksn knickpoints across 100% AOI)",
+        "external/geodawn_rad_u8.tif + external/geodawn_extensions_u8.tif (USGS GeoDAWN K, Th, U, TC, Th/K, U/K, upward-continued 150 m TMI)",
+        "external/gdr_wellspring_in_footprint.csv (temp_c, quartz/chalcedony/cation geothermometers; dist_known_fault_px strictly excluded) + 2m_temperature_probe_INGENIOUS_regional_data.zip (T2m, F2mDAB) + paleo_geothermal_regional.zip (sinter/travertine/tufa vents)"
+      ],
+      "physical_signature": "Stage 1 trains four out-of-fold specialist classifiers with zero catalogue-distance features (M_morph seamless 1m/10m geomorphology + chi; M_subsurf potential-field derivatives + Gallardo-Meju cross-gradients + depth persistence + strain/seismicity; M_hydro potassic K/Th + magnetite destruction + conductivity + 2m thermal probes/sinter/geothermometry; M_joint cover-adaptive multi-sensor interaction). Stage 2 extracts pure-physics steerable fault-topology operators strictly on OOF Stage-1 probability fields across 12 strikes and 3 length scales: 2nd-best independent sensor family corroboration, flank-suppressed steerable line persistence, bilateral Holocene wash bridge sqrt(P_ahead * P_behind), and en-echelon relay-ramp conjugate stepover bridge max_s sqrt(P_ahead,+s*delta * P_behind,-s*delta), followed by lazy-greedy exact 300 m submodular Tversky coverage allocation off-catalogue.",
+      "why_off_catalogue": "USGS/INGENIOUS mapped continuous range-front scarps in 1m-LiDAR terrain, missing (a) faults segmented across active Holocene washes/fans, (b) 200-500 m dilatational relay ramps / stepover zones hosting >75% of blind Great Basin geothermal upflow (Faulds & Hinz 2015), and (c) structures in the ~40% non-LiDAR gap, while avoiding GEMSDOE68's live score collapse (0.0437) caused by catalogue-distance overfitting.",
+      "named_non_fault_mimic": "Pleistocene Lake Lahontan wave-cut shoreline benches and coalescing alluvial-fan apron channels (suppressed by elevation-contour / zero-subsurface-step / orthogonal cross-gradient features and multi-expert corroboration).",
+      "expected_dti_gain_rank": 1,
+      "implementation_cost": "Low-Moderate (~4 min CPU, 0 external un-mirrored downloads needed)"
+    },
+    {
+      "rank": 2,
+      "id": "H73-3",
+      "title": "Scale-Space Euler Deconvolution Structural-Index Selectivity (SI=0..0.5 Fault Contact vs SI>=2 Pipe/Dipole) + 150 m Upward-Continuation Persistence",
+      "selected_for_execution": false,
+      "layers": ["rtp", "tmi_hg", "tmi_vg", "TMI_up150", "iso_grav_anom_hg", "iso_grav_anom_vg", "depth_to_base_surf"],
+      "physical_signature": "Depth-persistent tabular contact gradient ratio suppressing shallow volcanic clast/flow dipoles.",
+      "why_off_catalogue": "Detects intrabasin horst/graben bounding faults buried under 300-1500 m valley fill.",
+      "expected_dti_gain_rank": 2,
+      "implementation_cost": "Medium (dip-shift ambiguity of 300-600 m requires surface coupling; core ratio embedded in M_subsurf)"
+    },
+    {
+      "rank": 3,
+      "id": "H73-4",
+      "title": "Across-Divide Fluvial Chi Disequilibrium & Collinear Piedmont Knickpoint Chains",
+      "selected_for_execution": false,
+      "layers": ["dem10_chi_100m_i16.tif", "dem10_chi_100m_u8.tif", "topo_10m_derived_100m_u8.tif"],
+      "physical_signature": "Strike-aligned normalized steepness k_sn steps across ephemeral washes.",
+      "why_off_catalogue": "Preserves transient uplift signal across fans where sheetfloods erase surface scarps.",
+      "expected_dti_gain_rank": 3,
+      "implementation_cost": "Low (channel-only sparsity alone gave 0.0351 in 60GEMSDOE; embedded inside M_morph + wash bridge)"
+    },
+    {
+      "rank": 4,
+      "id": "H73-5",
+      "title": "Sentinel-1 InSAR Seasonal Poroelastic Aquifer-Compartment Phase-Jump Detection",
+      "selected_for_execution": false,
+      "layers": ["NASA ASF Sentinel-1 ARIA GUNW interferograms (external)", "geod_shearrate", "cond_surf"],
+      "physical_signature": "Sharp 100-300 m LOS phase step across fault-sealed hydraulic head barriers.",
+      "why_off_catalogue": "Catches zero-scarp basin-floor faults acting as groundwater/geothermal aquitards.",
+      "external_source_status": "Free official NASA ASF DAAC (https://search.asf.alaska.edu/), blocked in this sandbox network allowlist (~40 GB external ingest required)",
+      "expected_dti_gain_rank": 4,
+      "implementation_cost": "High"
+    },
+    {
+      "rank": 5,
+      "id": "H73-6",
+      "title": "Predawn ASTER Thermal Infrared (AST_08) Seepage Lineaments + SWIR Illite/Smectite (AST_07XT) Halo",
+      "selected_for_execution": false,
+      "layers": ["NASA LP DAAC ASTER AST_08 & AST_07XT (external)", "2m_temperature_probe", "geodawn_rad_u8.tif"],
+      "physical_signature": "Nighttime radiative excess + 2.20 um Al-OH absorption aligned with structural conduits.",
+      "why_off_catalogue": "Flags blind fracture permeability lacking surface scarps.",
+      "external_source_status": "Free official NASA LP DAAC (https://lpdaac.usgs.gov/), blocked in this sandbox allowlist (GDR 2m probes & GeoDAWN K/Th already ingested)",
+      "expected_dti_gain_rank": 5,
+      "implementation_cost": "High"
+    }
+  ],
+  "strict_invariants": {
+    "zero_catalogue_distance_features_in_any_model": true,
+    "zero_sgmc_in_training_or_features": true,
+    "zero_registry_prediction_rasters_in_training_or_features": true,
+    "strict_nested_oof_stage1_to_stage2": true,
+    "shared_evaluator": "gems57-pooled-hide-v2",
+    "shared_writer": "vendor/gems57/submission_writer.py",
+    "max_experiments": 3,
+    "dot_budget": 37654
+  },
+  "experiments": {
+    "E1": "Stage-1 OOF 4-Expert Multi-Physics Corroborated Surface + Greedy d=2.8 px Poisson Dots (d_cat > 2.0 px, 37,654 dots)",
+    "E2": "Stage-2 Nested OOF MECS-AutoCtx Surface (Bilateral Wash-Bridge + En-Echelon Stepover + Multi-Scale Steerable Persistence) + Greedy d=2.8 px Poisson Dots (d_cat > 2.0 px, 37,654 dots)",
+    "E3": "Stage-2 Nested OOF MECS-AutoCtx Surface + Exact 300 m Lazy-Greedy Submodular Tversky Coverage Allocation (d_cat > 2.5 px flank guard, 37,654 dots)"
+  },
+  "gates": {
+    "canary_symmetric_auc_max": 0.90,
+    "holdout_must_beat_control": "h33_analogue_foldfair",
+    "holdout_paired_ci95_low_gt_0": true,
+    "uniqueness_surface_rho_max": 0.90,
+    "uniqueness_dots_rho_max": 0.90,
+    "uniqueness_dots_overlap_max": 0.70,
+    "portal_strict_finite_0_1": true
+  }
+}

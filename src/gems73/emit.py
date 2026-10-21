@@ -29,8 +29,9 @@ def greedy_dots(
     allowed: np.ndarray,
     budget: int = 37654,
     pool: int = 600_000,
+    min_dist: float = 2.5,
 ) -> np.ndarray:
-    """Binary dot mask: top-``pool`` allowed pixels greedily accepted at >=2.5 px spacing."""
+    """Binary dot mask: top-``pool`` allowed pixels greedily accepted at >=``min_dist`` px spacing."""
     surf = np.asarray(surface, np.float32)
     idx = np.flatnonzero(allowed)
     if idx.size == 0:
@@ -207,6 +208,26 @@ def submodular_dti_emit(
     return out
 
 
+def submodular_dti_dots(
+    weight_surface: np.ndarray,
+    allowed_mask: np.ndarray,
+    scored_domain: np.ndarray | None = None,
+    budget: int = 37654,
+    min_dist: float = 2.6,
+    candidate_pool: int = 320_000,
+) -> np.ndarray:
+    """Lazy-greedy maximization of expected 300 m Tversky kernel coverage F(S) = sum_g w(g) max_{x in S} K(x, g)."""
+    res = submodular_dti_emit(
+        weight_surface,
+        allowed_mask,
+        n_dots=budget,
+        fp_penalty_weight=0.0,
+        min_spacing_px=min_dist,
+        candidate_pool=candidate_pool,
+    )
+    return res > 0.5
+
+
 def calibrate_1d_trace_posterior(
     prob_2d: np.ndarray,
     fp: np.ndarray,
@@ -220,4 +241,10 @@ def calibrate_1d_trace_posterior(
     return np.where(fp, np.clip(trace_post, 0.0, 1.0), 0.0).astype(np.float32)
 
 
-__all__ = ["calibrate_1d_trace_posterior", "greedy_dots", "peak_nms_emit", "submodular_dti_emit"]
+__all__ = [
+    "calibrate_1d_trace_posterior",
+    "greedy_dots",
+    "peak_nms_emit",
+    "submodular_dti_dots",
+    "submodular_dti_emit",
+]
