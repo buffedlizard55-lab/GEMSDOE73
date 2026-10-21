@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "repo": "GEMSDOE73",
+  "lane": "H73-M",
+  "preregistered_utc": "2026-10-21T04:05:00Z",
+  "title": "Regime-Stratified Multi-Physics Co-Kriging & Anisotropic Transtensional Bridge Submodular Detector",
+  "hypothesis": "Hidden expert-mapped geothermal faults in the GeoDAWN NW Nevada footprint occupy two coupled structural regimes where USGS/INGENIOUS quadrangle mapping is incomplete: (1) Alluvial Piedmont & Intrabasin Cover (depth_to_base >= 160 m, gentle slope), where rapid sedimentation mutes scarps to <1-2 m so detection requires co-kriging subtle 1m-LiDAR/10m-DEM cross-contour scarps with buried magnetic tilt/width, gravity gradients, MT conductivity, and GDR 1391 thermal upflow (2m probes, springs/wells, sinter/tufa) while rejecting contour-parallel Lake Lahontan shorelines; and (2) Transtensional Stepovers, Wing-Crack Splays & Collinear Fault Bridges (0.3-2.8 km from visible fault tips), where >75% of Great Basin geothermal upflow localizes.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan (1332 m) and Lake Bonneville (1463/1552 m) wave-cut shoreline benches, alluvial-fan contour terraces, non-LiDAR tile boundary seams, and barren Mesozoic/Tertiary mountain-interior bedrock contacts in SGMC.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "dot_budget": 37654,
+    "min_catalogue_clearance_px": 2.0
+  },
+  "experiments": [
+    {
+      "id": "M1",
+      "name": "M1_regime_cokrig_nms",
+      "description": "4-quadrant LOQO (3.0 km boundary buffer) co-kriging of 3 regime-specialized experts (M_Q active Quaternary scarp/breakline, M_P piedmont/buried hydrothermal-geophysical expert, M_S piedmont-gated off-catalogue structural expert) with spatially varying piedmont regime mixing weight and cross-contour shoreline corroboration gate, emitted via 7x7 peak NMS at 37,654 dots."
+    },
+    {
+      "id": "M2",
+      "name": "M2_anisotropic_bridge_nms",
+      "description": "Frozen M1 regime-stratified posterior coupled with strictly fold-safe 3-component Anisotropic Transtensional Fracture Mechanics (strike-projected tip lobe, +-28 deg Andersonian wing-crack splay + length-weighted collinear gap bridge, and multi-segment relay stepover annulus) plus the top-decile unsupervised piedmont scarp-chain witness from H73-1, emitted via 7x7 peak NMS at 37,654 dots."
+    },
+    {
+      "id": "M3",
+      "name": "M3_submodular_dti_37654",
+      "description": "Frozen M2 corroborated multi-physics + mechanical posterior (concave calibration gamma=0.75) allocated at exact 37,654 binary 1.0 dots (>200 m from visible catalogue) via exact lazy-greedy 300 m submodular DTI triangular-kernel maximization with radius-matched inter-dot spacing guard (d_min = 3.0 px, fp_weight = 0.04)."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "primary_holdout_instrument": "gems57-pooled-hide-v2 (11,321 withheld positive pixels, 4 folds, 1,000-draw paired 20 km spatial-cluster bootstrap)",
+    "primary_control": "h33_analogue_foldfair (and h33_static_reference)",
+    "promotion_rule": "Winning experiment must beat h33_analogue_foldfair AND H73-1 on HOLDOUT-DTI (gems57-pooled-hide-v2) with paired 95% CI excluding 0, pass all 85 single-feature leakage canaries (symmetric AUC <= 0.90), and pass registry uniqueness (surface and dots Spearman <= 0.90, mutual and sparse-model forward 3 px overlap <= 0.70)."
+  }
+}
