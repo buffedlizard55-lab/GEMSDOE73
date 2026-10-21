@@ -1,0 +1,116 @@
+{
+  "evidence_class": "MEASURED-HERE proxies vs OWNER-REPORT live scores (no organizer receipts in this repo)",
+  "n": 13,
+  "rows": [
+    {
+      "name": "h19_5",
+      "live_owner_report": 0.1922,
+      "dots": 121131,
+      "catalogue": 0.1663512396326797,
+      "sgmc_off": 0.09916741840855015,
+      "sgmc_pied": 0.0668364678580889
+    },
+    {
+      "name": "h19_4",
+      "live_owner_report": 0.1894,
+      "dots": 123779,
+      "catalogue": 0.16748603515332186,
+      "sgmc_off": 0.10515639342939484,
+      "sgmc_pied": 0.06914487177277956
+    },
+    {
+      "name": "h16_1",
+      "live_owner_report": 0.1855,
+      "dots": 123939,
+      "catalogue": 0.16689202309752882,
+      "sgmc_off": 0.11131583457031845,
+      "sgmc_pied": 0.07363818153822838
+    },
+    {
+      "name": "d1_5",
+      "live_owner_report": 0.2477,
+      "dots": 60069,
+      "catalogue": 0.17192870429612941,
+      "sgmc_off": 0.09991134894171928,
+      "sgmc_pied": 0.08776526116046303
+    },
+    {
+      "name": "d2_8",
+      "live_owner_report": 0.26,
+      "dots": 44090,
+      "catalogue": 0.1617719780036745,
+      "sgmc_off": 0.09417442916119363,
+      "sgmc_pied": 0.09200352950438052
+    },
+    {
+      "name": "topogap_d1_5",
+      "live_owner_report": 0.2449,
+      "dots": 61328,
+      "catalogue": 0.17273883783803545,
+      "sgmc_off": 0.10116333958700564,
+      "sgmc_pied": 0.08924645610831416
+    },
+    {
+      "name": "lattice",
+      "live_owner_report": 0.0904,
+      "dots": 206895,
+      "catalogue": 0.2452474978058523,
+      "sgmc_off": 0.24988539046136077,
+      "sgmc_pied": 0.08770265073300172
+    },
+    {
+      "name": "hedge",
+      "live_owner_report": 0.1563,
+      "dots": 227507,
+      "catalogue": 0.6656329824332399,
+      "sgmc_off": 0.10244267654367606,
+      "sgmc_pied": 0.05682095302704806
+    },
+    {
+      "name": "ctxridge",
+      "live_owner_report": 0.128,
+      "dots": 174232,
+      "catalogue": 0.3987233618929496,
+      "sgmc_off": 0.08456164370236215,
+      "sgmc_pied": 0.06088284941878394
+    },
+    {
+      "name": "dottedridge",
+      "live_owner_report": 0.1839,
+      "dots": 69281,
+      "catalogue": 0.3721639990472844,
+      "sgmc_off": 0.09063582488826295,
+      "sgmc_pied": 0.09019522092649633
+    },
+    {
+      "name": "ens12",
+      "live_owner_report": 0.1563,
+      "dots": 172974,
+      "catalogue": 0.22979915192696665,
+      "sgmc_off": 0.10244267654367606,
+      "sgmc_pied": 0.05682095302704806
+    },
+    {
+      "name": "placeholder",
+      "live_owner_report": 0.0107,
+      "dots": 343816,
+      "catalogue": 0.04612554667090572,
+      "sgmc_off": 0.03364292029861461,
+      "sgmc_pied": 0.01537957866194176
+    },
+    {
+      "name": "h33_champion",
+      "live_owner_report": 0.2778,
+      "dots": 37654,
+      "catalogue": 0.006709118968955278,
+      "sgmc_off": 0.09538611460482532,
+      "sgmc_pied": 0.09800255757988548
+    }
+  ],
+  "spearman_vs_live": {
+    "catalogue": -0.4896840946138492,
+    "sgmc_off": -0.02479338842975207,
+    "sgmc_pied": 0.7410468319559229
+  },
+  "reading": "Static catalogue DTI ranks the live champion near-last (B2 prune); treat every local proxy as a screen, not evidence of live gain."
+}

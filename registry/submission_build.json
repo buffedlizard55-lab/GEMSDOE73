@@ -1,0 +1,69 @@
+{
+  "name": "gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2",
+  "hypothesis": "H73-F multi-scale curvature lineament ridge: blind stepover/splay ramps below mapping threshold produce LoG curvature ridge + oriented lineament coherence; off-catalogue B=2 dotted emission",
+  "mechanism": "Multi-scale Laplacian-of-Gaussian curvature (sigma=2,4 px) finds narrow (<200 m) lineaments that lidar scarps miss; oriented 8-azimuth lineament density collapses noise; B=2 (200 m) off-catalogue prune removes pure-FP mass on the catalogue",
+  "non_fault_mimic": "Alluvial fan apices, lithologic contacts and irrigation pivots can produce curvature edges but lack the collinear, elongated lineament coherence; the joint curvature x lineament rule suppresses them",
+  "budget_target": 37654,
+  "emitted_px": 37654,
+  "min_dist_px": 2.8,
+  "seed": 73,
+  "template": "/home/user/GEMSDOE73/data/sample_submission.tif",
+  "evaluator_version": "gems73-holdout-v1",
+  "audits": {
+    "zeros": {
+      "path": "docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+      "sha256": "27052259b8ba3b80d25cb2a6937998840f8682d639ecf37132dcf5b9dbea4187",
+      "bytes": 134794,
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": "None",
+      "finite_px": 12279160,
+      "positive_px": 37654,
+      "min": 0.0,
+      "max": 1.0,
+      "range_ok": true,
+      "portal_safe": true
+    },
+    "nan": {
+      "path": "docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-nan.tif",
+      "sha256": "f90a94de6ea48a240b3e2255ae8e4928a55a541d94b337a702aba4e83faeab68",
+      "bytes": 179274,
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "nodata": "nan",
+      "finite_px": 5167373,
+      "positive_px": 37654,
+      "min": 0.0,
+      "max": 1.0,
+      "range_ok": true,
+      "portal_safe": false
+    }
+  },
+  "zip": "docs/downloads/gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2.zip",
+  "note": "GEMSDOE73 H73-F curvature lineament ridge | off-catalogue dotted stepover/splay emission | 37654 dots | UNSCORED projection",
+  "note_chars": 123,
+  "holdout_dti": "NOT RUN \u2014 data/ not present (synthesis only). Real holdout requires scripts/prepare_data.py after download_competition_data.sh.",
+  "holdout_label": "projection-not-score",
+  "leakage_canary": "NOT RUN \u2014 single-feature AUC requires data/. Synthetic structural features have no catalogue-derived component by construction.",
+  "verdict": "candidate \u2014 format-valid, unique, downloadable; holdout-scored promotion pending data placement"
+}

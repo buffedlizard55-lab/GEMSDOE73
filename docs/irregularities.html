@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Irregularities — GEMSDOE73</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><div class="wrap">
+<h1>Irregularities</h1>
+<nav><a href="index.html">Home</a> <a href="executive-summary.html">Make a submission</a> <a href="research.html">Research</a> <a href="hypotheses.html">Hypotheses</a> <a href="leaderboard.html">Leaderboard</a> <a href="sources.html">Sources</a> <a href="irregularities.html" class="active">Irregularities</a></nav>
+</div></header>
+<main class="wrap">
+
+<h2>Flagged for review</h2>
+<table><tr><th>ID</th><th>Description</th><th>Severity</th></tr>
+<tr><td>IR-73-DATA-01</td><td>No DrivenData auth in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from the data page. Template and labels restored from GEMSDOE24 mirror (sha256-pinned) but training_features not restored — training pipeline blocked until manual <code>bash scripts/download_competition_data.sh</code> on unrestricted host.</td><td>blocking for training; not blocking for submission writer (template restored)</td></tr>
+<tr><td>IR-73-SENTINEL-01</td><td>The same portal error “Predicted values must be in range [0, 1]” is triggered by two distinct mechanisms: (1) float32 sentinel −3.4e38 inside footprint, (2) NaN nodata outside footprint if validator is strict whole-array. Both are fixed here by zeros variant (nodata=None, all finite [0,1]). Documented on home page.</td><td>fixed, verified by re-read</td></tr>
+<tr><td>IR-73-LEAKAGE-01</td><td>Any feature with holdout AUC &gt;0.90 is flagged as leakage until proven otherwise. This build’s synthetic generator has no catalogue-derived features, so it passes vacuously. Full stack leakage tests pending data placement.</td><td>watching</td></tr>
+<tr><td>IR-73-PROMOTION-01</td><td>Weekly submission cap: slot promotion is a separate selector step. This build is verdict=negative (deliverable, not promotion). It does not consume a weekly slot.</td><td>info</td></tr>
+<tr><td>IR-73-REGISTRY-01</td><td>Lane-uniqueness check: rank-correlation &lt;0.90 and &lt;70% dots within 3 px of any registry raster — checked on surface before placement and on final dots. H73-A measures &lt;0.30 / &lt;35% (synthetic stepover vs dotted ridge) → pass.</td><td>pass</td></tr>
+<tr><td>IR-73-METRIC-01</td><td>Earlier sibling form of the marginal bar <code>αs/(1−αs)</code> was wrong (IR-32-BAR-01, corrected 2026-10-04). Correct form is <code>α·s</code>. At 0.27 the wrong form rejects a legitimate (2,2)-diagonal emission (k=0.05719). This repo uses the corrected <code>α·s</code>.</td><td>fixed</td></tr>
+<tr><td>IR-73-09→14</td><td><b>Session-2 (2026-10-21):</b> test breakage fixed (13 passed, incl. a real writer tiling bug); site PRIMARY promotion of a synthetic file retracted (IR-73-10); hard-coded synthetic holdout numbers removed from code, stale promote verdict voided (IR-73-11); H73-6↔H73-1 relatedness disclosed, mutual 0.596 &lt; 0.70 (IR-73-12); leaderboard #3 moved same-day 0.3811→0.3894 (IR-73-13); src metric docstring T/M identity corrected (IR-73-14). Full text: <a href="irregularities.md">irregularities.md</a>. Data blocker IR-73-DATA-01 is <b>resolved</b>: 23 files restored + SHA-256-verified via GitHub mirrors, no login used.</td><td>review</td></tr></table>
+
+<h2>How to report</h2>
+<p>Open an issue at <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/issues">github.com/buffedlizard55-lab/GEMSDOE73/issues</a>.</p>
+
+</main>
+<footer><div class="wrap"><a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a></div></footer>
+</body></html>

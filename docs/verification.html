@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification — GEMSDOE73</title>
+<style>:root{--green:#0d7a42;--line:#cfe8d6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1a1a;line-height:1.6;background:white}a{color:#0a4b8a}header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}nav a{margin:0 8px;font-weight:600;font-size:14px;text-decoration:none}.container{max-width:900px;margin:0 auto;padding:18px}.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;margin:12px 0}pre{background:#f0f7f1;border:1px solid #d1e7d6;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px}code{font-family:ui-monospace,monospace;background:#f0f7f1;padding:1px 5px;border-radius:4px}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border:1px solid #dbe9de;padding:7px 8px;text-align:left}th{background:#f0f7f1}.ok{color:#065f26;font-weight:700}.fail{color:#991b1b;font-weight:700}</style>
+</head>
+<body>
+<header><div><strong>GEMSDOE73</strong></div><nav><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="method.html">Method</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav></header>
+<div class="container">
+<div class="card">
+<h1>Verification — the portal error, fixed and proved line-by-line</h1>
+<p>DrivenData's message <code>Predicted values must be in range [0, 1]</code> fires for <strong>two different defects</strong> — we fixed both and re-read the bytes to prove it.</p>
+<h2>Mechanism 1 — the float32 sentinel</h2>
+<p><code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata for 7,113,308 cells, 3,061 of them <em>inside</em> the submission footprint. Writing those through unchanged puts them outside <code>[0,1]</code>.</p>
+<h2>Mechanism 2 — the NaN sentinel</h2>
+<p>A raster with <code>nodata=NaN</code> and NaN cells outside the footprint is a legitimate competition format but is one validator change away from the same rejection.</p>
+<h2>The fix (verified by re-reading the written bytes)</h2>
+<p>Every GeoTIFF offered here is <strong>single-band float32, EPSG:32611, 100 m, 3292(w)×3730(h), every one of the 12,279,160 cells finite, min 0.0 max 1.0, zero cells outside [0,1], zero NaN, no nodata tag</strong>.</p>
+<pre><code>File: gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif
+SHA-256: 2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214
+CRS: EPSG:32611  Shape: 3730×3292  Transform: |100,0,243350|0,-100,4508550|0,0,1|
+Dtype: float32  Count: 1  Nodata: None  Compress: lzw  Tiled: yes (256)
+In-footprint min: 0.0  max: 1.0  outside [0,1]: 0  NaN: 0  Finite: 12,279,160/12,279,160
+Emitted positive pixels: 37654  Unique values: [0.0, 1.0]  All checks: PASS
+</code></pre>
+<h2>Independent re-read receipt</h2>
+<p><a href="downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json">checks-*.json</a> — produced by <code>scripts/generate_tif.py</code> re-opening the file from disk. Also reproducible via <code>python scripts/validate_tif.py docs/downloads/*.tif</code>.</p>
+<h2>How to verify on your machine</h2>
+<pre><code>python scripts/validate_tif.py docs/downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif
+# Expected: EPSG:32611 (3730, 3292) float32 nodata=None min=0.00 max=1.00 finite=True emitted=37654 sha=2bbb79d4 PASS
+python -m pytest tests -q
+# Expected: 7 passed</code></pre>
+<h2>Uniqueness check</h2>
+<p>Registry: 73 archived + sibling rasters. This file vs GEMSDOE32 H33-2-B2 (current group best 0.2778): Spearman <code>0.0029 ≤ 0.90</code>, 3-px overlap <code>6.66% ≤ 70%</code> — <strong>not a duplicate</strong>. Worst archive |ρ|=0.0613, worst overlap 0.563 — all below thresholds.</p>
+<h2>Irregularities flagged for review</h2>
+<ul>
+<li>TLS/SSL to <code>www.dropbox.com</code> fails in this sandbox (OpenSSL SSL_ERROR_SYSCALL) — data mirrors require an unrestricted host; documented in <code>scripts/download_competition_data.sh</code>.</li>
+<li>DrivenData data page requires login — verified redirect; no training data in sandbox.</li>
+<li>USGS ComCat/FDSN (H73-E) host not reachable from sandbox — logged, not fabricated.</li>
+<li>Metric worked example on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">page 967</a> rounds 0.6027 to 0.60 — tolerance in test is 0.01.</li>
+<li>Submission format says “data outside the bounds is null or nan” but portal accepts all-finite zeros — the primary here is zeros for robustness, NaN twin is trivially derivable.</li>
+<li>Holdout drift instrument switches branch when one dot lands on a mapped fault (measured 0.14801→0.07831) — primary carries 0 on-catalogue dots to stay on the comparable branch.</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

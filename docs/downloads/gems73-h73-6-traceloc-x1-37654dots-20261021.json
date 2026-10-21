@@ -1,0 +1,158 @@
+{
+  "file": "gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+  "sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+  "bytes": 146965,
+  "submission_name": "gems73-h73-6-traceloc-x1-37654dots-20261021",
+  "note": "G73 H73-6 X1 traceloc NMS+UK/grav witness 37654 dots; HOLDOUT 0.0592 vs ctrl 0.0939 NEGATIVE",
+  "note_chars": 92,
+  "validator": {
+    "file": "/home/user/GEMSDOE73/docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+    "bytes": 146965,
+    "sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE73/docs/downloads/gems73-h73-6-traceloc-x1-37654dots-20261021.tif",
+    "bytes": 146965,
+    "sha256": "2e6098900c9f7be25a8c2074bb24297c89947ed4dc0d79cf5931a1ab84946554",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems73-h73-6-traceloc-x1-37654dots-20261021.zip",
+  "zip_sha256": "25da4c8e407f72dbda9dc36ef47594402ef46ac904f742b6e713b46eb6237c1e",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "experiment": "X1",
+    "lane": "H73-6",
+    "selection": {
+      "lane": "H73-6 session-2",
+      "best_experiment": "X1",
+      "best_holdout_dti": 0.059156738764604505,
+      "control_holdout_dti": 0.09386085313581098,
+      "random_holdout_dti": 0.04837354917359226,
+      "all_scores": {
+        "X1": 0.059156738764604505,
+        "X2": 0.057784101241819895,
+        "X3": 0.058479144865009935,
+        "h33_analogue_foldfair": 0.09386085313581098,
+        "random_control": 0.04837354917359226,
+        "h33_static_reference": 0.003698680598708719
+      },
+      "paired_delta_vs_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.034704114371206476,
+        "ci95": [
+          -0.052194527218846494,
+          -0.01924383997343582
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "beats_control_ci_excluding_0": false,
+      "canaries_all_pass": true,
+      "canaries_max_symmetric_auc": 0.6105073767776699,
+      "production_dots": 37654,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "runtime_s": 105.7
+    },
+    "verdict": "negative (failed preregistered holdout gate)",
+    "download_ok": true,
+    "submit_recommended": false
+  }
+}
