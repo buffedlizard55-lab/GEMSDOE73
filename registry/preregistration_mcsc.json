@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "lane_id": "H73-MCSC",
+  "title": "Seam-Free Multi-Sensor Steger-Blakely Contact Localization & Multi-Scale Steerable Curvilinear Centerline Propagation (H73-MCSC)",
+  "preregistered_before_final_evaluation": true,
+  "strict_invariants": {
+    "zero_historical_prediction_rasters_as_input": true,
+    "zero_catalogue_distance_covariates_in_model": true,
+    "zero_raw_xy_coordinate_leakage": true,
+    "outer_spatial_separation_min_px": 44,
+    "inner_oof_pairwise_quadrant_models": 6,
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "uniqueness_max_spearman_rho": 0.90,
+    "uniqueness_max_mutual_dot_overlap_3px": 0.70,
+    "matched_dot_budget": 37654,
+    "max_experiments_budget": 3
+  },
+  "experiments": {
+    "E1_sensor_submod": {
+      "description": "Single-regime global 52-channel de-regionalized multi-sensor LightGBM posterior (1m LiDAR + 10m DEM + fluvial chi + 19-band GeoDAWN + GDR-1391 thermal conduits + ScienceBase heat flow; 0 catalogue-distance covariates) + exact 300m triangular-kernel submodular max-cover at matched 37,654 off-catalogue binary dots (d_vis > 2.0 px).",
+      "dot_budget": 37654
+    },
+    "E2_seamfree_blakely_submod": {
+      "description": "Adds 15 closed-form scale-normalized Steger (1998) / Blakely-Simpson (1986) sub-pixel 1D fault/contact crests across LiDAR, 10m/100m DEM, gravity, magnetics, and basement depth, fused via Dual-Regime Seam-Free Cross-Tile Quantile Calibration (Expert_All67 + LiDAR-free Expert_NoLiDAR51 trained across 100% of training quadrants to eliminate the 47.4% NE Nevada 3DEP LiDAR gap starvation) + exact 300m submodular max-cover at matched 37,654 dots.",
+      "dot_budget": 37654
+    },
+    "E3_mcsc_seamfree_curvilinear": {
+      "description": "Full 2-Stage H73-MCSC Multi-Scale Steerable Curvilinear Centerline Propagation (12 azimuths x 3 scales: 900m, 2.3km, 4.5km blind-gap bridges, bilateral half-ray continuity min(I+, I-), perpendicular flank-subtracted crestness, and smooth cos 2theta / sin 2theta strike kinematics) over the seam-free Steger-Blakely posterior + directional across-strike apron suppression & 300m submodular max-cover at matched 37,654 dots.",
+      "dot_budget": 37654
+    }
+  },
+  "primary_evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "folds_call": "holdout.buffered_component_draw(grid, seed=20, buffer_px=3, boundary_px=12)",
+    "withheld_positive_pixels": 11321,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 73073
+  }
+}

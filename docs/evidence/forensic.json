@@ -1,0 +1,30 @@
+{
+  "evidence_class": "MEASURED-HERE from hash-pinned bytes",
+  "counts": {
+    "h33_champion": 37654,
+    "d28": 44090,
+    "h19_5": 121131
+  },
+  "on_catalogue": {
+    "h33_champion": 0,
+    "d28": 0,
+    "h19_5": 0
+  },
+  "subset_exceptions": {
+    "h33_not_in_d28": 0,
+    "d28_not_in_h19_5": 0,
+    "h33_not_in_h19_5": 0
+  },
+  "h33_equals_d28_minus_dcat_le2": true,
+  "d28_dots_dcat_le2": 6436,
+  "static_dti_vs_full_catalogue": {
+    "h33_champion": 0.006709118968955278,
+    "d28": 0.1617719780036745,
+    "h19_5": 0.1663512396326797
+  },
+  "file_sha256": {
+    "h33_champion": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "d28": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "h19_5": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d"
+  }
+}

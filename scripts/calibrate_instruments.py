@@ -29,7 +29,7 @@ SCORED = [
  ("dottedridge", DATA/"scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif", 0.1839),
  ("ens12", DATA/"scored/gemsdoe-ens12-adopted-7f00890a.tif", 0.1563),
  ("placeholder", DATA/"scored/gemsdoe9-PLACEHOLDER-2314b599.tif", 0.0107),
- ("h33_champion", Path("/home/user/refs/g32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"), 0.2778),
+ ("h33_champion", DATA/"scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif", 0.2778),
 ]
 g = grid_mod.load_grid(DATA); foot, cat = g.footprint, g.catalogue
 dcat = ndimage.distance_transform_edt(~cat)
