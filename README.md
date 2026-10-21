@@ -20,7 +20,8 @@ Every independent parallel lane merged into `buffedlizard55-lab/GEMSDOE73` (`PR 
 | **1** | **PR #11 — `H73-MVH` Dual-Target Vent+Bridge OOF + Submod300** | `gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros` | **`0.1599`** `[0.1417, 0.1788]` | **`+0.0661` (`+70.4%`)** | **PROMOTE — #1 OVERALL** |
 | 2 | PR #9 — `H73-7` Hard-Fault PU Ranker | `gems73-h73-7-hardfault-pu-e1-37654dots-20261021` | `0.1369` `[0.1158, 0.1577]` | `+0.0430` (`+45.8%`) | Runner-up (in-sample retrain) |
 | 3 | PR #7 — `CrossDrain-UNet` + 91-Feat + Submod300 | `gems73-crossdrain-unet-submod-37654-20261021` | `0.1360` `[0.1175, 0.1560]` | `+0.0422` (`+44.9%`) | 3rd place |
-| 4 | PR #6 — 4-Line Piedmont/Chi/Hydro/Dip OOF + Submod300 | `gems73-h73-piedmont-corrob-submod300-37654-20261021` | `0.1122` `[0.0960, 0.1275]` | `+0.0184` (`+19.6%`) | 4th place |
+| 4 | PR #10 — `H73-M` Regime Co-Kriging + `dmin=3.0px` Submod | `gems73-h73-m-...` | `0.1224` | `+0.0285 (+30.4%)` | 4th place |
+| 5 | PR #6 — 4-Line Piedmont/Chi/Hydro/Dip OOF + Submod300 | `gems73-h73-piedmont-corrob-submod300-37654-20261021` | `0.1122` `[0.0960, 0.1275]` | `+0.0184` (`+19.6%`) | 4th place |
 | — | Fold-Fair Champion Control (`h33_analogue_foldfair`) | Exact reproduction (`0.093861`) across all lanes | `0.0939` `[0.0813, 0.1076]` | `0.0000` (baseline) | Benchmark control |
 | 5 | PR #4 — `H73-6` Unsupervised Trace-Localization (`X1`) | `gems73-h73-6-traceloc-x1-37654dots-20261021` | `0.0592` `[0.0490, 0.0700]` | `-0.0347` (`-37.0%`) | Negative (unsupervised) |
 | 6 | PR #3 — `H73-1` Unsupervised Piedmont Scarp-Chain (`E1`) | `gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021` | `0.0548` `[0.0462, 0.0641]` | `-0.0391` (`-41.7%`) | Negative (unsupervised) |
