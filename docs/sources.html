@@ -1,144 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Official Sources &amp; Irregularities Register — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verified Official Sources &amp; SHA-256 Manifest — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
 </head>
 <body>
-<header class="topbar">
-  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">VERIFIED SOURCES &amp; IRREGULARITIES</span></div>
-  <nav>
-    <a href="index.html">Overview &amp; Download</a>
-    <a href="executive-summary.html">Executive Summary (How to Submit)</a>
-    <a href="method.html">PhD Forensic Analysis &amp; Method</a>
-    <a href="hypotheses.html">5 Ranked Hypotheses</a>
-    <a href="verification.html">Verification &amp; Uniqueness</a>
-    <a class="active" href="sources.html">Official Sources &amp; Irregularities</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <span class="pill pill-hero">LINE-BY-LINE PROVENANCE &amp; IRREGULARITY AUDIT</span>
-    <h1>Official Trusted Sources &amp; Flagged Irregularities Register</h1>
-    <p>Every source link below was inspected on <code>2026-10-21</code>; every anomaly discovered across prior sibling repos, upstream tools, and sandbox network rules is explicitly flagged.</p>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="card">
-    <h2>1. Official Verified Sources Table</h2>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink active" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+    </div>
+  </header>
+  <main>
+    
+    <h1>Verified Primary Official Sources &amp; 29 SHA-256 Pinned Manifest Files</h1>
+    <ul>
+      <li><strong>DOE GEMS Competition Overview &amp; Rules:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">https://www.drivendata.org/competitions/306/competition-doe-gems/</a></li>
+      <li><strong>Distance-Weighted Tversky Index Specification (Page 967):</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric</a></li>
+      <li><strong>USGS GeoDAWN Airborne Geophysics &amp; EarthMRI LiDAR Compilation (DOI:10.5066/P93LGLVQ):</strong> <a href="https://www.sciencebase.gov/catalog/item/618176eed34e9f2789e4789c">https://www.sciencebase.gov/catalog/item/618176eed34e9f2789e4789c</a></li>
+      <li><strong>Great Basin Center for Geothermal Energy INGENIOUS Compilation (GDR #1391):</strong> <a href="https://gdr.openei.org/submissions/1391">https://gdr.openei.org/submissions/1391</a></li>
+      <li><strong>USGS State Geologic Map Compilation (SGMC, DOI:10.3133/ds1052 — external diagnostic proxy only):</strong> <a href="https://doi.org/10.3133/ds1052">https://doi.org/10.3133/ds1052</a></li>
+      <li><strong>USGS 3D Elevation Program (3DEP):</strong> <a href="https://www.usgs.gov/3d-elevation-program">https://www.usgs.gov/3d-elevation-program</a></li>
+    </ul>
+    <h2>Complete 29-Entry SHA-256 Data Manifest (<code>registry/data_manifest.json</code>)</h2>
     <table>
-      <thead>
-        <tr>
-          <th>Source ID</th>
-          <th>Official Authority / Title</th>
-          <th>Direct URL for Manual Review</th>
-          <th>Verification Status (2026-10-21)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>DD-OVERVIEW</code></td>
-          <td>DrivenData DOE GEMS Prize Challenge Overview</td>
-          <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">drivendata.org/competitions/306/competition-doe-gems/</a></td>
-          <td>Verified live HTTP 200</td>
-        </tr>
-        <tr>
-          <td><code>DD-METRIC-967</code></td>
-          <td>Official Problem Description, DTI Formula &amp; Worked Example</td>
-          <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">drivendata.org/.../page/967/</a></td>
-          <td>Verified twice; formula &amp; 0.60 example tested in <code>pytest</code></td>
-        </tr>
-        <tr>
-          <td><code>DD-ABOUT-968</code></td>
-          <td>Competition About &amp; Additional Resources Page</td>
-          <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/" target="_blank" rel="noopener">drivendata.org/.../page/968/</a></td>
-          <td>Verified</td>
-        </tr>
-        <tr>
-          <td><code>DD-LEADERBOARD</code></td>
-          <td>Official Public Leaderboard (<code>#1 xiaofanhu = 0.4413</code>, <code>#2 cfld__ = 0.3904</code>, <code>#3 Batik Shirt Brothers = 0.3811</code>)</td>
-          <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">drivendata.org/.../leaderboard/</a></td>
-          <td>Verified live read on <code>2026-10-21</code> (<code>PUBLIC-LEADERBOARD</code>)</td>
-        </tr>
-        <tr>
-          <td><code>DD-FORUM-11516</code></td>
-          <td>DrivenData Staff Clarification on Pixel-Exact Known-Fault Masking &amp; 300 m Tip Extensions (Posts #2 &amp; #4, Chris Kucharczyk)</td>
-          <td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4" target="_blank" rel="noopener">community.drivendata.org/t/.../11516/4</a></td>
-          <td>Verified verbatim JSON on <code>2026-10-21</code></td>
-        </tr>
-        <tr>
-          <td><code>DD-FORUM-11550</code></td>
-          <td>DrivenData Staff Clarification on Pooled Pixel DTI Aggregation (Post #2)</td>
-          <td><a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550/2" target="_blank" rel="noopener">community.drivendata.org/t/.../11550/2</a></td>
-          <td>Verified verbatim JSON on <code>2026-10-21</code></td>
-        </tr>
-        <tr>
-          <td><code>DD-FORUM-11556</code></td>
-          <td>DrivenData Staff Clarification on Phase 2 Revision &amp; Uniform Fault Weighting (Post #3)</td>
-          <td><a href="https://community.drivendata.org/t/questions-about-the-final-round-rules/11556/3" target="_blank" rel="noopener">community.drivendata.org/t/.../11556/3</a></td>
-          <td>Verified verbatim JSON on <code>2026-10-21</code></td>
-        </tr>
-        <tr>
-          <td><code>NLR-96647</code></td>
-          <td>Official DOE / NREL GEMS Prize Rules Document (PDF)</td>
-          <td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">docs.nlr.gov/docs/fy26osti/96647.pdf</a></td>
-          <td>Official competition rules reference</td>
-        </tr>
-        <tr>
-          <td><code>REF-UNET</code></td>
-          <td>Official DrivenData Reference Solution (Prof. John Lipor, Portland State)</td>
-          <td><a href="https://github.com/drivendataorg/gems-prize-reference-solution" target="_blank" rel="noopener">github.com/drivendataorg/gems-prize-reference-solution</a></td>
-          <td>Cloned &amp; inspected cell-by-cell on <code>2026-10-21</code></td>
-        </tr>
-        <tr>
-          <td><code>USGS-GEODAWN</code></td>
-          <td>USGS GeoDAWN Airborne Magnetic &amp; Radiometric Surveys (NW Great Basin)</td>
-          <td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank" rel="noopener">usgs.gov/data/geodawn-airborne-magnetic-and-radiometric...</a></td>
-          <td>SHA-256 verified in feature stack</td>
-        </tr>
-        <tr>
-          <td><code>GBCGE-INGENIOUS</code></td>
-          <td>Great Basin Center for Geothermal Energy — INGENIOUS Project</td>
-          <td><a href="https://gbcge.org/current-projects/ingenious/" target="_blank" rel="noopener">gbcge.org/current-projects/ingenious/</a></td>
-          <td>Verified</td>
-        </tr>
-        <tr>
-          <td><code>DOE-GDR-1391</code></td>
-          <td>DOE Geothermal Data Repository Submission #1391 (Wells, Springs, 2 m Probes, Paleo-Geothermal Sinter)</td>
-          <td><a href="https://gdr.openei.org/submissions/1391" target="_blank" rel="noopener">gdr.openei.org/submissions/1391</a></td>
-          <td>SHA-256 verified in feature stack</td>
-        </tr>
-        <tr>
-          <td><code>EPSG-32611</code></td>
-          <td>WGS 84 / UTM Zone 11N Coordinate Reference System</td>
-          <td><a href="https://epsg.io/32611" target="_blank" rel="noopener">epsg.io/32611</a></td>
-          <td>Verified exact match on all GeoTIFFs</td>
-        </tr>
-      </tbody>
+      <thead><tr><th>Local Cache Path</th><th>Group</th><th>Bytes</th><th>SHA-256 Prefix</th><th>Pinned Mirror Commit</th></tr></thead>
+      <tbody><tr><td><code>training_features.tif</code></td><td><code>core</code></td><td><code>418,912,844 B</code></td><td><code>4371c82e3b8339b807bdffcf…</code></td><td><code>buffedlizard55-lab/GEMSDOE@c0c06ac8</code></td></tr><tr><td><code>labels.tif</code></td><td><code>core</code></td><td><code>425,830 B</code></td><td><code>7ba308ccdc4418b31a178f4f…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>existing_faults.tif</code></td><td><code>core</code></td><td><code>425,830 B</code></td><td><code>7ba308ccdc4418b31a178f4f…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>sample_submission.tif</code></td><td><code>core</code></td><td><code>1,599,597 B</code></td><td><code>2176d08e485aa2cd2860ce8d…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/lidar_scarp_features_u8.tif</code></td><td><code>external</code></td><td><code>36,943,606 B</code></td><td><code>d580bb8bdcdb941e32fefb8b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/geodawn_rad_u8.tif</code></td><td><code>external</code></td><td><code>26,612,970 B</code></td><td><code>c22420f75999030d7cc65c9e…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/geodawn_extensions_u8.tif</code></td><td><code>external</code></td><td><code>27,132,925 B</code></td><td><code>a35a9c6d2a14786f4dab8548…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/derived_sgmc_faults_100m_u8.tif</code></td><td><code>external</code></td><td><code>198,602 B</code></td><td><code>643cbe992ef4ba37588fb469…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_wellspring_in_footprint.csv</code></td><td><code>external</code></td><td><code>2,146,771 B</code></td><td><code>122718e65bdf55aab0ee12ad…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_qfaults_traces.csv</code></td><td><code>external</code></td><td><code>126,177 B</code></td><td><code>9702f2e5c382a4f472ae834d…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/gdr_volcanic_vents_in_footprint.csv</code></td><td><code>external</code></td><td><code>672 B</code></td><td><code>f91bafbaccaaf2754e71d604…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>external/topo_10m_derived_100m_u8.tif</code></td><td><code>external</code></td><td><code>32,523,329 B</code></td><td><code>a6398d9950965dec6aae6cce…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/dem10_chi_100m_i16.tif</code></td><td><code>external</code></td><td><code>12,777,098 B</code></td><td><code>8897ba9c30ef1cd7ad5f23c1…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/2m_temperature_probe_INGENIOUS_regional_data.zip</code></td><td><code>external</code></td><td><code>1,080,530 B</code></td><td><code>1301f70d230058e616ea5d34…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/paleo_geothermal_regional.zip</code></td><td><code>external</code></td><td><code>84,008 B</code></td><td><code>faffcf697f32dbbf6cbb317c…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/sgmc_faults_100m.tif</code></td><td><code>external</code></td><td><code>213,034 B</code></td><td><code>26d142c4c93282cd94f6950a…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif</code></td><td><code>scored</code></td><td><code>1,712,322 B</code></td><td><code>ec1f9b56b83ce33cad781ceb…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif</code></td><td><code>scored</code></td><td><code>1,716,768 B</code></td><td><code>89109a3bd2cd3b12e7a0f388…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif</code></td><td><code>scored</code></td><td><code>1,718,028 B</code></td><td><code>055309694ed499ca3d87e76b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></td><td><code>scored</code></td><td><code>1,632,732 B</code></td><td><code>68d0e2e4fcc594f9a23f56c4…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></td><td><code>scored</code></td><td><code>1,603,424 B</code></td><td><code>91eae1ca42ec845eaa8c2ba3…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</code></td><td><code>scored</code></td><td><code>1,706,456 B</code></td><td><code>b4570b406efec198eb2f4d14…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/8GEMSDOE_Hedge-v2_submission.tif</code></td><td><code>scored</code></td><td><code>736,494 B</code></td><td><code>052688eafbc7a55d90caab72…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif</code></td><td><code>scored</code></td><td><code>1,772,935 B</code></td><td><code>1381e784fb8b8340beffd0e7…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif</code></td><td><code>scored</code></td><td><code>1,620,739 B</code></td><td><code>7637b72d4c6c3e10226bf46b…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gemsdoe-ens12-adopted-7f00890a.tif</code></td><td><code>scored</code></td><td><code>570,890 B</code></td><td><code>7f00890a62878d612fb5eef6…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gemsdoe9-PLACEHOLDER-2314b599.tif</code></td><td><code>scored</code></td><td><code>439,456 B</code></td><td><code>2314b59920bfeeaf6a592d48…</code></td><td><code>buffedlizard55-lab/GEMSDOE24@07345ea0</code></td></tr><tr><td><code>scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></td><td><code>scored</code></td><td><code>1,635,084 B</code></td><td><code>33003374335d84bf885f2d8f…</code></td><td><code>buffedlizard55-lab/GEMSDOE27@main</code></td></tr><tr><td><code>external/topo_10m_derived_100m_u8.tif</code></td><td><code>external</code></td><td><code>32,523,329 B</code></td><td><code>a6398d9950965dec6aae6cce…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/dem10_chi_100m_u8.tif</code></td><td><code>external</code></td><td><code>2,061,484 B</code></td><td><code>e8830ba6f0bb99f525266b1b…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/paleo_geothermal_regional.zip</code></td><td><code>external</code></td><td><code>84,008 B</code></td><td><code>faffcf697f32dbbf6cbb317c…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/2m_temperature_probe_INGENIOUS_regional_data.zip</code></td><td><code>external</code></td><td><code>1,080,530 B</code></td><td><code>1301f70d230058e616ea5d34…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>external/trace_segments_utm11.csv</code></td><td><code>external</code></td><td><code>5,283,577 B</code></td><td><code>c5edf9df3e0e1413c5278488…</code></td><td><code>buffedlizard55-lab/60GEMSDOE@b99591ee</code></td></tr><tr><td><code>scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></td><td><code>scored</code></td><td><code>219,065 B</code></td><td><code>c55bafc470054e8271dcb893…</code></td><td><code>buffedlizard55-lab/GEMSDOE32@98901f31</code></td></tr></tbody>
     </table>
-  </section>
-
-  <section class="card" id="irregularities">
-    <h2>2. Flagged Irregularities &amp; Upstream Defects Fixed in This Session</h2>
-    <ol>
-      <li><strong>IR-73-01 — Prompt Score Contradiction Resolved via Live Fetch:</strong> The prompt text mentions both <code>0.4413</code> and an older <code>0.3195</code> figure as the current leaderboard high score. Live verification of DrivenData's public leaderboard on <code>2026-10-21</code> confirms <code>#1 xiaofanhu = 0.4413</code>, <code>#2 cfld__ = 0.3904</code>, <code>#3 Batik Shirt Brothers = 0.3811</code>, <code>#17 DARD = 0.3289</code>, <code>#20 nchuzhoy = 0.3262</code>.</li>
-      <li><strong>IR-73-02 — Superseded Interrupted Draft Commit Replaced Completely:</strong> Early interrupted commit <code>593efd9</code> used a synthetic placeholder corridor script and copied placeholder metrics. In Pass 2 &amp; Pass 3, that entire synthetic draft was completely purged and replaced by genuine SHA-256 verified GeoDAWN/3DEP/GDR training, 94 real leakage canaries, and 973-raster uniqueness verification.</li>
-      <li><strong>IR-73-03 — Upstream Shared Script SHA-256 Typo Fixed (<code>fetch_data.py</code>):</strong> Line 79 of upstream <code>GEMSDOE70/scripts/fetch_data.py</code> omitted 4 hex characters (<code>9b1c</code>) from <code>lidar_scarp_features.json</code>'s expected 64-hex SHA-256 digest, raising a spurious mismatch exception. Fixed cleanly in <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/blob/main/scripts/prepare_data.py" target="_blank" rel="noopener"><code>scripts/prepare_data.py</code></a>.</li>
-      <li><strong>IR-73-04 — Forensic Audit Finding on <code>GEMSDOE36</code> (<code>0.2750</code>):</strong> Although <code>GEMSDOE36</code>'s narrative stated it pruned 9,972 E–W dots from <code>H33-2-B2</code>, exact pixel comparison proves <code>H33 ⊂ GEMSDOE36</code> at <code>100.00%</code> (<code>37,654 / 37,654</code> dots retained) plus <code>1,200</code> extra GDR dots, accounting quantitatively for its <code>0.2778 → 0.2750</code> score change.</li>
-      <li><strong>IR-73-05 — Forensic Audit Finding on <code>GEMSDOE70 P9</code> SGMC Target Circularity:</strong> <code>GEMSDOE70</code>'s Phase 5 script fitted structural classifier <code>M_S</code> directly on <code>y = sgmc &amp; (~cat)</code> while evaluating on <code>SGMC</code>-derived <code>Instrument B′</code> and <code>C_pied</code>. In <code>GEMSDOE73</code>, <code>SGMC</code> is <strong>0% used in both <code>X</code> and <code>y</code></strong>, making <code>C_pied</code> and <code>B′</code> genuinely blind external evaluations.</li>
-      <li><strong>IR-73-06 — Sandbox Outbound Network Allowlist (Dropbox &amp; USGS ComCat):</strong> Direct TLS to <code>dropbox.com</code> and <code>earthquake.usgs.gov</code> is blocked by sandbox firewall rules; core competition inputs were restored with bit-identical SHA-256 verification via <code>codeload.github.com</code>, while ComCat hypocenter relocation (<code>H73-5</code>) is logged honestly for an unrestricted machine.</li>
-    </ol>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap" style="padding:0">
-    <a href="verification.html">← Verification</a> · <a href="index.html">Back to Download Hub →</a>
-  </div>
-</footer>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
+  </main>
 </body>
 </html>

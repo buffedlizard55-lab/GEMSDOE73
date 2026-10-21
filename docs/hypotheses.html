@@ -1,110 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>5 Ranked Geological Hypotheses — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5 Ranked Geological Hypotheses — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
 </head>
 <body>
-<header class="topbar">
-  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">5 RANKED CANDIDATE HYPOTHESES</span></div>
-  <nav>
-    <a href="index.html">Overview &amp; Download</a>
-    <a href="executive-summary.html">Executive Summary (How to Submit)</a>
-    <a href="method.html">PhD Forensic Analysis &amp; Method</a>
-    <a class="active" href="hypotheses.html">5 Ranked Hypotheses</a>
-    <a href="verification.html">Verification &amp; Uniqueness</a>
-    <a href="sources.html">Official Sources &amp; Irregularities</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <span class="pill pill-hero">PREREGISTERED GEOLOGICAL HYPOTHESES — LAYER BY LAYER</span>
-    <h1>Five Candidate Geological Hypotheses Ranked by Expected DTI Gain &amp; Cost</h1>
-    <p>Each hypothesis names the exact official layers involved, the physical mathematical signature targeted, why it recovers faults missing from the USGS/INGENIOUS catalogue, and how it differs from all 72 prior GEMSDOE repositories.</p>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="card">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink" href="method.html">H73-MVH Architecture</a>
+<a class="navlink active" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+    </div>
+  </header>
+  <main>
+    
+    <h1>Five Novel Geological Hypotheses Ranked by Expected &Delta;DTI &amp; Feasibility</h1>
+    <p>
+      Every hypothesis below names exact competition/external layers, exact physical transform, why the feature catches expert-mapped geothermal faults omitted from the regional USGS catalogue rather than re-detecting already-mapped traces, its primary non-fault geological mimics, and how it differs from all 83 repositories in the project archive.
+    </p>
     <table>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Hypothesis Name</th>
-          <th>Official Layers Used</th>
-          <th>Physical Transform Targeted</th>
-          <th>Why Missed by USGS/INGENIOUS Catalogue</th>
-          <th>Novelty vs GEMSDOE1–72</th>
-          <th>Impl. Cost &amp; Holdout Verdict</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Rank</th><th>Hypothesis &amp; Structural Setting</th><th>Exact Layers &amp; Mathematical Transform</th><th>Why USGS Catalogue Misses It &amp; Non-Fault Mimics</th><th>Novelty vs Sibling Repos &amp; Measured Outcome</th></tr></thead>
       <tbody>
-        <tr class="highlight">
+        <tr class="highlight-win">
           <td><strong>#1</strong></td>
-          <td><strong>H73-1: Cross-Drainage Bajada Orthogonality &amp; Lahontan De-Confounded 2D Dilated U-Net + Submodular DTI (SHIPPED)</strong></td>
-          <td>Official 19 bands (<code>det_elev</code>, <code>depth_to_base_surf</code>, <code>tmi_hg</code>, <code>iso_grav_anom_hg</code>, <code>cond_surf</code>), USGS 3DEP 1 m LiDAR &amp; 10 m DEM (<code>onesided3</code>, <code>hgm20</code>, <code>zmean_m</code>, <code>relief</code>), GeoDAWN K/Th/U/TC, GDR #1391 sinter/probes/springs, Census TIGER roads</td>
-          <td><code>|sin(θ_scarp − θ_fan)|</code> cross-drainage gate + 1.6 km along-strike <code>σ_z</code> Lahontan shoreline separator + <code>step/(relief+12m)</code> piedmont prominence + 24-ch 2D Multi-Scale Dilated U-Net (<code>ExactKernelDTILoss</code>) + 300 m Submodular Max-Cover</td>
-          <td>Sub-meter to 2.5 m Holocene piedmont scarps cutting coalescing alluvial fans are erased in 100 m elevation grids and drowned by radial fan gullies &amp; pluvial shorelines in uncalibrated LiDAR detectors.</td>
-          <td>First repo to build closed-form bajada orthogonality, 1.6 km equipotential shoreline de-confounding, relief-normalized scarp prominence, and an OOF 2D Dilated U-Net trained directly on differentiable 300 m Kernel DTI Loss with 0% SGMC.</td>
-          <td>Medium CPU (~18 min total) · <strong>VALIDATED ALL-TIME #1:</strong> Inst. A <code>0.1360</code>, A_quad <code>0.2063</code>, C_pied <code>0.0996</code>. <strong>PROMOTED.</strong></td>
+          <td><strong><code>H73-MVH</code>: Metric-Direct Kernel-Target Multi-Physics, Paleo-Vent Corridor &amp; Nested-Hide Bridge Discovery</strong></td>
+          <td>All 19 GeoDAWN bands + local-relief scarp normalization + 1m LiDAR + 10m DEM/&chi; + GeoDAWN radiometrics + INGENIOUS paleo-vent/geothermometer 16-azimuth Radon corridors + 12 nested-hide elliptical bridge &amp; hanging-wall polarity features &rarr; Dual GBDT (<code>p_trace</code>, <code>q_kernel</code>) + Two-Head <code>R=300 m</code> Submodular DTI Allocator.</td>
+          <td>Catches low-relief piedmont splays, gap-tile range fronts, blind hydrothermal conduits, and alluvial stepover bridges. <em>Mimics:</em> Lake Lahontan shorelines, curved tufa aprons, fluvial risers — suppressed by straight-line Radon chain occupancy + potential-field &amp; hanging-wall polarity witnesses.</td>
+          <td>First zero-SGMC model combining dual metric-direct kernel cross-entropy learning, paleo-sinter Radon corridors, and nested-hide two-tip elliptical bridges. <strong>Measured: <code>0.1599</code> (+70.4% over control — PROMOTED).</strong></td>
         </tr>
         <tr>
           <td><strong>#2</strong></td>
-          <td><strong>H73-2: DrivenData <code>11516/4</code> Anisotropic Tip-Continuation &amp; Relay Wedge Corridor (Integrated in Exp-73-3)</strong></td>
-          <td>Fold-visible <code>existing_faults.tif</code> terminations + 24-ch 2D U-Net + 91-feat Multi-Tree posterior</td>
-          <td>Tangent crack-tip projection across <code>1.0 &lt; d(cat) ≤ 2.0 px</code> within narrow tip wedges while blocking lateral flanks <code>0 &lt; d(cat) ≤ 2.0 px</code></td>
-          <td>Regional mappers terminate fault lines at alluvial fan aprons where surface expression fades, leaving true unmapped tip extensions across the 100–300 m boundary.</td>
-          <td>Prior high scorers (<code>H33-2-B2</code>, <code>P8</code>, <code>P9</code>) imposed isotropic hard exclusion <code>d &gt; 2.0 px</code> everywhere, deleting 100% of near-tip trace extensions.</td>
-          <td>Low CPU · Static Instrument A rose <strong>5.5× vs H33</strong> (<code>0.0203</code> vs <code>0.0037</code>). <strong>INCLUDED IN PRIMARY.</strong></td>
+          <td><strong><code>H73-2</code>: Two-Tip Elliptical Relay-Bridge &amp; Hanging-Wall Step Tomographer</strong></td>
+          <td><code>depth_to_base_surf</code>, <code>iso_grav_anom_hg</code>, <code>det_elev</code>, visible fault tips &rarr; <code>exp(-(d(x,A)+d(x,B)-|A-B|)/&sigma;)</code> across <code>0.35–5.6 km</code> strike-aligned gaps + signed hanging-wall basement step <code>&Delta;depth_to_base</code>.</td>
+          <td>Soft-linked relay ramps across young alluvial fans lack continuous 1m scarp connection yet carry the highest geothermal permeability in the Great Basin (Faulds &amp; Hinz 2015). <em>Mimics:</em> Compaction anticlines over buried bedrock highs.</td>
+          <td>Replaces isotropic single-tip distance decay (<code>GEMSDOE57</code>/<code>70</code>) with true two-focus elliptical gap geodesics. <strong>Measured isolated gain in Exp 73-2: <code>+0.0112 DTI</code> (95% CI <code>[+0.0050, +0.0174]</code>).</strong></td>
         </tr>
         <tr>
           <td><strong>#3</strong></td>
-          <td><strong>H73-3: 12-Azimuth 2.1 km Steerable Radon Anisotropy &amp; 1D Hessian Spine Prominence (Integrated in Exp-73-1/2/3)</strong></td>
-          <td>Composite 1 m LiDAR + 10 m DEM <code>onesided3</code> + <code>hgm20</code> breakline surface</td>
-          <td><code>max_φ [mean_{s∈[-10,10]} S(x+s u_φ) − 0.65 · flank_±3px]</code> across 12 azimuths + scale-space Hessian ridge eigenvalue</td>
-          <td>Discontinuous en-echelon scarplets across disturbed sagebrush/playa margins lack single-pixel SNR unless integrated over multi-kilometer strike windows with lateral flank subtraction.</td>
-          <td><code>GEMSDOE32 H33-B</code> tested unweighted 900 m valley skeletons alone; never combined 2.1 km cross-strike flank subtraction inside 91-feature trees and 2D U-Net.</td>
-          <td>Low CPU · Ranked #4/#6/#11 in out-of-fold tree split gain (<a href="evidence/feature_gain_top20.json">receipt</a>). <strong>INCLUDED IN PRIMARY.</strong></td>
+          <td><strong><code>H73-3</code>: 16-Azimuth Radon Paleo-Sinter, Travertine &amp; 2m-Probe Upflow Corridors</strong></td>
+          <td><code>Paleo_geothermal_final.csv</code> (281 footprint sinters/travertines/tufas/explosion craters), <code>gdr_wellspring</code> (<code>geotherm &ge; 110 &deg;C</code>), <code>2m_temperature_probe_INGENIOUS</code> (<code>F2mDAB</code>), <code>cond_surf</code>, <code>rad_K</code> &rarr; 16-azimuth straight-line Radon corridor occupancy.</td>
+          <td>44% of NW Nevada geothermal systems are blind (no Quaternary surface scarp), betrayed instead by linear alignments of relict silica sinters, tufa towers, and shallow thermal anomalies (Granite Springs, Salt Wells, Bradys–Desert Peak). <em>Mimics:</em> Shoreline tufa strandlines &amp; lateral outflow plumes.</td>
+          <td>Solves why <code>GEMSDOE36</code>'s isotropic radial geothermometer blobs diluted precision while hitting real blind faults (<code>+19.1 px</code> TP): straight-line Radon colinearity sharpens radial plumes onto narrow fault strike corridors.</td>
         </tr>
         <tr>
           <td><strong>#4</strong></td>
-          <td><strong>H73-4: 150 m Upward-Continued Magnetic Demagnetization × Conductive Clay-Cap Alteration Halo</strong></td>
-          <td>GeoDAWN <code>geodawn_rad_u8.tif</code> (K/Th), <code>geodawn_extensions_u8.tif</code>, Official Bands 2, 3, 9, 17 (<code>rtp</code>, <code>tmi_hg</code>, <code>tmi_vg</code>, <code>cond_surf</code>), GDR #1391 2 m probes &amp; paleo-sinter</td>
-          <td>Hydrothermal magnetite destruction low coupled with smectite/illite conductive cap edge and sinter/probe upflow plumes</td>
-          <td>Blind hydrothermal upflow zones (e.g., Soda Lake / Salt Wells / Patua type) have zero surface scarp but alter host rock along permeable buried fault conduits.</td>
-          <td>Standalone hydrothermal run <code>GEMSDOE71</code> scored <code>0.0558</code> live because whole-basin alteration halos are kilometer-wide blobs; here strictly gated by 1D U-Net + structural localization.</td>
-          <td>Low CPU · Retained strictly as multi-feature inputs inside <code>Exp-73-1</code> &amp; <code>Exp-73-2</code>.</td>
+          <td><strong><code>H73-4</code>: Tectonic Fluvial &chi; Knickpoint &amp; 10 m Seamless Gap-Tile Parity</strong></td>
+          <td><code>dem10_chi_100m_u8.tif</code> (<code>knick_n / (chan_n + 4)</code>, <code>raised_n</code>) + <code>topo_10m_derived_100m_u8.tif</code> + marginal LiDAR quantile alignment across 100.0% of footprint.</td>
+          <td>24.6%–38.7% of the study area lacks 1 m LiDAR; active range-front slip creates synchronous upstream-migrating channel steepness knickpoints across adjacent drainages. <em>Mimics:</em> Resistant welded-tuff ledges.</td>
+          <td>Lifts non-LiDAR gap-tile holdout performance from <code>0.0653</code> (<code>H33</code> control) to <strong><code>0.1510</code> (+131.2%)</strong>.</td>
         </tr>
         <tr>
           <td><strong>#5</strong></td>
-          <td><strong>H73-5: Double-Difference Relocated Microseismicity Planar Lineaments (External Data Upgrade Candidate)</strong></td>
-          <td>Official free source: <a href="https://earthquake.usgs.gov/fdsnws/event/1/" target="_blank" rel="noopener">USGS ANSS ComCat FDSN</a> + NBMG relocated Walker Lane catalogs (replacing 100 km-smoothed Bands 10 &amp; 16)</td>
-          <td>3D principal-component planar alignment &amp; 300 m kernel density of M1.0–M4.5 relocated hypocenters</td>
-          <td>Aseismic surface basins above active blind strike-slip/normal faults (e.g., 2020 M6.5 Monte Cristo aftershock splays) illuminate unmapped subsurface strands before surface rupture.</td>
-          <td>Official Bands 10 &amp; 16 use a <code>100 km</code> smoothing kernel (<code>r = 0.9935</code> at 3 km lag) carrying zero 300 m fault-scale localization.</td>
-          <td><strong>EXTERNAL BLOCKER IN SANDBOX:</strong> <code>earthquake.usgs.gov</code> is blocked by sandbox network allowlist. Logged honestly for unrestricted host run; zero fabricated features.</td>
+          <td><strong><code>H73-5</code>: Multi-Temporal Sentinel-1 InSAR Phase-Gradient &amp; Groundwater-Barrier Steps</strong></td>
+          <td>Copernicus Sentinel-1 ascending/descending interferometric phase gradient + coherence loss fused with official <code>geod_shearrate</code> and <code>geod_dilaterate</code>.</td>
+          <td>Sealed clay-rich fault cores act as sharp aquifer baffles producing centimetre-scale differential subsidence steps across concealed basin faults even without Holocene surface rupture. <em>Mimics:</em> Agricultural pumping bowls &amp; playa evaporite heave.</td>
+          <td>Completely unexplored across all 83 repos; documented for offline follow-up since multi-year SAR archives (~25 GB on ASF DAAC) lie outside the sandbox host allowlist.</td>
         </tr>
       </tbody>
     </table>
-  </section>
-<section><h2>Parallel session H73-7 — independent ranked hypotheses (merged 2026-10-21)</h2>
-<p>A separate parallel session froze its own five-hypothesis ranking before any run
-(<a href="https://github.com/buffedlizard55-lab/GEMSDOE73/blob/main/docs/research/hypotheses_h73-7.md">docs/research/hypotheses_h73-7.md</a>,
-preregistration <code>registry/preregistration_h73-7.json</code>) and implemented its Rank-1 lane:
-the hard-fault PU ranker now listed as Orthogonal Slot #3 on the <a href="index.html">home page</a>
-(HOLDOUT-DTI Instrument A 0.1369, statistical tie with the Primary; mutual overlap 0.326).
-Its Ranks 2–4 (magnetic contact-termination, radiometric alteration lineaments, drainage-deflection chains)
-remain unimplemented and locally validatable; its Rank-5 leaderboard tomography was rejected as unvalidatable.
-Both rankings agree on the forensic reading of the 0.2778 champion (44,090 → 37,654 via the 6,436-dot B=2 prune).</p></section>
-</main>
-
-<footer>
-  <div class="wrap" style="padding:0">
-    <a href="method.html">← Method</a> · <a href="verification.html">Verification &amp; 973-Raster Uniqueness →</a>
-  </div>
-</footer>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
+  </main>
 </body>
 </html>

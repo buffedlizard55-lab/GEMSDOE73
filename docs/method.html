@@ -1,76 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PhD Forensic Analysis &amp; Methodology — GEMSDOE73</title>
-<link rel="stylesheet" href="assets/site.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H73-MVH Architecture &amp; Ablation — GEMSDOE73 (H73-MVH)</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
 </head>
 <body>
-<header class="topbar">
-  <div><strong>GEMSDOE73</strong> <span class="pill pill-ok">METHODOLOGY &amp; 63-SUBMISSION FORENSICS</span></div>
-  <nav>
-    <a href="index.html">Overview &amp; Download</a>
-    <a href="executive-summary.html">Executive Summary (How to Submit)</a>
-    <a class="active" href="method.html">PhD Forensic Analysis &amp; Method</a>
-    <a href="hypotheses.html">5 Ranked Hypotheses</a>
-    <a href="verification.html">Verification &amp; Uniqueness</a>
-    <a href="sources.html">Official Sources &amp; Irregularities</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <span class="pill pill-hero">PHD STRUCTURAL GEOLOGY × DECISION THEORY × DEEP SPATIAL SEGMENTATION</span>
-    <h1>Why <code>0.2778</code> Scored Highest in GEMSDOE — and How We Engineered a Breakthrough Without Copying</h1>
-    <p>Every equation, correlation, and held-out experiment below was executed directly on SHA-256 verified GeoDAWN / USGS 3DEP / DOE GDR #1391 data.</p>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="card">
-    <h2>1. Exact Algebraic Inversion of Live Scores across 63 Archive Submissions</h2>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">GEMSDOE73 · H73-MVH</a>
+      <a class="navlink" href="index.html">Overview &amp; Download</a>
+<a class="navlink" href="executive-summary.html">Executive Summary &amp; Portal Guide</a>
+<a class="navlink active" href="method.html">H73-MVH Architecture</a>
+<a class="navlink" href="hypotheses.html">5 Ranked Hypotheses</a>
+<a class="navlink" href="research.html">PhD Forensic Synthesis</a>
+<a class="navlink" href="leaderboard.html">88-Submission Ledger</a>
+<a class="navlink" href="verification.html">Canaries, Uniqueness &amp; [0,1] Proof</a>
+<a class="navlink" href="irregularities.html">Irregularities (IR-01..12)</a>
+<a class="navlink" href="sources.html">Verified Official Sources</a>
+<a class="navlink" href="h73-1-piedmont.html">Prior PR #3 Archive</a>
+    </div>
+  </header>
+  <main>
+    
+    <h1>H73-MVH Architecture &amp; 3-Experiment Causal Ablation</h1>
     <p>
-      From the published Distance-Weighted Tversky Index (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">DrivenData Page 967</a>),
-      for triangular kernel <code>k(d) = max(1 − d / 300 m, 0)</code> (<code>R = 3.0 px</code> at <code>100 m</code>) with <code>α = 0.2, β = 0.8</code>:
+      <code>H73-MVH</code> was frozen in <a href="https://github.com/buffedlizard55-lab/GEMSDOE73/blob/main/registry/preregistration_h73_mvh.json"><code>registry/preregistration_h73_mvh.json</code></a>
+      prior to holdout evaluation, respecting all six rules of the Parallel-Run Protocol (strictly 3 experiments, zero prior prediction rasters read,
+      zero SGMC input bands, <code>dist_known_fault_px</code> hard-banned, strict 4-quadrant Leave-One-Quadrant-Out with a <code>3.0 km</code> boundary exclusion strip).
     </p>
-    <pre><code>TP_w = Σ_{g ∈ G} max_{||x − g|| ≤ 3} p(x) k(||x − g||)
-FP_w = Σ_{x: p(x) &gt; 0} p(x) [1 − max_{g ∈ G} k(||x − g||)]
-FN_w = |G| − TP_w
-DTI  = TP_w / (0.2 · TP_w + 0.2 · FP_w + 0.8 · |G|)</code></pre>
-    <ul>
-      <li><strong>Four Independent Anchors Lock Down the Public Test Set:</strong>
-        <ol>
-          <li><code>13GEMSDOE r13-lattice-s5</code> (<code>204,504</code> off-catalogue dots → <code>0.0904</code> <code>USER-REPORTED</code>): uniform grid kernel coverage <code>E[k] = 0.3748</code> implies <code>|G_pub| ≈ 12,590</code> pixels.</li>
-          <li><code>GEMSDOE25 D28</code> (<code>44,090</code> dots → <code>0.2600</code>) vs <code>GEMSDOE32 H33-2-B2</code> (<code>37,654</code> dots, exact subset deleting all <code>6,436</code> dots in <code>0 &lt; d(cat) ≤ 200 m</code> → <code>0.2778</code>): solves simultaneously to <code>TP_w(H33) ≈ 5,223</code>, <code>D(H33) ≈ 18,802</code>, proving lateral flanks within <code>200 m</code> of known <code>existing_faults.tif</code> yield near-zero new-fault credit while incurring <code>+1,287.2</code> denominator penalty.</li>
-          <li><code>GEMSDOE36 Anderson-PINN</code> (<code>38,854</code> dots → <code>0.2750</code>): pixel inspection proves <code>GEMSDOE36</code> retained <code>100.00%</code> of <code>H33-2-B2</code>'s <code>37,654</code> dots plus <code>1,200</code> extra GDR dots, predicting <code>(5223 + 14) / (18802 + 237) = 0.27506</code> vs user-reported <code>0.2750</code>.</li>
-        </ol>
-      </li>
-      <li><strong>Empirical Spearman Screen across 47 Non-H19-5 Independent Live Submissions:</strong>
-        <ul>
-          <li><code>GDR #1391 Paleo-Geothermal Sinter/Travertine/Tufa</code>: <code>ρ_ind = +0.4227 (p = 0.0031)</code> — #1 independent positive predictor across 47 models because siliceous sinter &amp; travertine precipitate directly where active Quaternary fault conduits breach basin margins (<code>74.7%</code> lie <code>&gt;500 m</code> from mapped faults).</li>
-          <li><code>GeoDAWN Radiometric Total Count / U / Th</code>: <code>ρ_ind = −0.3664 (p = 0.0113)</code>, <code>ρ_all = −0.5768</code> — exposed Mesozoic/Tertiary felsic granitoids and tuffs inside mountain ranges have high K-U-Th counts and barren pre-Quaternary <code>SGMC</code> contacts (explaining why pure <code>SGMC</code> models <code>GEMSDOE72 = 0.0492</code> and <code>GEMSDOE29 = 0.0512</code> failed live), whereas Quaternary alluvial bajadas and Neogene basalt tablelands host the unmapped active scarps.</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
+    <h2>1. Five-Block Feature Stack (94 Features Total: 82 Static + 12 Fold-Isolated Network Mechanics)</h2>
+    <table>
+      <thead><tr><th>Block</th><th>Cols</th><th>Physical Layers &amp; Exact Mathematical Transforms</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Block A: Multi-Physics &amp; Local Relief</strong></td><td>29</td><td>All 19 official <code>training_features.tif</code> GeoDAWN channels + Miller-Singh (1994) tilt-angle derivative zero-crossing proximity <code>cos(arctan2(tmi_vg, tmi_hg))</code> + multi-scale potential-field worms + basement gradient/curvature + local relief models (<code>&sigma;=2,6 px</code>) + terrain-normalized slope prominence.</td></tr>
+        <tr><td><strong>Block B: 1 m EarthMRI 3DEP LiDAR</strong></td><td>16</td><td>Native <code>NaN</code>-preserving 11 scarp channels + downface/upface polarity + local relief-normalized prominence + Walker Lane N18&deg;E strike alignment + 16-azimuth <code>1.3 km</code> straight-line Radon chain occupancy suppressing curved paleo-shorelines.</td></tr>
+        <tr><td><strong>Block C: 10 m Seamless DEM + Fluvial &chi;</strong></td><td>16</td><td>100%-footprint 10 m seamless DEM scarp/curvature/lineaments + 16-azimuth Radon chain + tectonic channel steepness &amp; knickpoint excess <code>knick_n / (chan_n + 4)</code> across all non-LiDAR gap tiles.</td></tr>
+        <tr><td><strong>Block D: GeoDAWN Radiometrics &amp; Shallow Mag</strong></td><td>11</td><td>Airborne gamma-ray <code>K, Th, U, TC, Th/K, U/K, U/Th</code> alteration ratios + shallow crustal magnetic residual <code>norm(TMI) - norm(TMI_up150)</code> isolating magnetite destruction along hydrothermally altered fault gouge.</td></tr>
+        <tr><td><strong>Block E: INGENIOUS Paleo-Vents &amp; Geothermometers</strong></td><td>10</td><td><code>Paleo_geothermal_final.csv</code> (281 sinters, travertines, tufas, explosion craters), <code>gdr_wellspring</code> (<code>T &ge; 37 &deg;C</code> &amp; geothermometers <code>&ge; 110 &deg;C</code>), 2 m thermal probes (<code>F2mDAB</code>), Quaternary vents &rarr; log-distances + 16-azimuth straight-line Radon upflow corridors.</td></tr>
+        <tr><td><strong>Block F: Fold-Isolated Bridge &amp; Hanging-Wall Mechanics</strong></td><td>12</td><td>Computed strictly from <code>fold["visible"]</code> in holdout and <code>K=4</code> nested whole-component hide draws (45% &amp; 22% hide fractions, <code>3 px</code> collar) inside training quadrants: two-tip elliptical relay bridges <code>exp(-(d(x,A)+d(x,B)-|A-B|)/&sigma;)</code>, log-length tip lobes, collar-safe anchor frame, hanging-wall basement/elevation step deltas, scarp-to-parent strike concordance, and slip-sense damage annulus.</td></tr>
+      </tbody>
+    </table>
 
-  <section class="card">
-    <h2>2. Closed-Form Quaternary Geomorphology + Differentiable 2D U-Net + Submodular Synthesis</h2>
-    <p>Implemented cleanly in <code>src/gems73/features.py</code>, <code>src/gems73/unet2d.py</code>, <code>src/gems73/emit.py</code>, and <code>scripts/run_gems73_experiments.py</code>:</p>
-    <ol>
-      <li><strong>Cross-Drainage Bajada Contour Orthogonality (<code>cross_drainage_orthogonality</code>, <code>cross_fan_scarp_score</code>):</strong> Computes regional piedmont slope gradient <code>∇G_{1.5 km}(z)</code> on true 10 m USGS 3DEP elevation and local structure-tensor scarp strike <code>θ_scarp</code>. Down-fan gullies have <code>|sin(θ_scarp − θ_fan)| ≈ 0</code>; contour-parallel tectonic scarps have <code>|sin(θ_scarp − θ_fan)| ≈ 1</code>.</li>
-      <li><strong>Pluvial Lake Lahontan Highstand De-Confounder (<code>along_strike_elev_std_1600m</code>, <code>lahontan_shoreline_mimic_index</code>):</strong> Measures elevation SD across <code>±800 m</code> along best strike across 12 steerable Radon azimuths. Wave-cut paleo-shorelines in the <code>[1,190 m, 1,355 m]</code> Lahontan envelope are horizontal equipotentials (<code>σ_z &lt; 3 m</code>), whereas active range-front/piedmont fault scarps climb across 3D alluvial fan cones (<code>σ_z ~ 8–60 m</code>).</li>
-      <li><strong>24-Channel PyTorch 2D Multi-Scale Dilated Residual U-Net (<code>MultiScaleDilatedUNet</code> + <code>ExactKernelDTILoss</code>):</strong> Trained strictly out-of-fold across all 4 spatial quadrants (integral-image verified zero patch overlap across quadrant boundaries + 3.0 km exclusion buffer) directly minimizing differentiable 300 m triangular-kernel DTI loss + 1-px centerline anchor, inferred via raised-cosine Hanning overlap tiles + D2 reflection TTA.</li>
-      <li><strong>Concave Relief-Normalized Calibration + DrivenData Staff <code>11516/4</code> Gate + Exact 300 m Submodular Max-Cover:</strong> Prevents steep range cliffs from starving <code>0.8–2.5 m</code> piedmont scarps, blocks lateral flanks <code>0 &lt; d ≤ 200 m</code> while protecting <code>514</code> along-strike tip continuations, and solves exact Minoux lazy-greedy 300 m kernel coverage for <code>37,654</code> binary dots.</li>
-    </ol>
-  </section>
-</main>
+    <h2>2. Exact Causal Contribution of Each Preregistered Step</h2>
+    <table>
+      <thead><tr><th>Causal Transition</th><th>Paired &Delta; HOLDOUT-DTI</th><th>95% Spatial Bootstrap CI</th><th>Physical &amp; Mathematical Mechanism Isolated</th></tr></thead>
+      <tbody>
+        <tr><td><code>M1</code> (Static + Vent Dual-Target GBDT + NMS)</td><td><code>0.0765</code> (abs)</td><td><code>[0.0681, 0.0853]</code></td><td>Outperforms PR #3 unsupervised scarp surface (<code>0.0548</code>) by <strong>+39.6%</strong> using pure physical + geothermal features alone with zero fault-network inputs.</td></tr>
+        <tr><td><code>M2 &minus; M1</code> (+12 Nested-Hide Bridge Mechanics)</td><td><strong><code>+0.0112</code></strong></td><td><code>[+0.0050, +0.0174]</code></td><td>Two-tip elliptical relay bridges, directional tip lobes, and hanging-wall step polarity significantly improve fault localization at identical <code>7&times;7</code> Peak NMS budget.</td></tr>
+        <tr class="highlight-win"><td><code>M3 &minus; M2</code> (Two-Head Exact R=300 m Submodular Allocator)</td><td><strong><code>+0.0722</code></strong></td><td><code>[+0.0571, +0.0888]</code></td><td>Allocating frozen <code>M2</code> posteriors via exact submodular <code>300 m</code> kernel coverage over <code>p_trace</code> minus <code>&lambda;(1 - q_kern)</code> eliminates redundant halo overlap and concentrates dots along continuous fault corridors.</td></tr>
+      </tbody>
+    </table>
 
-<footer>
-  <div class="wrap" style="padding:0">
-    <a href="index.html">← Overview</a> · <a href="hypotheses.html">5 Ranked Hypotheses →</a>
-  </div>
-</footer>
+    <h2>3. Top 15 Predictors by Out-of-Fold Ensemble Split Gain</h2>
+    <table>
+      <thead><tr><th>Rank</th><th>Feature Name</th><th>Share of Total Ensemble Gain</th></tr></thead>
+      <tbody><tr><td>1</td><td><code>d_vis_collar</code></td><td><code>21.389%</code></td></tr><tr><td>2</td><td><code>hw_elev_delta</code></td><td><code>5.319%</code></td></tr><tr><td>3</td><td><code>comp_loglen_vis</code></td><td><code>4.491%</code></td></tr><tr><td>4</td><td><code>vis_annulus_density</code></td><td><code>3.619%</code></td></tr><tr><td>5</td><td><code>volcanic_vent_logdist</code></td><td><code>3.420%</code></td></tr><tr><td>6</td><td><code>ieq_n100a15</code></td><td><code>2.587%</code></td></tr><tr><td>7</td><td><code>det_elev</code></td><td><code>2.454%</code></td></tr><tr><td>8</td><td><code>deq_n100a15</code></td><td><code>2.399%</code></td></tr><tr><td>9</td><td><code>geod_dilaterate</code></td><td><code>2.366%</code></td></tr><tr><td>10</td><td><code>cond_surf</code></td><td><code>2.351%</code></td></tr><tr><td>11</td><td><code>iso_grav_anom</code></td><td><code>2.245%</code></td></tr><tr><td>12</td><td><code>geod_shearrate</code></td><td><code>2.176%</code></td></tr><tr><td>13</td><td><code>geod_2ndinv</code></td><td><code>2.166%</code></td></tr><tr><td>14</td><td><code>topo10_dem_mean</code></td><td><code>2.066%</code></td></tr><tr><td>15</td><td><code>det_elev_lrm_s6</code></td><td><code>2.063%</code></td></tr></tbody>
+    </table>
+    
+    <footer>
+      Repository: <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">buffedlizard55-lab/GEMSDOE73</a> ·
+      Promoted GeoTIFF: <code>gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif</code> (SHA-256 <code>faebf9e13f763cce…</code>) ·
+      Shared Evaluator: <code>gems57-pooled-hide-v2</code> · Weekly portal slots spent autonomously in sandbox: <code>0</code>.
+    </footer>
+  </main>
 </body>
 </html>

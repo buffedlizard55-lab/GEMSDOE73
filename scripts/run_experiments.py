@@ -66,7 +66,7 @@ foot, cat = g.footprint, g.catalogue
 log(f"grid footprint={int(foot.sum())} catalogue={int(cat.sum())}")
 
 refs = {
-    "h33_champion": Path("/home/user/refs/g32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"),
+    "h33_champion": DATA / "scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
     "d28": DATA / "scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
     "h19_5": DATA / "scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
 }

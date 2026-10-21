@@ -1,0 +1,51 @@
+{
+  "prereg_id": "GEMSDOE73-PREREG-MVH-2",
+  "written_before_any_mvh_holdout_run": true,
+  "supersedes_negative_exploratory_lanes": [
+    "PR #1: gems73-hydro-permeability-corridor (synthetic generator, not run on real data)",
+    "PR #2: gems73-h73a-blind-stepover (synthetic Bresenham generator, never read training_features.tif)",
+    "PR #3: gems73-h73-1-piedmont-scarpchain (real-data unsupervised surface, HOLDOUT-DTI 0.0548 < control 0.0939 -> honest NEGATIVE)"
+  ],
+  "lane": "H73-MVH: Metric-Direct Kernel-Target Structural-Geothermal Vent & Damage-Bridge Discovery",
+  "hypothesis": "Hidden expert-mapped geothermal faults in the NW Great Basin occupy a dual structural-hydrothermal niche missed by both pure scarp thresholders and unweighted 1-px classifiers: (1) low-prominence Quaternary piedmont & gap-tile scarps normalized relative to local background relief across combined 1 m LiDAR + 10 m seamless DEM + 100 m GeoDAWN surfaces, (2) concealed blind conduits traced along strike by colinear paleo-geothermal vents (silica sinters, travertines, tufa towers, explosion craters), 2 m thermal probes and high-enthalpy geothermometers, and (3) two-tip elliptical relay bridges and hanging-wall basinward step-outs across unmapped alluvial gaps between mapped terminations — learned directly against the competition's continuous R=300 m triangular kernel target K_3(x)=max(0, 1 - d/3) alongside a collar-clean centerline posterior.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches, curvilinear playa tufa strandlines, fluvial terrace risers, and lithologic volcanic flow edges — mitigated by 16-azimuth straight-line Radon chain occupancy, cross-field geophysical witness (tilt-angle derivative, shallow-residual magnetics, isostatic gravity & basement step), hanging-wall polarity relative to parent fault strike, and out-of-fold multi-physics interaction trees.",
+  "forbidden_inputs": [
+    "ALL historical/registry prediction rasters (0 prior .tif predictions read anywhere in feature engineering, training, or emission)",
+    "derived_sgmc_faults_100m_u8.tif / sgmc_faults_100m.tif (reserved strictly for external report-only diagnostic proxy)",
+    "dist_known_fault_px / known_fault / label columns in external CSVs (hard assertion enforced at parse time)",
+    "withheld fold truth or 3 px context collar in any fold mechanical feature"
+  ],
+  "experiments": {
+    "M1_Static_Vent_DualTarget_NMS": "82 static physical + terrain-normalized 1m-LiDAR/10m-DEM scarp + GeoDAWN radiometric/shallow-magnetic + INGENIOUS/GDR paleo-vent Radon corridor & geothermometer features; strict 4-quadrant LOQO (3.0 km buffer) Dual Metric-Direct LightGBM (collar-clean centerline classifier with gentle-slope piedmont weighting + continuous cross-entropy kernel-credit regressor on K_3); 7x7 Peak NMS emission at exact 37,654 binary {0,1} dots with d > 2.5 px.",
+    "M2_NestedHide_Bridge_Vent_NMS": "M1 static stack + 12 strictly fold-isolated fault-network mechanics features (two-tip elliptical relay bridges tight/wide, log-length-scaled directional tip projections short/long, collar-safe distance, cross-strike/along-strike offsets, parent log-length, hanging-wall basement/elevation step deltas, scarp-to-parent strike alignment, slip-sense damage annulus) trained on K=4 nested whole-component hide masks (3 px collar) inside training quadrants; same 7x7 Peak NMS emission at exact 37,654 binary {0,1} dots.",
+    "M3_NestedHide_Bridge_Vent_TwoHeadSubmod300": "Exact frozen M2 out-of-fold dual posteriors (p_trace, q_kernel) with zero retraining + exact lazy-greedy Two-Head R=300 m Submodular DTI Kernel Allocation maximizing expected marginal triangular kernel coverage minus alpha-calibrated false-positive tax (1 - q_kernel) at exact 37,654 binary {0,1} dots."
+  },
+  "primary_instrument": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "folds": "vendor/gems57/holdout.py buffered_component_draw(seed=20, buffer_px=3, boundary_px=12)",
+    "withheld_positive_pixels": 11321,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular, R=300 m = 3.0 px",
+    "bootstrap": "1000 paired physical 20 km spatial-cluster draws (seed 73073)",
+    "controls": [
+      "h33_analogue_foldfair (preregistered champion control, 0.0939)",
+      "H73_1_E1 (PR #3 unsupervised piedmont scarp-chain, 0.0548)",
+      "H73A_synthetic_stepover (PR #2 synthetic candidate on main)",
+      "Hydro_synthetic_corridor (PR #1 synthetic candidate on main)",
+      "random_control (seed 73, 0.0484)"
+    ]
+  },
+  "leakage_canary": "every static, geothermal-vent, and fold-mechanical feature individually audited: symmetric AUC = max(AUC, 1-AUC) <= 0.90 against BOTH full catalogue and pooled withheld truth",
+  "uniqueness_gates": {
+    "spearman_surface_and_dots_max": 0.90,
+    "mutual_dot_overlap_within_3px_max": 0.70,
+    "registry_scope": "ALL 984 unique valid 3730x3292 EPSG:32611 rasters across all 83 public GEMSDOE repos (complete_accessible_scan=true, errors=0)"
+  },
+  "promotion_rule": "Selected experiment among {M1, M2, M3} must beat h33_analogue_foldfair AND all prior GEMSDOE73 lanes on pooled HOLDOUT-DTI with paired 95% bootstrap CI strictly > 0, pass 100% of single-feature leakage canaries (symmetric AUC <= 0.90), pass all uniqueness gates on BOTH continuous pre-placement surface AND final binary dots, and pass 100% of format/portal range [0,1] checks.",
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "weekly_slots_spent_in_sandbox": 0
+  }
+}

@@ -104,10 +104,10 @@ def marginal_bar(current_dti: float, alpha: float = ALPHA) -> float:
 
 
 def dti_fast(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> float:
-    """Fast scalar DTI wrapper; returns 1.0 when both truth and pred are empty."""
-    pred_arr = np.asarray(pred, float)
-    truth_arr = np.asarray(truth, bool)
-    if not truth_arr.any():
-        return 1.0 if not (pred_arr > 0).any() else 0.0
-    return float(dti_exact(pred_arr, truth_arr, valid=valid, known=known, alpha=alpha, beta=beta)["dti"])
+    """Scalar DTI helper supporting the empty-truth identity convention (1.0 when both empty)."""
+    p = np.asarray(pred, dtype=np.float64)
+    g = np.asarray(truth) > 0
+    if not g.any():
+        return 1.0 if float(np.nan_to_num(p, nan=0.0).sum()) == 0.0 else 0.0
+    return float(dti_exact(p, g, valid=valid, known=known, alpha=alpha, beta=beta)["dti"])
 

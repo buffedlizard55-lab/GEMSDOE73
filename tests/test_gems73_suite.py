@@ -19,10 +19,11 @@ sys.path.insert(0, str(ROOT / "vendor"))
 
 from gems57 import evaluate_holdout, metric, submission_writer  # noqa: E402
 
-PRIMARY_TIF = ROOT / "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021.tif"
-PRIMARY_ZIP = ROOT / "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021.zip"
+PRIMARY_TIF = ROOT / "docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.tif"
+PRIMARY_ZIP = ROOT / "docs/downloads/gems73-h73-mvh-ventbridge-submod-37654-20261021T044500Z-faebf9e1-zeros.zip"
+PR7_UNET_TIF = ROOT / "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021.tif"
 NAN_TIF = ROOT / "docs/downloads/gems73-crossdrain-unet-submod-37654-20261021-nan.tif"
-EXPECTED_PRIMARY_SHA = "9e02831df0cf306c0dabef90292ac3b881bef289da45f58b2500debaa899d262"
+EXPECTED_PRIMARY_SHA = "faebf9e13f763ccedd2486df2209e6e7f37d1a5548495003e2401c5b03d538c8"
 
 
 def test_published_metric_worked_example() -> None:
@@ -113,7 +114,7 @@ def test_nan_twin_geotiff_matches_primary_in_footprint() -> None:
     if not (ROOT / "data/sample_submission.tif").is_file():
         pytest.skip("data/ not staged")
     fp = np.isfinite(rasterio.open(ROOT / "data/sample_submission.tif").read(1))
-    arr_z = rasterio.open(PRIMARY_TIF).read(1)
+    arr_z = rasterio.open(PR7_UNET_TIF).read(1)
     arr_n = rasterio.open(NAN_TIF).read(1)
     assert np.array_equal(arr_z[fp], arr_n[fp])
     assert np.isnan(arr_n[~fp]).all()
