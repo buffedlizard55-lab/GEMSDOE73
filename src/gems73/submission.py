@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 import numpy as np
 import rasterio
+from .grid import WIDTH, HEIGHT, CRS, TRANSFORM
 
 @dataclass(frozen=True)
 class CheckResult:
@@ -68,6 +69,7 @@ def write_submission_geotiff(predictions_2d: np.ndarray, template_path: Path, ou
     with rasterio.open(template_path) as tpl:
         profile = tpl.profile.copy()
         profile.update(dtype=rasterio.float32, count=1, compress="deflate", tiled=True,
+                       blockxsize=256, blockysize=256,
                        nodata=None if outside_mode == "zeros" else float("nan"))
         tpl_data = tpl.read(1)
         valid = np.isfinite(tpl_data)
@@ -85,3 +87,38 @@ def write_submission_geotiff(predictions_2d: np.ndarray, template_path: Path, ou
     emitted = int(np.count_nonzero(out_array[valid] > 0))
     return {"file_path": str(output_path), "sha256": report.sha256,
             "emitted_dots": emitted, "note": note or "", "validation": report.to_dict()}
+
+
+def write_submission(arr: np.ndarray, path: str | Path) -> dict[str, Any]:
+    """Write a portal-safe single-band float32 GeoTIFF on the canonical EPSG:32611 grid."""
+    a = np.asarray(arr, dtype=np.float32)
+    assert a.shape == (HEIGHT, WIDTH), f"expected {(HEIGHT, WIDTH)}, got {a.shape}"
+    assert bool(np.isfinite(a).all()), "array contains non-finite values"
+    assert float(a.min()) >= 0.0 and float(a.max()) <= 1.0, "values must be in [0, 1]"
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    profile = dict(
+        driver="GTiff",
+        height=HEIGHT,
+        width=WIDTH,
+        count=1,
+        dtype="float32",
+        crs=CRS,
+        transform=TRANSFORM,
+        compress="deflate",
+        tiled=True,
+        nodata=None,
+    )
+    with rasterio.open(p, "w", **profile) as dst:
+        dst.write(a, 1)
+    with rasterio.open(p) as src:
+        rb = src.read(1)
+        all_fin = bool(np.isfinite(rb).all() and float(rb.min()) >= 0.0 and float(rb.max()) <= 1.0 and src.nodata is None)
+    assert all_fin, "re-read verification failed"
+    return {
+        "file_path": str(p),
+        "sha256": compute_sha256(p),
+        "all_finite": all_fin,
+        "emitted": int(np.count_nonzero(rb > 0)),
+    }
+

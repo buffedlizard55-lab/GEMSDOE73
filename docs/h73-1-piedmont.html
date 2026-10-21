@@ -1,94 +1,189 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE73 — H73-1 piedmont scarp-chain lane</title>
-<style>
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0b1220;color:#e5e7eb}
-.wrap{max-width:980px;margin:0 auto;padding:28px 20px 60px}
-a{color:#7dd3fc} code{background:#1e293b;padding:1px 5px;border-radius:4px;word-break:break-all}
-.card{background:#111827;border:1px solid #334155;border-radius:12px;padding:20px;margin:18px 0}
-.bad{border-color:#dc2626;background:#2a0f12}.good{border-color:#16a34a}
-.btn{display:inline-block;background:#0369a1;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 8px 6px 0}
-table{border-collapse:collapse;width:100%}td,th{border:1px solid #334155;padding:7px 9px;text-align:left;vertical-align:top}
-h1{font-size:26px}h2{margin-top:26px}.small{color:#9ca3af;font-size:13px}img{max-width:100%;border-radius:8px}
-.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-weight:700}.no{background:#dc2626;color:#fff}.yes{background:#16a34a;color:#fff}
-</style></head><body><div class="wrap">
-<h1>GEMSDOE73 — H73-1 piedmont micro-scarp chain lane</h1>
-<p class="small">DOE GEMS Prize (DrivenData #306) · one preregistered lane · every number labelled
-HOLDOUT-DTI or OWNER-REPORT · no organizer score exists for this repo's file.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H73-M Promoted &amp; H73-1 Baseline Lanes — GEMSDOE73 DOE GEMS Prize</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="top-row">
+      <a class="brand" href="index.html">GEMSDOE73 · DOE GEMS 3D Subsurface Fault Detection</a>
+      <span class="status-pill">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT (H73-M M3 · HOLDOUT-DTI 0.1224 vs 0.0939)</span>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home &amp; Download</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="h73-1-piedmont.html" class="active">H73-M &amp; H73-1 Lanes</a>
+      <a href="hypotheses.html">5 Hypotheses</a>
+      <a href="research.html">H33 PhD Forensics</a>
+      <a href="method.html">Methodology</a>
+      <a href="leaderboard.html">Leaderboard &amp; Calibration</a>
+      <a href="sources.html">Trusted Sources</a>
+      <a href="verification.html">3-Pass Verification</a>
+      <a href="irregularities.html">Irregularities (12)</a>
+    </nav>
+  </header>
+  <main class="container">
 
-<div class="card bad">
-<h2 style="margin-top:0">⬇ Submission file — READ THE STATUS FIRST</h2>
-<table>
-<tr><th>Gate 1 — OK to download?</th><td><span class="pill yes">YES</span> Format-valid and registry-unique; safe to download for review.</td></tr>
-<tr><th>Gate 2 — Recommended to submit?</th><td><span class="pill no">NO — DO NOT SUBMIT</span>
-<b>Verdict: NEGATIVE.</b> The candidate failed the preregistered holdout gate
-(HOLDOUT-DTI 0.0548 vs fold-fair H33-analogue control 0.0939).
-Submitting it would spend a weekly slot against this repo's own evidence. A human selector may
-override knowingly (see the report-only proxy below) — that decision is not made here.</td></tr>
-</table>
-<p><a class="btn" href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif">⬇ Download .tif (review only)</a>
-<a class="btn" href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.zip">⬇ Download .zip (single GeoTIFF inside)</a>
-<a class="btn" href="downloads/run_card_h73-1.json">Run card (JSON)</a></p>
-<p><b>Filename:</b> <code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code><br>
-<b>Unique submission name:</b> <code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021</code><br>
-<b>Note to paste in the DrivenData “Note (optional)” field (125/140 chars) — only if a selector overrides:</b><br>
-<code>G73 H73-1 E1 piedmont scarp-chain unsupervised 37654 dots; HOLDOUT-DTI 0.0548 vs ctrl 0.0939 - NEGATIVE, selector review only</code><br>
-<b>sha256:</b> <code>d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece</code> · 141,163 bytes ·
-single band float32 · EPSG:32611 · 3730×3292 · 37,654 dots · min 0.0, max 1.0,
-0 NaN in all 12,279,160 cells · CRS/shape/transform match the sample submission:
-<b>True</b> · all validator checks passed:
-<b>True</b> (<a href="downloads/validator_h73-1.json">validator receipt</a>)</p>
-<p class="small">Why this cannot trigger “Predicted values must be in range [0, 1]”: the file is written
-all-finite (0.0 outside the footprint, <code>nodata=None</code>), then re-opened from disk and every cell is
-checked finite and in [0,1] by the shared validator before delivery. See the
-<a href="executive-summary.html">executive summary</a> for exact submission steps.</p>
-</div>
-
-<div class="card"><h2 style="margin-top:0">The answer to the brief's question</h2>
-<p><b>Why did <code>h33-h33-2-b2…-zeros</code> score 0.2778 (OWNER-REPORT)?</b> Measured here, byte-exact:
-it is D2.8 with every dot ≤200 m from the catalogue deleted, and D2.8 ⊂ H19-5 with zero exceptions.
-H19-5's surface is ~90% LiDAR/DEM scarp-openness (weights 0.55+0.35 in its synthesis code) — the same
-evidence class expert re-mapping uses. Dotting to ~2.5 px spacing removes mass below the metric's
-break-even credit bar <code>k &gt; 0.2·DTI</code>, and the B2 prune deletes dots that can only cover
-already-mapped (masked, zero-credit) faults while paying full false-positive tax.</p>
-<p><b>Can we beat 0.2778 / 0.4413?</b> Not with this lane, on this evidence. Emission gains are nearly
-exhausted; beating the champion needs a field with higher credit density in its top 37,654 dots.
-H73-1 tested whether a fully unsupervised piedmont-scarp-chain geometry could be that field. It could
-not — see the holdout table. The one encouraging signal (report-only SGMC-piedmont proxy, E1
-0.1045 vs champion 0.0980)
-is not the preregistered instrument and does not override the gate.</p></div>
-
-<div class="card"><h2 style="margin-top:0">Holdout (primary instrument)</h2>
-<p class="small">HOLDOUT-DTI · evaluator <code>gems57-pooled-hide-v2</code> · whole-component
-hide-and-recover, fold-fair emission, visible faults masked pixel-exactly ·
-11,321 withheld positive pixels · α=0.2, β=0.8, 300 m triangular kernel ·
-paired spatial-cluster bootstrap 95% CIs.</p>
-<table><tr><th>Arm</th><th>DTI</th><th>95% CI</th></tr>
-<tr><td><b>E1 (this lane)</b></td><td>0.0548</td><td>[0.0417, 0.0688]</td></tr>
-<tr><td>E2 (no piedmont weight)</td><td>0.0339</td><td>—</td></tr>
-<tr><td>E3 (piedmont scarp only)</td><td>0.0564</td><td>—</td></tr>
-<tr><td>H33-analogue control (fold-fair)</td><td>0.0939</td><td>[0.0813, 0.1076]</td></tr>
-<tr><td>Random control</td><td>0.0484</td><td>—</td></tr></table>
-<p>E1 − control = -0.0391 [-0.0571,
--0.0211]; E1 − random = +0.0064
-[-0.0068, +0.0202] (includes 0).
-Leakage canaries: 17 channels, max symmetric AUC
-0.611 ≤ 0.90 — PASS.
-Instrument warning (measured here, n=13 OWNER-REPORT live scores): static catalogue DTI ranks live at
-Spearman -0.49, SGMC-piedmont at +0.74
-— every local proxy is a screen, not a score prediction.</p></div>
-
-<div class="card"><h2 style="margin-top:0">Uniqueness vs registry (77 rasters)</h2>
-<table>
-<tr><th>Surface Spearman (pre-placement, 200k sample)</th><td>max 0.114 ≤ 0.90 ✓</td></tr>
-<tr><th>Final dots Spearman (full footprint)</th><td>max 0.030 ≤ 0.90 ✓</td></tr>
-<tr><th>Final dots mutual 3 px overlap</th><td>max 0.390 ≤ 0.70 ✓ (worst: gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif)</td></tr>
-<tr><th>vs H33 champion</th><td>forward 0.177 · mutual 0.172 · ρ 0.004</td></tr>
-<tr><th>Literal forward overlap</th><td>max 0.994 only vs the 206,895-dot r13 lattice whose 3 px halo covers ~100% of the footprint (mutual 0.139) — IR-73-01</td></tr>
-</table>
-<img src="assets/fig_e1_vs_h33.png" alt="Map of E1 dots vs champion"></div>
-
-<p><a href="executive-summary.html">Executive summary — exactly how to submit (and why not to submit this file)</a> ·
-<a href="sources.html">Official sources</a> · <a href="research/hypotheses.md">Five hypotheses (preregistered)</a></p>
-<p class="small">Core values: <b>Maximize P(Win)</b> — a negative result that saves a weekly slot is a win for the
-campaign. <b>Own the Outcome</b> — the gate failure is published, not buried. Weekly slots spent by this repo: 0.</p>
-</div></body></html>
+    <section class="verdict-promote">
+      <div style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">
+        DrivenData Submission Decision Banner · PARALLEL-RUN PROTOCOL All Gates Passed
+      </div>
+      <h1 style="margin:0.25rem 0 0.45rem;color:#065f46;">
+        ✅ VERDICT: PROMOTE — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA
+      </h1>
+      <p style="margin:0.25rem 0 0.75rem;font-size:0.97rem;">
+        <strong>Primary Recommended GeoTIFF:</strong>
+        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code>
+        (<code>142,737</code> bytes · <code>3292 × 3730</code> · <code>EPSG:32611</code> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0</code> NaNs · <code>37,654</code> binary <code>1.0</code> off-catalogue dots · <code>0</code> dots on visible catalogue · SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code>).
+        Protected against DrivenData’s <code>"Predicted values must be in range [0, 1]"</code> portal error.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download>
+          ⬇ Download Promoted .TIF (zeros-outside · 142.7 KB)
+        </a>
+        <a class="btn btn-secondary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>
+          ⬇ Download Single-Member .ZIP (125.0 KB)
+        </a>
+        <a class="btn btn-outline" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>
+          ⬇ Download Companion -nan.tif (NaN-outside · 205.7 KB)
+        </a>
+        <a class="btn btn-outline" href="downloads/run_card.json" download>
+          ⬇ Download JSON Run Card
+        </a>
+        <a class="btn btn-outline" href="executive-summary.html">
+          Open Executive Summary Subpage →
+        </a>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Gate / Metric</th>
+            <th>Evidence Class</th>
+            <th>Promoted Candidate (<code>H73-M M3</code>)</th>
+            <th>Primary Control (<code>h33_analogue_foldfair</code> / <code>H33</code>)</th>
+            <th>Paired Difference &amp; 95% CI</th>
+            <th>Gate Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary Gating Holdout (Instrument A)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px, 4 folds)</td>
+            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>)</td>
+            <td><code>0.0939</code> (95% CI <code>[0.0813, 0.1076]</code>)</td>
+            <td><strong><code>+0.0285</code></strong> (<code>+30.4%</code>), 95% CI <code>[+0.0154, +0.0419]</code></td>
+            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Gain vs Prior Repo Baseline (<code>H73-1 E1</code>)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px)</td>
+            <td><strong><code>0.1224</code></strong></td>
+            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>)</td>
+            <td><strong><code>+0.0676</code></strong> (<code>+123.5%</code>), 95% CI <code>[+0.0512, +0.0848]</code></td>
+            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Piedmont Off-Catalogue Proxy (Instrument C<sub>pied</sub>)</strong></td>
+            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (9,949 piedmont SGMC px)</td>
+            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>)</td>
+            <td><code>0.0937</code> (<code>G70 P9</code>: <code>0.1112</code>, <code>P8</code>: <code>0.0842</code>)</td>
+            <td><strong><code>+0.0499</code></strong> (<code>+53.2%</code>), 95% CI <code>[+0.0319, +0.0656]</code></td>
+            <td><strong>✅ #1 Across All Repos</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Full Off-Catalogue SGMC Proxy (Instrument B&prime;)</strong></td>
+            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (59,937 SGMC px, d &ge; 300 m)</td>
+            <td><strong><code>0.1212</code></strong> (95% CI <code>[0.1051, 0.1361]</code>)</td>
+            <td><code>0.0938</code></td>
+            <td><strong><code>+0.0274</code></strong> (<code>+29.2%</code>), 95% CI <code>[+0.0135, +0.0408]</code></td>
+            <td><strong>✅ PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Single-Feature Leakage Canaries (85 features)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI CANARY</span> (gate symmetric AUC &le; 0.90)</td>
+            <td>Max symmetric AUC = <strong><code>0.7950</code></strong></td>
+            <td>Gate threshold &le; <code>0.9000</code></td>
+            <td><code>85 / 85</code> features pass on both catalogue &amp; withheld truth</td>
+            <td><strong>✅ PASS (85/85)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Registry Uniqueness Audit (161 unique rasters)</strong></td>
+            <td><span class="tag tag-proxy">REGISTRY-AUDIT</span> (Spearman &le; 0.90, 3 px overlap &le; 0.70)</td>
+            <td>Surface |&rho;| = <code>0.3587</code> · Dots |&rho;| = <code>0.1329</code></td>
+            <td>Worst mutual &amp; sparse (&le;150k) 3 px overlap = <strong><code>0.6677</code></strong> (vs <code>G70 P9</code>)</td>
+            <td>Vs <code>GEMSDOE32 H33</code>: <code>0.4186</code> · Vs <code>G70 P8-OOF38k</code>: <code>0.3882</code> · Vs <code>H73-1</code>: <code>0.2679</code></td>
+            <td><strong>✅ PASS (&le; 0.70)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:0.86rem;margin-top:0.55rem;">
+        <strong>Copy-Paste DrivenData Submission Name (57/140 chars):</strong>
+        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code><br>
+        <strong>Copy-Paste DrivenData Submission Note (130/140 chars):</strong>
+        <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code>
+      </div>
+    </section>
+    
+    <div class="card">
+      <h2>Two Executed Experimental Lanes in <code>GEMSDOE73</code>: Why Supervised Co-Kriging + Submodular Allocation (<code>H73-M</code>) Beat Unsupervised Rank-Products (<code>H73-1</code>) by <code>+123.5%</code></h2>
+      <p><code>GEMSDOE73</code> preserves both the initial unsupervised piedmont scarp-chain baseline (<code>H73-1</code>, <code>evidence/run_card_h73-1.json</code>, verdict <code>negative</code>) and the promoted supervised multi-physics co-kriging + submodular lane (<code>H73-M</code>, <code>evidence/run_card.json</code>, verdict <code>promote</code>):</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Lane <code>H73-1</code> (Archived Unsupervised Baseline)</th>
+            <th>Lane <code>H73-M</code> (Promoted Primary Deliverable)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Verdict</strong></td>
+            <td><span class="tag tag-bad">NEGATIVE — DO NOT SUBMIT</span></td>
+            <td><span class="tag tag-holdout">PROMOTE — OK TO DOWNLOAD &amp; SUBMIT</span></td>
+          </tr>
+          <tr>
+            <td><strong>Feature Stack</strong></td>
+            <td>4 hand-crafted composite channels (<code>scarp_n</code>, <code>chain</code>, <code>substep</code>, <code>pied_soft</code>)</td>
+            <td>85 label-free physical features (82-band memmap + 3 fold-safe anisotropic transtensional fracture-mechanics channels)</td>
+          </tr>
+          <tr>
+            <td><strong>Surface Construction</strong></td>
+            <td>Unsupervised rank-product <code>scarp_n &times; chain &times; (0.5 + 0.5 &times; substep &times; pied_soft)</code></td>
+            <td>3 regime-specialized 4-quadrant LOQO gradient-boosted experts (<code>M_Q</code>, <code>M_P</code>, <code>M_S</code>) + quadrant-stratified non-LiDAR quantile calibration + cross-contour shoreline gate + fold-safe wing-bridge</td>
+          </tr>
+          <tr>
+            <td><strong>Dot Allocation (37,654 dots)</strong></td>
+            <td>Greedy <code>d_min = 2.5 px</code> peak picking</td>
+            <td>Exact lazy-greedy 300 m triangular-kernel submodular DTI maximization with radius-matched spacing <code>d_min = 3.0 px (300 m)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Primary <code>HOLDOUT-DTI</code> (Instrument A)</strong></td>
+            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>, &Delta; vs control = <code>-0.0391</code>)</td>
+            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>, &Delta; vs control = <strong><code>+0.0285</code></strong>, &Delta; vs <code>H73-1</code> = <strong><code>+0.0676</code></strong>)</td>
+          </tr>
+          <tr>
+            <td><strong>Piedmont Proxy <code>PROXY-DTI</code> (Instrument C<sub>pied</sub>)</strong></td>
+            <td><code>0.0789</code> (95% CI <code>[0.0650, 0.0934]</code>)</td>
+            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>, &Delta; vs <code>H33</code> = <strong><code>+0.0499</code></strong>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Preserved Diagnostic Figure from Lane <code>H73-1</code> (Negative Baseline)</h2>
+      <p>Retained from <code>evidence/run_card_h73-1.json</code> to document why unweighted rank-products over-fire on non-fault micro-topography outside catalogue scarps:</p>
+      <img class="responsive" src="assets/fig_e1_vs_h33.png" alt="Preserved H73-1 E1 vs H33 diagnostic">
+    </div>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>GEMSDOE73</strong> · Branch <code>arena/6de55999-gemsdoe73</code> · Promoted Deliverable:
+    <code>docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code> (SHA-256 <code>ac1c720d466a1213…</code>) ·
+    Evaluated with shared <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels, 1,000-draw paired 20 km spatial-cluster bootstrap).
+    Every score is labeled <code>HOLDOUT-DTI</code>, <code>PROXY-DTI (report-only)</code>, or <code>ORGANIZER-CONFIRMED</code>.
+  </footer>
+</body>
+</html>

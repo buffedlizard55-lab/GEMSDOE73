@@ -97,3 +97,13 @@ def dti_binary(pred_bool, truth, valid=None, known=None, alpha=ALPHA, beta=BETA)
 def marginal_bar(current_dti: float, alpha: float = ALPHA) -> float:
     """k > alpha*DTI required for an added dot to improve DTI."""
     return alpha * current_dti
+
+
+def dti_fast(pred, truth, valid=None, known=None, alpha=ALPHA, beta=BETA) -> float:
+    """Fast scalar DTI wrapper; returns 1.0 when both truth and pred are empty."""
+    pred_arr = np.asarray(pred, float)
+    truth_arr = np.asarray(truth, bool)
+    if not truth_arr.any():
+        return 1.0 if not (pred_arr > 0).any() else 0.0
+    return float(dti_exact(pred_arr, truth_arr, valid=valid, known=known, alpha=alpha, beta=beta)["dti"])
+

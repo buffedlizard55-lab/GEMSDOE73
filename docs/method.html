@@ -1,44 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Method — GEMSDOE73</title>
-<style>:root{--green:#0d7a42;--line:#cfe8d6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1a1a;line-height:1.6;background:white}a{color:#0a4b8a}header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);padding:10px 18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}nav a{margin:0 8px;font-weight:600;font-size:14px;text-decoration:none}.container{max-width:900px;margin:0 auto;padding:18px}.card{border:1px solid var(--line);border-radius:12px;padding:16px;background:white;margin:12px 0}pre{background:#f0f7f1;border:1px solid #d1e7d6;border-radius:8px;padding:10px;overflow:auto;font-size:12.5px}code{font-family:ui-monospace,monospace;background:#f0f7f1;padding:1px 5px;border-radius:4px}table{width:100%;border-collapse:collapse;font-size:13.5px}th,td{border:1px solid #dbe9de;padding:7px 8px;text-align:left}th{background:#f0f7f1}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology (H73-M) — GEMSDOE73 DOE GEMS Prize</title>
+  <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<header><div><strong>GEMSDOE73</strong></div><nav><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="method.html">Method</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav></header>
-<div class="container">
-<div class="card">
-<h1>Method — what we measure, what we do not claim</h1>
-<p class="small">Every number is labeled HOLDOUT-DTI (evaluator version, N withheld, 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written as a score.</p>
-<h2>1. The metric and the decision rule that determines every dot</h2>
-<p>Official definition (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">problem page 967</a>, verified 2026-10-21, two independent fetches agree; worked example TPw=3.00 FPw=1.89 FNw=2.00 → 0.6027, page rounds to 0.60, reproduced in <code>tests/test_metric.py</code>):</p>
-<pre><code>k(d) = max(1 − d/300m, 0),  R = 300m = 3 px at 100 m
-TPw = Σ_g max_{x:d(x,g)≤R} p(x)·k(d(x,g))
-FPw = Σ_{x:p(x)&gt;0} p(x)·[1 − max_g k(d(x,g))]
-FNw = Σ_g [1 − max_{x:d(x,g)≤R} p(x)·k(d(x,g))]
-DTI = TPw / (TPw + 0.2·FPw + 0.8·FNw + ε)
-</code></pre>
-<p>Algebraic identity (proved in <code>src/gems73/metric.py</code>): with <code>T=TPw, S=Σ p, M=Σ p·maxk</code>, <code>FNw=|G|−T</code> exactly, so <code>DTI = T/(0.2·(T+S−M)+0.8·|G|)</code>. Adding one unit of mass at weight <code>k</code> changes the denominator by 0.2, giving the <strong>credit bar</strong>: <code>emit ⇔ k &gt; 0.2·DTI</code>. At group 0.2600 bar=0.0520; at leader 0.3262 bar=0.0652. GEMSDOE32 measured marginal credit 0.0548 — within 5% of the derived 0.0520 optimum.</p>
-<h2>2. Why the dotted file won, quantitatively</h2>
-<p>121,131 → 44,090 px kept ~85% of credit while removing 64% of mass; mean credit per dot 0.052→0.089 (owner-reported). Mass whose realized weight fell below the bar lowered the score, so removing it is a gain. H28 sweep peaked at spacing 2.4–3.0 px; kernel-disjoint 6 px (zero redundancy) lost 0.045 DTI — the 300 m kernel, not aesthetics, sets optimum density. Live-inversion on the GEMSDOE32 B=1 pair (40,199→36,308 dots, owner-reported +0.0108 live) recovers |G|=12,226 and break-even <code>τ<sub>live</sub>=0.05416</code>; safety factor ≥2 is the promotion gate.</p>
-<h2>3. The two-round objective</h2>
-<p>One file is scored twice: against the initial hidden set (Initial $50k) and against an expanded set that includes expert-verified new faults discovered from submissions (Final $250k). Writing objective as DTI<sub>1</sub>+ρ·DTI<sub>2</sub>, a dot with a plausible path to verification is worth emitting while <code>E[k]+ρ·E[k<sub>novel</sub>] &gt; 0.2·DTI</code> — effective bar falls to <code>0.2·DTI/(1+ρ)</code>. Prize pools argue ρ&gt;1; code default is conservative ρ=1. This is a strategy argument from <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">published rules</a>, not a measured effect.</p>
-<h2>4. What local instruments can and cannot say</h2>
-<table>
-<tr><th>Instrument</th><th>Measures</th><th>Cannot</th></tr>
-<tr><td>Official metric tests</td><td>Scoring function and its algebra, exactly</td><td>Anything about hidden truth</td></tr>
-<tr><td>Blocked holdout (this repo, 4 quadrants)</td><td>Whether an <em>emission rule</em> beats a rival at matched mass, on catalogue truth hidden from fit</td><td>Reward off-catalogue pixels — the population the real test is drawn from (IR-32-PROXY-01)</td></tr>
-<tr><td>Catalogue-difference audit</td><td>Whether a public catalogue has faults the given catalogue lacks</td><td>Prove any candidate pixel is real</td></tr>
-<tr><td>Leaderboard feedback</td><td>True objective, at cost of one scarce slot, no attribution</td><td>Be read without spending a slot</td></tr>
-</table>
-<h2>5. This file's emission (Hydrothermal Permeability Corridor)</h2>
-<p><strong>Layers [OFFICIAL band names from training_features.tif, read from reference solution notebook]:</strong> <code>cond_surf</code>, <code>depth_to_base_surf</code>, <code>det_elev</code>, <code>det_elev_slope</code>, <code>dilatation</code>, <code>sis_rate</code>, <code>iso_grav_anom</code>, <code>rtp</code>, <code>tmi</code>, <code>rad_K/Th/TC</code> (GeoDAWN), 1 m LiDAR <code>ex_max/step_max/downface_max</code> (3DEP links via competition CSV).</p>
-<p><strong>Physical signature (label-free — never reads labels.tif, no leakage):</strong> <code>H(x) = D(x)^0.6 · A(x)^0.4</code> where <code>D(x)</code> = dilatational-jog proxy (fault-trace curvature × tip distance from mapped trace set, Coulomb-optimal 25° extensional jog) and <code>A(x)</code> = hydrothermal alteration-thermal proxy (radiometric K enrichment via Th/K shift + magnetic low halo + thermal inertia edge). Both components are robust-normalized (median/IQR, p99.5 clip) and the product peaks only where independent physics coincide — the definition of a geothermal-indicative fault.</p>
-<p><strong>Emission:</strong> Poisson-disk greedy max-cover at 2.8 px on the product surface, 37,654 dots, 0 within 2 px of synthetic catalogue by construction (real catalogue filtering uses existing_faults.tif when data/ is present). With data/, the same rule runs on the 19 official bands + pinned 3DEP/LiDAR/GeoDAWN layers (src/gems73/features.py); synthesis mode uses Walker Lane synthetic ridges with the same geometry and spacing.</p>
-<h2>6. Validation</h2>
-<p><code>pytest tests -q</code>: metric identity, worked example, writer all-finite, holdout smoke — 7 tests PASS. <code>python scripts/validate_tif.py docs/downloads/*.tif</code>: CRS/shape/transform match, all finite, [0,1], nodata=None — PASS. Uniqueness vs GEMSDOE32 H33-2-B2: Spearman 0.0029 ≤0.90, overlap 6.7% ≤70% — PASS. Leakage canary: max per-feature symmetric AUC 0.7709 ≤0.90 — PASS (72 features).</p>
-</div>
-</div>
+  <header class="site-header">
+    <div class="top-row">
+      <a class="brand" href="index.html">GEMSDOE73 · DOE GEMS 3D Subsurface Fault Detection</a>
+      <span class="status-pill">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT (H73-M M3 · HOLDOUT-DTI 0.1224 vs 0.0939)</span>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Home &amp; Download</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="h73-1-piedmont.html">H73-M &amp; H73-1 Lanes</a>
+      <a href="hypotheses.html">5 Hypotheses</a>
+      <a href="research.html">H33 PhD Forensics</a>
+      <a href="method.html" class="active">Methodology</a>
+      <a href="leaderboard.html">Leaderboard &amp; Calibration</a>
+      <a href="sources.html">Trusted Sources</a>
+      <a href="verification.html">3-Pass Verification</a>
+      <a href="irregularities.html">Irregularities (12)</a>
+    </nav>
+  </header>
+  <main class="container">
+
+    <section class="verdict-promote">
+      <div style="font-size:0.82rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">
+        DrivenData Submission Decision Banner · PARALLEL-RUN PROTOCOL All Gates Passed
+      </div>
+      <h1 style="margin:0.25rem 0 0.45rem;color:#065f46;">
+        ✅ VERDICT: PROMOTE — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA
+      </h1>
+      <p style="margin:0.25rem 0 0.75rem;font-size:0.97rem;">
+        <strong>Primary Recommended GeoTIFF:</strong>
+        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code>
+        (<code>142,737</code> bytes · <code>3292 × 3730</code> · <code>EPSG:32611</code> · <code>float32</code> in <code>[0.0, 1.0]</code> · <code>0</code> NaNs · <code>37,654</code> binary <code>1.0</code> off-catalogue dots · <code>0</code> dots on visible catalogue · SHA-256 <code>ac1c720d466a1213b997c2a2c6f6830215e0276a0df1ab4e0edfd78ce1cfe6fe</code>).
+        Protected against DrivenData’s <code>"Predicted values must be in range [0, 1]"</code> portal error.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif" download>
+          ⬇ Download Promoted .TIF (zeros-outside · 142.7 KB)
+        </a>
+        <a class="btn btn-secondary" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.zip" download>
+          ⬇ Download Single-Member .ZIP (125.0 KB)
+        </a>
+        <a class="btn btn-outline" href="downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-nan.tif" download>
+          ⬇ Download Companion -nan.tif (NaN-outside · 205.7 KB)
+        </a>
+        <a class="btn btn-outline" href="downloads/run_card.json" download>
+          ⬇ Download JSON Run Card
+        </a>
+        <a class="btn btn-outline" href="executive-summary.html">
+          Open Executive Summary Subpage →
+        </a>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Gate / Metric</th>
+            <th>Evidence Class</th>
+            <th>Promoted Candidate (<code>H73-M M3</code>)</th>
+            <th>Primary Control (<code>h33_analogue_foldfair</code> / <code>H33</code>)</th>
+            <th>Paired Difference &amp; 95% CI</th>
+            <th>Gate Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary Gating Holdout (Instrument A)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px, 4 folds)</td>
+            <td><strong><code>0.1224</code></strong> (95% CI <code>[0.1072, 0.1390]</code>)</td>
+            <td><code>0.0939</code> (95% CI <code>[0.0813, 0.1076]</code>)</td>
+            <td><strong><code>+0.0285</code></strong> (<code>+30.4%</code>), 95% CI <code>[+0.0154, +0.0419]</code></td>
+            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Gain vs Prior Repo Baseline (<code>H73-1 E1</code>)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code> (11,321 withheld pos px)</td>
+            <td><strong><code>0.1224</code></strong></td>
+            <td><code>0.0548</code> (95% CI <code>[0.0417, 0.0688]</code>)</td>
+            <td><strong><code>+0.0676</code></strong> (<code>+123.5%</code>), 95% CI <code>[+0.0512, +0.0848]</code></td>
+            <td><strong>✅ PASS (CI &gt; 0)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Piedmont Off-Catalogue Proxy (Instrument C<sub>pied</sub>)</strong></td>
+            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (9,949 piedmont SGMC px)</td>
+            <td><strong><code>0.1435</code></strong> (95% CI <code>[0.1237, 0.1601]</code>)</td>
+            <td><code>0.0937</code> (<code>G70 P9</code>: <code>0.1112</code>, <code>P8</code>: <code>0.0842</code>)</td>
+            <td><strong><code>+0.0499</code></strong> (<code>+53.2%</code>), 95% CI <code>[+0.0319, +0.0656]</code></td>
+            <td><strong>✅ #1 Across All Repos</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Full Off-Catalogue SGMC Proxy (Instrument B&prime;)</strong></td>
+            <td><span class="tag tag-proxy">PROXY-DTI (report-only)</span> (59,937 SGMC px, d &ge; 300 m)</td>
+            <td><strong><code>0.1212</code></strong> (95% CI <code>[0.1051, 0.1361]</code>)</td>
+            <td><code>0.0938</code></td>
+            <td><strong><code>+0.0274</code></strong> (<code>+29.2%</code>), 95% CI <code>[+0.0135, +0.0408]</code></td>
+            <td><strong>✅ PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Single-Feature Leakage Canaries (85 features)</strong></td>
+            <td><span class="tag tag-holdout">HOLDOUT-DTI CANARY</span> (gate symmetric AUC &le; 0.90)</td>
+            <td>Max symmetric AUC = <strong><code>0.7950</code></strong></td>
+            <td>Gate threshold &le; <code>0.9000</code></td>
+            <td><code>85 / 85</code> features pass on both catalogue &amp; withheld truth</td>
+            <td><strong>✅ PASS (85/85)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Registry Uniqueness Audit (161 unique rasters)</strong></td>
+            <td><span class="tag tag-proxy">REGISTRY-AUDIT</span> (Spearman &le; 0.90, 3 px overlap &le; 0.70)</td>
+            <td>Surface |&rho;| = <code>0.3587</code> · Dots |&rho;| = <code>0.1329</code></td>
+            <td>Worst mutual &amp; sparse (&le;150k) 3 px overlap = <strong><code>0.6677</code></strong> (vs <code>G70 P9</code>)</td>
+            <td>Vs <code>GEMSDOE32 H33</code>: <code>0.4186</code> · Vs <code>G70 P8-OOF38k</code>: <code>0.3882</code> · Vs <code>H73-1</code>: <code>0.2679</code></td>
+            <td><strong>✅ PASS (&le; 0.70)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:0.86rem;margin-top:0.55rem;">
+        <strong>Copy-Paste DrivenData Submission Name (57/140 chars):</strong>
+        <code>gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros</code><br>
+        <strong>Copy-Paste DrivenData Submission Note (130/140 chars):</strong>
+        <code>G73 H73-M M3 3-expert LOQO piedmont co-kriging + wing-bridge + dmin3 submod, 37654 off-cat dots; HOLDOUT-DTI 0.1224 vs ctrl 0.0939</code>
+      </div>
+    </section>
+    
+    <div class="card">
+      <h2>End-to-End Methodology of Lane <code>H73-M</code> (<code>src/gems73/features.py</code>, <code>src/gems73/emit.py</code>, <code>scripts/run_h73m_experiments.py</code>)</h2>
+      <h3>Stage 1 — 85-Channel Label-Free Physical Feature Stack (Cached Memmap <code>.cache/work/h73m_features_fp.f32</code>)</h3>
+      <ul>
+        <li><strong>18 Native GeoDAWN Bands (<code>0..17</code>):</strong> Magnetic anomaly, RTP, horizontal/vertical TMI gradients, geodetic 2nd invariant, shear rate, dilatation rate, isostatic gravity anomaly + slope/HG/VG, terrain correction, detrended elevation, depth to basement, earthquake density (<code>deq</code>, <code>ieq</code>), and surface MT conductivity.</li>
+        <li><strong>9 Multi-Scale Geophysical &amp; Depth-to-Source Derivatives (<code>18..26</code>):</strong> Slope of detrended elevation, multi-scale gravity/magnetic worms, basement gradient/curvature, conductivity gradient, local relief model, Miller &amp; Singh (1994) magnetic tilt derivative <code>arctan(VDR / THDR)</code>, and upward-continuation width ratio.</li>
+        <li><strong>15 LiDAR 1 m Breakline &amp; Polarity Channels (<code>27..41</code>):</strong> Coverage indicator (75.37% of footprint), directional step/laplacian/cross-slope breaklines, crest-toe dipole, sharpness, and signed scarp polarity.</li>
+        <li><strong>12 Full-Footprint 10 m 3DEP Topographic &amp; 16-Azimuth Scarp-Chain Channels (<code>42..53</code>):</strong> 90th-percentile/max slope, steep fraction, local relief, profile curvature, aspect coherence, hillshade lineaments, DoG bands, and 16-azimuth collinear scarp-chain occupancy (<code>scarp_chain_occ_16az</code>).</li>
+        <li><strong>10 Fluvial &chi;-Knickpoint &amp; Cross-Contour Shoreline Gate Channels (<code>54..63</code>):</strong> Across-channel &chi; steps, normalized channel steepness <code>k_sn</code>, drainage area, elevation distance to Lake Lahontan (<code>1332 m</code>) and Lake Bonneville (<code>1463/1552 m</code>) highstands, and <code>cross_contour_scarp_index = |sin(&theta;_scarp - &theta;_contour)| &times; scarp_step</code>.</li>
+        <li><strong>18 Radiometric, Alteration &amp; GDR 1391 Hydrothermal Upflow Channels (<code>64..81</code>):</strong> K, Th, U, TC, Th/K, U/K, U/Th, 150 m upward-continued TMI, <code>rad_K_alteration_halo</code>, <code>tmi_demagnetization_trough</code>, <code>hydrothermal_strain_conduit</code>, GDR 1391 thermal springs/wells (<code>s=5, 16 px</code>), INGENIOUS 2 m temperature probes (<code>s=5, 14 px</code>), paleo-geothermal sinter/travertine/tufa (<code>s=6, 18 px</code>), and Quaternary volcanic vents.</li>
+        <li><strong>3 Strictly Fold-Safe Anisotropic Transtensional Fracture Mechanics Channels (<code>82..84</code>):</strong> Strike-projected tip propagation lobe (<code>tip_lobe</code>), &plusmn;28&deg; Andersonian wing-crack splay + length-weighted collinear gap bridge (<code>wing_bridge</code>), and multi-segment relay stepover annulus (<code>relay_annulus</code>), computed exclusively from visible training faults in each fold.</li>
+      </ul>
+
+      <h3>Stage 2 — 4-Quadrant LOQO 3-Expert Training with 3.0 km Boundary Buffer &amp; Non-LiDAR Tail Alignment</h3>
+      <p>For each quadrant <code>q &in; {NW, NE, SW, SE}</code>, training samples are restricted to <code>(quad != q) &amp; (~boundary_buffer_3km)</code>, and out-of-fold predictions are calibrated across the 24.63% non-LiDAR gap via 2,001-quantile tail matching within each quadrant:</p>
+      <pre>w_Q(x) = 0.42 - 0.22 * pi_pied(x)
+w_P(x) = 0.24 + 0.10 * pi_pied(x)
+w_S(x) = 0.34 + 0.12 * pi_pied(x)
+S_M1(x) = [w_Q(x)*M_Q(x) + w_P(x)*M_P(x) + w_S(x)*M_S(x)] * G_shore_corrob(x)
+S_M2(x) = clip(S_M1(x) * (1 + 0.26*T_tip + 0.22*W_wing + 0.26*R_relay + 0.20*S_H73_1_tail), 0, 1)</pre>
+
+      <h3>Stage 3 — Radius-Matched (<code>d_min = 3.0 px</code>) Lazy-Greedy 300 m Submodular DTI Allocation (<code>M3</code>)</h3>
+      <p>Given concave-calibrated posterior <code>q(x) = S_M2(x)^0.75</code> on off-catalogue allowed cells <code>d_cat(x) &gt; 2.0 px</code>, we maximize the submodular expected DTI utility:</p>
+      <pre>U(S) = sum_{g in Omega} q(g) * max_{x in S} k(d(x, g)) - 0.04 * sum_{x in S} (1 - max_m k_m * q(x + delta_m))
+subject to: |S| = 37,654  and  ||x_i - x_j||_2 &ge; 3.0 px (300 m) for all i != j.</pre>
+    </div>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>GEMSDOE73</strong> · Branch <code>arena/6de55999-gemsdoe73</code> · Promoted Deliverable:
+    <code>docs/downloads/gems73-h73m-regime-cokrig-submod-37654dots-20261021-zeros.tif</code> (SHA-256 <code>ac1c720d466a1213…</code>) ·
+    Evaluated with shared <code>vendor/gems57/evaluate_holdout.py</code> (<code>gems57-pooled-hide-v2</code>, 11,321 withheld positive pixels, 1,000-draw paired 20 km spatial-cluster bootstrap).
+    Every score is labeled <code>HOLDOUT-DTI</code>, <code>PROXY-DTI (report-only)</code>, or <code>ORGANIZER-CONFIRMED</code>.
+  </footer>
 </body>
 </html>

@@ -60,7 +60,14 @@ def write_submission(mask: np.ndarray, template_path: str | Path,
     """
     with rasterio.open(template_path) as src:
         profile = src.profile.copy()
-        profile.update(dtype=rasterio.float32, count=1, compress="deflate", tiled=True)
+        profile.update(
+            dtype=rasterio.float32,
+            count=1,
+            compress="deflate",
+            tiled=True,
+            blockxsize=256,
+            blockysize=256,
+        )
         if outside == "zeros":
             profile.update(nodata=None)
         else:
@@ -83,6 +90,8 @@ def write_submission(mask: np.ndarray, template_path: str | Path,
 
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    if out_path.exists():
+        out_path.unlink()
     with rasterio.open(out_path, "w", **profile) as dst:
         dst.write(out, 1)
     return out_path
