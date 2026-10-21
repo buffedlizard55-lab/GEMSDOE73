@@ -1,0 +1,104 @@
+{
+  "repo": "GEMSDOE73",
+  "lane": "H73-1",
+  "hypothesis": "Expert-added hidden faults are disproportionately low piedmont scarps in alluvium: one-sided 1 m-LiDAR steps chaining collinearly over >=1 km with a basement/gravity/magnetic step, in deep-basement, gentle-slope, low-relief terrain where catalogue mapping is incomplete.",
+  "mechanism": "Unsupervised surface sqrt(scarp_n*clip(1.4*chain))*(0.55+0.45*substep)*(0.45+0.55*pied_soft) from LiDAR step/downface/cross/ex + polarity, 16-azimuth 1.3 km chain occupancy, top-2 subsurface-step witness, soft piedmont weight; greedy dotted emission 37,654 dots, 2.5 px spacing, >200 m from catalogue. No catalogue/SGMC training, no scored-raster input.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches and fluvial terrace risers (contour-parallel piedmont steps, no subsurface step)",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "E1_dti": 0.05475550923291318,
+    "E1_ci95": [
+      0.041664880873624195,
+      0.06884302624356965
+    ],
+    "E2_dti": 0.03391772794237219,
+    "E3_dti": 0.056442803628710535,
+    "h33_analogue_foldfair_dti": 0.09386085313581098,
+    "h33_analogue_foldfair_ci95": [
+      0.08125297623437337,
+      0.10760036586090667
+    ],
+    "random_control_dti": 0.04837354917359226,
+    "E1_paired_delta_vs_control": -0.0391053439028978,
+    "E1_paired_delta_vs_control_ci95": [
+      -0.05709989451101069,
+      -0.021126906512599696
+    ],
+    "E1_paired_delta_vs_random": 0.006381960059320922,
+    "E1_paired_delta_vs_random_ci95": [
+      -0.006767691942197393,
+      0.020183475607241406
+    ],
+    "preregistered_gate_passed": false
+  },
+  "secondary_proxy_report_only": {
+    "evidence_class": "PROXY-DTI (SGMC off-catalogue piedmont subset; report only, never used for selection)",
+    "truth_pixels": 11885,
+    "E1": 0.10450224920538474,
+    "h33_champion": 0.09800255757988548,
+    "E2": 0.04097617354596056,
+    "E3": 0.09994839144942995
+  },
+  "leakage_canaries": {
+    "all_pass": true,
+    "max_symmetric_auc": 0.6105073767776699,
+    "channels": 17
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "REGISTRY-MEASUREMENT (accessible scan, not a complete organizer registry)",
+    "registry_unique_rasters_checked": 77,
+    "surface_spearman_max_sample200k": 0.11384187585640852,
+    "dots_spearman_max_full": 0.0304178767098455,
+    "dots_mutual_overlap_max": 0.39037777777777777,
+    "dots_mutual_worst": "gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+    "dots_forward_overlap_max_sparse_le150k": 0.47978966378074045,
+    "dots_forward_overlap_literal_max": 0.9944229032772083,
+    "dots_forward_literal_worst": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "literal_forward_note": "Only the 206,895-dot r13 lattice (3 px halo covers ~100% of the footprint) exceeds 0.70 forward; mutual overlap there is 0.139. Flagged as IR-73-01.",
+    "vs_h33_champion": {
+      "forward": 0.17716577256068414,
+      "mutual": 0.17233228873426462,
+      "rho": 0.004216736738041128
+    },
+    "unique_substantive": true
+  },
+  "raster_sha256": "d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece",
+  "raster_bytes": 141163,
+  "validator": {
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "dots": 37654,
+    "crs_shape_transform_match_sample": true
+  },
+  "submission_name": "gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021",
+  "submission_note": "G73 H73-1 E1 piedmont scarp-chain unsupervised 37654 dots; HOLDOUT-DTI 0.0548 vs ctrl 0.0939 - NEGATIVE, selector review only",
+  "submission_note_chars": 125,
+  "download_ok": true,
+  "submit_recommended": false,
+  "verdict": "negative",
+  "verdict_reason": "E1/E2/E3 all failed the preregistered gate: best (E3) paired delta vs the fold-fair H33-analogue control is -0.0374 [-0.0555,-0.0202] on HOLDOUT-DTI (gems57-pooled-hide-v2, 11,321 withheld px). E1 is not significantly above random on that instrument (+0.0064 [-0.0068,+0.0202]). The file is format-valid and registry-unique and beats the champion on the report-only SGMC-piedmont proxy, so it is kept as a selector-review discovery artifact; do not spend a weekly slot on it without a knowing selector override.",
+  "weekly_slots_spent": 0,
+  "organizer_score": null,
+  "experiments_run": 3
+}

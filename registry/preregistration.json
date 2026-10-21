@@ -1,0 +1,46 @@
+{
+  "prereg_id": "GEMSDOE73-PREREG-1",
+  "written_before_any_gemsdoe73_holdout_run": true,
+  "lane": "H73-1 piedmont micro-scarp chains (polarity x straight-chain collinearity x subsurface-step witness), fully unsupervised; no catalogue/SGMC training, no distance-to-catalogue feature, no scored raster input",
+  "hypothesis": "Expert-added hidden faults are disproportionately low piedmont scarps in alluvium: one-sided 1 m-LiDAR steps that chain collinearly over >=1 km and coincide with a basement/gravity/magnetic step, in deep-basement, gentle-slope, low-relief terrain where catalogue mapping is incomplete.",
+  "non_fault_mimic": "Pleistocene Lake Lahontan shoreline benches and fluvial terrace risers (contour-parallel piedmont steps with no subsurface step)",
+  "surface_formula_E1": "S = sqrt(scarp_n * clip(1.4*chain,0,1)) * (0.55+0.45*substep) * (0.45+0.55*pied_soft); norm(x)=clip((x-p01)/(p99-p01),0,1) on footprint",
+  "components": {
+    "scarp_lidar": "mean(norm(step_max),norm(downface_max),norm(cross_max),norm(ex_max)) * (0.5+0.5*|downface-upface|/(downface+upface+1)) where lidar valid>0",
+    "scarp_dem_fallback": "norm(|gaussian_laplace(det_elev, sigma=1.5)|) where lidar invalid",
+    "chain": "max over 16 azimuths of mean skeleton occupancy at offsets t=-6..6 (excluding 0), skeleton = scarp_n >= footprint P90 of scarp_n",
+    "substep": "mean of top-2 of {norm(|grad gaussian(depth_to_base_surf,2)|), norm(iso_grav_anom_slope), norm(tmi_hg)}",
+    "pied_soft": "(clip(depth/750,0,1) * clip(1-slope/20,0,1) * clip(1-relief5/120,0,1))^(1/3), relief5 = 5x5 max-min of det_elev"
+  },
+  "experiments": {
+    "E1": "full formula above",
+    "E2": "E1 with piedmont factor replaced by 1.0 (tests the domain hypothesis)",
+    "E3": "E1 with chain factor and subsurface factor replaced by 1.0 (piedmont scarp only)"
+  },
+  "emission_frozen": {
+    "rule": "score-ordered greedy selection, ties by flat index",
+    "min_spacing_px": 2.5,
+    "budget_dots": 37654,
+    "allowed": "footprint AND Euclidean distance to visible catalogue > 2.0 px",
+    "values": "binary 1.0 dots, 0.0 elsewhere"
+  },
+  "primary_instrument": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "folds": "vendor/gems57/holdout.py buffered_component_draw(seed=20, buffer_px=3, boundary_px=12)",
+    "fold_fair_emission": true,
+    "controls": ["h33_analogue_foldfair (H19-5 binary support, same emission)", "random_dots (seed 73, same allowed domain and budget)"],
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular, R=300 m = 3 px",
+    "bootstrap": "paired physical spatial-cluster percentile, 1000 draws, vendor pooled_summary"
+  },
+  "leakage_canary": "every input/derived channel alone: symmetric AUC = max(AUC,1-AUC) must be <= 0.90 vs catalogue and vs pooled withheld truth",
+  "uniqueness_gates": {
+    "spearman_surface_and_dots_max": 0.9,
+    "forward_dot_overlap_within_3px_max": 0.7,
+    "stages": ["continuous surface before placement", "final dots"]
+  },
+  "promotion_rule": "selected experiment beats h33_analogue_foldfair pooled HOLDOUT-DTI with paired 95% CI excluding 0 AND canaries pass AND uniqueness passes; else verdict=negative and file labelled DO-NOT-SUBMIT",
+  "budget": {"max_experiments": 3, "max_hours": 2, "weekly_slots_spent_by_this_repo": 0},
+  "secondary_proxy_report_only_not_for_selection": "DTI vs SGMC off-catalogue piedmont subset (truth never used by the method)"
+}

@@ -1,0 +1,5 @@
+.cache/
+__pycache__/
+*.pyc
+data/*.tif
+data/raw_parts/
