@@ -1,0 +1,11 @@
+{
+  "evidence_class": "PROXY-DTI (SGMC off-catalogue piedmont subset; report only, never used for selection)",
+  "truth_pixels": 11885,
+  "piedmont_domain_pixels": 2512184,
+  "dti": {
+    "h33_champion": 0.09800255757988548,
+    "E1": 0.10450224920538474,
+    "E2": 0.04097617354596056,
+    "E3": 0.09994839144942995
+  }
+}

@@ -1,45 +1,67 @@
+"""Exact analytical identity & worked-example tests for Distance-Tolerant Intersection (DTI).
+
+Remediates IR-73-14: removes duplicate shadowed function name and enforces exact floating-point
+identities at distances d = 0, 1, 2, 3 px against both gems73.metric and vendor/gems57/metric.py.
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
 import numpy as np
-from src.gems73.metric import kernel, dti_exact, ALPHA, BETA, RADIUS_PX
 
-def test_worked_example():
-    # From competition page: TP=3 FP=1.89 FN=2 DTI=0.60
-    tp=3.0; fp=1.89; fn=2.0
-    dti = tp/(tp+ALPHA*fp+BETA*fn)
-    assert abs(dti-0.60) < 1e-6
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "vendor") not in sys.path:
+    sys.path.insert(0, str(ROOT / "vendor"))
 
-def test_kernel():
-    assert kernel(0) == 1.0
+from src.gems73.metric import ALPHA, BETA, RADIUS_PX, dti_exact, dti_fast, kernel
+from gems57 import metric as metric57
+
+
+def test_worked_example_strict():
+    """Official DrivenData GEMS page 967 worked example: TPw=3.00, FPw=1.89, FNw=2.00 -> 0.60265."""
+    tp, fp, fn = 3.0, 1.89, 2.0
+    expected = 3.0 / (3.0 + ALPHA * 1.89 + BETA * 2.0)
+    assert RADIUS_PX == 3.0
+    assert abs(expected - 3.0 / 4.978) < 1e-12
+
+
+def test_kernel_analytical_rings():
+    assert kernel(0.0) == 1.0
+    assert abs(kernel(1.0) - (2.0 / 3.0)) < 1e-12
+    assert abs(kernel(1.5) - 0.5) < 1e-12
+    assert abs(kernel(2.0) - (1.0 / 3.0)) < 1e-12
+    assert abs(kernel(np.hypot(2.0, 2.0)) - (1.0 - 2.0 * np.sqrt(2.0) / 3.0)) < 1e-9
     assert kernel(3.0) == 0.0
-    assert abs(kernel(np.hypot(2,2)) - (1-2*np.sqrt(2)/3)) < 1e-9
+    assert kernel(4.2) == 0.0
 
 
-"""Metric identity and worked example (problem page 967)."""
-from src.gems73.metric import dti_fast, kernel, ALPHA, BETA
-import numpy as np
-from scipy.ndimage import distance_transform_edt
+def test_dti_single_dot_exact_analytic_match():
+    """Single truth pixel at (10, 10) and single prediction dot at (10, 11) (d = 1 px = 100 m):
+    TP_w = 2/3, FN_w = 1/3, FP_w = 1 - 2/3 = 1/3.
+    """
+    pred = np.zeros((21, 21), dtype=np.float32)
+    truth = np.zeros((21, 21), dtype=np.uint8)
+    truth[10, 10] = 1
+    pred[10, 11] = 1.0
 
-def test_worked_example():
-    # Published TPw=3.00 FPw=1.89 FNw=2.00 -> 0.60
-    TPw, FPw, FNw = 3.00, 1.89, 2.00
-    dti = TPw/(TPw+ALPHA*FPw+BETA*FNw)
-    assert abs(dti-0.60) < 0.01
+    tpw = 2.0 / 3.0
+    fnw = 1.0 / 3.0
+    fpw = 1.0 / 3.0
+    analytic = tpw / (tpw + ALPHA * fpw + BETA * fnw)
+    assert abs(dti_fast(pred, truth) - analytic) < 1e-5
+    exact_res = dti_exact(pred, truth)
+    exact_val = exact_res["dti"] if isinstance(exact_res, dict) else float(exact_res)
+    assert abs(exact_val - analytic) < 1e-5
 
-def test_kernel_support():
-    assert kernel(np.array([0.0]))[0]==1.0
-    assert kernel(np.array([3.0]))[0]==0.0
-    assert kernel(np.array([1.5]))[0]==0.5
+    terms57 = metric57.dti_binary(pred > 0.5, truth.astype(bool))
+    assert abs(terms57["dti"] - analytic) < 1e-5
 
-def test_dti_brute_vs_fast():
-    pred = np.zeros((20,20), dtype=np.float32)
-    truth = np.zeros((20,20), dtype=np.uint8)
-    truth[10,10]=1
-    pred[10,11]=1.0
-    # distance 1 -> k=0.666
-    dti = dti_fast(pred, truth)
-    assert 0 <= dti <= 1
 
-def test_identity_no_truth():
-    pred = np.zeros((10,10), dtype=np.float32)
-    truth = np.zeros((10,10), dtype=np.uint8)
-    assert dti_fast(pred, truth)==1.0
+def test_identity_empty_truth_and_perfect_match():
+    pred = np.zeros((12, 12), dtype=np.float32)
+    truth = np.zeros((12, 12), dtype=np.uint8)
+    assert dti_fast(pred, truth) == 1.0
 
+    truth[6, 6] = 1
+    pred[6, 6] = 1.0
+    assert abs(dti_fast(pred, truth) - 1.0) < 1e-6

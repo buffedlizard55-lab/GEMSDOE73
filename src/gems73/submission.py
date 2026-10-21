@@ -7,6 +7,44 @@ from pathlib import Path
 from typing import Any
 import numpy as np
 import rasterio
+from .grid import WIDTH, HEIGHT, CRS, TRANSFORM
+
+
+def write_submission(arr: np.ndarray, out_path: str | Path, nodata: float | None = None) -> dict[str, Any]:
+    """Write a validated single-band float32 GeoTIFF on the official competition grid."""
+    a = np.asarray(arr, dtype=np.float32)
+    assert a.shape == (HEIGHT, WIDTH), f"expected {(HEIGHT, WIDTH)}, got {a.shape}"
+    if nodata is None:
+        assert np.isfinite(a).all(), "array contains non-finite values"
+        assert float(a.min()) >= 0.0 and float(a.max()) <= 1.0, "predicted values must be in [0, 1]"
+    p = Path(out_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    profile = {
+        "driver": "GTiff",
+        "dtype": "float32",
+        "count": 1,
+        "crs": CRS,
+        "transform": TRANSFORM,
+        "width": WIDTH,
+        "height": HEIGHT,
+        "nodata": nodata,
+        "compress": "deflate",
+        "tiled": True,
+        "blockxsize": 256,
+        "blockysize": 256,
+    }
+    with rasterio.open(p, "w", **profile) as dst:
+        dst.write(a, 1)
+    with rasterio.open(p) as chk:
+        re_arr = chk.read(1)
+        all_fin = bool(np.isfinite(re_arr).all())
+    return {
+        "path": str(p),
+        "sha256": compute_sha256(p),
+        "all_finite": all_fin,
+        "emitted": int(np.count_nonzero(np.isfinite(re_arr) & (re_arr > 0.0))),
+    }
+
 
 @dataclass(frozen=True)
 class CheckResult:
@@ -68,6 +106,7 @@ def write_submission_geotiff(predictions_2d: np.ndarray, template_path: Path, ou
     with rasterio.open(template_path) as tpl:
         profile = tpl.profile.copy()
         profile.update(dtype=rasterio.float32, count=1, compress="deflate", tiled=True,
+                       blockxsize=256, blockysize=256,
                        nodata=None if outside_mode == "zeros" else float("nan"))
         tpl_data = tpl.read(1)
         valid = np.isfinite(tpl_data)

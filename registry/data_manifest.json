@@ -260,6 +260,105 @@
       "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
       "bytes": 1635084,
       "provenance": "owner-supplied scored-artifact mirror (GEMSDOE27 primary candidate manifest, generated_utc 2026-10-03T00:32:37Z); UNSCORED on the leaderboard; added 2026-10-04 because scripts/run_pipeline.py required it and it was absent from this manifest, which made the documented reproduce command abort (IR-32-MANIFEST-01)"
+    },
+    {
+      "id": "ext_topo_10m_derived_100m_u8",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/topo_10m_derived_100m_u8.tif",
+      "dest": "external/topo_10m_derived_100m_u8.tif",
+      "group": "external",
+      "provenance": "USGS 3DEP 1/3 arc-second (10 m) seamless DEM slope/relief/profile-curvature/aspect-coherence/lineament derivatives across 100% of footprint (public domain USGS)",
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+      "bytes": 32523329
+    },
+    {
+      "id": "ext_topo_10m_manifest",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/topo_10m_derived_100m_u8.manifest.json",
+      "dest": "external/topo_10m_derived_100m_u8.manifest.json",
+      "group": "external",
+      "provenance": "Quantisation manifest for topo_10m_derived_100m_u8.tif",
+      "sha256": "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a",
+      "bytes": 2720
+    },
+    {
+      "id": "ext_dem10_chi_100m_u8",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/dem10_chi_100m_u8.tif",
+      "dest": "external/dem10_chi_100m_u8.tif",
+      "group": "external",
+      "provenance": "USGS 3DEP 10 m fluvial channel density, knickpoint & chi-elevation step channels across 100% of footprint (public domain USGS)",
+      "sha256": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+      "bytes": 2061484
+    },
+    {
+      "id": "ext_dem10_chi_manifest",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/dem10_chi_100m.manifest.json",
+      "dest": "external/dem10_chi_100m.manifest.json",
+      "group": "external",
+      "provenance": "Tile SHA-256 provenance manifest for dem10_chi_100m_u8.tif",
+      "sha256": "187a961ef5da45278c84b25d16296a5f3458da37abff45046d31ed58b9f5af86",
+      "bytes": 60085
+    },
+    {
+      "id": "ext_2m_temperature_probes",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "dest": "external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "group": "external",
+      "provenance": "DOE GDR 1391 INGENIOUS 2-meter temperature survey stations (T2m, F2mDAB; DOI 10.15121/1881483, CC BY 4.0)",
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+      "bytes": 1080530
+    },
+    {
+      "id": "ext_paleo_geothermal",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "HEAD",
+      "path": "data/external/paleo_geothermal_regional.zip",
+      "dest": "external/paleo_geothermal_regional.zip",
+      "group": "external",
+      "provenance": "DOE GDR 1391 INGENIOUS paleo-geothermal sinter/travertine/tufa/explosion-crater sites (DOI 10.15121/1881483, CC BY 4.0)",
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+      "bytes": 84008
+    },
+    {
+      "id": "ext_sb_heat_flow",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "HEAD",
+      "path": "docs/data/sb_heat_flow_in_footprint.csv",
+      "dest": "external/sb_heat_flow_in_footprint.csv",
+      "group": "external",
+      "provenance": "USGS ScienceBase Great Basin heat-flow observations clipped to GeoDAWN footprint (public domain USGS)",
+      "sha256": "9845263e658aeb66a4aeca6e64d995e74f0eb14b89768219ea9d223006dc8baf",
+      "bytes": 909294
+    },
+    {
+      "id": "scored_h33_champion",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "HEAD",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "dest": "scored/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "group": "scored",
+      "provenance": "GEMSDOE32 H33-2-B2 control artifact (owner-reported 0.2778; used strictly as evaluation benchmark and uniqueness check, never as model input)",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    {
+      "id": "ext_sb_heat_flow_json",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "HEAD",
+      "path": "docs/data/sb_heat_flow_in_footprint.json",
+      "dest": "external/sb_heat_flow_in_footprint.json",
+      "group": "external",
+      "sha256": "8f57091b064aa899354ae595a368cdc1b69673f15a18c7456cc228694071f49c",
+      "bytes": 2095242,
+      "provenance": "USGS ScienceBase Great Basin heat-flow release reprojected lossless to EPSG:32611 (DOI 10.5066/P9P03806 / Ingenious heat flow)"
     }
   ]
 }

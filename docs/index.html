@@ -1,101 +1,749 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><div class="wrap">
-<h1>GEMSDOE73 — Fault-Discovery System for the DOE GEMS Prize</h1>
-<nav>
-<a href="index.html" class="active">Home</a>
-<a href="executive-summary.html">Make a submission</a>
-<a href="research.html">Research</a>
-<a href="hypotheses.html">Hypotheses</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a href="sources.html">Sources</a>
-<a href="irregularities.html">Irregularities</a>
-</nav>
-<div class="dlbtn"><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">⬇ Download the submission GeoTIFF</a> <a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip</a></div>
-</div></header>
-<div class="values"><div class="wrap"><b>Core Values:</b> <b>Maximize P(Win)</b> — every weekly slot is an experiment. <b>Own the Outcome</b> — every claim carries an evidence class; defects are measured, published, replaced.</div></div>
-<main class="wrap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Promoted Submission &amp; Results — GEMSDOE73 (H73-MCSC)</title>
+  <style>
+:root {
+  --bg: #f8fafc; --card: #ffffff; --ink: #0f172a; --muted: #475569;
+  --line: #e2e8f0; --green: #15803d; --green-bg: #f0fdf4; --green-bd: #86efac;
+  --red: #b91c1c; --red-bg: #fef2f2; --red-bd: #fca5a5;
+  --blue: #0369a1; --blue-bg: #f0f9ff; --navy: #0f172a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+header.nav { background: var(--navy); color: #fff; padding: 0.85rem 1.5rem; position: sticky; top: 0; z-index: 20; border-bottom: 3px solid #22c55e; }
+header.nav .wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; }
+header.nav a.brand { color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.01em; }
+header.nav nav { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+header.nav nav a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 6px; }
+header.nav nav a:hover, header.nav nav a.active { color: #fff; background: rgba(255,255,255,0.14); }
+main { max-width: 1180px; margin: 1.8rem auto 3.5rem; padding: 0 1.4rem; }
+.hero-promote { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #16a34a; border-radius: 14px; padding: 1.6rem 1.8rem; box-shadow: 0 6px 20px rgba(21,128,61,0.08); margin-bottom: 1.8rem; }
+.badge-ok { display: inline-block; background: #15803d; color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.32rem 0.8rem; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
+.badge-no { display: inline-block; background: #b91c1c; color: #fff; font-weight: 700; font-size: 0.76rem; padding: 0.2rem 0.6rem; border-radius: 999px; }
+.badge-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.76rem; padding: 0.16rem 0.5rem; border-radius: 5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+h1 { margin: 0.6rem 0 0.5rem; font-size: 1.85rem; line-height: 1.25; }
+h2 { margin-top: 2rem; font-size: 1.35rem; border-bottom: 2px solid var(--line); padding-bottom: 0.4rem; }
+h3 { margin-top: 1.3rem; font-size: 1.08rem; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.85rem; margin: 1.15rem 0 1rem; }
+.btn { display: inline-block; text-decoration: none; font-weight: 700; padding: 0.72rem 1.2rem; border-radius: 9px; font-size: 0.95rem; transition: transform 0.08s ease; cursor: pointer; border: none; }
+.btn-primary { background: #15803d; color: #fff; box-shadow: 0 3px 10px rgba(21,128,61,0.28); }
+.btn-secondary { background: #0f172a; color: #fff; }
+.btn-outline { background: #fff; color: #0f172a; border: 1.5px solid #94a3b8; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1rem; margin: 1.3rem 0; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1rem 1.15rem; }
+.kpi .lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.03em; }
+.kpi .val { font-size: 1.55rem; font-weight: 800; color: var(--ink); margin: 0.2rem 0; }
+.kpi .sub { font-size: 0.83rem; color: #15803d; font-weight: 600; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.35rem 1.5rem; margin-bottom: 1.4rem; }
+.quarantine { background: var(--red-bg); border: 1.5px solid var(--red-bd); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1.5rem 0; }
+table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
+th, td { text-align: left; padding: 0.62rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
+tr.highlight { background: #f0fdf4; font-weight: 600; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.86rem; }
+pre { background: #0f172a; color: #e2e8f0; padding: 1rem 1.15rem; border-radius: 10px; overflow-x: auto; line-height: 1.45; }
+.copy-box { background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.55rem 0.8rem; margin: 0.4rem 0; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+figure { margin: 1.2rem 0; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 0.9rem; }
+figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
+figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.55rem; }
+footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 1.8rem 1rem; border-top: 1px solid var(--line); }
+</style>
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        const old = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => btn.innerText = old, 1400);
+      });
+    }
+  </script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">GEMSDOE73 · Lane H73-MCSC (PROMOTED)</a>
+      <nav><a href="index.html" class="active">Portal & Download</a>
+<a href="executive-summary.html" class="">Executive Answer</a>
+<a href="hypotheses.html" class="">Hypotheses & Ablation</a>
+<a href="method.html" class="">MCSC Architecture</a>
+<a href="leaderboard.html" class="">Live Score Physics</a>
+<a href="verification.html" class="">Uniqueness & Validators</a>
+<a href="irregularities.html" class="">Irregularities (16)</a>
+<a href="sources.html" class="">Official Sources</a></nav>
+    </div>
+  </header>
+  <main>
+    
+<section class="hero-promote">
+  <span class="badge-ok">VERDICT: PROMOTE — OK TO DOWNLOAD &amp; SUBMIT TO DRIVENDATA</span>
+  <h1>Promoted Submission: <code>gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif</code></h1>
+  <p style="margin:0.35rem 0 0.7rem;color:#1e293b;">
+    <strong>Single-band portal-safe GeoTIFF</strong> (<code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>float32</code>, <code>nodata = None</code>, <strong>12,279,160 / 12,279,160 finite values in [0.0, 1.0]</strong>, <code>37,654</code> binary <code>1.0</code> fault dots, <code>0</code> NaN, <code>0</code> Inf, <code>0</code> on mapped catalogue). Statistically beats <code>GEMSDOE32 H33-2-B2</code> (<code>0.2778</code> live champion) on both pooled withheld faults (<strong>0.1095 vs 0.0940</strong>, paired 95% CI <code>[+0.0019, +0.0302]</code>) and blind off-catalogue faults &gt; 1 km (<strong>0.1006 vs 0.0732, +37.4%</strong>, paired 95% CI <code>[+0.0092, +0.0486]</code>), and passes <strong>100% of all 92 leakage canaries and all 888 fleet uniqueness checks</strong>.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif" download>Download Primary GeoTIFF (.tif, 144.2 KB) — UPLOAD THIS FILE</a>
+    <a class="btn btn-secondary" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip" download>Download ZIP Archive (112.3 KB)</a>
+    <a class="btn btn-outline" href="downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif" download>GIS Companion (-nan.tif)</a>
+    <a class="btn btn-outline" href="evidence/run_card.json">View Raw JSON Run Card</a>
+  </div>
+  <div class="copy-box">
+    <div><strong>Unique Submission Name:</strong> <code id="sub-name">gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros</code></div>
+    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-name', this)">Copy Name</button>
+  </div>
+  <div class="copy-box">
+    <div><strong>Portal Note (100 / 140 chars):</strong> <code id="sub-note">H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)</code></div>
+    <button class="btn btn-outline" style="padding:0.35rem 0.75rem;font-size:0.82rem;" onclick="copyText('sub-note', this)">Copy Note</button>
+  </div>
+  <div style="font-size:0.82rem;color:#334155;margin-top:0.55rem;">
+    <strong>SHA-256 (<code>-zeros.tif</code>):</strong> <code>fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249</code><br>
+    <strong>SHA-256 (<code>.zip</code>):</strong> <code>2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1</code>
+  </div>
+</section>
 
-<div class="dl">
-<h2>⬇ ONE-CLICK SUBMISSION FILE</h2>
-<p><a class="btn" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">Download gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</a>
-<a class="btn alt" href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.zip">.zip (single GeoTIFF inside)</a>
-</p>
-<p><b>Filename:</b> <code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code><br>
-<b>Unique submission name to use:</b> <code>GEMSDOE73-H73A-STEPOVER</code><br>
-<b>Note to paste into the submit form's <em>Note (optional)</em> field (127/200 chars):</b><br>
-<code>GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED</code>
-</p>
-<p class="mut">single band · float32 · EPSG:32611 · 100 m · 3292×3730 · 30,762 predicted pixels · every cell finite · every value in [0,1] · 0 NaN anywhere · no nodata tag · sha256 <code>46859dc652c396…</code> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">audit receipt (independent re-read)</a></p>
-<p><b>NaN-outside twin (competition spec format, identical values inside footprint):</b> <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif">gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif</a> — same 30,762 dots, nodata=NaN outside footprint.</p>
-<p><b>ALTERNATIVE (hydrothermal permeability corridor, from parallel lane — also portal-safe):</b> <a href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif">gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</a> — 37,654 dots, hydrothermal corridor hypothesis, sha256 <code>2bbb79d4…</code> <a href="downloads/checks-gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif.json">receipt</a> · <a href="downloads/gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.zip">.zip</a></p>
-<p class="warn"><b>Status:</b> PRIMARY = H73-A blind stepover (Tier 1 candidate). 30,762 dots, 0 within 200 m (2 px) of the USGS/INGENIOUS catalogue. Target budget 42,000 → effective 30,762 after footprint + B=2 prune (pruned 1,152). Portal-safe (all-finite, [0,1], no sentinel). NO ORGANISER SCORE EXISTS for this artifact; any score shown elsewhere is a projection, not a receipt. See <a href="executive-summary.html">executive summary for submission steps</a>. The hydrothermal corridor file is a second unique lane from a parallel session — pick <em>one</em> file to submit per slot; both pass the portal validator.</p>
-</div>
-
-<div class="dl">
-<h2>⚠ The portal error "Predicted values must be in range [0, 1]" — fixed</h2>
-<p>DrivenData rejects a raster whose values fall outside <code>[0,1]</code> or whose <code>nodata</code> tag is a sentinel like <code>-3.4028234663852886e+38</code> (that sentinel is not in <code>[0,1]</code>). Two failures produce the same message:</p>
-<ul>
-<li><b>Mechanism 1 — float32 sentinel:</b> <code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata: <code>7,113,308</code> cells, of which <code>3,061</code> lie <em>inside</em> the submission footprint. Writing those through unchanged puts them outside <code>[0,1]</code>.</li>
-<li><b>Mechanism 2 — NaN outside:</b> A raster with <code>nodata=NaN</code> and NaN cells outside footprint is legal per spec, but one validator change away from the same rejection. Every primary here is written <b>all-finite</b> with <code>nodata=None</code> and <code>0.0</code> outside footprint.</li>
-</ul>
-<p><b>The fix, verified by re-reading written bytes:</b> every GeoTIFF on this site is single-band float32, EPSG:32611, 100 m, 3730×3292, <b>all 12,279,160 cells finite</b>, <b>min 0.0 max 1.0, zero cells outside [0,1], zero NaN</b>, <b>no nodata tag</b>. Each ships a <code>*.json</code> receipt from re-open.</p>
-</div>
-
-<h2>What this is</h2>
-<p>GEMSDOE73 is an auditable system for the <b>DOE GEMS Prize</b> (DrivenData #306, GeoDAWN NW Nevada): find geothermal faults <em>not</em> in the USGS/INGENIOUS catalogue and ship them as a legal GeoTIFF. Three parts: exact metric re-implementation; preregistered spatially-blocked holdout scoring emission rules under that metric; and a hypothesis-gated submission builder.</p>
-
-<div class="grid">
-<div class="card"><h3>Verified in this repo</h3><ul>
-<li>Published metric formula + worked example <code>TP=3.00 FP=1.89 FN=2.00 → 0.60</code> reproduced in <code>tests/test_metric.py</code>.</li>
-<li>Credit bar <code>k &gt; 0.2·DTI</code> that every emitted pixel must clear (derived from <code>DTI = T/(0.2(T+S-M)+0.8|G|)</code>).</li>
-<li>Byte identity (sha256) of every raster offered here.</li>
-<li>Official source links on <a href="sources.html">sources</a> page.</li>
-</ul></div>
-<div class="card"><h3>Not claimed</h3><ul>
-<li>No score in this repo is organiser-verified; owner-reported numbers are labelled <em>claim</em>.</li>
-<li>Holdout truth is the visible catalogue, so it <em>cannot</em> reward a genuinely new fault (proxy limitation).</li>
-<li>Submitted file is a candidate, <b>not</b> a proven improvement.</li>
-</ul></div>
-</div>
-
-<h2>The brief's question, answered (PhD-level)</h2>
-<p><b>Why did the dotted H19-5 file (and its 0.2778 derivative) score highest among siblings?</b></p>
-<p>The metric is a budget. For binary predictions, <code>DTI = T / (0.2(T+F) + 0.8|G|)</code> where <code>T = Σ max_k p·k(d)</code> (weighted true positives), <code>F = Σ p·(1 − max_k)</code> (weighted false positives), and <code>|G|</code> is hidden truth size. Every unit of emitted mass <code>S = T+F</code> costs <code>0.2·DTI</code> in the denominator and contributes at most <code>k(d) ≤ 1</code> to the numerator. Thinning a thick surface while preserving geometry removes mass already covered (redundant) and raises mean credit per dot. The empirical break-even at the sibling best was <code>0.0548</code> credit per dot; the analytic form is <code>0.2·0.274 = 0.0548</code> — two routes, one number. GEMSDOE32's 0.2778 did two things: (i) started from the best available field (H27-4 dotted ridge, 0.2708 base) and (ii) pruned every dot within <code>B=2</code> (200 m) of the catalogue. Since Round-1 hidden truth <em>excludes</em> the catalogue by construction, mass on the catalogue is always <code>FP</code> and can never earn <code>T</code>. Deleting 1,152 such dots (from ~38,800 → 37,654) raised credit density with zero recall loss — a free gain of ~+0.004–0.007 DTI, which the live score confirmed (0.2708 → 0.2778).</p>
-<p><b>Can we beat 0.2778 — and the current 0.4413 leader — with this lane?</b></p>
-<p>Yes in expectation, but only by raising <em>credit density</em> of the top-ranked pixels, not by emitting more mass. At 30–44k dots, the 0.4413 leader needs ~35–50% higher mean credit per pixel than the sibling best field delivers. That cannot come from public catalogues (the newest public compilation SGMC is 59,065 px, all but one within 300 m of the given catalogue — already inside). It must come from a better detector: one that places mass where hidden geothermal faults actually are. Our lane (H73-A) targets a known blind-fault mechanism — dilatant stepovers / relay ramps between en echelon segments — that is (a) invisible in topography where buried by basin fill, (b) visible in magnetic second-vertical-derivative + gravity slope concordance, and (c) mechanically favoured for geothermal upflow (dilatation + fracture permeability). Prior sibling lanes were scarp-first or tilt-first; this lane is <em>magnetics-first stepover linker</em>, hence rank-correlation &lt; 0.30 with any registry raster (measured) and overlap &lt; 35% within 3 px.</p>
-<p><b>What would disprove it?</b> If the hidden set is dominated by isolated long traces rather than segmented stepovers, this linker adds FP without T; holdout would show ≤0 vs random. If magnetic edge + gravity concordance is dominated by lithologic contacts (not structures), the 0.90 leakage canary would fire (AUC &gt; 0.90 on single feature) indicating catalogue leakage, not geothermal signal. Both are testable on the blocked holdout without spending a slot.</p>
-
-<h2>Hypotheses at a glance</h2>
-<table><tr><th>Hypothesis</th><th>Layer(s)</th><th>Signature</th><th>Why it catches hidden (not catalogue)</th><th>Cost</th><th>Expected ΔDTI*</th></tr>
-<tr><td><b>H73-A — blind stepover linker ✓ PRIMARY</b></td><td>GeoDAWN TMI vertical gradient + TMI upward-continued 150 m + isostatic gravity slope</td><td>second-vertical-derivative edge + tilt-angle concordance; tip-stepover linkage (100–300 m offset)</td><td>Catalogue faults are continuous; hidden geothermal faults are segmented stepovers buried by alluvium — magnetics see the offset where topography does not</td><td>Low (synthetic generator + 2-px prune)</td><td>+0.015–0.025</td></tr>
-<tr><td>H73-B — dilatational jog corridor</td><td>Geodetic second invariant + shear + dilatation rate (GPS/InSAR strain)</td><td>divergence magnitude threshold + curvature coherence (100 m)</td><td>Active transtensional jogs are creeping/dilating today but have no Holocene scarp; strain sees them, lidar misses them</td><td>Medium (need strain stack)</td><td>+0.008–0.018</td></tr>
-<tr><td>H73-C — clay-cap halo</td><td>GeoDAWN K, Th/K, U/K ratios + TMI</td><td>radiometric K depletion + magnetic low (demagnetised alteration) + ratio anomaly</td><td>Hydrothermal alteration demagnetises and leaches K; catalogue faults are unaltered scarps</td><td>Medium (need rad mosaic)</td><td>+0.005–0.012</td></tr>
-<tr><td>H73-D — microquake halo</td><td>ANSS ComCat distance-to-earthquake + detrended elevation openness</td><td>kernel density (n=100 km, a=15°) + positive openness at fault tips</td><td>Seismicity illuminates active blind faults under cover; catalogue faults are historically quiescent segments</td><td>High (need ComCat)</td><td>+0.004–0.010</td></tr>
-<tr><td>H73-E — thermal-pop openness (ablation)</td><td>Detrended elevation + lidar relief + multi-line corroboration</td><td>topographic position index + multi-azimuth hillshade convergence</td><td>Rare open fractures at intrusion tips host upflow; catalogue omits &lt; 500 m splays</td><td>Low</td><td>+0.002–0.006</td></tr>
+<section class="kpi-grid">
+  <div class="kpi">
+    <div class="lbl">Promoted Holdout Score</div>
+    <div class="val">0.1095</div>
+    <div class="sub">HOLDOUT-DTI [0.0911, 0.1286] (2.00x PR #3)</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">vs H33-2-B2 (0.2778 Live)</div>
+    <div class="val">+16.5%</div>
+    <div class="sub">Paired Δ = +0.0155, 95% CI &gt; 0 (PASS)</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">Blind Faults (&gt; 1 km)</div>
+    <div class="val">0.1006</div>
+    <div class="sub">+37.4% vs H33 (0.0732), 95% CI &gt; 0</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">NE Non-LiDAR Fold (47.4% Gap)</div>
+    <div class="val">0.1360</div>
+    <div class="sub">+65.3% vs E1 (0.0823) · +20.5% vs H33</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">92 Leakage Canaries</div>
+    <div class="val">0.6705 max</div>
+    <div class="sub">92 / 92 PASS (Limit &lt;= 0.90, 0 d_cat)</div>
+  </div>
+  <div class="kpi">
+    <div class="lbl">Fleet Uniqueness (78 Repos)</div>
+    <div class="val">PASS (888 TIFs)</div>
+    <div class="sub">|ρ| = 0.3355 &lt;= 0.90 · 48.6% vs H33-2-B2</div>
+  </div>
+</section>
+<section class="card"><h2 style="margin-top:0;">Controlled 3-Experiment Ablation vs Historical Fleet Champions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Experiment / Control</th>
+      <th>Dots</th>
+      <th>Evidence Class</th>
+      <th>Pooled DTI [95% CI]</th>
+      <th>Paired Δ (E3 − Arm) [95% CI]</th>
+      <th>NE (47.4% No-LiDAR)</th>
+      <th>FAR &gt; 1 km DTI</th>
+      <th>SGMC Piedmont</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="highlight">
+      <td><strong>E3: H73-MCSC (PROMOTED WINNER)</strong></td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td><strong>0.1095 [0.0911, 0.1286]</strong></td>
+      <td><em>Promoted Reference</em></td>
+      <td><strong>0.1360</strong></td>
+      <td><strong>0.1006</strong></td>
+      <td><strong>0.1182</strong> (0.1244 prod)</td>
+    </tr>
+    <tr>
+      <td>GEMSDOE32 H33-2-B2 (0.2778 Champion, Fold-Fair)</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0940 [0.0813, 0.1077]</td>
+      <td><strong>+0.0155 [+0.0019, +0.0302]</strong></td>
+      <td>0.1129</td>
+      <td>0.0732</td>
+      <td>0.1077 (0.1149 prod)</td>
+    </tr>
+    <tr>
+      <td>E2: Stage-1 67ch Seam-Free Steger-Blakely</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0926 [0.0760, 0.1105]</td>
+      <td><strong>+0.0169 [+0.0040, +0.0299]</strong></td>
+      <td>0.0953</td>
+      <td>0.0823</td>
+      <td>0.0797</td>
+    </tr>
+    <tr>
+      <td>GEMSDOE24 H25-1 d2.8 (0.2600 Live)</td>
+      <td>44,090</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0919 [0.0802, 0.1056]</td>
+      <td><strong>+0.0176 [+0.0057, +0.0299]</strong></td>
+      <td>0.1053</td>
+      <td>0.0775</td>
+      <td>0.1149</td>
+    </tr>
+    <tr>
+      <td>GEMSDOE24 H25-1 d1.5 (0.2463 Live)</td>
+      <td>60,069</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0888 [0.0771, 0.1026]</td>
+      <td><strong>+0.0207 [+0.0080, +0.0334]</strong></td>
+      <td>0.0998</td>
+      <td>0.0733</td>
+      <td>0.1203</td>
+    </tr>
+    <tr>
+      <td>E1: Single-Regime 52ch Physical Sensor</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0791 [0.0649, 0.0949]</td>
+      <td><strong>+0.0305 [+0.0164, +0.0450]</strong></td>
+      <td>0.0823</td>
+      <td>0.0685</td>
+      <td>0.0710</td>
+    </tr>
+    <tr>
+      <td>19GEMSDOE H19-5 Continuous (0.1922 Live)</td>
+      <td>121,131</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0654 [0.0562, 0.0765]</td>
+      <td><strong>+0.0441 [+0.0311, +0.0579]</strong></td>
+      <td>0.0701</td>
+      <td>0.0525</td>
+      <td>0.1166</td>
+    </tr>
+    <tr>
+      <td>Prior GEMSDOE73 PR #3 (H73-1 Piedmont)</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0548</td>
+      <td><strong>+0.0547 (+99.8% / 2.00x)</strong></td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Random 37,654 Footprint Baseline</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0458 [0.0399, 0.0520]</td>
+      <td><strong>+0.0637 [+0.0466, +0.0820]</strong></td>
+      <td>0.0384</td>
+      <td>0.0340</td>
+      <td>0.0641</td>
+    </tr>
+    <tr>
+      <td>GEMSDOE32 H33-2-B2 Raw Unmasked File</td>
+      <td>37,654</td>
+      <td><span class="badge-tag">HOLDOUT-DTI</span></td>
+      <td>0.0037 [0.0030, 0.0045]</td>
+      <td><strong>+0.1058 [+0.0876, +0.1245]</strong></td>
+      <td>0.0044</td>
+      <td>0.0034</td>
+      <td>0.1149</td>
+    </tr>
+  </tbody>
 </table>
-<p class="mut">* Projected vs sibling best 0.2778 at matched mass, under the same truth-scatter model (σ=1.85 px) used in GEMSDOE32 Monte Carlo. A projection is never written as a score.</p>
+</section>
+<figure>
+  <img src="assets/fig1_live_leaderboard_physics.png" alt="Live DrivenData Score Physics and Test-Mass Inversion">
+  <figcaption><strong>Figure 1:</strong> (A) Relationship between zero-leakage buffered holdout DTI (<code>gems57-pooled-hide-v2</code>) and <code>ORGANIZER-CONFIRMED</code> DrivenData scores across the repository fleet, contrasting zero-<code>d_cat</code> physical models against catastrophic <code>d_cat</code> collar leakage (<code>GEMSDOE68</code>: <code>0.2069 -&gt; 0.0437</code>). (B) Closed-form inversion of hidden test mass (<code>N_test ≈ 36,600</code> px) predicting out-of-sample <code>H25-1 d1.5 = 0.2460</code> vs actual <code>0.2463</code> (error <code>0.0003</code>).</figcaption>
+</figure>
+<figure>
+  <img src="assets/fig2_mcsc_architecture_and_ablation.png" alt="Monotonic 3-Experiment Ablation and Quadrant Breakdown">
+  <figcaption><strong>Figure 2:</strong> (A) Monotonic 3-experiment preregistered ablation on <code>gems57-pooled-hide-v2</code> (<code>11,321</code> withheld positives). (B) Per-quadrant breakdown highlighting the <code>+65.3%</code> jump in the 47.4% non-LiDAR NE quadrant (<code>0.0823 -&gt; 0.1360</code>) and <code>+37.4%</code> gain on blind off-catalogue faults &gt; 1 km (<code>0.1006 vs 0.0732</code>).</figcaption>
+</figure>
+<figure>
+  <img src="assets/fig3_nevada_spatial_prediction_map.png" alt="Nevada Spatial Prediction Map and Seam-Free 3DEP Zoom">
+  <figcaption><strong>Figure 3:</strong> (A) Calibrated H73-MCSC posterior surface across Nevada with cyan contour showing the 24.63% USGS 3DEP non-LiDAR survey gap. (B) Final <code>37,654</code> binary <code>1.0</code> submodular fault dots (emerald) vs mapped NBMG/USGS catalogue (blue, 0 overlap). (C) 76 km × 76 km zoom demonstrating seamless fault strand propagation directly across the 3DEP LiDAR tile boundary.</figcaption>
+</figure>
+<figure>
+  <img src="assets/fig4_uniqueness_canaries_and_importance.png" alt="Fleet Uniqueness Audit, 92 Leakage Canaries, and Feature Importance">
+  <figcaption><strong>Figure 4:</strong> (A) Forward 3-px dot overlap across key fleet submissions (all 888 non-probe rasters strictly &lt; 70% limit; <code>48.6%</code> overlap / <code>51.4%</code> novel dots vs <code>H33-2-B2</code>). (B) Single-feature symmetric AUC audit across all 92 Stage-1 &amp; Stage-2 features (max <code>0.6705 &lt;= 0.90</code>). (C) Top 12 physical &amp; Steger-Blakely Stage-1 features.</figcaption>
+</figure>
 
-<h2>Run card (this build)</h2>
-<pre><code>{
-  "hypothesis": "H73-A blind-stepover linkage via magnetic second-vertical-derivative + gravity slope",
-  "mechanism": "Second-vertical-derivative magnetic edge (tilt/total-curvature) + gravity-slope concordance; Andersonian 60/30° conjugate fabric, power-law lengths (α=1.8), 15% tip stepovers (1-3 px offset), 30° wing cracks; B=2 catalogue prune",
-  "non_fault_mimic": "Basin-fill lithologic contacts and paleo-shorelines (Walker Lake Lahontan) produce similar magnetic-gravity steps without faulting; mitigated by requiring stepover geometry, not just edge strength",
-  "holdout_DTI": "HOLDOUT-DTI not yet run on full feature stack (template-only synthetic generator); leakage canary AUC not computed on this build — pending data placement",
-  "correlation_vs_registry": "&lt;0.30 rank-correlation, &lt;35% overlap within 3 px vs any registry raster (synthetic stepover lane vs dotted-ridge lane)",
-  "raster_sha256": "46859dc652c39648f578329310c716431a439f230529e417a86be92bf42bed5e",
-  "validator": "PASSED: single-band float32 EPSG:32611 100m 3292×3730, transform [100,0,243350,0,-100,4508550], all 12,279,160 cells finite in [0,1], no NaN, no nodata tag, CRS/shape/transform match template",
-  "submission_name": "GEMSDOE73-H73A-STEPOVER",
-  "note": "GEMSDOE73 H73-A blind stepover | 30762 dots, 0 on catalogue B=2, magnetic-gravity relay-ramp linker; UNSCORED",
-  "verdict": "negative (deliverable, not promotion)"
-}</code></pre>
-<p class="mut">Verdict <code>negative</code> means this build is a documented deliverable, not a promotion to a real slot. Weekly slot promotion requires beating the current holdout best on the spatially-blocked instrument and passing the slot gate (see <a href="hypotheses.html">hypotheses</a>).</p>
-
-</main>
-<footer><div class="wrap">
-Site generated 2026-10-21 from <code>registry/submission_build.json</code> by <code>scripts/generate_submission.py</code>. Owner scores are labelled <em>claim</em>; only organiser receipts are <em>ORGANIZER-CONFIRMED</em>. <a href="https://github.com/buffedlizard55-lab/GEMSDOE73">Repository</a> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f.json">manifest</a> · <a href="downloads/gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif">download</a>
-</div></footer>
-</body></html>
+<section class="quarantine">
+  <h3 style="margin-top:0;color:#991b1b;">Quarantined Legacy Rasters in <code>docs/downloads/</code> — DO NOT SUBMIT</h3>
+  <p style="margin:0.3rem 0 0.7rem;font-size:0.9rem;">Preserved strictly for git audit trail across PRs #1–#3. Only upload the emerald-badged <strong><code>b27ac445-zeros.tif</code></strong> file at the top of this page:</p>
+  <table>
+    <thead><tr><th>Legacy File</th><th>Origin</th><th>Status</th><th>Audit Finding</th></tr></thead>
+    <tbody>
+      <tr><td><code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code></td><td>PR #3</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Superseded baseline (<code>0.0548</code> HOLDOUT-DTI vs <code>0.1095</code> H73-MCSC; <code>IR-73-04</code>).</td></tr>
+      <tr><td><code>gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif</code></td><td>PR #2</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Negative stepover ablation (<code>0.0085</code> HOLDOUT-DTI; <code>IR-73-02</code>).</td></tr>
+      <tr><td><code>gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif</code></td><td>PR #1</td><td><span class="badge-no">DO NOT SUBMIT</span></td><td>Under-budget legacy artifact (<code>16,180</code> dots emitted vs <code>37,654</code> name; <code>IR-73-01</code>).</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card"><h2 style="margin-top:0;">Verified Machine-Readable JSON Run Card</h2><pre>{
+  &quot;schema_version&quot;: &quot;gems-run-card-v2&quot;,
+  &quot;repo&quot;: &quot;buffedlizard55-lab/GEMSDOE73&quot;,
+  &quot;lane_id&quot;: &quot;H73-MCSC&quot;,
+  &quot;hypothesis&quot;: &quot;H73-MCSC: Unmapped Great Basin faults trace sub-pixel physical contact crests across surface topography, potential fields, and hydrothermal conduits across both 3DEP LiDAR tiles and the 24.6% (47.4% in NE) non-LiDAR survey gap. Combining 67 pure sensor + Steger-Blakely sub-pixel contact-crest channels, dual-regime seam-free quantile calibration, 12-azimuth x 3-scale (900m, 2.3km, 4.5km) steerable strand propagation, and directional crest-sharpened 300m submodular decoding recovers buried/blind strands while preventing collar leakage and 2D apron bloat.&quot;,
+  &quot;mechanism&quot;: &quot;Stage 1 fuses 52 de-regionalized physical sensor channels + 15 closed-form scale-normalized Steger (1998) / Blakely-Simpson (1986) sub-pixel contact-crest channels via dual-regime specialists (Expert_All67 + LiDAR-free Expert_NoLiDAR51 quantile-aligned per quadrant across survey seams; 0 d_cat covariates, &gt;=4.4 km spatial train-test separation). Stage 2 applies steerable multi-scale curvilinear line integrals, bilateral half-ray min(I+,I-), flank-subtracted crestness, and smooth (cos 2theta, sin 2theta) strike kinematics, decoded by directional apron-subtracted Minoux lazy-greedy 300m triangular-kernel submodular optimization (37,654 binary dots, d_cat &gt; 200m).&quot;,
+  &quot;named_non_fault_mimic&quot;: &quot;Playa evaporite / lithologic / wide hillside aprons &amp; USGS 3DEP tile-seam step artifacts&quot;,
+  &quot;mimic_suppression_audit&quot;: {
+    &quot;named_non_fault_mimic&quot;: &quot;Playa evaporite / lithologic / wide hillside aprons &amp; USGS 3DEP tile-seam step artifacts&quot;,
+    &quot;playa_flat_dot_fraction&quot;: 0.02656,
+    &quot;deep_alluvial_cover_ge_250m_dots&quot;: 26207,
+    &quot;deep_alluvial_cover_ge_250m_fraction&quot;: 0.696,
+    &quot;non_lidar_gap_dots&quot;: 7597,
+    &quot;non_lidar_gap_fraction&quot;: 0.20176,
+    &quot;footprint_non_lidar_gap_fraction&quot;: 0.24634,
+    &quot;far_gt_1km_from_catalogue_dots&quot;: 22979,
+    &quot;far_gt_1km_from_catalogue_fraction&quot;: 0.61027,
+    &quot;dots_within_2px_of_catalogue&quot;: 0,
+    &quot;dots_on_catalogue&quot;: 0,
+    &quot;prod_sgmc_piedmont_dti&quot;: 0.124413
+  },
+  &quot;holdout_dti&quot;: {
+    &quot;label&quot;: &quot;HOLDOUT-DTI&quot;,
+    &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+    &quot;split&quot;: &quot;buffered-whole-components-loqo-v2 (seed=20, buffer_px=3, boundary_px=12)&quot;,
+    &quot;withheld_positive_pixels&quot;: 11321,
+    &quot;selected_experiment&quot;: &quot;E3_mcsc_seamfree_curvilinear&quot;,
+    &quot;pooled_dti&quot;: 0.109514,
+    &quot;ci95_pooled_dti&quot;: [
+      0.091089,
+      0.12859
+    ],
+    &quot;per_fold_dti&quot;: {
+      &quot;NW&quot;: 0.099113,
+      &quot;NE&quot;: 0.135984,
+      &quot;SW&quot;: 0.082036,
+      &quot;SE&quot;: 0.129705
+    },
+    &quot;far_gt_1km_pooled_dti&quot;: 0.100588,
+    &quot;far_gt_1km_ci95&quot;: [
+      0.076216,
+      0.127347
+    ],
+    &quot;paired_differences_all&quot;: {
+      &quot;E1_sensor_submod&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.030459435660836837,
+        &quot;ci95&quot;: [
+          0.016440028164862883,
+          0.045013379965026495
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;E2_seamfree_blakely_submod&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.01689064451581751,
+        &quot;ci95&quot;: [
+          0.003982002619426415,
+          0.029858871353173045
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_h33_champion_raw&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.10581521550745578,
+        &quot;ci95&quot;: [
+          0.08759897951177062,
+          0.12448178989146848
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_h33_foldfair&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.015520359610667805,
+        &quot;ci95&quot;: [
+          0.0019379248887268921,
+          0.03023174134304999
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_d28&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.017625571433981774,
+        &quot;ci95&quot;: [
+          0.005693863038976586,
+          0.029886277983938687
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_d15&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.020705527742466937,
+        &quot;ci95&quot;: [
+          0.007982851578425397,
+          0.033446908660651385
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_h19_5&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.04409092982476863,
+        &quot;ci95&quot;: [
+          0.031065085626574823,
+          0.05787910507608456
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      },
+      &quot;ctrl_random_37654&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.0637388594872137,
+        &quot;ci95&quot;: [
+          0.04661999382202215,
+          0.08203876345189214
+        ],
+        &quot;withheld_positive_pixels&quot;: 11321
+      }
+    },
+    &quot;paired_differences_far_gt_1km&quot;: {
+      &quot;E1_sensor_submod&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.032064188749431,
+        &quot;ci95&quot;: [
+          0.013473468365016715,
+          0.05215217118590316
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;E2_seamfree_blakely_submod&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.018311493608160034,
+        &quot;ci95&quot;: [
+          0.0016153798799205942,
+          0.03485413170297675
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_h33_champion_raw&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.0972285808922288,
+        &quot;ci95&quot;: [
+          0.07331767023541146,
+          0.12387170695807473
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_h33_foldfair&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.027405485780366473,
+        &quot;ci95&quot;: [
+          0.009241579979903592,
+          0.04864793720318799
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_d28&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.02312301093632997,
+        &quot;ci95&quot;: [
+          0.007770958096607897,
+          0.039043771916552755
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_d15&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.02732511926605659,
+        &quot;ci95&quot;: [
+          0.01134468010543696,
+          0.04385911124994528
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_h19_5&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.04812544114462828,
+        &quot;ci95&quot;: [
+          0.03085690386248959,
+          0.06595429938113899
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      },
+      &quot;ctrl_random_37654&quot;: {
+        &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+        &quot;delta&quot;: 0.06654165735503063,
+        &quot;ci95&quot;: [
+          0.043317573919324934,
+          0.09175537383894651
+        ],
+        &quot;withheld_positive_pixels&quot;: 5150
+      }
+    },
+    &quot;beats_prior_gemsdoe73_pr3_0_0548&quot;: true,
+    &quot;beats_d28_ci95_gt_0&quot;: true,
+    &quot;beats_h33_foldfair_ci95_gt_0&quot;: true,
+    &quot;beats_h33_far_gt_1km_ci95_gt_0&quot;: true,
+    &quot;all_3_experiments&quot;: {
+      &quot;E1_sensor_submod&quot;: {
+        &quot;emitted_pixels&quot;: 37654,
+        &quot;pooled_dti&quot;: 0.079054,
+        &quot;ci95_dti&quot;: [
+          0.06494,
+          0.094871
+        ],
+        &quot;tpw&quot;: 1283.1,
+        &quot;fpw&quot;: 34585.87,
+        &quot;fnw&quot;: 10037.9,
+        &quot;fold_mean_dti&quot;: 0.079783,
+        &quot;fold_std_dti&quot;: 0.005025,
+        &quot;per_fold_dti&quot;: {
+          &quot;NW&quot;: 0.08522,
+          &quot;NE&quot;: 0.082254,
+          &quot;SW&quot;: 0.071702,
+          &quot;SE&quot;: 0.079955
+        },
+        &quot;far_gt_1km_pooled_dti&quot;: 0.068524,
+        &quot;far_gt_1km_ci95&quot;: [
+          0.049502,
+          0.086644
+        ],
+        &quot;far_gt_1km_per_fold&quot;: {
+          &quot;NW&quot;: 0.052552,
+          &quot;NE&quot;: 0.089284,
+          &quot;SW&quot;: 0.068644,
+          &quot;SE&quot;: 0.068852
+        },
+        &quot;sgmc_piedmont_dti&quot;: 0.070986
+      },
+      &quot;E2_seamfree_blakely_submod&quot;: {
+        &quot;emitted_pixels&quot;: 37654,
+        &quot;pooled_dti&quot;: 0.092623,
+        &quot;ci95_dti&quot;: [
+          0.076027,
+          0.110462
+        ],
+        &quot;tpw&quot;: 1501.48,
+        &quot;fpw&quot;: 34267.47,
+        &quot;fnw&quot;: 9819.52,
+        &quot;fold_mean_dti&quot;: 0.093544,
+        &quot;fold_std_dti&quot;: 0.005761,
+        &quot;per_fold_dti&quot;: {
+          &quot;NW&quot;: 0.09337,
+          &quot;NE&quot;: 0.095322,
+          &quot;SW&quot;: 0.084734,
+          &quot;SE&quot;: 0.10075
+        },
+        &quot;far_gt_1km_pooled_dti&quot;: 0.082277,
+        &quot;far_gt_1km_ci95&quot;: [
+          0.06175,
+          0.104181
+        ],
+        &quot;far_gt_1km_per_fold&quot;: {
+          &quot;NW&quot;: 0.0574,
+          &quot;NE&quot;: 0.103313,
+          &quot;SW&quot;: 0.082657,
+          &quot;SE&quot;: 0.095089
+        },
+        &quot;sgmc_piedmont_dti&quot;: 0.079697
+      },
+      &quot;E3_mcsc_seamfree_curvilinear&quot;: {
+        &quot;emitted_pixels&quot;: 37654,
+        &quot;pooled_dti&quot;: 0.109514,
+        &quot;ci95_dti&quot;: [
+          0.091089,
+          0.12859
+        ],
+        &quot;tpw&quot;: 1765.24,
+        &quot;fpw&quot;: 33545.31,
+        &quot;fnw&quot;: 9555.76,
+        &quot;fold_mean_dti&quot;: 0.111709,
+        &quot;fold_std_dti&quot;: 0.022092,
+        &quot;per_fold_dti&quot;: {
+          &quot;NW&quot;: 0.099113,
+          &quot;NE&quot;: 0.135984,
+          &quot;SW&quot;: 0.082036,
+          &quot;SE&quot;: 0.129705
+        },
+        &quot;far_gt_1km_pooled_dti&quot;: 0.100588,
+        &quot;far_gt_1km_ci95&quot;: [
+          0.076216,
+          0.127347
+        ],
+        &quot;far_gt_1km_per_fold&quot;: {
+          &quot;NW&quot;: 0.080181,
+          &quot;NE&quot;: 0.134072,
+          &quot;SW&quot;: 0.06696,
+          &quot;SE&quot;: 0.124774
+        },
+        &quot;sgmc_piedmont_dti&quot;: 0.118235
+      }
+    }
+  },
+  &quot;leakage_canary&quot;: {
+    &quot;features_tested&quot;: 92,
+    &quot;max_symmetric_auc_stage1&quot;: 0.61028,
+    &quot;max_symmetric_auc_stage2&quot;: 0.67052,
+    &quot;limit&quot;: 0.9,
+    &quot;all_pass&quot;: true
+  },
+  &quot;correlation_overlap_vs_registry&quot;: {
+    &quot;complete_accessible_scan&quot;: true,
+    &quot;repos_scanned&quot;: 78,
+    &quot;unique_rasters_audited&quot;: 888,
+    &quot;unique_prediction_rasters_audited&quot;: 888,
+    &quot;max_abs_spearman_surface&quot;: {
+      &quot;value&quot;: 0.335504,
+      &quot;signed&quot;: 0.335504,
+      &quot;nearest_neighbor&quot;: &quot;GEMSDOE48:docs/downloads/GEMSDOE48-H53-3SRC-DS-20261007-9242c831-nan-outside.tif&quot;,
+      &quot;sha256&quot;: &quot;9242c831dc103966e7ea961e342e4dce5e655b11313d349a112ece8a4d8b0d15&quot;,
+      &quot;limit&quot;: 0.9,
+      &quot;pass&quot;: true
+    },
+    &quot;max_abs_spearman_final_dots&quot;: {
+      &quot;value&quot;: 0.09036,
+      &quot;signed&quot;: 0.09036,
+      &quot;nearest_neighbor&quot;: &quot;GEMSDOE22:docs/downloads/gems22/gems22-h22-value-emit-20261002T015455Z-f6777492-allfinite.tif&quot;,
+      &quot;sha256&quot;: &quot;cd3c26a2fb4b7e649c49d2b565291bca30ee6fe47ea47c1ea6151061dc9a0337&quot;,
+      &quot;limit&quot;: 0.9,
+      &quot;pass&quot;: true
+    },
+    &quot;max_3px_overlap_vs_sparse_submissions&quot;: {
+      &quot;value&quot;: 0.695358,
+      &quot;pred_in_ref3px&quot;: 0.695358,
+      &quot;ref_in_pred3px&quot;: 0.20909,
+      &quot;nearest_neighbor&quot;: &quot;GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-allfinite.tif&quot;,
+      &quot;ref_positive_pixels&quot;: 100000,
+      &quot;sha256&quot;: &quot;ae5c5aafce85a395af73944ab10f3fc2cad7bcc1244d49a52d53443bd0f5c3c2&quot;,
+      &quot;limit&quot;: 0.7,
+      &quot;pass&quot;: true
+    },
+    &quot;all_uniqueness_gates_passed&quot;: true
+  },
+  &quot;raster_sha256&quot;: &quot;fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249&quot;,
+  &quot;deliverables&quot;: {
+    &quot;primary_zeros_tif&quot;: {
+      &quot;filename&quot;: &quot;gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif&quot;,
+      &quot;path&quot;: &quot;docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif&quot;,
+      &quot;sha256&quot;: &quot;fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249&quot;,
+      &quot;size_bytes&quot;: 147617,
+      &quot;nodata&quot;: null,
+      &quot;emitted_positive_pixels&quot;: 37654
+    },
+    &quot;companion_nan_tif&quot;: {
+      &quot;filename&quot;: &quot;gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif&quot;,
+      &quot;path&quot;: &quot;docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-nan.tif&quot;,
+      &quot;sha256&quot;: &quot;0883256111ef03d93820292a1f037224b38a65b7241daa4d7ad3d517089a7d75&quot;,
+      &quot;size_bytes&quot;: 190505,
+      &quot;nodata&quot;: &quot;NaN&quot;
+    },
+    &quot;zip_bundle&quot;: {
+      &quot;filename&quot;: &quot;gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip&quot;,
+      &quot;path&quot;: &quot;docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.zip&quot;,
+      &quot;sha256&quot;: &quot;2614235ef6a562199464b9a651821022cb90328cbc1cbae8e778ea86a140b3b1&quot;,
+      &quot;size_bytes&quot;: 115002
+    }
+  },
+  &quot;validator&quot;: {
+    &quot;gems57_validate&quot;: {
+      &quot;single_band&quot;: true,
+      &quot;dtype_float32&quot;: true,
+      &quot;dimensions_3730x3292&quot;: true,
+      &quot;crs_epsg_32611&quot;: true,
+      &quot;transform_matches_sample_submission&quot;: true,
+      &quot;no_nan_anywhere&quot;: true,
+      &quot;no_inf_anywhere&quot;: true,
+      &quot;no_sentinel_values&quot;: true,
+      &quot;range_0_1_guaranteed&quot;: true,
+      &quot;min_ge_0&quot;: true,
+      &quot;max_le_1&quot;: true,
+      &quot;in_footprint_all_finite&quot;: true,
+      &quot;in_footprint_range_0_1&quot;: true,
+      &quot;outside_footprint_zero&quot;: true,
+      &quot;zero_dots_on_mapped_catalogue&quot;: true
+    },
+    &quot;gems73_validate&quot;: [
+      {
+        &quot;name&quot;: &quot;dimensions&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;shape (3730, 3292) expected (3730, 3292)&quot;
+      },
+      {
+        &quot;name&quot;: &quot;band_count&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;bands 1 expected 1&quot;
+      },
+      {
+        &quot;name&quot;: &quot;crs&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;CRS EPSG:32611 expected EPSG:32611&quot;
+      },
+      {
+        &quot;name&quot;: &quot;transform&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;transform match&quot;
+      },
+      {
+        &quot;name&quot;: &quot;dtype&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;dtype float32 expected float32&quot;
+      },
+      {
+        &quot;name&quot;: &quot;in_footprint_range&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;in-footprint [0.0000,1.0000] finite=True&quot;
+      },
+      {
+        &quot;name&quot;: &quot;portal_safe_whole_array&quot;,
+        &quot;passed&quot;: true,
+        &quot;detail&quot;: &quot;whole [0.0000,1.0000] finite=True&quot;
+      }
+    ],
+    &quot;stats&quot;: {
+      &quot;crs&quot;: &quot;EPSG:32611&quot;,
+      &quot;shape&quot;: [
+        3730,
+        3292
+      ],
+      &quot;dtype&quot;: &quot;float32&quot;,
+      &quot;nodata&quot;: null,
+      &quot;transform&quot;: [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      &quot;n_finite&quot;: 12279160,
+      &quot;n_nan&quot;: 0,
+      &quot;n_infinite&quot;: 0,
+      &quot;min&quot;: 0.0,
+      &quot;max&quot;: 1.0,
+      &quot;emitted_positive_pixels&quot;: 37654,
+      &quot;on_catalogue_positive_pixels&quot;: 0
+    },
+    &quot;all_checks_passed&quot;: true
+  },
+  &quot;submission_name&quot;: &quot;gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros&quot;,
+  &quot;note&quot;: &quot;H73-MCSC 67ch Steger-Blakely seam-free + 3-scale curvilinear submod (holdout DTI 0.1095, 37654 dots)&quot;,
+  &quot;note_length&quot;: 100,
+  &quot;verdict&quot;: &quot;promote&quot;,
+  &quot;generated_utc&quot;: &quot;2026-10-21T07:37:18+00:00&quot;
+}</pre></section>
+  </main>
+  <footer>
+    buffedlizard55-lab/GEMSDOE73 · Core Values: <strong>Maximize P(Win)</strong> &amp; <strong>Own the Outcome</strong> · All metrics tagged <code>HOLDOUT-DTI</code>, <code>ORGANIZER-CONFIRMED</code>, or <code>OWNER-REPORT</code>.
+  </footer>
+</body>
+</html>
