@@ -1,0 +1,112 @@
+{
+  "evidence_class": "HOLDOUT-DTI canary (single-feature AUC; gate symmetric AUC <= 0.90)",
+  "n_neg_sample": 200000,
+  "n_pos_catalogue": 60988,
+  "n_pos_withheld": 11321,
+  "channels": {
+    "band03_tmi_hg": {
+      "auc_catalogue": 0.531098680542395,
+      "auc_withheld": 0.5340208549203445,
+      "symmetric_auc": 0.5340208549203445,
+      "pass": true
+    },
+    "band05_iso_grav_slope": {
+      "auc_catalogue": 0.5383371632548097,
+      "auc_withheld": 0.5257568967553405,
+      "symmetric_auc": 0.5383371632548097,
+      "pass": true
+    },
+    "band12_det_elev": {
+      "auc_catalogue": 0.48517508873617915,
+      "auc_withheld": 0.5145063932085379,
+      "symmetric_auc": 0.5148249112638208,
+      "pass": true
+    },
+    "band15_depth_to_base": {
+      "auc_catalogue": 0.5133329855217755,
+      "auc_withheld": 0.5258107196541728,
+      "symmetric_auc": 0.5258107196541728,
+      "pass": true
+    },
+    "band19_det_elev_slope": {
+      "auc_catalogue": 0.5643201468774088,
+      "auc_withheld": 0.5700285684523154,
+      "symmetric_auc": 0.5700285684523154,
+      "pass": true
+    },
+    "lidar_ex_max": {
+      "auc_catalogue": 0.568758782465403,
+      "auc_withheld": 0.5919973306245031,
+      "symmetric_auc": 0.5919973306245031,
+      "pass": true
+    },
+    "lidar_step_max": {
+      "auc_catalogue": 0.5697080989702893,
+      "auc_withheld": 0.5930956359862203,
+      "symmetric_auc": 0.5930956359862203,
+      "pass": true
+    },
+    "lidar_downface_max": {
+      "auc_catalogue": 0.5820180001393717,
+      "auc_withheld": 0.605274342372582,
+      "symmetric_auc": 0.605274342372582,
+      "pass": true
+    },
+    "lidar_upface_max": {
+      "auc_catalogue": 0.5873692141896767,
+      "auc_withheld": 0.6105073767776699,
+      "symmetric_auc": 0.6105073767776699,
+      "pass": true
+    },
+    "lidar_cross_max": {
+      "auc_catalogue": 0.5790648023381649,
+      "auc_withheld": 0.6049499054853811,
+      "symmetric_auc": 0.6049499054853811,
+      "pass": true
+    },
+    "derived_scarp_n": {
+      "auc_catalogue": 0.5681455978225225,
+      "auc_withheld": 0.5806307165886405,
+      "symmetric_auc": 0.5806307165886405,
+      "pass": true
+    },
+    "derived_chain": {
+      "auc_catalogue": 0.5389537169197218,
+      "auc_withheld": 0.5526607956452609,
+      "symmetric_auc": 0.5526607956452609,
+      "pass": true
+    },
+    "derived_substep": {
+      "auc_catalogue": 0.542085681363547,
+      "auc_withheld": 0.5315998105291051,
+      "symmetric_auc": 0.542085681363547,
+      "pass": true
+    },
+    "derived_pied_soft": {
+      "auc_catalogue": 0.47319893130615864,
+      "auc_withheld": 0.4845087560727851,
+      "symmetric_auc": 0.5268010686938414,
+      "pass": true
+    },
+    "surface_E1": {
+      "auc_catalogue": 0.5622888674821276,
+      "auc_withheld": 0.5821539088861408,
+      "symmetric_auc": 0.5821539088861408,
+      "pass": true
+    },
+    "surface_E2": {
+      "auc_catalogue": 0.5503458462730373,
+      "auc_withheld": 0.5649394413037718,
+      "symmetric_auc": 0.5649394413037718,
+      "pass": true
+    },
+    "surface_E3": {
+      "auc_catalogue": 0.5829949599511379,
+      "auc_withheld": 0.6025348604363572,
+      "symmetric_auc": 0.6025348604363572,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "max_symmetric_auc": 0.6105073767776699
+}

@@ -77,3 +77,18 @@ python scripts/validate_submission.py docs/downloads/gems73-*.tif --template dat
 ## License & Disclosure
 
 All code is MIT. External data retains its original license (see sources). No organizer authentication is misrepresented; no score is claimed without a receipt.
+
+## Parallel lane H73-1 — piedmont micro-scarp chain (PR #3) — verdict NEGATIVE, do not submit
+
+A third, independent lane merged alongside the hydrothermal corridor and blind stepover lanes above.
+**Download-for-review: yes. Submit: NO.** It failed its preregistered holdout gate
+(HOLDOUT-DTI `gems57-pooled-hide-v2`, 11,321 withheld px: E1 0.0548 [0.0417, 0.0688] vs fold-fair
+H33-analogue control 0.0939 [0.0813, 0.1076]). It is format-valid and unique — vs the two main-lane
+rasters in this repo: mutual 3 px overlap 0.067 (hydro corridor) and 0.043 (blind stepover);
+vs the H33 champion: forward 0.177. File:
+`docs/downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif`
+(sha256 `d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece`).
+Full lane page: `docs/h73-1-piedmont.html` · run card: `evidence/run_card_h73-1.json` ·
+preregistration: `registry/preregistration.json` · hypotheses: `docs/research/hypotheses.md` ·
+irregularities: `docs/irregularities.md`. Negative results are deliverables; weekly slots spent by
+this lane: 0.

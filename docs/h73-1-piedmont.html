@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE73 — H73-1 piedmont scarp-chain lane</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0b1220;color:#e5e7eb}
+.wrap{max-width:980px;margin:0 auto;padding:28px 20px 60px}
+a{color:#7dd3fc} code{background:#1e293b;padding:1px 5px;border-radius:4px;word-break:break-all}
+.card{background:#111827;border:1px solid #334155;border-radius:12px;padding:20px;margin:18px 0}
+.bad{border-color:#dc2626;background:#2a0f12}.good{border-color:#16a34a}
+.btn{display:inline-block;background:#0369a1;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px 8px 6px 0}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #334155;padding:7px 9px;text-align:left;vertical-align:top}
+h1{font-size:26px}h2{margin-top:26px}.small{color:#9ca3af;font-size:13px}img{max-width:100%;border-radius:8px}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-weight:700}.no{background:#dc2626;color:#fff}.yes{background:#16a34a;color:#fff}
+</style></head><body><div class="wrap">
+<h1>GEMSDOE73 — H73-1 piedmont micro-scarp chain lane</h1>
+<p class="small">DOE GEMS Prize (DrivenData #306) · one preregistered lane · every number labelled
+HOLDOUT-DTI or OWNER-REPORT · no organizer score exists for this repo's file.</p>
+
+<div class="card bad">
+<h2 style="margin-top:0">⬇ Submission file — READ THE STATUS FIRST</h2>
+<table>
+<tr><th>Gate 1 — OK to download?</th><td><span class="pill yes">YES</span> Format-valid and registry-unique; safe to download for review.</td></tr>
+<tr><th>Gate 2 — Recommended to submit?</th><td><span class="pill no">NO — DO NOT SUBMIT</span>
+<b>Verdict: NEGATIVE.</b> The candidate failed the preregistered holdout gate
+(HOLDOUT-DTI 0.0548 vs fold-fair H33-analogue control 0.0939).
+Submitting it would spend a weekly slot against this repo's own evidence. A human selector may
+override knowingly (see the report-only proxy below) — that decision is not made here.</td></tr>
+</table>
+<p><a class="btn" href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif">⬇ Download .tif (review only)</a>
+<a class="btn" href="downloads/gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.zip">⬇ Download .zip (single GeoTIFF inside)</a>
+<a class="btn" href="downloads/run_card_h73-1.json">Run card (JSON)</a></p>
+<p><b>Filename:</b> <code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif</code><br>
+<b>Unique submission name:</b> <code>gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021</code><br>
+<b>Note to paste in the DrivenData “Note (optional)” field (125/140 chars) — only if a selector overrides:</b><br>
+<code>G73 H73-1 E1 piedmont scarp-chain unsupervised 37654 dots; HOLDOUT-DTI 0.0548 vs ctrl 0.0939 - NEGATIVE, selector review only</code><br>
+<b>sha256:</b> <code>d09dca2465f784e8a07571894cd12c689e4b34e8f7c14be321b5d6006b2d2ece</code> · 141,163 bytes ·
+single band float32 · EPSG:32611 · 3730×3292 · 37,654 dots · min 0.0, max 1.0,
+0 NaN in all 12,279,160 cells · CRS/shape/transform match the sample submission:
+<b>True</b> · all validator checks passed:
+<b>True</b> (<a href="downloads/validator_h73-1.json">validator receipt</a>)</p>
+<p class="small">Why this cannot trigger “Predicted values must be in range [0, 1]”: the file is written
+all-finite (0.0 outside the footprint, <code>nodata=None</code>), then re-opened from disk and every cell is
+checked finite and in [0,1] by the shared validator before delivery. See the
+<a href="executive-summary.html">executive summary</a> for exact submission steps.</p>
+</div>
+
+<div class="card"><h2 style="margin-top:0">The answer to the brief's question</h2>
+<p><b>Why did <code>h33-h33-2-b2…-zeros</code> score 0.2778 (OWNER-REPORT)?</b> Measured here, byte-exact:
+it is D2.8 with every dot ≤200 m from the catalogue deleted, and D2.8 ⊂ H19-5 with zero exceptions.
+H19-5's surface is ~90% LiDAR/DEM scarp-openness (weights 0.55+0.35 in its synthesis code) — the same
+evidence class expert re-mapping uses. Dotting to ~2.5 px spacing removes mass below the metric's
+break-even credit bar <code>k &gt; 0.2·DTI</code>, and the B2 prune deletes dots that can only cover
+already-mapped (masked, zero-credit) faults while paying full false-positive tax.</p>
+<p><b>Can we beat 0.2778 / 0.4413?</b> Not with this lane, on this evidence. Emission gains are nearly
+exhausted; beating the champion needs a field with higher credit density in its top 37,654 dots.
+H73-1 tested whether a fully unsupervised piedmont-scarp-chain geometry could be that field. It could
+not — see the holdout table. The one encouraging signal (report-only SGMC-piedmont proxy, E1
+0.1045 vs champion 0.0980)
+is not the preregistered instrument and does not override the gate.</p></div>
+
+<div class="card"><h2 style="margin-top:0">Holdout (primary instrument)</h2>
+<p class="small">HOLDOUT-DTI · evaluator <code>gems57-pooled-hide-v2</code> · whole-component
+hide-and-recover, fold-fair emission, visible faults masked pixel-exactly ·
+11,321 withheld positive pixels · α=0.2, β=0.8, 300 m triangular kernel ·
+paired spatial-cluster bootstrap 95% CIs.</p>
+<table><tr><th>Arm</th><th>DTI</th><th>95% CI</th></tr>
+<tr><td><b>E1 (this lane)</b></td><td>0.0548</td><td>[0.0417, 0.0688]</td></tr>
+<tr><td>E2 (no piedmont weight)</td><td>0.0339</td><td>—</td></tr>
+<tr><td>E3 (piedmont scarp only)</td><td>0.0564</td><td>—</td></tr>
+<tr><td>H33-analogue control (fold-fair)</td><td>0.0939</td><td>[0.0813, 0.1076]</td></tr>
+<tr><td>Random control</td><td>0.0484</td><td>—</td></tr></table>
+<p>E1 − control = -0.0391 [-0.0571,
+-0.0211]; E1 − random = +0.0064
+[-0.0068, +0.0202] (includes 0).
+Leakage canaries: 17 channels, max symmetric AUC
+0.611 ≤ 0.90 — PASS.
+Instrument warning (measured here, n=13 OWNER-REPORT live scores): static catalogue DTI ranks live at
+Spearman -0.49, SGMC-piedmont at +0.74
+— every local proxy is a screen, not a score prediction.</p></div>
+
+<div class="card"><h2 style="margin-top:0">Uniqueness vs registry (77 rasters)</h2>
+<table>
+<tr><th>Surface Spearman (pre-placement, 200k sample)</th><td>max 0.114 ≤ 0.90 ✓</td></tr>
+<tr><th>Final dots Spearman (full footprint)</th><td>max 0.030 ≤ 0.90 ✓</td></tr>
+<tr><th>Final dots mutual 3 px overlap</th><td>max 0.390 ≤ 0.70 ✓ (worst: gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif)</td></tr>
+<tr><th>vs H33 champion</th><td>forward 0.177 · mutual 0.172 · ρ 0.004</td></tr>
+<tr><th>Literal forward overlap</th><td>max 0.994 only vs the 206,895-dot r13 lattice whose 3 px halo covers ~100% of the footprint (mutual 0.139) — IR-73-01</td></tr>
+</table>
+<img src="assets/fig_e1_vs_h33.png" alt="Map of E1 dots vs champion"></div>
+
+<p><a href="executive-summary.html">Executive summary — exactly how to submit (and why not to submit this file)</a> ·
+<a href="sources.html">Official sources</a> · <a href="research/hypotheses.md">Five hypotheses (preregistered)</a></p>
+<p class="small">Core values: <b>Maximize P(Win)</b> — a negative result that saves a weekly slot is a win for the
+campaign. <b>Own the Outcome</b> — the gate failure is published, not buried. Weekly slots spent by this repo: 0.</p>
+</div></body></html>
